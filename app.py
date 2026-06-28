@@ -95,6 +95,23 @@ def logout():
 def api_me():
     return jsonify(session.get("user"))
 
+ADMIN_DISCORD_ID = os.getenv("ADMIN_DISCORD_ID", "")
+
+@app.route("/admin/users")
+def admin_users():
+    u = session.get("user")
+    if not u or u["id"] != ADMIN_DISCORD_ID:
+        return "Unauthorized", 403
+    try:
+        with _get_db() as conn:
+            with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
+                cur.execute("SELECT discord_id, username, last_ip, first_login, last_login FROM users ORDER BY last_login DESC")
+                users = cur.fetchall()
+    except Exception as e:
+        users = []
+        print(f"[admin] error: {e}")
+    return render_template("admin_users.html", users=users, user=u)
+
 BASE = Path(__file__).parent
 
 # Linear regression fit from JP→global offset analysis (545 unconfirmed events)
