@@ -26,6 +26,14 @@ def _init_db():
                         last_login   TIMESTAMPTZ DEFAULT NOW()
                     )
                 """)
+                cur.execute("""
+                    CREATE TABLE IF NOT EXISTS visitors (
+                        visitor_id   TEXT PRIMARY KEY,
+                        last_ip      TEXT,
+                        first_seen   TIMESTAMPTZ DEFAULT NOW(),
+                        last_seen    TIMESTAMPTZ DEFAULT NOW()
+                    )
+                """)
     except Exception as e:
         print(f"[db] init error: {e}")
 
@@ -94,6 +102,27 @@ def logout():
 @app.route("/api/me")
 def api_me():
     return jsonify(session.get("user"))
+
+@app.route("/api/track", methods=["POST"])
+def api_track():
+    if session.get("user"):
+        return jsonify(ok=True)  # already tracked via Discord login
+    visitor_id = request.json.get("visitor_id") if request.json else None
+    if not visitor_id:
+        return jsonify(ok=False), 400
+    ip = request.headers.get("X-Forwarded-For", request.remote_addr).split(",")[0].strip()
+    try:
+        with _get_db() as conn:
+            with conn.cursor() as cur:
+                cur.execute("""
+                    INSERT INTO visitors (visitor_id, last_ip, first_seen, last_seen)
+                    VALUES (%s, %s, NOW(), NOW())
+                    ON CONFLICT (visitor_id) DO UPDATE
+                      SET last_ip = EXCLUDED.last_ip, last_seen = NOW()
+                """, (visitor_id, ip))
+    except Exception as e:
+        print(f"[track] error: {e}")
+    return jsonify(ok=True)
 
 
 BASE = Path(__file__).parent

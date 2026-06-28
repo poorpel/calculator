@@ -2064,11 +2064,32 @@ function pickBanner(b) {
   closeDD();
   updateAllCarats();
   saveAll();
+  _trackVisit();
 }
 
 document.addEventListener("click",  e => { if (e.target !== ddInput && !dd.contains(e.target)) closeDD(); });
 document.addEventListener("scroll", () => { if (ddInput) positionDD(ddInput); }, true);
 window.addEventListener("resize",   () => { if (ddInput) positionDD(ddInput); });
+
+// ── Visitor tracking ─────────────────────────────────────────────
+function _getVisitorId() {
+  let id = localStorage.getItem("_vid");
+  if (!id) {
+    id = crypto.randomUUID();
+    localStorage.setItem("_vid", id);
+  }
+  return id;
+}
+let _tracked = false;
+function _trackVisit() {
+  if (_tracked) return;
+  _tracked = true;
+  fetch("/api/track", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({visitor_id: _getVisitorId()}),
+  }).catch(() => {});
+}
 
 // ── Rows ─────────────────────────────────────────────────────────
 function makeRow(data = {}) {
