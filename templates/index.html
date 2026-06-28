@@ -871,10 +871,12 @@
     <h2>Calculator</h2>
     <button class="sort-btn" id="sortBanners">Sort by Start Date</button>
     <span id="sortIndicator" style="font-size:11px;font-weight:600;letter-spacing:0.3px;"></span>
-    <div style="display:flex;align-items:center;gap:6px;margin-left:auto;">
+    <div style="display:flex;align-items:center;gap:4px;margin-left:auto;">
       <span style="font-size:12px;color:#444;"># Rows</span>
+      <button id="rowDecBtn" onclick="_adjustRows(-1)" style="background:#1a1a1a;border:1px solid #222;border-radius:5px;color:#888;font-size:14px;font-weight:700;padding:2px 8px;cursor:pointer;line-height:1;">−</button>
       <input type="number" id="numBanners" min="1" max="100" value="8"
-        style="background:#1a1a1a;border:1px solid #222;border-radius:5px;color:#5ecb7a;font-size:13px;font-weight:700;padding:4px 8px;width:60px;outline:none;text-align:center;">
+        style="background:#1a1a1a;border:1px solid #222;border-radius:5px;color:#5ecb7a;font-size:13px;font-weight:700;padding:4px 8px;width:52px;outline:none;text-align:center;">
+      <button id="rowIncBtn" onclick="_adjustRows(1)" style="background:#1a1a1a;border:1px solid #222;border-radius:5px;color:#888;font-size:14px;font-weight:700;padding:2px 8px;cursor:pointer;line-height:1;">+</button>
     </div>
   </div>
 
@@ -908,6 +910,9 @@
       </thead>
       <tbody id="calcBody"></tbody>
     </table>
+  </div>
+  <div style="display:flex;justify-content:center;padding:10px 0 4px;">
+    <button onclick="_adjustRows(1)" style="background:#141414;border:1px solid #222;border-radius:6px;color:#555;font-size:12px;padding:6px 20px;cursor:pointer;transition:color 0.1s,border-color 0.1s;" onmouseover="this.style.color='#aaa';this.style.borderColor='#444'" onmouseout="this.style.color='#555';this.style.borderColor='#222'">+ Add Row</button>
   </div>
 
   </div><!-- /tab-calculator -->
@@ -2423,9 +2428,18 @@ document.getElementById("packStartDate").addEventListener("change", () => { upda
 
 const numBannersInput = document.getElementById("numBanners");
 numBannersInput.addEventListener("change", function() {
-  let v = Math.max(4, Math.min(100, parseInt(this.value) || 4));
+  const filled = [...document.querySelectorAll("#calcBody tr.calc-row")].filter(r => r.classList.contains("row-active")).length;
+  let v = Math.max(Math.max(1, filled), Math.min(100, parseInt(this.value) || 1));
   this.value = v; setRowCount(v); saveAll();
 });
+
+function _adjustRows(delta) {
+  const filled = [...document.querySelectorAll("#calcBody tr.calc-row")].filter(r => r.classList.contains("row-active")).length;
+  const current = parseInt(numBannersInput.value) || 1;
+  const next = Math.max(Math.max(1, filled), Math.min(100, current + delta));
+  numBannersInput.value = next;
+  setRowCount(next); saveAll();
+}
 
 function pruneExpiredRows() {
   const body = document.getElementById("calcBody");
