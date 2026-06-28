@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Carat Calculator</title>
+  <script>const DISCORD_USER_ID = {{ ('"%s"' % user.id) if user else 'null' }};</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -532,7 +533,6 @@
 <body>
 
 <nav class="top-nav">
-  <script>const DISCORD_USER_ID = {{ ('"%s"' % user.id) if user else 'null' }};</script>
   <div class="top-nav-logo">Carat Calc</div>
   <a href="/" class="top-nav-link active">Calculator</a>
   <a href="/packs" class="top-nav-link">Selectors</a>
