@@ -1807,6 +1807,10 @@ function updateAllCarats() {
         ? Math.floor(totalVal / 150) + freePullsVal + tixForMax
         : 0;
     tr.querySelector(".cell-max-pulls").textContent = maxPulls > 0 ? maxPulls.toLocaleString() : "—";
+    tr.dataset.caratsFree   = Math.round(availCarat + evVal);
+    tr.dataset.caratsPaid   = Math.round(availPaid);
+    tr.dataset.ticketsAvail = ticketsAvail;
+    tr.dataset.maxPulls     = maxPulls;
 
     checkPullLimit(tr);
 
@@ -2308,14 +2312,18 @@ function switchProfile(i) {
 function saveAll() {
   if (_loading) return;
   const rows = Array.from(document.querySelectorAll("#calcBody tr.calc-row")).map(tr => ({
-    type:      tr.dataset.bannerType || "",
-    banner:    tr.querySelector(".banner-cell input").value,
-    startDate:  tr.querySelector(".date-start").textContent.trim(),
-    endDate:    tr.querySelector(".date-end").textContent.trim(),
-    cardsHTML:  tr.querySelector(".cards-cell").innerHTML,
-    pulls:      tr.querySelector(".cell-pulls input").value,
-    freePulls:  tr.querySelector(".cell-free-pulls").textContent.trim(),
+    type:        tr.dataset.bannerType || "",
+    banner:      tr.querySelector(".banner-cell input").value,
+    startDate:   tr.querySelector(".date-start").textContent.trim(),
+    endDate:     tr.querySelector(".date-end").textContent.trim(),
+    cardsHTML:   tr.querySelector(".cards-cell").innerHTML,
+    pulls:       tr.querySelector(".cell-pulls input").value,
+    freePulls:   parseInt(tr.querySelector(".cell-free-pulls").textContent) || 0,
     tixDisabled: tr.classList.contains("tix-disabled"),
+    caratsFree:  parseInt(tr.dataset.caratsFree)  || 0,
+    caratsPaid:  parseInt(tr.dataset.caratsPaid)  || 0,
+    tickets:     parseInt(tr.dataset.ticketsAvail) || 0,
+    maxPulls:    parseInt(tr.dataset.maxPulls)     || 0,
   }));
   const state = {
     teamTrials: document.getElementById("teamTrials").value,
