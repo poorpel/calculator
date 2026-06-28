@@ -1317,7 +1317,7 @@ function getEventDetails(toDate, fromDate, seenSet) {
     if (!b.start || !b.end) continue;
     const inRange = fromDate
       ? (b.start > fromDate && b.start <= toDate)
-      : (b.start < toDate && b.end >= TODAY);
+      : (b.start <= toDate && b.end >= TODAY);
     if (inRange) {
       const withinCount = {};
       for (const ev of (b.events || [])) {
@@ -1639,7 +1639,7 @@ function updateAllCarats() {
       const resPaidCarat = parseInt(document.getElementById("resPaidCarat").value) || 0;
       const detailCell = tr._detailRow.querySelector("td");
       if (bd) {
-        const windowEvDetails = getEventDetails(endStr, prevStartStr, new Set());
+        const windowEvDetails = getEventDetails(startStr, prevStartStr, new Set());
         const priorEvTotal = Math.max(0, evDetails.total - windowEvDetails.total);
         const evRows = (() => {
           let html = '';
