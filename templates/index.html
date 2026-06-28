@@ -532,6 +532,7 @@
 <body>
 
 <nav class="top-nav">
+  <script>const DISCORD_USER_ID = {{ ('"%s"' % user.id) if user else 'null' }};</script>
   <div class="top-nav-logo">Carat Calc</div>
   <a href="/" class="top-nav-link active">Calculator</a>
   <a href="/packs" class="top-nav-link">Selectors</a>
@@ -2343,6 +2344,20 @@ function saveAll() {
   // Keep active profile slot in sync
   _profiles.slots[_profiles.active] = stateWithPacks;
   _saveProfiles();
+  _syncPlanToServer(state);
+}
+
+let _syncTimer = null;
+function _syncPlanToServer(state) {
+  if (!DISCORD_USER_ID) return;
+  clearTimeout(_syncTimer);
+  _syncTimer = setTimeout(() => {
+    fetch("/api/plan/save", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(state),
+    }).catch(() => {});
+  }, 2000); // debounce 2s
 }
 
 function loadAll(stateOverride) {

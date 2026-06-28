@@ -34,6 +34,13 @@ def _init_db():
                         last_seen    TIMESTAMPTZ DEFAULT NOW()
                     )
                 """)
+                cur.execute("""
+                    CREATE TABLE IF NOT EXISTS plans (
+                        discord_id   TEXT PRIMARY KEY,
+                        plan_data    JSONB,
+                        updated_at   TIMESTAMPTZ DEFAULT NOW()
+                    )
+                """)
     except Exception as e:
         print(f"[db] init error: {e}")
 
@@ -102,6 +109,28 @@ def logout():
 @app.route("/api/me")
 def api_me():
     return jsonify(session.get("user"))
+
+@app.route("/api/plan/save", methods=["POST"])
+def api_plan_save():
+    u = session.get("user")
+    if not u:
+        return jsonify(ok=False, error="not logged in"), 401
+    data = request.json
+    if not data:
+        return jsonify(ok=False, error="no data"), 400
+    try:
+        with _get_db() as conn:
+            with conn.cursor() as cur:
+                cur.execute("""
+                    INSERT INTO plans (discord_id, plan_data, updated_at)
+                    VALUES (%s, %s, NOW())
+                    ON CONFLICT (discord_id) DO UPDATE
+                      SET plan_data = EXCLUDED.plan_data, updated_at = NOW()
+                """, (u["id"], json.dumps(data)))
+    except Exception as e:
+        print(f"[plan save] error: {e}")
+        return jsonify(ok=False, error=str(e)), 500
+    return jsonify(ok=True)
 
 @app.route("/api/track", methods=["POST"])
 def api_track():
