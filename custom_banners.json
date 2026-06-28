@@ -1,0 +1,1286 @@
+[
+  {
+    "_schema": "Field reference — this object is ignored by the app (no banner_name).",
+    "type": "'character' | 'support' | 'anniversary' | 'champions_meeting' | 'league_of_heroes' | 'step_up'",
+    "anniversary_name": "step_up only — must match the banner_name of the linked anniversary entry exactly.",
+    "banner_id": "Unique string. Use 'custom-N' to avoid conflicts with real IDs. null for anniversaries.",
+    "banner_name": "Display name shown in the calculator. For support banners the card names are used instead.",
+    "start_date": "Global release date — YYYY-MM-DD. Takes priority over jp_start_date if both are set.",
+    "end_date": "Global end date — YYYY-MM-DD. null if unknown or ongoing.",
+    "jp_start_date": "JP release date — YYYY-MM-DD. Auto-converted to global via regression formula. Ignored if start_date is set.",
+    "jp_end_date": "JP end date — YYYY-MM-DD. Auto-converted to global. Ignored if end_date is set.",
+    "is_confirmed": "true = dates are official. false = estimated.",
+    "index": "Anniversary index number (used for ID generation). Only needed for type 'anniversary'.",
+    "free": "Number of free pulls included with this banner.",
+    "cards": [
+      {
+        "name": "Card display name including variant e.g. 'Oguri Cap (SSR Speed)'",
+        "id": "Numeric card ID as a string — find on uma.guide or gametora",
+        "url": "Gametora card page URL (optional)",
+        "uma_url": "uma.guide card page URL (optional)"
+      }
+    ],
+    "events": [
+      {
+        "name": "Event reward name e.g. 'Part 1 Story Missions'",
+        "amount": 150
+      }
+    ],
+    "rewards": {
+      "uma_ticket": "Number of Uma Tickets earned during this banner period",
+      "support_ticket": "Number of Support Tickets earned",
+      "ssr": "Number of SSR Crystals earned",
+      "sr": "Number of SR Crystals earned"
+    }
+  },
+  {
+    "_comment": "Example: character banner using JP dates (auto-converted to global)",
+    "type": "character",
+    "banner_id": "custom-1",
+    "banner_name": "Example Uma (Summer) Banner",
+    "jp_start_date": "2026-09-01",
+    "jp_end_date": "2026-09-15",
+    "is_confirmed": false,
+    "free": 0,
+    "cards": [
+      {
+        "name": "Example Uma (Summer)",
+        "id": "100001",
+        "url": "https://gametora.com/umamusume/characters/100001",
+        "uma_url": "https://uma.guide/characters/detail?card=100001"
+      }
+    ],
+    "events": [
+      {
+        "name": "Part 1 Missions",
+        "amount": 150
+      },
+      {
+        "name": "Part 2 Missions",
+        "amount": 150
+      }
+    ],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    }
+  },
+  {
+    "_comment": "Example: support banner using confirmed global dates",
+    "type": "support",
+    "banner_id": "custom-2",
+    "banner_name": "Example Card (SSR Speed), Example Card B (SSR Stamina) Support Banner",
+    "start_date": "2026-09-01",
+    "end_date": "2026-09-15",
+    "is_confirmed": true,
+    "free": 0,
+    "cards": [
+      {
+        "name": "Example Card (SSR Speed)",
+        "id": "300001",
+        "url": "https://gametora.com/umamusume/supports/300001",
+        "uma_url": "https://uma.guide/support-cards/detail?id=300001"
+      },
+      {
+        "name": "Example Card B (SSR Stamina)",
+        "id": "300002",
+        "url": "https://gametora.com/umamusume/supports/300002",
+        "uma_url": "https://uma.guide/support-cards/detail?id=300002"
+      }
+    ],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    }
+  },
+  {
+    "_comment": "Example: anniversary banner. Use the display name directly e.g. '6th Anniversary'.",
+    "type": "anniversary",
+    "banner_id": null,
+    "banner_name": "6th Anniversary",
+    "jp_start_date": "2027-03-01",
+    "jp_end_date": null,
+    "is_confirmed": false,
+    "index": 12,
+    "free": 0,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    }
+  },
+  {
+    "_comment": "Example: Champions Meeting. banner_id should follow 'cm-N' format (short prefix).",
+    "type": "champions_meeting",
+    "banner_id": "cm-99",
+    "banner_name": "Champions Meeting: Custom Cup",
+    "jp_start_date": "2026-10-01",
+    "jp_end_date": "2026-10-08",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 2,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    }
+  },
+  {
+    "_comment": "Example: step-up banner. Always use global dates (start_date/end_date). 'anniversary_name' must match the banner_name of the linked anniversary entry exactly.",
+    "type": "step_up",
+    "banner_id": "custom-step-1",
+    "banner_name": "Example Uma Step-Up Banner",
+    "anniversary_name": "5th Anniversary",
+    "start_date": "2026-09-01",
+    "end_date": "2026-09-15",
+    "is_confirmed": true
+  },
+  {
+    "type": "character",
+    "banner_id": "banner1",
+    "banner_name": "Loves Only You (Beyond Dreams) Banner",
+    "jp_start_date": "2026-03-11",
+    "jp_end_date": "2026-03-19",
+    "is_confirmed": false,
+    "free": 9,
+    "cards": [
+      {
+        "name": "Loves Only You (Beyond Dreams)",
+        "id": "113202",
+        "url": "https://gametora.com/umamusume/characters/113202-loves-only-you",
+        "uma_url": "https://uma.guide/characters/detail?card=113202"
+      }
+    ],
+    "events": [
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 900
+      },
+      {
+        "name": "5th Anniversary Login Bonus",
+        "amount": 2250
+      },
+      {
+        "name": "5th Anniversary Celebration Missions Part 3",
+        "amount": 500
+      }
+    ],
+    "rewards": {
+      "uma_ticket": 1,
+      "support_ticket": 1,
+      "ssr": 1,
+      "sr": 2
+    },
+    "_estimated_start_date": "2029-04-01",
+    "_estimated_end_date": "2029-04-07"
+  },
+  {
+    "type": "support",
+    "banner_id": "banner2",
+    "banner_name": "Marche Lorraine (SSR Speed), Super Creek (SR Power) Support Banner",
+    "jp_start_date": "2026-03-11",
+    "jp_end_date": "2026-03-19",
+    "is_confirmed": false,
+    "free": 0,
+    "cards": [
+      {
+        "name": "Marche Lorraine (SSR Speed)",
+        "id": "30292",
+        "url": "https://gametora.com/umamusume/supports/30292",
+        "uma_url": "https://uma.guide/support-cards/detail?id=30292"
+      },
+      {
+        "name": "Super Creek (SR Power)",
+        "id": "20097",
+        "url": "https://gametora.com/umamusume/supports/20097",
+        "uma_url": "https://uma.guide/support-cards/detail?id=20097"
+      }
+    ],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2029-04-01",
+    "_estimated_end_date": "2029-04-07"
+  },
+  {
+    "type": "character",
+    "banner_id": "banner3",
+    "banner_name": "Victoire Pisa Banner",
+    "jp_start_date": "2026-03-19",
+    "jp_end_date": "2026-03-30",
+    "is_confirmed": false,
+    "free": 2,
+    "cards": [
+      {
+        "name": "Victoire Pisa",
+        "id": "114301",
+        "url": "https://gametora.com/umamusume/characters/114301",
+        "uma_url": "https://uma.guide/characters/detail?card=114301"
+      }
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Takamatsunomiya Kinen)",
+        "amount": 150
+      }
+    ],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2029-04-07",
+    "_estimated_end_date": "2029-04-16"
+  },
+  {
+    "type": "character",
+    "banner_id": "banner4",
+    "banner_name": "Sakura Bakushin O (Ballroom), North Flight (Ballroom) Banner",
+    "jp_start_date": "2026-03-30",
+    "jp_end_date": "2026-04-10",
+    "is_confirmed": false,
+    "free": 0,
+    "cards": [
+      {
+        "name": "Sakura Bakushin O (Ballroom)",
+        "id": "104103",
+        "url": "https://gametora.com/umamusume/characters/104103",
+        "uma_url": "https://uma.guide/characters/detail?card=104103"
+      },
+      {
+        "name": "North Flight (Ballroom)",
+        "id": "108202",
+        "url": "https://gametora.com/umamusume/characters/108202",
+        "uma_url": "https://uma.guide/characters/detail?card=108202"
+      }
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2910
+      },
+      {
+        "name": "Masters Challenge",
+        "amount": 4500
+      },
+      {
+        "name": "Legend Race (Narita Taishin Steampunk)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Duramente)",
+        "amount": 250
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Osaka Hai)",
+        "amount": 150
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Kawasaki Kinen)",
+        "amount": 150
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Oka Sho)",
+        "amount": 150
+      }
+    ],
+    "rewards": {
+      "uma_ticket": 2,
+      "support_ticket": 2,
+      "ssr": 4,
+      "sr": 5
+    },
+    "_estimated_start_date": "2029-04-16",
+    "_estimated_end_date": "2029-04-24"
+  },
+  {
+    "type": "support",
+    "banner_id": "banner5",
+    "banner_name": "Daring Tact (SSR Guts), Daring Heart (SSR Guts) Support Banner",
+    "jp_start_date": "2026-03-30",
+    "jp_end_date": "2026-04-10",
+    "is_confirmed": false,
+    "free": 0,
+    "cards": [
+      {
+        "name": "Daring Tact (SSR Guts)",
+        "id": "30293",
+        "url": "https://gametora.com/umamusume/supports/30293",
+        "uma_url": "https://uma.guide/support-cards/detail?id=30293"
+      },
+      {
+        "name": "Daring Heart (SSR Guts)",
+        "id": "30294",
+        "url": "https://gametora.com/umamusume/supports/30294",
+        "uma_url": "https://uma.guide/support-cards/detail?id=30294"
+      }
+    ],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2029-04-16",
+    "_estimated_end_date": "2029-04-24"
+  },
+  {
+    "type": "character",
+    "banner_id": "banner6",
+    "banner_name": "Lucky Lilac Banner",
+    "jp_start_date": "2026-04-10",
+    "jp_end_date": "2026-04-20",
+    "is_confirmed": false,
+    "free": 0,
+    "cards": [
+      {
+        "name": "Lucky Lilac",
+        "id": "113001",
+        "url": "https://gametora.com/umamusume/characters/113001",
+        "uma_url": "https://uma.guide/characters/detail?card=113001"
+      }
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 900
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Satsuki Sho)",
+        "amount": 150
+      }
+    ],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 1,
+      "sr": 1
+    },
+    "_estimated_start_date": "2029-04-24",
+    "_estimated_end_date": "2029-05-02"
+  },
+  {
+    "type": "support",
+    "banner_id": "banner7",
+    "banner_name": "Aston Machan (SSR Guts), Hishi Amazon (SR Wit) Support Banner",
+    "jp_start_date": "2026-04-10",
+    "jp_end_date": "2026-04-20",
+    "is_confirmed": false,
+    "free": 0,
+    "cards": [
+      {
+        "name": "Aston Machan (SSR Guts)",
+        "id": "30296",
+        "url": "https://gametora.com/umamusume/supports/30296",
+        "uma_url": "https://uma.guide/support-cards/detail?id=30296"
+      },
+      {
+        "name": "Hishi Amazon (SR Wit)",
+        "id": "20098",
+        "url": "https://gametora.com/umamusume/supports/20098",
+        "uma_url": "https://uma.guide/support-cards/detail?id=20098"
+      }
+    ],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2029-04-24",
+    "_estimated_end_date": "2029-05-02"
+  },
+  {
+    "type": "character",
+    "banner_id": "banner8",
+    "banner_name": "Admire Groove Banner",
+    "jp_start_date": "2026-04-20",
+    "jp_end_date": "2026-04-30",
+    "is_confirmed": false,
+    "free": 0,
+    "cards": [
+      {
+        "name": "Admire Groove",
+        "id": "111801",
+        "url": "https://gametora.com/umamusume/characters/111801",
+        "uma_url": "https://uma.guide/characters/detail?card=111801"
+      }
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Tenno Sho (Spring))",
+        "amount": 150
+      }
+    ],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2029-05-02",
+    "_estimated_end_date": "2029-05-09"
+  },
+  {
+    "type": "character",
+    "banner_id": "banner9",
+    "banner_name": "Fuji Kiseki (Cheerleader), Jungle Pocket (Cheerleader) Banner",
+    "jp_start_date": "2026-04-30",
+    "jp_end_date": "2026-05-11",
+    "is_confirmed": false,
+    "free": 0,
+    "cards": [
+      {
+        "name": "Fuji Kiseki (Cheerleader)",
+        "id": "100503",
+        "url": "https://gametora.com/umamusume/characters/100503",
+        "uma_url": "https://uma.guide/characters/detail?card=100503"
+      },
+      {
+        "name": "Jungle Pocket (Cheerleader)",
+        "id": "109402",
+        "url": "https://gametora.com/umamusume/characters/109402",
+        "uma_url": "https://uma.guide/characters/detail?card=109402"
+      }
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2910
+      }
+    ],
+    "rewards": {
+      "uma_ticket": 2,
+      "support_ticket": 2,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2029-05-09",
+    "_estimated_end_date": "2029-05-18"
+  },
+  {
+    "type": "support",
+    "banner_id": "banner10",
+    "banner_name": "Tap Dance City (SSR Speed), Agnes Digital (SSR Power) Support Banner",
+    "jp_start_date": "2026-04-30",
+    "jp_end_date": "2026-05-11",
+    "is_confirmed": false,
+    "free": 80,
+    "cards": [
+      {
+        "name": "Tap Dance City (SSR Speed)",
+        "id": "30298",
+        "url": "https://gametora.com/umamusume/supports/30298",
+        "uma_url": "https://uma.guide/support-cards/detail?id=30298"
+      },
+      {
+        "name": "Agnes Digital (SSR Power)",
+        "id": "30297",
+        "url": "https://gametora.com/umamusume/supports/30297",
+        "uma_url": "https://uma.guide/support-cards/detail?id=30297"
+      }
+    ],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2029-05-09",
+    "_estimated_end_date": "2029-05-18"
+  },
+  {
+    "type": "character",
+    "banner_id": "banner11",
+    "banner_name": "GOLD WEEK",
+    "jp_start_date": "2026-04-30",
+    "jp_end_date": "2026-05-11",
+    "is_confirmed": false,
+    "free": 0,
+    "cards": [
+      {
+        "name": "Fenomeno",
+        "id": "112701",
+        "url": "https://gametora.com/umamusume/characters/112701",
+        "uma_url": "https://uma.guide/characters/detail?card=112701"
+      },
+      {
+        "name": "Nakayama Festa",
+        "id": "104901",
+        "url": "https://gametora.com/umamusume/characters/104901",
+        "uma_url": "https://uma.guide/characters/detail?card=104901"
+      },
+      {
+        "name": "Nakayama Festa (Christmas)",
+        "id": "104902",
+        "url": "https://gametora.com/umamusume/characters/104902",
+        "uma_url": "https://uma.guide/characters/detail?card=104902"
+      },
+      {
+        "name": "Stay Gold",
+        "id": "113501",
+        "url": "https://gametora.com/umamusume/characters/113501",
+        "uma_url": "https://uma.guide/characters/detail?card=113501"
+      },
+      {
+        "name": "Dream Journey",
+        "id": "111901",
+        "url": "https://gametora.com/umamusume/characters/111901",
+        "uma_url": "https://uma.guide/characters/detail?card=111901"
+      },
+      {
+        "name": "Dream Journey (Christmas)",
+        "id": "111902",
+        "url": "https://gametora.com/umamusume/characters/111902",
+        "uma_url": "https://uma.guide/characters/detail?card=111902"
+      },
+      {
+        "name": "Orfevre",
+        "id": "111501",
+        "url": "https://gametora.com/umamusume/characters/111501",
+        "uma_url": "https://uma.guide/characters/detail?card=111501"
+      },
+      {
+        "name": "Gold Ship (Summer)",
+        "id": "100702",
+        "url": "https://gametora.com/umamusume/characters/100702",
+        "uma_url": "https://uma.guide/characters/detail?card=100702"
+      },
+      {
+        "name": "Gold Ship (Project L'Arc)",
+        "id": "100703",
+        "url": "https://gametora.com/umamusume/characters/100703",
+        "uma_url": "https://uma.guide/characters/detail?card=100703"
+      }
+    ],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2029-05-09",
+    "_estimated_end_date": "2029-05-18"
+  },
+  {
+    "type": "step_up",
+    "banner_id": "custom-step-3",
+    "banner_name": "3rd Anniversary Step Up",
+    "anniversary_name": "3rd Anniversary",
+    "start_date": "2027-09-13",
+    "end_date": "2027-10-08",
+    "is_confirmed": false
+  },
+  {
+    "type": "step_up",
+    "banner_id": "custom-step-3.5",
+    "banner_name": "3.5th Anniversary Step Up",
+    "anniversary_name": "3.5th Anniversary",
+    "start_date": "2028-01-29",
+    "end_date": "2028-02-15",
+    "is_confirmed": false
+  },
+  {
+    "type": "step_up",
+    "banner_id": "custom-step-4",
+    "banner_name": "4th Anniversary Step Up",
+    "anniversary_name": "4th Anniversary",
+    "start_date": "2028-06-17",
+    "end_date": "2028-07-11",
+    "is_confirmed": false
+  },
+  {
+    "type": "step_up",
+    "banner_id": "custom-step-4.5",
+    "banner_name": "4.5th Anniversary Step Up",
+    "anniversary_name": "4.5th Anniversary",
+    "start_date": "2028-11-02",
+    "end_date": "2028-11-28",
+    "is_confirmed": false
+  },
+  {
+    "type": "step_up",
+    "banner_id": "custom-step-5",
+    "banner_name": "5th Anniversary Step Up",
+    "anniversary_name": "5th Anniversary",
+    "start_date": "2029-03-22",
+    "end_date": "2029-04-25",
+    "is_confirmed": false
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-30",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2023-05-12",
+    "jp_end_date": "2023-05-19",
+    "description": "Tokyo - Turf\n2400m - Medium - Counterclockwise\n— - Spring - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2027-02-06",
+    "_estimated_end_date": "2027-02-12"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-31",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2023-07-13",
+    "jp_end_date": "2023-07-20",
+    "description": "Nakayama - Turf\n1200m - Sprint - Clockwise\n— - Summer - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2027-03-25",
+    "_estimated_end_date": "2027-03-31"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-32",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2023-09-13",
+    "jp_end_date": "2023-09-20",
+    "description": "Kyoto - Turf\n3000m - Long - Clockwise\n— - Fall - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2027-05-11",
+    "_estimated_end_date": "2027-05-17"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-33",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2023-11-12",
+    "jp_end_date": "2023-11-19",
+    "description": "Kyoto - Turf\n1600m - Mile - Clockwise\n— - Fall - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2027-06-26",
+    "_estimated_end_date": "2027-07-01"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-34",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2024-01-12",
+    "jp_end_date": "2024-01-19",
+    "description": "Kawasaki - Dirt\n2100m - Medium - Counterclockwise\n— - Winter - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2027-08-11",
+    "_estimated_end_date": "2027-08-17"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-36",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2024-05-24",
+    "jp_end_date": "2024-05-31",
+    "description": "Kyoto - Turf\n3200m - Long - Clockwise\n— - Spring - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2027-11-20",
+    "_estimated_end_date": "2027-11-26"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-37",
+    "banner_name": "Champions Meeting: CLASSIC",
+    "jp_start_date": "2024-06-20",
+    "jp_end_date": "2024-06-27",
+    "description": "Tokyo - Turf\n2400m - Medium - Counterclockwise\nSoft - Spring - Cloudy",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2027-12-11",
+    "_estimated_end_date": "2027-12-16"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-38",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2024-07-22",
+    "jp_end_date": "2024-07-29",
+    "description": "Niigata - Turf\n1000m - Sprint - Clockwise\n— - Summer - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2028-01-04",
+    "_estimated_end_date": "2028-01-09"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-39",
+    "banner_name": "Champions Meeting: DIRT",
+    "jp_start_date": "2024-08-24",
+    "jp_end_date": "2024-08-31",
+    "description": "Chukyo - Dirt\n1800m - Mile - Counterclockwise\nFirm - Summer - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2028-01-29",
+    "_estimated_end_date": "2028-02-03"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-40",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2024-09-23",
+    "jp_end_date": "2024-09-30",
+    "description": "Kyoto - Turf\n1600m - Mile - Clockwise\n— - Fall - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2028-02-21",
+    "_estimated_end_date": "2028-02-26"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-41",
+    "banner_name": "Champions Meeting: CLASSIC",
+    "jp_start_date": "2024-10-23",
+    "jp_end_date": "2024-10-30",
+    "description": "Tokyo - Turf\n2000m - Medium - Counterclockwise\nFirm - Fall - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2028-03-15",
+    "_estimated_end_date": "2028-03-20"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-42",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2024-11-21",
+    "jp_end_date": "2024-11-28",
+    "description": "Kyoto - Turf\n2200m - Medium - Clockwise\n— - Fall - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2028-04-06",
+    "_estimated_end_date": "2028-04-11"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-43",
+    "banner_name": "Champions Meeting: LONG",
+    "jp_start_date": "2024-12-22",
+    "jp_end_date": "2024-12-29",
+    "description": "Nakayama - Turf\n2500m - Long - Clockwise\nGood - Winter - Cloudy",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2028-04-29",
+    "_estimated_end_date": "2028-05-05"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-44",
+    "banner_name": "Champions Meeting: CLASSIC",
+    "jp_start_date": "2025-01-24",
+    "jp_end_date": "2025-01-31",
+    "description": "Hanshin - Turf\n2400m - Medium - Counterclockwise\nSoft - Winter - Rainy",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2028-05-24",
+    "_estimated_end_date": "2028-05-30"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-45",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2025-02-16",
+    "jp_end_date": "2025-02-23",
+    "description": "Nakayama - Turf\n1200m - Sprint - Clockwise\n— - Winter - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2028-06-11",
+    "_estimated_end_date": "2028-06-16"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-46",
+    "banner_name": "Champions Meeting: MILE",
+    "jp_start_date": "2025-03-25",
+    "jp_end_date": "2025-04-01",
+    "description": "Hanshin - Turf\n1600m - Mile - Clockwise\nFirm - Spring - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2028-07-09",
+    "_estimated_end_date": "2028-07-14"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-47",
+    "banner_name": "Champions Meeting: LONG",
+    "jp_start_date": "2025-04-23",
+    "jp_end_date": "2025-04-30",
+    "description": "Kyoto - Turf\n3200m - Long - Clockwise\nFirm - Spring - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2028-07-31",
+    "_estimated_end_date": "2028-08-05"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-48",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2025-05-24",
+    "jp_end_date": "2025-05-31",
+    "description": "Oi - Dirt\n2000m - Medium - Clockwise\n— - Spring - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2028-08-23",
+    "_estimated_end_date": "2028-08-29"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-49",
+    "banner_name": "Champions Meeting: CLASSIC",
+    "jp_start_date": "2025-06-21",
+    "jp_end_date": "2025-06-28",
+    "description": "Tokyo - Turf\n2400m - Medium - Counterclockwise\nFirm - Spring - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2028-09-14",
+    "_estimated_end_date": "2028-09-19"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-50",
+    "banner_name": "Champions Meeting: CLASSIC",
+    "jp_start_date": "2025-07-25",
+    "jp_end_date": "2025-08-01",
+    "description": "Hanshin - Turf\n2200m - Medium - Clockwise\nGood - Summer - Cloudy",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2028-10-10",
+    "_estimated_end_date": "2028-10-15"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-51",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2025-08-15",
+    "jp_end_date": "2025-08-22",
+    "description": "Sapporo - Turf\n2600m - Long - Clockwise\n— - Summer - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2028-10-25",
+    "_estimated_end_date": "2028-10-31"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-52",
+    "banner_name": "Champions Meeting: CLASSIC",
+    "jp_start_date": "2025-09-22",
+    "jp_end_date": "2025-09-29",
+    "description": "Kyoto - Turf\n2000m - Medium - Clockwise\nFirm - Fall - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2028-11-23",
+    "_estimated_end_date": "2028-11-29"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-53",
+    "banner_name": "Champions Meeting: SPRINT",
+    "jp_start_date": "2025-10-23",
+    "jp_end_date": "2025-10-30",
+    "description": "Niigata - Turf\n1200m - Sprint - Counterclockwise\nFirm - Fall - Cloudy",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2028-12-17",
+    "_estimated_end_date": "2028-12-22"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-54",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2025-11-21",
+    "jp_end_date": "2025-11-28",
+    "description": "Morioka - Dirt\n1600m - Mile - Counterclockwise\n— - Fall - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2029-01-08",
+    "_estimated_end_date": "2029-01-13"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-55",
+    "banner_name": "Champions Meeting: MILE",
+    "jp_start_date": "2025-12-21",
+    "jp_end_date": "2025-12-28",
+    "description": "Hanshin - Turf\n1600m - Mile - Clockwise\nFirm - Winter - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2029-01-31",
+    "_estimated_end_date": "2029-02-05"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-56",
+    "banner_name": "Champions Meeting: LONG",
+    "jp_start_date": "2026-01-22",
+    "jp_end_date": "2026-01-29",
+    "description": "Nakayama - Turf\n2500m - Long - Clockwise\nFirm - Winter - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2029-02-24",
+    "_estimated_end_date": "2029-03-01"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-57",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2026-02-15",
+    "jp_end_date": "2026-02-22",
+    "description": "Tokyo - Turf\n1600m - Mile - Counterclockwise\n— - Winter - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2029-03-14",
+    "_estimated_end_date": "2029-03-19"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-58",
+    "banner_name": "Champions Meeting: CLASSIC",
+    "jp_start_date": "2026-03-22",
+    "jp_end_date": "2026-03-29",
+    "description": "Del Mar - Turf\n2200m - Medium - Counterclockwise\nFirm - Spring - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2029-04-10",
+    "_estimated_end_date": "2029-04-15"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-59",
+    "banner_name": "Champions Meeting: DIRT",
+    "jp_start_date": "2026-04-23",
+    "jp_end_date": "2026-04-30",
+    "description": "Del Mar - Dirt\n2000m - Medium - Clockwise\nFirm - Spring - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2029-05-04",
+    "_estimated_end_date": "2029-05-09"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-60",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2026-05-26",
+    "jp_end_date": "2026-06-02",
+    "description": "— - —\n— - — - —\n— - Spring - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2029-05-29",
+    "_estimated_end_date": "2029-06-03"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-61",
+    "banner_name": "Champions Meeting: CLASSIC",
+    "jp_start_date": "2026-06-23",
+    "jp_end_date": "2026-06-30",
+    "description": "Tokyo - Turf\n2400m - Medium - Counterclockwise\nFirm - Spring - Cloudy",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2029-06-19",
+    "_estimated_end_date": "2029-06-25"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-62",
+    "banner_name": "Champions Meeting: LONG",
+    "jp_start_date": "2026-07-26",
+    "jp_end_date": "2026-08-02",
+    "description": "Nakayama - Turf\n3600m - Long - Counterclockwise\nFirm - Spring - Cloudy",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2029-07-14",
+    "_estimated_end_date": "2029-07-20"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-63",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2026-08-26",
+    "jp_end_date": "2026-09-02",
+    "description": "Nakayama - Turf\n2000m - Medium - Clockwise\n— - Summer - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2029-08-07",
+    "_estimated_end_date": "2029-08-12"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-64",
+    "banner_name": "Champions Meeting: MILE",
+    "jp_start_date": "2026-09-26",
+    "jp_end_date": "2026-10-03",
+    "description": "— - Turf\n— - Mile - —\n— - — - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "_estimated_start_date": "2029-08-30",
+    "_estimated_end_date": "2029-09-05"
+  }
+]

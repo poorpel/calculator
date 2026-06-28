@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Reference — Carat Calc</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0a0a0a;
+      color: #d8d8d8;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 14px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Top Nav ── */
+    .top-nav {
+      background: #080808;
+      border-bottom: 1px solid #1e1e1e;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .top-nav-logo {
+      font-size: 12px;
+      font-weight: 700;
+      color: #444;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 11px 18px 11px 0;
+      border-right: 1px solid #1e1e1e;
+      margin-right: 6px;
+      white-space: nowrap;
+    }
+    .top-nav-link {
+      display: flex;
+      align-items: center;
+      padding: 11px 12px;
+      color: #555;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.1s;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+    .top-nav-link:hover { color: #bbb; }
+    .top-nav-link.active { color: #ccc; border-bottom-color: #555; }
+    .top-nav-sep { width: 1px; height: 16px; background: #1e1e1e; margin: 0 4px; }
+
+    .main {
+      flex: 1;
+      padding: 28px 28px 40px;
+      min-width: 0;
+      overflow-x: auto;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    header h1 { font-size: 20px; font-weight: 700; color: #fff; }
+
+    .tables-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      align-items: flex-start;
+    }
+
+    .ref-block { min-width: 260px; }
+
+    .ref-block h2 {
+      font-size: 11px;
+      font-weight: 700;
+      color: #555;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .table-wrap {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #1e1e1e;
+    }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+
+    thead tr {
+      background: #141414;
+      color: #666;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    th, td {
+      padding: 8px 14px;
+      text-align: left;
+      white-space: nowrap;
+      border-right: 1px solid #1a1a1a;
+    }
+    th:last-child, td:last-child { border-right: none; }
+    th.right, td.right { text-align: right; }
+    th.center, td.center { text-align: center; }
+
+    tbody tr { border-top: 1px solid #1a1a1a; }
+    tbody tr:hover { background: #131313; }
+    tbody tr:nth-child(even) { background: #0d0d0d; }
+    tbody tr:nth-child(even):hover { background: #131313; }
+
+    td.name { color: #bbb; font-weight: 500; }
+    td.val  { color: #d8d8d8; font-weight: 600; font-variant-numeric: tabular-nums; }
+    td.sub  { color: #555; font-size: 12px; }
+  </style>
+  <style>
+    .debug-only { display: none; }
+    body.debug-mode .debug-only { display: flex; }
+    .nav-settings-wrap { margin-left: auto; position: relative; }
+    .nav-settings-btn {
+      background: none; border: none; color: #333; cursor: pointer;
+      font-size: 15px; padding: 8px 10px; transition: color 0.1s; line-height: 1;
+    }
+    .nav-settings-btn:hover { color: #888; }
+    .nav-settings-dd {
+      display: none; position: absolute; right: 0; top: calc(100% + 4px);
+      background: #111; border: 1px solid #2a2a2a; border-radius: 8px;
+      padding: 12px 16px; width: 190px; z-index: 200;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.8);
+    }
+    .nav-settings-dd.open { display: block; }
+    .nav-settings-title {
+      font-size: 10px; font-weight: 700; color: #444; letter-spacing: 0.5px;
+      text-transform: uppercase; margin-bottom: 10px;
+    }
+    .nav-settings-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    }
+    .nav-settings-label { font-size: 12px; color: #888; }
+    .nav-toggle { position: relative; width: 32px; height: 18px; flex-shrink: 0; }
+    .nav-toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+    .nav-toggle-track {
+      position: absolute; inset: 0; background: #2a2a2a; border-radius: 9px;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .nav-toggle input:checked + .nav-toggle-track { background: #3a5a3a; }
+    .nav-toggle-thumb {
+      position: absolute; top: 3px; left: 3px; width: 12px; height: 12px;
+      background: #555; border-radius: 50%; transition: all 0.2s; pointer-events: none;
+    }
+    .nav-toggle input:checked ~ .nav-toggle-thumb { left: 17px; background: #5ecb7a; }
+  </style></head>
+<body>
+
+<nav class="top-nav">
+  <div class="top-nav-logo">Carat Calc</div>
+  <a href="/" class="top-nav-link">Calculator</a>
+  <a href="/packs" class="top-nav-link">Selectors</a>
+  <a href="/cards" class="top-nav-link">Card Tracker</a>
+  <div class="top-nav-sep"></div>
+  <a href="/timeline" class="top-nav-link">Timeline</a>
+  <a href="/data" class="top-nav-link debug-only active">Data</a>
+  <a href="/updates" class="top-nav-link debug-only">Updates</a>
+  <div class="nav-settings-wrap">
+    <button class="nav-settings-btn" id="navSettingsBtn" title="Settings">⚙</button>
+    <div class="nav-settings-dd" id="navSettingsDd">
+      <div class="nav-settings-title">Settings</div>
+      <div class="nav-settings-row">
+        <span class="nav-settings-label">Debug mode</span>
+        <label class="nav-toggle">
+          <input type="checkbox" id="debugToggle">
+          <div class="nav-toggle-track"></div>
+          <div class="nav-toggle-thumb"></div>
+        </label>
+      </div>
+    </div>
+  </div></nav>
+
+<div class="main">
+  <header>
+    <h1>Data Reference</h1>
+  </header>
+
+  <div class="tables-grid">
+
+    <!-- Team Trials -->
+    <div class="ref-block">
+      <h2>Team Trials</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Class</th><th class="right">Weekly Income</th></tr></thead>
+          <tbody>
+            <tr><td class="name">Class 6</td>  <td class="val right">375</td></tr>
+            <tr><td class="name">Class 5.5</td><td class="val right">262</td></tr>
+            <tr><td class="name">Class 5</td>  <td class="val right">225</td></tr>
+            <tr><td class="name">Class 4</td>  <td class="val right">150</td></tr>
+            <tr><td class="name">Class 3</td>  <td class="val right">75</td></tr>
+            <tr><td class="name">Class 2</td>  <td class="val right">35</td></tr>
+            <tr><td class="name">Class 1</td>  <td class="val right">0</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Club Rank -->
+    <div class="ref-block">
+      <h2>Club Rank</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Rank</th><th class="right">Monthly Income</th><th class="center">Placement</th></tr></thead>
+          <tbody>
+            <tr><td class="name">SS</td> <td class="val right">4500</td><td class="sub center">1–10</td></tr>
+            <tr><td class="name">S+</td> <td class="val right">3600</td><td class="sub center">11–30</td></tr>
+            <tr><td class="name">S</td>  <td class="val right">3150</td><td class="sub center">31–100</td></tr>
+            <tr><td class="name">A+</td> <td class="val right">2700</td><td class="sub center">101–500</td></tr>
+            <tr><td class="name">A</td>  <td class="val right">2250</td><td class="sub center">501–1000</td></tr>
+            <tr><td class="name">B+</td> <td class="val right">1800</td><td class="sub center">1001–3000</td></tr>
+            <tr><td class="name">B</td>  <td class="val right">1350</td><td class="sub center">3001–5000</td></tr>
+            <tr><td class="name">C+</td> <td class="val right">900</td> <td class="sub center">5001–7000</td></tr>
+            <tr><td class="name">C</td>  <td class="val right">450</td> <td class="sub center">7001–10000</td></tr>
+            <tr><td class="name">D+</td> <td class="val right">225</td> <td class="sub center">10001+</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Champion's Meeting -->
+    <div class="ref-block">
+      <h2>Champion's Meeting</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Placement</th><th class="right">Carat Rewards</th><th class="right">Pull Tickets</th></tr></thead>
+          <tbody>
+            <tr><td class="name">Champion</td>        <td class="val right">3300</td><td class="val right">10</td></tr>
+            <tr><td class="name">Second</td>          <td class="val right">2400</td><td class="val right">8</td></tr>
+            <tr><td class="name">Third</td>           <td class="val right">1600</td><td class="val right">6</td></tr>
+            <tr><td class="name">Group B 1st</td>     <td class="val right">1800</td><td class="val right">6</td></tr>
+            <tr><td class="name">Group B 2nd</td>     <td class="val right">1250</td><td class="val right">4</td></tr>
+            <tr><td class="name">Group B 3rd</td>     <td class="val right">1000</td><td class="val right">2</td></tr>
+            <tr><td class="name">Open League 1st</td> <td class="val right">1500</td><td class="val right">6</td></tr>
+            <tr><td class="name">Open League 2nd</td> <td class="val right">1250</td><td class="val right">4</td></tr>
+            <tr><td class="name">Open League 3rd</td> <td class="val right">1000</td><td class="val right">2</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- League of Heroes -->
+    <div class="ref-block">
+      <h2>League of Heroes</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Tier</th><th class="right">Carats</th><th class="right">Pull Tickets</th></tr></thead>
+          <tbody>
+            <tr><td class="name">Platinum 4</td><td class="val right">3300</td><td class="val right">4</td></tr>
+            <tr><td class="name">Platinum 3</td><td class="val right">2800</td><td class="val right">4</td></tr>
+            <tr><td class="name">Platinum 2</td><td class="val right">2300</td><td class="val right">4</td></tr>
+            <tr><td class="name">Platinum 1</td><td class="val right">1800</td><td class="val right">4</td></tr>
+            <tr><td class="name">Gold 4</td>    <td class="val right">1300</td><td class="val right">4</td></tr>
+            <tr><td class="name">Gold 3</td>    <td class="val right">1000</td><td class="val right">2</td></tr>
+            <tr><td class="name">Gold 2</td>    <td class="val right">700</td> <td class="val right">2</td></tr>
+            <tr><td class="name">Gold 1</td>    <td class="val right">550</td> <td class="val right">0</td></tr>
+            <tr><td class="name">Silver 4</td>  <td class="val right">400</td> <td class="val right">0</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function() {
+  const DEBUG_KEY = 'debugMode_v1';
+  const isDebug = localStorage.getItem(DEBUG_KEY) === '1';
+  if (isDebug) document.body.classList.add('debug-mode');
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('navSettingsBtn');
+    const dd  = document.getElementById('navSettingsDd');
+    const chk = document.getElementById('debugToggle');
+    if (!btn || !dd || !chk) return;
+    chk.checked = isDebug;
+    btn.addEventListener('click', function(e) { e.stopPropagation(); dd.classList.toggle('open'); });
+    document.addEventListener('click', function() { dd.classList.remove('open'); });
+    dd.addEventListener('click', function(e) { e.stopPropagation(); });
+    chk.addEventListener('change', function() {
+      localStorage.setItem(DEBUG_KEY, chk.checked ? '1' : '0');
+      document.body.classList.toggle('debug-mode', chk.checked);
+    });
+  });
+})();
+</script></body>
+</html>

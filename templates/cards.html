@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Card Tracker — Carat Calc</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0a0a0a;
+      color: #d8d8d8;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 14px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .top-nav {
+      background: #080808;
+      border-bottom: 1px solid #1e1e1e;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .top-nav-logo {
+      font-size: 12px; font-weight: 700; color: #444; letter-spacing: 0.8px;
+      text-transform: uppercase; padding: 11px 18px 11px 0;
+      border-right: 1px solid #1e1e1e; margin-right: 6px; white-space: nowrap;
+    }
+    .top-nav-link {
+      display: flex; align-items: center; padding: 11px 12px; color: #555;
+      text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.1s;
+      white-space: nowrap; border-bottom: 2px solid transparent; margin-bottom: -1px;
+    }
+    .top-nav-link:hover { color: #bbb; }
+    .top-nav-link.active { color: #ccc; border-bottom-color: #555; }
+    .top-nav-sep { width: 1px; height: 16px; background: #1e1e1e; margin: 0 4px; }
+
+    .main { flex: 1; padding: 28px 28px 60px; }
+
+    header {
+      display: flex; align-items: center; gap: 16px; margin-bottom: 28px;
+    }
+    header h1 { font-size: 20px; font-weight: 700; color: #fff; }
+
+    .add-btn {
+      background: #1a2e1a; border: 1px solid #2e5a2e; border-radius: 6px;
+      color: #7ad87a; cursor: pointer; font-size: 12px; font-weight: 700;
+      padding: 6px 16px; letter-spacing: 0.4px; transition: background 0.1s;
+    }
+    .add-btn:hover { background: #223522; }
+
+    .clear-all-btn {
+      background: #1e1e1e; border: 1px solid #2e2e2e; border-radius: 6px;
+      color: #888; cursor: pointer; font-size: 12px; font-weight: 700;
+      padding: 6px 16px; letter-spacing: 0.4px; transition: color 0.1s, border-color 0.1s;
+    }
+    .clear-all-btn:hover { color: #ccc; border-color: #555; }
+
+    /* ── Card grid ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .card-tile {
+      background: #0f0f0f; border: 1px solid #1e1e1e; border-radius: 10px;
+      overflow: hidden; display: flex; flex-direction: row;
+    }
+    .card-tile-img-wrap {
+      position: relative; width: 160px; flex-shrink: 0; background: #111;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .card-tile-img-wrap img {
+      width: 160px; height: 200px; object-fit: contain; display: block;
+    }
+    .card-lb-badge {
+      position: absolute; bottom: 7px; left: 7px;
+      background: rgba(0,0,0,0.82); border: 1px solid #333;
+      border-radius: 4px; padding: 2px 9px; font-size: 12px; font-weight: 700;
+      letter-spacing: 0.4px; color: #ccc;
+    }
+    .card-lb-badge.mlb { color: #e8b840; border-color: #6a5010; background: rgba(20,14,0,0.88); }
+    .card-lb-badge.zero { color: #666; }
+    .card-copies-left {
+      font-size: 13px; font-weight: 600; color: #c47a2a;
+      white-space: nowrap; flex-shrink: 0;
+    }
+
+    .card-tile-body {
+      flex: 1; min-width: 0; padding: 14px 18px 14px 16px;
+      display: flex; flex-direction: column; gap: 0; border-left: 1px solid #1a1a1a;
+    }
+    .card-tile-header {
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;
+      margin-bottom: 12px;
+    }
+    .card-tile-name {
+      font-size: 14px; font-weight: 600; color: #ccc; line-height: 1.35; flex: 1; min-width: 0;
+    }
+    .card-remove-btn {
+      background: none; border: none; color: #555; cursor: pointer;
+      font-size: 15px; line-height: 1; padding: 0 2px; flex-shrink: 0;
+      transition: color 0.1s;
+    }
+    .card-remove-btn:hover { color: #e07070; }
+
+    .card-log {
+      flex: 1; display: flex; flex-direction: column; gap: 6px;
+    }
+    .card-log-empty {
+      font-size: 12px; color: #333; font-style: italic;
+    }
+    .card-log-entry {
+      display: flex; align-items: baseline; gap: 10px; font-size: 12px; line-height: 1.5;
+    }
+    .log-dot-sel  { color: #5a8ad4; font-size: 9px; flex-shrink: 0; }
+    .log-dot-pull { color: #5ecb7a; font-size: 9px; flex-shrink: 0; }
+    .log-label { color: #999; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .log-date  { color: #555; flex-shrink: 0; font-size: 11px; }
+    .log-extra { font-size: 11px; color: #6a5010; background: #1a1200; border: 1px solid #3a2a00;
+      border-radius: 4px; padding: 2px 8px; margin-top: 4px; align-self: flex-start; }
+
+    .empty-state {
+      color: #444; font-size: 14px; padding: 40px 0;
+    }
+
+    /* ── Modal ── */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.75);
+      z-index: 1000; display: none; align-items: center; justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: #111; border: 1px solid #2a2a2a; border-radius: 12px;
+      width: 780px; max-width: 95vw; max-height: 85vh;
+      display: flex; flex-direction: column; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+    }
+    .modal-header {
+      padding: 14px 18px 12px; border-bottom: 1px solid #1e1e1e;
+      display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+    }
+    .modal-title { font-size: 14px; font-weight: 700; color: #ccc; }
+    .modal-close {
+      margin-left: auto; background: none; border: none; color: #555;
+      font-size: 18px; cursor: pointer; padding: 2px 6px; border-radius: 4px;
+      transition: color 0.1s;
+    }
+    .modal-close:hover { color: #ccc; }
+    .modal-search {
+      margin: 12px 16px 0; background: #181818; border: 1px solid #2a2a2a;
+      border-radius: 6px; color: #d8d8d8; font-size: 13px; font-family: inherit;
+      padding: 8px 12px; outline: none; width: calc(100% - 32px);
+    }
+    .modal-search:focus { border-color: #444; }
+    .sort-bar {
+      display: flex; gap: 6px; align-items: center; margin-bottom: 20px;
+    }
+    .sort-lbl { font-size: 11px; color: #444; font-weight: 600; letter-spacing: 0.4px; text-transform: uppercase; margin-right: 2px; }
+    .sort-btn {
+      background: #181818; border: 1px solid #2a2a2a; border-radius: 5px;
+      color: #666; font-size: 11px; font-weight: 600; padding: 3px 10px;
+      cursor: pointer; transition: all 0.1s; letter-spacing: 0.3px;
+    }
+    .sort-btn:hover, .asort-btn:hover { color: #bbb; border-color: #3a3a3a; }
+    .sort-btn.active, .asort-btn.active { color: #ccc; border-color: #555; background: #1e1e1e; }
+    .asort-btn {
+      background: #181818; border: 1px solid #2a2a2a; border-radius: 5px;
+      color: #666; font-size: 11px; font-weight: 600; padding: 3px 10px;
+      cursor: pointer; transition: all 0.1s; letter-spacing: 0.3px;
+    }
+    .modal-grid {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      padding: 12px 16px 16px; overflow-y: auto; flex: 1;
+    }
+    .modal-card {
+      width: 110px; cursor: pointer; border-radius: 8px; overflow: hidden;
+      border: 1px solid #1e1e1e; background: #0d0d0d;
+      transition: border-color 0.1s, background 0.1s;
+      display: flex; flex-direction: column;
+    }
+    .modal-card:hover { border-color: #444; background: #131313; }
+    .modal-card.already-tracked { opacity: 0.35; cursor: default; }
+    .modal-card img {
+      width: 110px; height: 138px; object-fit: contain; display: block;
+      background: #111;
+    }
+    .modal-card-name {
+      padding: 5px 6px; font-size: 10px; color: #aaa; line-height: 1.3;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+      overflow: hidden; min-height: 30px;
+    }
+
+    /* ── Resource Projection Panel ── */
+    .res-panel {
+      background: #0d0d0d; border: 1px solid #1e1e1e; border-radius: 10px;
+      padding: 16px 20px 18px; margin-bottom: 28px;
+    }
+    .res-panel-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .res-panel-title {
+      font-size: 12px; font-weight: 700; color: #555; letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .res-date-select {
+      background: #111; border: 1px solid #2a2a2a; border-radius: 5px;
+      color: #aaa; font-size: 12px; font-family: inherit; padding: 4px 10px;
+      outline: none; cursor: pointer; max-width: 320px;
+    }
+    .res-date-select:focus { border-color: #444; }
+    .res-date-select option { background: #111; }
+    .res-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+    }
+    .res-cell {
+      background: #111; border: 1px solid #1a1a1a; border-radius: 7px;
+      padding: 10px 12px;
+    }
+    .res-cell-label {
+      font-size: 10px; font-weight: 600; color: #444; letter-spacing: 0.4px;
+      text-transform: uppercase; margin-bottom: 5px;
+    }
+    .res-cell-val {
+      font-size: 20px; font-weight: 700; color: #ccc; line-height: 1;
+    }
+    .res-cell-sub {
+      font-size: 11px; color: #444; margin-top: 4px;
+    }
+    .res-cell.ssr .res-cell-label { color: #8a6a30; }
+    .res-cell.ssr .res-cell-val   { color: #d4a84a; }
+    .res-cell.sr  .res-cell-label { color: #3a5a8a; }
+    .res-cell.sr  .res-cell-val   { color: #6a9ad4; }
+    .res-spend-section {
+      margin-top: 12px; padding-top: 12px; border-top: 1px solid #1a1a1a;
+    }
+    .res-spend-title {
+      font-size: 10px; font-weight: 700; color: #444; letter-spacing: 0.4px;
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    .res-spend-list {
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .res-spend-row {
+      display: flex; align-items: baseline; gap: 8px; font-size: 12px;
+    }
+    .res-spend-amt  { font-weight: 700; color: #c8a840; flex-shrink: 0; min-width: 20px; text-align: right; }
+    .res-spend-name { color: #777; }
+    .res-spend-none { font-size: 12px; color: #333; font-style: italic; }
+    .res-no-rows {
+      font-size: 12px; color: #444; font-style: italic; padding: 4px 0;
+    }
+
+    /* ── Crystal panel ── */
+    .crystal-add-btn {
+      background: #1e1a06; border: 1px solid #6a5a20; border-radius: 5px;
+      color: #c8a840; font-size: 11px; font-weight: 700; padding: 3px 10px;
+      cursor: pointer; transition: all 0.1s; white-space: nowrap; align-self: flex-start;
+      margin-bottom: 10px;
+    }
+    .crystal-add-btn:hover { background: #282208; border-color: #9a8030; color: #e8c850; }
+    .crystal-add-btn.active { background: #26200a; border-color: #9a8030; color: #e8c850; }
+    .crystal-add-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+    .crystal-add-btn:disabled:hover { background: #1e1a06; border-color: #6a5a20; color: #c8a840; }
+
+    .crystal-panel {
+      display: none; border-top: 1px solid #1a1a1a; margin-top: 10px;
+      padding-top: 12px; flex-direction: column; gap: 10px;
+    }
+    .crystal-panel.open { display: flex; }
+
+    .crystal-panel-row {
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .crystal-panel-label {
+      font-size: 11px; color: #555; font-weight: 600; letter-spacing: 0.3px;
+      text-transform: uppercase; white-space: nowrap;
+    }
+    .crystal-date-input {
+      background: #181818; border: 1px solid #2a2a2a; border-radius: 5px;
+      color: #ccc; font-size: 12px; font-family: inherit; padding: 4px 8px;
+      outline: none;
+    }
+    .crystal-date-input:focus { border-color: #555; }
+    .crystal-amount-input {
+      background: #181818; border: 1px solid #2a2a2a; border-radius: 5px;
+      color: #ccc; font-size: 12px; font-family: inherit; padding: 4px 8px;
+      outline: none; width: 60px;
+    }
+    .crystal-amount-input:focus { border-color: #555; }
+
+    .crystal-res-preview {
+      display: flex; gap: 8px; flex-wrap: wrap;
+    }
+    .crystal-res-chip {
+      background: #181200; border: 1px solid #2e2400; border-radius: 5px;
+      padding: 4px 10px; font-size: 11px;
+    }
+    .crystal-res-chip .crv { font-weight: 700; color: #c8a840; }
+    .crystal-res-chip .crl { color: #555; margin-left: 4px; }
+    .crystal-res-empty { font-size: 11px; color: #444; font-style: italic; }
+
+    .crystal-save-btn {
+      background: #1a1a08; border: 1px solid #4a4010; border-radius: 5px;
+      color: #c8a840; font-size: 11px; font-weight: 700; padding: 4px 14px;
+      cursor: pointer; transition: all 0.1s;
+    }
+    .crystal-save-btn:hover { background: #26220a; }
+
+    .log-action-slot { width: 16px; flex-shrink: 0; }
+    .log-alloc-swap {
+      background: none; border: none; color: #444; cursor: pointer;
+      font-size: 11px; padding: 0; line-height: 1; transition: color 0.1s;
+      width: 16px; flex-shrink: 0;
+    }
+    .log-alloc-swap:hover { color: #e07070; }
+    .log-dot-crystal { color: #c8a840; font-size: 9px; flex-shrink: 0; }
+    .log-crystal-remove {
+      background: none; border: none; color: #333; cursor: pointer;
+      font-size: 11px; padding: 0 2px; line-height: 1; transition: color 0.1s;
+    }
+    .log-crystal-remove:hover { color: #e07070; }
+
+    /* ── Acquired Umas ── */
+    .acquired-section { margin-top: 40px; }
+    .acquired-header { font-size: 12px; font-weight: 700; color: #555; letter-spacing: 0.5px;
+      text-transform: uppercase; margin-bottom: 14px; }
+    .acquired-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .acquired-tile {
+      background: #0f0f0f; border: 1px solid #1e1e1e; border-radius: 10px;
+      overflow: hidden; display: flex; flex-direction: row;
+    }
+    .acquired-tile-img { width: 120px; flex-shrink: 0; background: #111;
+      display: flex; align-items: center; justify-content: center; }
+    .acquired-tile-img img { width: 120px; height: 150px; object-fit: contain; display: block; }
+    .acquired-tile-body { flex: 1; min-width: 0; padding: 12px 16px 12px 14px;
+      display: flex; flex-direction: column; gap: 6px; border-left: 1px solid #1a1a1a; }
+    .acquired-tile-name { font-size: 13px; font-weight: 600; color: #ccc; line-height: 1.35; margin-bottom: 4px; }
+    .acquired-empty { color: #444; font-size: 13px; font-style: italic; padding: 12px 0; }
+
+    /* ── Uma picker ── */
+    .uma-picker-tile {
+      background: #0f0f0f; border: 1px solid #2e2a1a; border-radius: 10px;
+      padding: 14px 16px; display: flex; flex-direction: column; gap: 10px;
+    }
+    .uma-picker-lbl { font-size: 10px; font-weight: 700; color: #6a5a20;
+      letter-spacing: 0.5px; text-transform: uppercase; }
+    .uma-picker-banner { font-size: 12px; color: #aaa; margin-bottom: 2px; }
+    .uma-picker-options { display: flex; gap: 8px; flex-wrap: wrap; }
+    .uma-picker-opt {
+      display: flex; flex-direction: column; align-items: center; gap: 5px;
+      cursor: pointer; border-radius: 7px; border: 1px solid #2a2a2a;
+      padding: 5px 5px 7px; background: #111; transition: border-color 0.15s, background 0.15s;
+      width: 82px;
+    }
+    .uma-picker-opt:hover { border-color: #5ecb7a; background: #0d1a0d; }
+    .uma-picker-opt img { width: 72px; height: 90px; object-fit: contain; display: block; border-radius: 3px; }
+    .uma-picker-opt-name { font-size: 10px; color: #777; text-align: center; line-height: 1.3; }
+  </style>
+  <style>
+    .debug-only { display: none; }
+    body.debug-mode .debug-only { display: flex; }
+    .nav-settings-wrap { margin-left: auto; position: relative; }
+    .nav-settings-btn {
+      background: none; border: none; color: #333; cursor: pointer;
+      font-size: 15px; padding: 8px 10px; transition: color 0.1s; line-height: 1;
+    }
+    .nav-settings-btn:hover { color: #888; }
+    .nav-settings-dd {
+      display: none; position: absolute; right: 0; top: calc(100% + 4px);
+      background: #111; border: 1px solid #2a2a2a; border-radius: 8px;
+      padding: 12px 16px; width: 190px; z-index: 200;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.8);
+    }
+    .nav-settings-dd.open { display: block; }
+    .nav-settings-title {
+      font-size: 10px; font-weight: 700; color: #444; letter-spacing: 0.5px;
+      text-transform: uppercase; margin-bottom: 10px;
+    }
+    .nav-settings-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    }
+    .nav-settings-label { font-size: 12px; color: #888; }
+    .nav-toggle { position: relative; width: 32px; height: 18px; flex-shrink: 0; }
+    .nav-toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+    .nav-toggle-track {
+      position: absolute; inset: 0; background: #2a2a2a; border-radius: 9px;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .nav-toggle input:checked + .nav-toggle-track { background: #3a5a3a; }
+    .nav-toggle-thumb {
+      position: absolute; top: 3px; left: 3px; width: 12px; height: 12px;
+      background: #555; border-radius: 50%; transition: all 0.2s; pointer-events: none;
+    }
+    .nav-toggle input:checked ~ .nav-toggle-thumb { left: 17px; background: #5ecb7a; }
+  </style></head>
+<body>
+
+<nav class="top-nav">
+  <div class="top-nav-logo">Carat Calc</div>
+  <a href="/" class="top-nav-link">Calculator</a>
+  <a href="/packs" class="top-nav-link">Selectors</a>
+  <a href="/cards" class="top-nav-link active">Card Tracker</a>
+  <div class="top-nav-sep"></div>
+  <a href="/timeline" class="top-nav-link">Timeline</a>
+  <a href="/data" class="top-nav-link debug-only">Data</a>
+  <a href="/updates" class="top-nav-link debug-only">Updates</a>
+  <div class="nav-settings-wrap">
+    <button class="nav-settings-btn" id="navSettingsBtn" title="Settings">⚙</button>
+    <div class="nav-settings-dd" id="navSettingsDd">
+      <div class="nav-settings-title">Settings</div>
+      <div class="nav-settings-row">
+        <span class="nav-settings-label">Debug mode</span>
+        <label class="nav-toggle">
+          <input type="checkbox" id="debugToggle">
+          <div class="nav-toggle-track"></div>
+          <div class="nav-toggle-thumb"></div>
+        </label>
+      </div>
+    </div>
+  </div></nav>
+
+<div class="main">
+  <header>
+    <h1>Card Tracker</h1>
+    <button class="add-btn" id="addCardBtn">+ Add Card</button>
+    <button class="clear-all-btn" id="clearAllCardsBtn">Clear All</button>
+  </header>
+
+  <!-- Resource Projection -->
+  <div class="res-panel">
+    <div class="res-panel-header">
+      <span class="res-panel-title">Resource Projection</span>
+      <select class="res-date-select" id="resDateSelect">
+        <option value="">— select a banner —</option>
+      </select>
+    </div>
+    <div id="resGridWrap">
+      <div class="res-no-rows">Select a banner from the calculator to see projections.</div>
+    </div>
+  </div>
+
+  <div class="sort-bar">
+    <span class="sort-lbl">Sort:</span>
+    <button class="sort-btn active" data-sort="name">Name</button>
+    <button class="sort-btn" data-sort="release">Release Date</button>
+  </div>
+
+  <div class="card-grid" id="cardGrid"></div>
+  <div class="empty-state" id="emptyState" style="display:none;">No cards tracked yet. Click "+ Add Card" to get started.</div>
+
+  <div class="acquired-section">
+    <div class="acquired-header">Acquired Umas</div>
+    <div class="sort-bar" id="acquiredSortBar">
+      <span class="sort-lbl">Sort:</span>
+      <button class="asort-btn active" data-asort="name">Name</button>
+      <button class="asort-btn" data-asort="release">Release Date</button>
+    </div>
+    <div class="acquired-grid" id="acquiredGrid"></div>
+    <div class="acquired-empty" id="acquiredEmpty" style="display:none;">No Umas acquired yet — use a selector or enter 200+ pulls on a character banner.</div>
+  </div>
+</div>
+
+<!-- Add Card Modal -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">Select a Card</span>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <input class="modal-search" id="modalSearch" type="text" placeholder="Search by name…" autocomplete="off">
+    <div class="modal-grid" id="modalGrid"></div>
+  </div>
+</div>
+
+<script>
+const ALL_CARDS           = {{ all_cards | tojson }};
+const BANNERS_SIMPLE      = {{ banners_simple | tojson }};
+const PACK_EVENTS_SIMPLE  = {{ pack_events_simple | tojson }};
+const TIMELINE_REWARDS    = {{ timeline_rewards | tojson }};
+const PACK_UMA            = {{ pack_uma | tojson }};
+const CHAR_BANNERS_SIMPLE = {{ char_banners_simple | tojson }};
+
+const CARD_MAP    = Object.fromEntries(ALL_CARDS.map(c => [c.id, c]));
+const EVENT_MAP   = Object.fromEntries(PACK_EVENTS_SIMPLE.map(e => [e.id, e]));
+
+const TRACKER_KEY  = "cardTracker_v1";
+const STORE_KEY    = "caratCalc_v1";
+const PACKS_KEY    = "packs_state_v1";
+const CRYSTALS_KEY = "cardCrystals_v1";
+
+const SEL_LABELS  = { s21uma: '$21 ★3', s70uma: '$70 ★3', sfreessr: 'Free SSR', s21ssr: '$21 SSR', s70ssr: '$70 SSR' };
+
+function loadTracker()  { try { return JSON.parse(localStorage.getItem(TRACKER_KEY))  || {}; } catch(_) { return {}; } }
+function saveTracker(d) { localStorage.setItem(TRACKER_KEY, JSON.stringify(d)); }
+function loadCrystals()  { try { return JSON.parse(localStorage.getItem(CRYSTALS_KEY)) || {}; } catch(_) { return {}; } }
+function saveCrystals(d) { localStorage.setItem(CRYSTALS_KEY, JSON.stringify(d)); }
+
+const ALLOC_KEY = "bannerAlloc_v1";
+function loadAlloc()  { try { return JSON.parse(localStorage.getItem(ALLOC_KEY)) || {}; } catch(_) { return {}; } }
+function saveAlloc(d) { localStorage.setItem(ALLOC_KEY, JSON.stringify(d)); }
+
+// Derive all copy-source log entries from current localStorage state
+function deriveCopyLog(cardId) {
+  const entries = [];
+
+  // ── Selector picks (packs_state_v1) ──
+  let packsState = {};
+  try { packsState = JSON.parse(localStorage.getItem(PACKS_KEY)) || {}; } catch(_) {}
+
+  for (const [evId, slots] of Object.entries(packsState)) {
+    for (const [key, cardName] of Object.entries(slots)) {
+      if (!cardName) continue;
+      // support selector names are prefixed with card ID: "30001 Name..."
+      const m = String(cardName).match(/^(\d+)\s/);
+      const cid = m ? m[1] : null;
+      if (cid !== cardId) continue;
+      const ev = EVENT_MAP[evId];
+      const evName = ev ? ev.name : evId;
+      const evDate = ev ? ev.start : '';
+      const selLabel = (ev && ev.selector_labels && ev.selector_labels[key]) || SEL_LABELS[key] || key;
+      entries.push({ type: 'selector', label: `${evName} — ${selLabel}`, date: evDate });
+    }
+  }
+
+  // ── 200-pull banners (caratCalc_v1) ──
+  let calcState = {};
+  try { calcState = JSON.parse(localStorage.getItem(STORE_KEY)) || {}; } catch(_) {}
+  const tracker    = loadTracker();
+  const trackedIds = Object.keys(tracker);
+  const alloc      = loadAlloc();
+
+  for (const row of (calcState.rows || [])) {
+    const pulls = parseInt(row.pulls) || 0;
+    const copies = Math.floor(pulls / 200);
+    if (copies < 1) continue;
+    const bannerName = row.banner || '';
+    const banner = BANNERS_SIMPLE.find(b => b.name === bannerName);
+    if (!banner) continue;
+    if (!banner.card_ids.includes(cardId)) continue;
+
+    const displayName = banner.short_name || bannerName;
+    const trackedOnBanner = banner.card_ids.filter(id => trackedIds.includes(id));
+    const isMulti = trackedOnBanner.length > 1;
+
+    if (!isMulti) {
+      for (let i = 1; i <= copies; i++) {
+        entries.push({ type: 'pull', label: `${displayName} (${i * 200} pulls)`, date: banner.start, copies: 1 });
+      }
+    } else {
+      const allocKey = bannerName + '|' + (row.startDate || row.start || banner.start || '');
+      const sorted   = [...trackedOnBanner].sort();
+      const allocArr = alloc[allocKey] || [];
+      for (let i = 0; i < copies; i++) {
+        const owner    = (allocArr[i] != null) ? allocArr[i] : sorted[i % sorted.length];
+        const otherCard = sorted.find(id => id !== owner) || sorted.find(id => id !== cardId);
+        if (owner !== cardId) continue;
+        entries.push({
+          type: 'pull', label: `${displayName} (${(i + 1) * 200} pulls)`,
+          date: banner.start, copies: 1,
+          allocKey, allocIdx: i, otherCard,
+        });
+      }
+    }
+  }
+
+  // ── SSR Crystal spends (cardCrystals_v1) ──
+  const crystalData = loadCrystals();
+  for (const entry of (crystalData[cardId] || [])) {
+    const amt = parseInt(entry.amount) || 1;
+    entries.push({
+      type: 'crystal',
+      label: `${amt} SSR Crystal${amt !== 1 ? 's' : ''}`,
+      date: entry.date,
+      copies: amt,
+      crystalIdx: entry._idx,
+    });
+  }
+
+  return entries;
+}
+
+function lbLabel(n) {
+  if (n <= 0) return "—";
+  if (n === 1) return "0LB";
+  if (n >= 5)  return "MLB";
+  return `${n - 1}LB`;
+}
+
+let sortMode = localStorage.getItem("cardSort_v1") || "name";
+
+function sortedTrackedCards(tracker) {
+  return Object.keys(tracker)
+    .map(id => CARD_MAP[id]).filter(Boolean)
+    .sort((a, b) => {
+      if (sortMode === "release") {
+        const da = a.release_date || "9999", db = b.release_date || "9999";
+        return da < db ? -1 : da > db ? 1 : a.name.localeCompare(b.name);
+      }
+      return a.name.localeCompare(b.name);
+    });
+}
+
+function formatDate(d) {
+  if (!d) return '';
+  const m = d.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (!m) return d;
+  const mo = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return `${mo[parseInt(m[2],10)-1]} ${parseInt(m[3],10)}, ${m[1]}`;
+}
+
+function resAtDate(date) {
+  const today = new Date().toISOString().slice(0, 10);
+  const calcState = JSON.parse(localStorage.getItem("caratCalc_v1") || "{}");
+  const ssrCryst = parseInt(calcState.resSSRCrystal) || 0;
+  const srCryst  = parseInt(calcState.resSRCrystal)  || 0;
+  const ssrShard = parseInt(calcState.resSSRShard)   || 0;
+  const srShard  = parseInt(calcState.resSRShard)    || 0;
+  let earnSSR = 0, earnSR = 0;
+  for (const r of TIMELINE_REWARDS) {
+    if (r.date > today && r.date <= date) {
+      earnSSR += r.ssr || 0;
+      earnSR  += r.sr  || 0;
+    }
+  }
+  // Subtract crystals already committed to any card on or before this date
+  let spentSSR = 0;
+  const allCrystals = loadCrystals();
+  for (const entries of Object.values(allCrystals)) {
+    for (const e of entries) {
+      if (e.date && e.date <= date) spentSSR += parseInt(e.amount) || 1;
+    }
+  }
+  const totalSSRShard = ssrShard + earnSSR;
+  const totalSRShard  = srShard  + earnSR;
+  const grossSSR = ssrCryst + Math.floor(totalSSRShard / 20);
+  return {
+    ssrCrystals: Math.max(0, grossSSR - spentSSR),
+    ssrShards:   totalSSRShard % 20,
+    srCrystals:  srCryst + Math.floor(totalSRShard / 20),
+    srShards:    totalSRShard % 20,
+  };
+}
+
+function updateCrystalPreview(cardId, date) {
+  const el = document.getElementById(`cpreview-${cardId}`);
+  if (!el) return;
+  const panel  = document.getElementById(`cpanel-${cardId}`);
+  const amtEl  = panel?.querySelector('.crystal-amount-input');
+  const saveEl = panel?.querySelector('.crystal-save-btn');
+  if (!date) {
+    el.innerHTML = `<span class="crystal-res-empty">Pick a date to see your resources</span>`;
+    if (amtEl)  { amtEl.max = 99; }
+    if (saveEl) { saveEl.disabled = false; saveEl.title = ''; }
+    return;
+  }
+  const r = resAtDate(date);
+  el.innerHTML = `
+    <div class="crystal-res-chip"><span class="crv">${r.ssrCrystals.toLocaleString()}</span><span class="crl">SSR Crystals</span></div>
+    <div class="crystal-res-chip"><span class="crv">${r.ssrShards}</span><span class="crl">SSR Shards left</span></div>
+    <div class="crystal-res-chip"><span class="crv">${r.srCrystals.toLocaleString()}</span><span class="crl">SR Crystals</span></div>
+    <div class="crystal-res-chip"><span class="crv">${r.srShards}</span><span class="crl">SR Shards left</span></div>`;
+  if (amtEl) {
+    amtEl.max = r.ssrCrystals || 0;
+    if (parseInt(amtEl.value) > r.ssrCrystals) amtEl.value = r.ssrCrystals || 1;
+  }
+  if (saveEl) {
+    const none = r.ssrCrystals <= 0;
+    saveEl.disabled = none;
+    saveEl.title = none ? 'No SSR Crystals available at this date' : '';
+  }
+}
+
+function renderGrid() {
+  const tracker = loadTracker();
+  const grid    = document.getElementById("cardGrid");
+  const empty   = document.getElementById("emptyState");
+  const cards   = sortedTrackedCards(tracker);
+  grid.innerHTML = "";
+
+  if (!cards.length) { empty.style.display = ""; return; }
+  empty.style.display = "none";
+
+  for (const card of cards) {
+    const entries   = deriveCopyLog(card.id);
+    const totalCopies = entries.reduce((s, e) => s + (e.copies || 1), 0);
+    const pullSelCopies = entries.filter(e => e.type !== 'crystal').reduce((s, e) => s + (e.copies || 1), 0);
+    const canAddCrystal = pullSelCopies > 0;
+    const copies    = Math.min(5, totalCopies);
+    const lb        = lbLabel(copies);
+    const isMLB     = copies >= 5;
+    const badgeCls  = isMLB ? "mlb" : copies <= 1 ? "zero" : "";
+
+    const sorted = [...entries].sort((a, b) => (a.date || '') < (b.date || '') ? -1 : (a.date || '') > (b.date || '') ? 1 : 0);
+    const extra  = Math.max(0, totalCopies - 5);
+
+    const dotClass = e => e.type === 'pull' ? 'log-dot-pull' : e.type === 'crystal' ? 'log-dot-crystal' : 'log-dot-sel';
+    const actionBtn = e => {
+      if (e.type === 'crystal')
+        return `<button class="log-crystal-remove log-action-slot" data-card="${card.id}" data-idx="${e.crystalIdx}" title="Remove">✕</button>`;
+      if (e.type === 'pull' && e.allocKey != null)
+        return `<button class="log-alloc-swap log-action-slot" data-key="${e.allocKey}" data-idx="${e.allocIdx}" data-to="${e.otherCard}" title="Move to other card">✕</button>`;
+      return `<span class="log-action-slot"></span>`;
+    };
+
+    const logHTML = sorted.length
+      ? sorted.map(e => `
+          <div class="card-log-entry">
+            <span class="${dotClass(e)}">●</span>
+            <span class="log-label" title="${e.label}">${e.label}</span>
+            <span class="log-date">${formatDate(e.date)}</span>
+            ${actionBtn(e)}
+          </div>`).join('')
+        + (extra > 0 ? `<div class="log-extra">+${extra} extra cop${extra === 1 ? 'y' : 'ies'} beyond MLB</div>` : '')
+      : `<div class="card-log-empty">No copies recorded yet</div>`;
+
+    // Earliest date the card is first acquired (for min date on crystal panel)
+    const firstDate = sorted.length ? (sorted[0].date || '') : '';
+
+    const tile = document.createElement("div");
+    tile.className = "card-tile";
+    tile.innerHTML = `
+      <div class="card-tile-img-wrap">
+        <img src="${card.img}" alt="${card.name}" loading="lazy">
+        <span class="card-lb-badge ${badgeCls}">${lb}</span>
+      </div>
+      <div class="card-tile-body">
+        <div class="card-tile-header">
+          <div class="card-tile-name">${card.name}</div>
+          ${!isMLB ? `<span class="card-copies-left">${5 - copies} to MLB</span>` : ''}
+          <button class="card-remove-btn" title="Remove" data-id="${card.id}">✕</button>
+        </div>
+        <button class="crystal-add-btn" data-card="${card.id}" data-first="${firstDate}"${canAddCrystal ? '' : ' disabled title="Acquire a copy from pulls or selectors first"'}>+ Crystal</button>
+        <div class="card-log">${logHTML}</div>
+        <div class="crystal-panel" id="cpanel-${card.id}">
+          <div class="crystal-panel-row">
+            <span class="crystal-panel-label">Date</span>
+            <input type="date" class="crystal-date-input" data-card="${card.id}"
+              ${firstDate ? `min="${firstDate}"` : ''}>
+          </div>
+          <div class="crystal-res-preview" id="cpreview-${card.id}">
+            <span class="crystal-res-empty">Pick a date to see your resources</span>
+          </div>
+          <div class="crystal-panel-row">
+            <span class="crystal-panel-label">Crystals</span>
+            <input type="number" class="crystal-amount-input" min="1" max="99" value="1" data-card="${card.id}">
+            <button class="crystal-save-btn" data-card="${card.id}">Add</button>
+          </div>
+        </div>
+      </div>`;
+    grid.appendChild(tile);
+  }
+
+  // Toggle crystal panel
+  grid.querySelectorAll(".crystal-add-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (btn.disabled) return;
+      const panel = document.getElementById(`cpanel-${btn.dataset.card}`);
+      const open = panel.classList.toggle("open");
+      btn.classList.toggle("active", open);
+    });
+  });
+
+  // Crystal date change → resource preview
+  grid.querySelectorAll(".crystal-date-input").forEach(inp => {
+    inp.addEventListener("change", () => updateCrystalPreview(inp.dataset.card, inp.value));
+  });
+
+  // Save crystal entry
+  grid.querySelectorAll(".crystal-save-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const cardId = btn.dataset.card;
+      const dateEl = btn.closest(".crystal-panel").querySelector(".crystal-date-input");
+      const amtEl  = btn.closest(".crystal-panel").querySelector(".crystal-amount-input");
+      const date   = dateEl.value;
+      const amount = parseInt(amtEl.value) || 1;
+      if (!date) { dateEl.focus(); return; }
+      const db = loadCrystals();
+      if (!db[cardId]) db[cardId] = [];
+      db[cardId].push({ date, amount, _idx: Date.now() });
+      db[cardId].sort((a, b) => a.date.localeCompare(b.date));
+      saveCrystals(db);
+      renderGrid();
+      renderResProjection();
+    });
+  });
+
+  // Reassign multi-SSR banner copy to other card
+  grid.querySelectorAll(".log-alloc-swap").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const db  = loadAlloc();
+      const key = btn.dataset.key;
+      const idx = parseInt(btn.dataset.idx);
+      const to  = btn.dataset.to;
+      if (!db[key]) db[key] = [];
+      db[key][idx] = to;
+      saveAlloc(db);
+      renderGrid();
+    });
+  });
+
+  // Remove crystal entry
+  grid.querySelectorAll(".log-crystal-remove").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const { card, idx } = btn.dataset;
+      const db = loadCrystals();
+      if (db[card]) db[card] = db[card].filter(e => String(e._idx) !== String(idx));
+      saveCrystals(db);
+      renderGrid();
+      renderResProjection();
+    });
+  });
+
+  grid.querySelectorAll(".card-remove-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const t = loadTracker(); delete t[btn.dataset.id]; saveTracker(t); renderGrid();
+    });
+  });
+}
+
+// ── Sort bar ──
+document.querySelectorAll(".sort-btn").forEach(btn => {
+  if (btn.dataset.sort === sortMode) {
+    document.querySelectorAll(".sort-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+  }
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".sort-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    sortMode = btn.dataset.sort;
+    localStorage.setItem("cardSort_v1", sortMode);
+    renderGrid();
+  });
+});
+
+// ── Modal ──
+let searchQuery = "";
+
+function renderModal() {
+  const tracker = loadTracker();
+  const grid    = document.getElementById("modalGrid");
+  const q       = searchQuery.toLowerCase();
+  grid.innerHTML = "";
+  for (const card of ALL_CARDS.filter(c => !q || c.name.toLowerCase().includes(q))) {
+    const tracked = tracker[card.id] !== undefined;
+    const el = document.createElement("div");
+    el.className = "modal-card" + (tracked ? " already-tracked" : "");
+    el.innerHTML = `<img src="${card.img}" alt="${card.name}" loading="lazy"><div class="modal-card-name">${card.name}</div>`;
+    if (!tracked) {
+      el.addEventListener("click", () => {
+        const t = loadTracker();
+        if (t[card.id] === undefined) t[card.id] = 1;
+        saveTracker(t); closeModal(); renderGrid();
+      });
+    }
+    grid.appendChild(el);
+  }
+}
+
+function openModal() {
+  document.getElementById("modalOverlay").classList.add("open");
+  document.getElementById("modalSearch").value = "";
+  searchQuery = "";
+  renderModal();
+  document.getElementById("modalSearch").focus();
+}
+function closeModal() { document.getElementById("modalOverlay").classList.remove("open"); }
+
+document.getElementById("addCardBtn").addEventListener("click", openModal);
+document.getElementById("modalClose").addEventListener("click", closeModal);
+document.getElementById("modalOverlay").addEventListener("click", e => {
+  if (e.target === document.getElementById("modalOverlay")) closeModal();
+});
+document.getElementById("modalSearch").addEventListener("input", e => {
+  searchQuery = e.target.value; renderModal();
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+
+// ── Resource Projection ──
+function buildResDropdown() {
+  const sel = document.getElementById("resDateSelect");
+  const calcState = JSON.parse(localStorage.getItem("caratCalc_v1") || "{}");
+  const rows = calcState.rows || [];
+
+  // Collect unique (date, bannerName) pairs, sorted by date
+  const seen = new Set();
+  const opts = [];
+  for (const row of rows) {
+    const date = (row.startDate || row.start || "").slice(0, 10);
+    const name = row.banner || "";
+    if (!date || date === "—") continue;
+    const key = date + "|" + name;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    opts.push({ date, name });
+  }
+  opts.sort((a, b) => a.date.localeCompare(b.date));
+
+  // Rebuild options (keep placeholder)
+  while (sel.options.length > 1) sel.remove(1);
+  for (const o of opts) {
+    const opt = document.createElement("option");
+    opt.value = o.date;
+    opt.textContent = `${o.name} (${o.date})`;
+    sel.appendChild(opt);
+  }
+
+  const wrap = document.getElementById("resGridWrap");
+  if (opts.length === 0) {
+    wrap.innerHTML = `<div class="res-no-rows">Add rows to the calculator to see projections.</div>`;
+  }
+}
+
+function renderResProjection() {
+  const sel   = document.getElementById("resDateSelect");
+  const date  = sel.value;
+  const wrap  = document.getElementById("resGridWrap");
+
+  if (!date) {
+    wrap.innerHTML = `<div class="res-no-rows">Select a banner above to see estimated resources.</div>`;
+    return;
+  }
+
+  // Current resources from caratCalc_v1 (top-level keys matching DOM ids)
+  const today = new Date().toISOString().slice(0, 10);
+  const calcState = JSON.parse(localStorage.getItem("caratCalc_v1") || "{}");
+  const ssrCryst = parseInt(calcState.resSSRCrystal) || 0;
+  const srCryst  = parseInt(calcState.resSRCrystal)  || 0;
+  const ssrShard = parseInt(calcState.resSSRShard)   || 0;
+  const srShard  = parseInt(calcState.resSRShard)    || 0;
+
+  // Sum timeline rewards from today (exclusive) up to and including selected date
+  let earnSSR = 0, earnSR = 0, earnUma = 0, earnSup = 0;
+  for (const r of TIMELINE_REWARDS) {
+    if (r.date > today && r.date <= date) {
+      earnSSR += r.ssr || 0;
+      earnSR  += r.sr  || 0;
+      earnUma += r.uma || 0;
+      earnSup += r.sup || 0;
+    }
+  }
+
+  const totalSSRShard = ssrShard + earnSSR;
+  const totalSRShard  = srShard  + earnSR;
+  const totalSSRCryst = ssrCryst + Math.floor(totalSSRShard / 20);
+  const totalSRCryst  = srCryst  + Math.floor(totalSRShard  / 20);
+  const remSSRShard   = totalSSRShard % 20;
+  const remSRShard    = totalSRShard  % 20;
+
+  // Crystal spend breakdown by card up to this date
+  const allCrystals = loadCrystals();
+  const spendRows = [];
+  let totalSpend = 0;
+  for (const [cardId, entries] of Object.entries(allCrystals)) {
+    const amt = entries.filter(e => e.date && e.date <= date).reduce((s, e) => s + (parseInt(e.amount) || 1), 0);
+    if (!amt) continue;
+    totalSpend += amt;
+    const card = CARD_MAP[cardId];
+    spendRows.push({ name: card ? card.name : cardId, amt });
+  }
+  spendRows.sort((a, b) => a.name.localeCompare(b.name));
+
+  const availableSSR = Math.max(0, totalSSRCryst - totalSpend);
+
+  function sub(earned, label) {
+    return earned ? `+${earned.toLocaleString()} ${label} from timeline` : `no ${label} from timeline`;
+  }
+
+  const spendHTML = spendRows.length
+    ? spendRows.map(r => `<div class="res-spend-row"><span class="res-spend-amt">${r.amt}</span><span class="res-spend-name">${r.name}</span></div>`).join('')
+    : `<div class="res-spend-none">No crystals planned</div>`;
+
+  wrap.innerHTML = `
+    <div class="res-grid">
+      <div class="res-cell ssr">
+        <div class="res-cell-label">SSR Crystals</div>
+        <div class="res-cell-val">${totalSSRCryst.toLocaleString()}</div>
+        <div class="res-cell-sub">${sub(earnSSR, 'shards')}</div>
+      </div>
+      <div class="res-cell ssr">
+        <div class="res-cell-label">After Planned Use</div>
+        <div class="res-cell-val">${availableSSR.toLocaleString()}</div>
+        <div class="res-cell-sub">${totalSpend ? `−${totalSpend} planned` : 'none planned'}</div>
+      </div>
+      <div class="res-cell sr">
+        <div class="res-cell-label">SR Crystals</div>
+        <div class="res-cell-val">${totalSRCryst.toLocaleString()}</div>
+        <div class="res-cell-sub">${sub(earnSR, 'shards')}</div>
+      </div>
+      <div class="res-cell sr">
+        <div class="res-cell-label">SSR Shards left</div>
+        <div class="res-cell-val">${remSSRShard}</div>
+        <div class="res-cell-sub">after converting</div>
+      </div>
+    </div>
+    <div class="res-spend-section">
+      <div class="res-spend-title">Planned Crystal Use</div>
+      <div class="res-spend-list">${spendHTML}</div>
+    </div>`;
+}
+
+document.getElementById("resDateSelect").addEventListener("change", renderResProjection);
+buildResDropdown();
+renderResProjection();
+
+document.getElementById("clearAllCardsBtn").addEventListener("click", () => {
+  const tracker = loadTracker();
+  if (!Object.keys(tracker).length) return;
+  if (!confirm("Remove all tracked cards and crystal entries? This cannot be undone.")) return;
+  localStorage.removeItem(TRACKER_KEY);
+  localStorage.removeItem(CRYSTALS_KEY);
+  renderGrid();
+  renderResProjection();
+});
+
+renderGrid();
+
+// ── Acquired Umas ──
+let acquiredSortMode = localStorage.getItem("acquiredSort_v1") || "name";
+
+document.querySelectorAll(".asort-btn").forEach(btn => {
+  if (btn.dataset.asort === acquiredSortMode) {
+    document.querySelectorAll(".asort-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+  }
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".asort-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    acquiredSortMode = btn.dataset.asort;
+    localStorage.setItem("acquiredSort_v1", acquiredSortMode);
+    renderAcquiredUmas();
+  });
+});
+
+const UMA_BY_NAME   = Object.fromEntries(PACK_UMA.filter(u => !u._marker).map(u => [u.name, u]));
+const UMA_PICKS_KEY = "acquiredUmaPicks_v1";
+
+function loadUmaPicks()  { try { return JSON.parse(localStorage.getItem(UMA_PICKS_KEY)) || {}; } catch(_) { return {}; } }
+function saveUmaPicks(d) { localStorage.setItem(UMA_PICKS_KEY, JSON.stringify(d)); }
+
+function deriveAcquiredUmas() {
+  const acquired     = {}; // cardId → { card, entries[] }
+  const pendingPicks = []; // { bannerKey, bannerName, bannerDate, pulls, options: [card,...] }
+  const picks        = loadUmaPicks();
+
+  // 1. Selector picks (s21uma / s70uma)
+  let packsState = {};
+  try { packsState = JSON.parse(localStorage.getItem(PACKS_KEY)) || {}; } catch(_) {}
+  for (const [evId, slots] of Object.entries(packsState)) {
+    for (const key of ['s21uma', 's70uma']) {
+      const name = slots[key];
+      if (!name) continue;
+      const card = UMA_BY_NAME[name];
+      if (!card) continue;
+      const ev       = EVENT_MAP[evId];
+      const date     = ev ? ev.start : '';
+      const evName   = ev ? ev.name : evId;
+      const selLabel = SEL_LABELS[key] || key;
+      if (!acquired[card.id]) acquired[card.id] = { card, entries: [] };
+      acquired[card.id].entries.push({ type: 'selector', label: `${evName} — ${selLabel}`, date });
+    }
+  }
+
+  // 2. 200+ pull character banners
+  let calcState = {};
+  try { calcState = JSON.parse(localStorage.getItem(STORE_KEY)) || {}; } catch(_) {}
+  for (const row of (calcState.rows || [])) {
+    const pulls = parseInt(row.pulls) || 0;
+    if (pulls < 200) continue;
+    const banner = CHAR_BANNERS_SIMPLE.find(b => b.name === (row.banner || ''));
+    if (!banner) continue;
+    const options = banner.card_names.map(n => UMA_BY_NAME[n]).filter(Boolean);
+    if (!options.length) continue;
+    const bannerKey = banner.name + '|' + banner.start;
+
+    if (options.length === 1) {
+      const card = options[0];
+      if (!acquired[card.id]) acquired[card.id] = { card, entries: [] };
+      acquired[card.id].entries.push({ type: 'pull', label: `${banner.name} (${pulls} pulls)`, date: banner.start });
+    } else {
+      const pickedName = picks[bannerKey];
+      const pickedCard = pickedName ? UMA_BY_NAME[pickedName] : null;
+      if (pickedCard) {
+        if (!acquired[pickedCard.id]) acquired[pickedCard.id] = { card: pickedCard, entries: [] };
+        acquired[pickedCard.id].entries.push({ type: 'pull', label: `${banner.name} (${pulls} pulls)`, date: banner.start, bannerKey });
+      } else {
+        pendingPicks.push({ bannerKey, bannerName: banner.name, bannerDate: banner.start, pulls, options });
+      }
+    }
+  }
+
+  const sortedAcquired = Object.values(acquired).sort((a, b) => {
+    if (acquiredSortMode === "release") {
+      const da = a.card.release_date || "9999", db = b.card.release_date || "9999";
+      return da < db ? -1 : da > db ? 1 : a.card.name.localeCompare(b.card.name);
+    }
+    return a.card.name.localeCompare(b.card.name);
+  });
+  return { acquired: sortedAcquired, pendingPicks };
+}
+
+function renderAcquiredUmas() {
+  const grid  = document.getElementById('acquiredGrid');
+  const empty = document.getElementById('acquiredEmpty');
+  const { acquired, pendingPicks } = deriveAcquiredUmas();
+  grid.innerHTML = '';
+
+  if (!acquired.length && !pendingPicks.length) {
+    empty.style.display = '';
+    return;
+  }
+  empty.style.display = 'none';
+
+  // Picker tiles for multi-Uma banners without a pick
+  for (const { bannerKey, bannerName, bannerDate, pulls, options } of pendingPicks) {
+    const optHTML = options.map(c => `
+      <div class="uma-picker-opt" data-key="${bannerKey}" data-name="${c.name}">
+        <img src="${c.img || ''}" alt="${c.name}" loading="lazy">
+        <div class="uma-picker-opt-name">${c.name}</div>
+      </div>`).join('');
+    const tile = document.createElement('div');
+    tile.className = 'uma-picker-tile';
+    tile.innerHTML = `
+      <div class="uma-picker-lbl">Who did you spark?</div>
+      <div class="uma-picker-banner">${bannerName} &nbsp;·&nbsp; ${pulls} pulls &nbsp;·&nbsp; <span style="color:#555">${formatDate(bannerDate)}</span></div>
+      <div class="uma-picker-options">${optHTML}</div>`;
+    grid.appendChild(tile);
+  }
+
+  // Acquired Uma tiles
+  for (const { card, entries } of acquired) {
+    const sorted  = [...entries].sort((a, b) => (a.date || '') < (b.date || '') ? -1 : 1);
+    const logHTML = sorted.map(e => `
+      <div class="card-log-entry">
+        <span class="${e.type === 'pull' ? 'log-dot-pull' : 'log-dot-sel'}">●</span>
+        <span class="log-label" title="${e.label}">${e.label}</span>
+        <span class="log-date">${formatDate(e.date)}</span>
+        ${e.bannerKey
+          ? `<button class="log-alloc-swap log-action-slot uma-pick-clear" data-key="${e.bannerKey}" title="Change selection">✕</button>`
+          : `<span class="log-action-slot"></span>`}
+      </div>`).join('');
+    const tile = document.createElement('div');
+    tile.className = 'acquired-tile';
+    tile.innerHTML = `
+      <div class="acquired-tile-img">
+        <img src="${card.img || ''}" alt="${card.name}" loading="lazy">
+      </div>
+      <div class="acquired-tile-body">
+        <div class="acquired-tile-name">${card.name}</div>
+        <div class="card-log">${logHTML}</div>
+      </div>`;
+    grid.appendChild(tile);
+  }
+
+  // Picker select handler
+  grid.querySelectorAll('.uma-picker-opt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const picks = loadUmaPicks();
+      picks[btn.dataset.key] = btn.dataset.name;
+      saveUmaPicks(picks);
+      renderAcquiredUmas();
+    });
+  });
+
+  // Picker clear handler
+  grid.querySelectorAll('.uma-pick-clear').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const picks = loadUmaPicks();
+      delete picks[btn.dataset.key];
+      saveUmaPicks(picks);
+      renderAcquiredUmas();
+    });
+  });
+}
+
+renderAcquiredUmas();
+</script>
+<script>
+(function() {
+  const DEBUG_KEY = 'debugMode_v1';
+  const isDebug = localStorage.getItem(DEBUG_KEY) === '1';
+  if (isDebug) document.body.classList.add('debug-mode');
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('navSettingsBtn');
+    const dd  = document.getElementById('navSettingsDd');
+    const chk = document.getElementById('debugToggle');
+    if (!btn || !dd || !chk) return;
+    chk.checked = isDebug;
+    btn.addEventListener('click', function(e) { e.stopPropagation(); dd.classList.toggle('open'); });
+    document.addEventListener('click', function() { dd.classList.remove('open'); });
+    dd.addEventListener('click', function(e) { e.stopPropagation(); });
+    chk.addEventListener('change', function() {
+      localStorage.setItem(DEBUG_KEY, chk.checked ? '1' : '0');
+      document.body.classList.toggle('debug-mode', chk.checked);
+    });
+  });
+})();
+</script></body>
+</html>

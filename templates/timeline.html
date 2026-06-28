@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Timeline — Carat Calc</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0a0a0a;
+      color: #d8d8d8;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 14px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Top Nav ── */
+    .top-nav {
+      background: #080808;
+      border-bottom: 1px solid #1e1e1e;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .top-nav-logo {
+      font-size: 12px;
+      font-weight: 700;
+      color: #444;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 11px 18px 11px 0;
+      border-right: 1px solid #1e1e1e;
+      margin-right: 6px;
+      white-space: nowrap;
+    }
+    .top-nav-link {
+      display: flex;
+      align-items: center;
+      padding: 11px 12px;
+      color: #555;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.1s;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+    .top-nav-link:hover { color: #bbb; }
+    .top-nav-link.active { color: #ccc; border-bottom-color: #555; }
+    .top-nav-sep { width: 1px; height: 16px; background: #1e1e1e; margin: 0 4px; }
+
+    .main {
+      flex: 1;
+      padding: 28px 32px 60px;
+      min-width: 0;
+      overflow-x: hidden;
+    }
+
+    header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    header h1 { font-size: 20px; font-weight: 700; color: #fff; }
+
+    /* filters */
+    .filters { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
+    .filter-btn {
+      padding: 5px 14px;
+      border-radius: 20px;
+      border: 1px solid #222;
+      background: #111;
+      color: #555;
+      font-size: 12px;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.1s;
+    }
+    .filter-btn:hover { color: #aaa; border-color: #333; }
+    .filter-btn.active               { background: #1e1e1e; color: #ccc; border-color: #444; }
+    .filter-btn.f-character.active   { border-color: #3a5fa0; color: #7ab0f0; background: #0d1525; }
+    .filter-btn.f-support.active     { border-color: #6a4a8a; color: #b08ad8; background: #140d1e; }
+    .filter-btn.f-anniversary.active        { border-color: #8a6a20; color: #d4a84a; background: #1a1500; }
+    .filter-btn.f-step_up.active            { border-color: #7a4a10; color: #d48a2a; background: #1e1508; }
+    .filter-btn.f-champions_meeting.active  { border-color: #2a6a5a; color: #5ac8a8; background: #081a14; }
+    .filter-btn.f-league_of_heroes.active   { border-color: #1a5a7a; color: #5ab0d8; background: #081420; }
+
+    /* month section */
+    .month-group { margin-bottom: 32px; }
+
+    .month-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: #bbb;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #1a1a1a;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .month-label .date-start { letter-spacing: 0.5px; }
+    .month-label .date-arrow { color: #555; font-size: 11px; }
+    .month-label .date-end   { color: #888; font-size: 12px; }
+
+    /* banner rows */
+    .banner-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 14px;
+      border: 1px solid #1a1a1a;
+      border-radius: 8px;
+      background: #0f0f0f;
+      margin-bottom: 6px;
+    }
+    .banner-card:hover { background: #131313; }
+
+    .type-stripe {
+      width: 3px;
+      min-height: 100%;
+      border-radius: 2px;
+      flex-shrink: 0;
+      align-self: stretch;
+    }
+    .t-character   .type-stripe { background: #3a5fa0; }
+    .t-support     .type-stripe { background: #6a4a8a; }
+    .t-anniversary        .type-stripe { background: #8a6a20; }
+    .t-step_up            .type-stripe { background: #c47a2a; }
+    .t-champions_meeting  .type-stripe { background: #2a6a5a; }
+    .t-league_of_heroes   .type-stripe { background: #1a5a7a; }
+
+    .banner-body { flex: 1; min-width: 0; }
+
+    .banner-top {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 5px;
+    }
+
+    .type-badge {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      padding: 1px 6px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+    .t-character   .type-badge { background: #0d1525; color: #6a9ad4; }
+    .t-support     .type-badge { background: #140d1e; color: #9a6ac8; }
+    .t-anniversary        .type-badge { background: #1a1500; color: #c49030; }
+    .t-step_up            .type-badge { background: #1e1508; color: #d48a2a; }
+    .t-champions_meeting  .type-badge { background: #081a14; color: #5ac8a8; }
+    .t-league_of_heroes   .type-badge { background: #081420; color: #5ab0d8; }
+    .bd-description { font-size: 11px; color: #555; margin-top: 5px; white-space: pre-line; }
+
+    .banner-name { font-size: 13px; font-weight: 600; color: #d0d0d0; }
+
+    .confirmed   { font-size: 10px; color: #3a6a3a; background: #0a1a0a; border: 1px solid #1a3a1a; border-radius: 3px; padding: 1px 5px; }
+    .unconfirmed { font-size: 10px; color: #5a4a20; background: #1a1500; border: 1px solid #2a2010; border-radius: 3px; padding: 1px 5px; }
+    .free-chip   { font-size: 10px; color: #5ab8d8; background: #091620; border: 1px solid #1a3a4a; border-radius: 3px; padding: 1px 5px; }
+
+    .banner-dates { font-size: 12px; color: #888; margin-left: auto; white-space: nowrap; flex-shrink: 0; font-weight: 500; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
+
+    .card-chip {
+      font-size: 11px;
+      color: #777;
+      background: #141414;
+      border: 1px solid #1e1e1e;
+      border-radius: 4px;
+      padding: 2px 8px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .card-chip:hover { color: #bbb; border-color: #333; }
+
+    .event-chip {
+      font-size: 11px;
+      color: #5ecb7a;
+      background: #0a160c;
+      border: 1px solid #1a2e1a;
+      border-radius: 4px;
+      padding: 2px 8px;
+      white-space: nowrap;
+    }
+    .reward-chip {
+      font-size: 11px;
+      color: #c8a84a;
+      background: #181200;
+      border: 1px solid #2e2400;
+      border-radius: 4px;
+      padding: 2px 8px;
+      white-space: nowrap;
+    }
+    .reward-chip.r-ticket {
+      color: #5ab8d8;
+      background: #081420;
+      border-color: #142840;
+    }
+
+    .card-imgs { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+    .card-imgs a { display: block; }
+    .card-imgs img { height: 130px; width: auto; border-radius: 4px; display: block; object-fit: cover; }
+  </style>
+  <style>
+    .debug-only { display: none; }
+    body.debug-mode .debug-only { display: flex; }
+    .nav-settings-wrap { margin-left: auto; position: relative; }
+    .nav-settings-btn {
+      background: none; border: none; color: #333; cursor: pointer;
+      font-size: 15px; padding: 8px 10px; transition: color 0.1s; line-height: 1;
+    }
+    .nav-settings-btn:hover { color: #888; }
+    .nav-settings-dd {
+      display: none; position: absolute; right: 0; top: calc(100% + 4px);
+      background: #111; border: 1px solid #2a2a2a; border-radius: 8px;
+      padding: 12px 16px; width: 190px; z-index: 200;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.8);
+    }
+    .nav-settings-dd.open { display: block; }
+    .nav-settings-title {
+      font-size: 10px; font-weight: 700; color: #444; letter-spacing: 0.5px;
+      text-transform: uppercase; margin-bottom: 10px;
+    }
+    .nav-settings-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    }
+    .nav-settings-label { font-size: 12px; color: #888; }
+    .nav-toggle { position: relative; width: 32px; height: 18px; flex-shrink: 0; }
+    .nav-toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+    .nav-toggle-track {
+      position: absolute; inset: 0; background: #2a2a2a; border-radius: 9px;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .nav-toggle input:checked + .nav-toggle-track { background: #3a5a3a; }
+    .nav-toggle-thumb {
+      position: absolute; top: 3px; left: 3px; width: 12px; height: 12px;
+      background: #555; border-radius: 50%; transition: all 0.2s; pointer-events: none;
+    }
+    .nav-toggle input:checked ~ .nav-toggle-thumb { left: 17px; background: #5ecb7a; }
+  </style></head>
+<body>
+
+<nav class="top-nav">
+  <div class="top-nav-logo">Carat Calc</div>
+  <a href="/" class="top-nav-link">Calculator</a>
+  <a href="/packs" class="top-nav-link">Selectors</a>
+  <a href="/cards" class="top-nav-link">Card Tracker</a>
+  <div class="top-nav-sep"></div>
+  <a href="/timeline" class="top-nav-link active">Timeline</a>
+  <a href="/data" class="top-nav-link debug-only">Data</a>
+  <a href="/updates" class="top-nav-link debug-only">Updates</a>
+  <div class="nav-settings-wrap">
+    <button class="nav-settings-btn" id="navSettingsBtn" title="Settings">⚙</button>
+    <div class="nav-settings-dd" id="navSettingsDd">
+      <div class="nav-settings-title">Settings</div>
+      <div class="nav-settings-row">
+        <span class="nav-settings-label">Debug mode</span>
+        <label class="nav-toggle">
+          <input type="checkbox" id="debugToggle">
+          <div class="nav-toggle-track"></div>
+          <div class="nav-toggle-thumb"></div>
+        </label>
+      </div>
+    </div>
+  </div></nav>
+
+<div class="main">
+  <header>
+    <h1>Banner Timeline</h1>
+  </header>
+
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn f-character" data-filter="character">Character</button>
+    <button class="filter-btn f-support" data-filter="support">Support</button>
+    <button class="filter-btn f-anniversary" data-filter="anniversary">Anniversary</button>
+    <button class="filter-btn f-step_up" data-filter="step_up">Step Up</button>
+    <button class="filter-btn f-champions_meeting" data-filter="champions_meeting">Champion's Meeting</button>
+    <button class="filter-btn f-league_of_heroes" data-filter="league_of_heroes">League of Heroes</button>
+  </div>
+
+  {% for g in groups %}
+  <div class="month-group">
+    <div class="month-label">
+      <span class="date-start">{{ g.date }}</span>
+      {% if g.end_date %}<span class="date-arrow">→</span><span class="date-end">{{ g.end_date }}</span>{% endif %}
+    </div>
+
+    {% for b in g.banners %}
+    <div class="banner-card t-{{ b.type }}" data-type="{{ b.type }}">
+      <div class="type-stripe"></div>
+      <div class="banner-body">
+        <div class="banner-top">
+          <span class="type-badge">{% if b.type == 'step_up' %}STEP UP{% elif b.type == 'champions_meeting' %}CHAMPIONS{% elif b.type == 'league_of_heroes' %}LEAGUE{% else %}{{ b.type }}{% endif %}</span>
+          <span class="banner-name">{{ b.banner_name }}{% if b.meeting_number is defined %} <span style="color:{% if b.type == 'league_of_heroes' %}#1a5a7a{% else %}#3a6a5a{% endif %};font-size:11px;font-weight:600;">#{{ b.meeting_number }}</span>{% endif %}</span>
+          {% if b.is_confirmed %}
+          <span class="confirmed">confirmed</span>
+          {% else %}
+          <span class="unconfirmed">unconfirmed</span>
+          {% endif %}
+          {% if b.free %}
+          <span class="free-chip">+{{ b.free }} free</span>
+          {% endif %}
+        </div>
+        {% if b.cards %}
+        <div class="card-imgs">
+          {% for card in b.cards %}
+          <a href="{{ card.url }}" target="_blank" rel="noopener" title="{{ card.name }}">
+            <img src="{{ card.img }}" alt="{{ card.name }}" loading="lazy">
+          </a>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% if b.description %}
+        <div class="bd-description">{{ b.description }}</div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+
+    {% if g.events or g.rewards %}
+    <div class="chips group-events">
+      {% for ev in g.events %}
+      <span class="event-chip">{{ ev.name }} +{{ ev.amount }}</span>
+      {% endfor %}
+      {% for r in g.rewards %}
+      <span class="reward-chip{% if r.key in ('uma_ticket','support_ticket') %} r-ticket{% endif %}">{{ r.name }} +{{ r.amount }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+  </div>
+  {% endfor %}
+
+</div>
+
+<script>
+
+
+const CHAMP_MEETING = {'Champion':3300,'Second':2400,'Third':1600,'Group B 1st':1800,'Group B 2nd':1250,'Group B 3rd':1000,'Open League 1st':1500,'Open League 2nd':1250,'Open League 3rd':1000,'None':0};
+const LEAGUE_HEROES = {'Platinum 4':3300,'Platinum 3':2800,'Platinum 2':2300,'Platinum 1':1800,'Gold 4':1300,'Gold 3':1000,'Gold 2':700,'Gold 1':550,'Silver 4':400,'None':0};
+(function() {
+  const saved = JSON.parse(localStorage.getItem("caratCalc_v1") || "{}");
+  const cmAmount = CHAMP_MEETING[saved.champMeeting || "None"] || 0;
+  const lohAmount = LEAGUE_HEROES[saved.leagueHeroes || "None"] || 0;
+  document.querySelectorAll(".month-group").forEach(grp => {
+    const cmCard = grp.querySelector(".banner-card.t-champions_meeting");
+    const lohCard = grp.querySelector(".banner-card.t-league_of_heroes");
+    const card = cmCard || lohCard;
+    if (!card) return;
+    const amount = lohCard ? lohAmount : cmAmount;
+    const nameEl = card.querySelector(".banner-name");
+    const name = nameEl ? nameEl.textContent.trim() : "Champion's Meeting";
+    let chips = grp.querySelector(".chips.group-events");
+    if (!chips) {
+      chips = document.createElement("div");
+      chips.className = "chips group-events";
+      grp.appendChild(chips);
+    }
+    const chip = document.createElement("span");
+    chip.className = "event-chip cm-reward-chip";
+    chip.textContent = `${name} +${amount.toLocaleString()}`;
+    chips.prepend(chip);
+  });
+})();
+
+function applyFilters() {
+  const active = [...document.querySelectorAll(".filter-btn.active")].map(b => b.dataset.filter);
+  const showAll = active.includes("all") || active.length === 0;
+  document.querySelectorAll(".banner-card").forEach(card => {
+    card.style.display = (showAll || active.includes(card.dataset.type)) ? "" : "none";
+  });
+  document.querySelectorAll(".month-group").forEach(grp => {
+    const hasVisible = [...grp.querySelectorAll(".banner-card")].some(c => c.style.display !== "none");
+    grp.style.display = hasVisible ? "" : "none";
+  });
+}
+
+document.querySelectorAll(".filter-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    if (btn.dataset.filter === "all") {
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    } else {
+      document.querySelector(".filter-btn[data-filter='all']").classList.remove("active");
+      btn.classList.toggle("active");
+      if (!document.querySelector(".filter-btn.active")) {
+        document.querySelector(".filter-btn[data-filter='all']").classList.add("active");
+      }
+    }
+    applyFilters();
+  });
+});
+</script>
+<script>
+(function() {
+  const DEBUG_KEY = 'debugMode_v1';
+  const isDebug = localStorage.getItem(DEBUG_KEY) === '1';
+  if (isDebug) document.body.classList.add('debug-mode');
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('navSettingsBtn');
+    const dd  = document.getElementById('navSettingsDd');
+    const chk = document.getElementById('debugToggle');
+    if (!btn || !dd || !chk) return;
+    chk.checked = isDebug;
+    btn.addEventListener('click', function(e) { e.stopPropagation(); dd.classList.toggle('open'); });
+    document.addEventListener('click', function() { dd.classList.remove('open'); });
+    dd.addEventListener('click', function(e) { e.stopPropagation(); });
+    chk.addEventListener('change', function() {
+      localStorage.setItem(DEBUG_KEY, chk.checked ? '1' : '0');
+      document.body.classList.toggle('debug-mode', chk.checked);
+    });
+  });
+})();
+</script></body>
+</html>

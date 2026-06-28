@@ -1,0 +1,32 @@
+[
+  {
+    "timestamp": "2026-06-27T06:30:07Z",
+    "kind": "new_event",
+    "event_type": "pack_event_step_up",
+    "name": "3 Year Anniversary"
+  },
+  {
+    "timestamp": "2026-06-27T06:30:07Z",
+    "kind": "new_event",
+    "event_type": "pack_event_step_up",
+    "name": "3.5 Year Anniversary"
+  },
+  {
+    "timestamp": "2026-06-27T06:30:07Z",
+    "kind": "new_event",
+    "event_type": "pack_event_step_up",
+    "name": "4 Year Anniversary"
+  },
+  {
+    "timestamp": "2026-06-27T06:30:07Z",
+    "kind": "new_event",
+    "event_type": "pack_event_step_up",
+    "name": "4.5 Year Anniversary"
+  },
+  {
+    "timestamp": "2026-06-27T06:30:07Z",
+    "kind": "new_event",
+    "event_type": "pack_event_step_up",
+    "name": "5 Year Anniversary"
+  }
+]

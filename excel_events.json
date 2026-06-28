@@ -1,0 +1,4502 @@
+[
+  {
+    "start_date": "2025-06-26",
+    "end_date": "2025-07-02",
+    "characters": [
+      "Special Week",
+      "Silence Suzuka",
+      "Tokai Teio",
+      "Maruzensky",
+      "Oguri Cap",
+      "Gold Ship",
+      "Vodka"
+    ],
+    "events": []
+  },
+  {
+    "start_date": "2025-06-26",
+    "end_date": "2025-07-03",
+    "characters": [
+      "T.M. Opera",
+      "Oguri Cap",
+      "Sweep Tosho"
+    ],
+    "events": []
+  },
+  {
+    "start_date": "2025-07-02",
+    "end_date": "2025-07-11",
+    "characters": [
+      "Mihono Bourbon",
+      "Twin Turbo",
+      "Daitaku Helios"
+    ],
+    "events": []
+  },
+  {
+    "start_date": "2025-07-10",
+    "end_date": "2025-07-22",
+    "characters": [
+      "Biwa Hayahide",
+      "Mejiro Palmer",
+      "Ikuno Dictus"
+    ],
+    "events": []
+  },
+  {
+    "start_date": "2025-07-16",
+    "end_date": "2025-08-01",
+    "characters": [
+      "Tokai Teio",
+      "Mejiro Mcqueen",
+      "Kitasan Black",
+      "Satono Diamond"
+    ],
+    "events": []
+  },
+  {
+    "start_date": "2025-07-27",
+    "end_date": "2025-08-07",
+    "characters": [
+      "Curren Chan",
+      "Yukino Bijin",
+      "Nishino Flower",
+      "♡ Cute ♡"
+    ],
+    "events": []
+  },
+  {
+    "start_date": "2025-08-03",
+    "end_date": "2025-08-13",
+    "characters": [
+      "Narita Taishin",
+      "Yaeno Muteki",
+      "Zenno Rob Roy"
+    ],
+    "events": []
+  },
+  {
+    "start_date": "2025-08-11",
+    "end_date": "2025-08-22",
+    "characters": [
+      "Smart Falcon",
+      "Super Creek",
+      "Tazuna"
+    ],
+    "events": []
+  },
+  {
+    "start_date": "2025-08-20",
+    "end_date": "2025-08-31",
+    "characters": [
+      "Narita Brian",
+      "Sakura Chiyono O",
+      "Seeking the Pearl"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Legend Race (Winning Ticket)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Vodka)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Tokai Teio)",
+        "amount": 250
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Oaks)",
+        "amount": 150
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Japan Derby)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2025-08-28",
+    "end_date": "2025-09-10",
+    "characters": [
+      "Air Groove",
+      "Mayano Top Gun",
+      "Hishi Akebono",
+      "Kawakami Princess"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 1010
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Yasuda Kinen)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2025-09-07",
+    "end_date": "2025-09-18",
+    "characters": [
+      "Seiun Sky",
+      "Silence Suzuka",
+      "Tamamo Cross"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      }
+    ]
+  },
+  {
+    "start_date": "2025-09-17",
+    "end_date": "2025-09-25",
+    "characters": [
+      "Hishi Amazon",
+      "Bamboo Memory",
+      "Shinko Windy"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Legend Race (Mayano Top Gun)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Mejiro McQueen)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (TM Opera O)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Super Creek)",
+        "amount": 250
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Takarazuka Kinen)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2025-09-21",
+    "end_date": "2025-10-04",
+    "characters": [
+      "Grass Wonder",
+      "El Condor Pasa",
+      "King Halo",
+      "Seiun Sky"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 1260
+      }
+    ]
+  },
+  {
+    "start_date": "2025-10-02",
+    "end_date": "2025-10-10",
+    "characters": [
+      "Fuji Kiseki",
+      "Mejiro Ryan",
+      "Mejiro Arden"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Main Story Chapter 4 Release Celebration Missions",
+        "amount": 150
+      },
+      {
+        "name": "Tracen Academy Special: Master Trainer's Road",
+        "amount": 300
+      }
+    ]
+  },
+  {
+    "start_date": "2025-10-07",
+    "end_date": "2025-10-16",
+    "characters": [
+      "Gold City",
+      "Nishino Flower",
+      "Vodka"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Main Story Reward",
+        "amount": 480
+      },
+      {
+        "name": "Cinderella Gray",
+        "amount": 300
+      }
+    ]
+  },
+  {
+    "start_date": "2025-10-14",
+    "end_date": "2025-10-27",
+    "characters": [
+      "Special Week",
+      "Maruzensky",
+      "Sweep Tosho",
+      "Winning Ticket"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 1260
+      },
+      {
+        "name": "Cinderella Gray",
+        "amount": 300
+      }
+    ]
+  },
+  {
+    "start_date": "2025-10-21",
+    "end_date": "2025-10-30",
+    "characters": [
+      "Meisho Doto",
+      "Special Week",
+      "Tokai Teio"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Legend Race (Mejiro Ryan)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Silence Suzuka)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Gold Ship)",
+        "amount": 250
+      },
+      {
+        "name": "Cinderella Gray",
+        "amount": 300
+      }
+    ]
+  },
+  {
+    "start_date": "2025-10-30",
+    "end_date": "2025-11-09",
+    "characters": [
+      "Eishin Flash",
+      "Nice Nature",
+      "Tosen Jordan"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Half Anniversary Story",
+        "amount": 200
+      },
+      {
+        "name": "Half Anniversary Login",
+        "amount": 1200
+      },
+      {
+        "name": "Half Anniversary Celebration Missions Part 1",
+        "amount": 500
+      },
+      {
+        "name": "Cinderella Gray",
+        "amount": 300
+      }
+    ]
+  },
+  {
+    "start_date": "2025-11-06",
+    "end_date": "2025-11-17",
+    "characters": [
+      "Matikanefukukitaru",
+      "Rice Shower",
+      "Riko Kashimoto"
+    ],
+    "events": [
+      {
+        "name": "Half Anniversary Gift",
+        "amount": 3000
+      },
+      {
+        "name": "Half Anniversary Login Bonus",
+        "amount": 3000
+      },
+      {
+        "name": "Aoharu Release Celebration",
+        "amount": 1500
+      },
+      {
+        "name": "Half Anniversary Celebration Missions Part 2",
+        "amount": 500
+      },
+      {
+        "name": "Half Anniversary Celebration Missions Part 3",
+        "amount": 500
+      }
+    ]
+  },
+  {
+    "start_date": "2025-11-11",
+    "end_date": "2025-11-21",
+    "characters": [
+      "Hishi Akebono",
+      "Sakura Bakushin O",
+      "Biko Pegasus"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Legend Race (Maruzensky)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Fuji Kiseki)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Mihono Bourbon)",
+        "amount": 250
+      },
+      {
+        "name": "Cinderella Gray",
+        "amount": 300
+      }
+    ]
+  },
+  {
+    "start_date": "2025-11-19",
+    "end_date": "2025-11-28",
+    "characters": [
+      "Agnes Digital",
+      "Ikuno Dictus",
+      "Fine Motion"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      }
+    ]
+  },
+  {
+    "start_date": "2025-11-24",
+    "end_date": "2025-12-06",
+    "characters": [
+      "Rice Shower",
+      "Super Creek",
+      "Tamamo Cross",
+      "Zenno Rob Roy"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      },
+      {
+        "name": "Cinderella Gray",
+        "amount": 300
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 1 (Sprinters Stakes)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2025-12-01",
+    "end_date": "2025-12-10",
+    "characters": [
+      "Kawakami Princess♡",
+      "Yaeno Muteki",
+      "Seiun Sky"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Legend Race (Matikanefukukitaru)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Seiun Sky)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Biwa Hayahide)",
+        "amount": 250
+      },
+      {
+        "name": "Cinderella Gray",
+        "amount": 300
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (Shuuka Sho)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2025-12-08",
+    "end_date": "2025-12-16",
+    "characters": [
+      "Manhattan Cafe",
+      "Nakayama Festa Stamina",
+      "Sirius Symboli"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Cinderella Gray",
+        "amount": 300
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (Kikka Sho)",
+        "amount": 150
+      },
+      {
+        "name": "Tracen Academy Special: Master Trainer's Road 2",
+        "amount": 300
+      }
+    ]
+  },
+  {
+    "start_date": "2025-12-14",
+    "end_date": "2025-12-25",
+    "characters": [
+      "Symboli Rudolf",
+      "Gold City",
+      "♡Curren Chan♡",
+      "Narita Brian"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (Tenno Sho (Autumn))",
+        "amount": 150
+      },
+      {
+        "name": "Cinderella Gray",
+        "amount": 300
+      }
+    ]
+  },
+  {
+    "start_date": "2025-12-18",
+    "end_date": "2025-12-29",
+    "characters": [
+      "Tosen Jordan",
+      "Kitasan Black",
+      "El Condor Pasa"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Fuji Kiseki's Showtime",
+        "amount": 1500
+      },
+      {
+        "name": "Legend Race (Air Groove)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Eishin Flash)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Agnes Digital)",
+        "amount": 250
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Queen Elizabeth Cup)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2025-12-28",
+    "end_date": "2026-01-07",
+    "characters": [
+      "Mejiro Dober",
+      "Daitaku Helios",
+      "Vodka"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Miles Championship)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Japan Cup)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-01-05",
+    "end_date": "2026-01-20",
+    "characters": [
+      "Oguri Cap",
+      "Biwa Hayahide",
+      "Mayano Top Gun",
+      "Narita Taishin"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Championship Cup)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Hanshin JF Cup)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-01-15",
+    "end_date": "2026-01-23",
+    "characters": [
+      "Fine Motion",
+      "Manhattan Cafe",
+      "Inari One"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Trainer Skill Test",
+        "amount": 1550
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Asahi Hai Futurity Stakes)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Arima Kinen)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-01-22",
+    "end_date": "2026-01-31",
+    "characters": [
+      "Tamamo Cross",
+      "Nice Nature",
+      "Oguri Cap"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Year-end countdown login bonus",
+        "amount": 750
+      },
+      {
+        "name": "Main Story Reward",
+        "amount": 480
+      },
+      {
+        "name": "Legend Race (Nice Nature)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Grass Wonder)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Oguri Cap)",
+        "amount": 250
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Hopeful Stakes)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-01-29",
+    "end_date": "2026-02-09",
+    "characters": [
+      "Haru Urara",
+      "TM Opera O",
+      "Matikanefukukitaru",
+      "Admire Vega"
+    ],
+    "events": [
+      {
+        "name": "New Year's Special Login Bonus First Day",
+        "amount": 1500
+      },
+      {
+        "name": "New Year's Login Bonus",
+        "amount": 2700
+      },
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      }
+    ]
+  },
+  {
+    "start_date": "2026-02-05",
+    "end_date": "2026-02-14",
+    "characters": [
+      "S. Anshinzawa",
+      "Tamamo Cross",
+      "Pity to Select Any Character\n up to New Years"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "1st Racing Carnival",
+        "amount": 1000
+      }
+    ]
+  },
+  {
+    "start_date": "2026-02-11",
+    "end_date": "2026-02-19",
+    "characters": [
+      "Sakura Chiyono O",
+      "Tazuna",
+      "Riko Kashimoto",
+      "BAIT"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      }
+    ]
+  },
+  {
+    "start_date": "2026-02-18",
+    "end_date": "2026-03-01",
+    "characters": [
+      "Mihono Bourbon",
+      "Eishin Flash",
+      "Sakura Bakushin O",
+      "Nishino Flower"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      }
+    ]
+  },
+  {
+    "start_date": "2026-02-25",
+    "end_date": "2026-03-05",
+    "characters": [
+      "Mejiro Ardan",
+      "Agnes Digital",
+      "Ines Fujin"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Legend Race (Hishi Amazon)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Mejiro Dober)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Gold City)",
+        "amount": 250
+      },
+      {
+        "name": "1st Anniversary Celebration Mission Part 1",
+        "amount": 500
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (February Stakes)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-03-05",
+    "end_date": "2026-03-13",
+    "characters": [
+      "Admire Vega",
+      "Fine Motion",
+      "Kawakami Princess"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "1st Anniversary Countdown Login Bonus",
+        "amount": 1500
+      }
+    ]
+  },
+  {
+    "start_date": "2026-03-12",
+    "end_date": "2026-03-23",
+    "characters": [
+      "Kitasan Black",
+      "Matikanetannhauser",
+      "Narita Top Road",
+      "Admire Vega",
+      "✩✩"
+    ],
+    "events": [
+      {
+        "name": "1st Anniversary Gift",
+        "amount": 3000
+      },
+      {
+        "name": "1st Anniversary Login Bonus",
+        "amount": 3000
+      },
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2440
+      },
+      {
+        "name": "1st Anniversary Celebration Missions Part 2",
+        "amount": 500
+      }
+    ]
+  },
+  {
+    "start_date": "2026-03-22",
+    "end_date": "2026-04-02",
+    "characters": [
+      "Satono Diamond",
+      "Marvelous Sunday",
+      "Curren Chan"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "1st Anniversary Login Bonus",
+        "amount": 2250
+      },
+      {
+        "name": "Legend Race (Agnes Tachyon)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Narita Taishin)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Narita Brian)",
+        "amount": 250
+      },
+      {
+        "name": "1st Anniversary Celebration Missions Part 3, SSR Selector",
+        "amount": 450
+      }
+    ]
+  },
+  {
+    "start_date": "2026-03-26",
+    "end_date": "2026-04-06",
+    "characters": [
+      "Mejiro Bright",
+      "Zenno Rob Roy",
+      "Curren Chan"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Main Story Reward",
+        "amount": 480
+      },
+      {
+        "name": "Trainer Skill Test",
+        "amount": 900
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Takamatsunomiya Kinen)",
+        "amount": 150
+      },
+      {
+        "name": "Tracen Academy Special: Master Trainer's Road 3",
+        "amount": 300
+      }
+    ]
+  },
+  {
+    "start_date": "2026-04-05",
+    "end_date": "2026-04-18",
+    "characters": [
+      "Seiun Sky",
+      "Fuji Kiseki",
+      "Symboli Rudolf",
+      "Sirius Symboli"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Osaka Hai)",
+        "amount": 150
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Oka Sho)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-04-12",
+    "end_date": "2026-04-20",
+    "characters": [
+      "Nishino Flower",
+      "Daiwa Scarlet ♡",
+      "Sweep Tosho"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Satsuki Sho)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-04-20",
+    "end_date": "2026-04-29",
+    "characters": [
+      "Yaeno Muteki",
+      "Twin Turbo",
+      "Ines Fujin"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "2nd Racing Carnival",
+        "amount": 1000
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Tenno Sho (Spring)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-04-26",
+    "end_date": "2026-05-08",
+    "characters": [
+      "Nice Nature",
+      "King Halo",
+      "Bamboo Memory",
+      "Seeking the Pearl"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      },
+      {
+        "name": "Golshi Week",
+        "amount": 5640
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (NHK Mile Cup)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-04-30",
+    "end_date": "2026-05-10",
+    "characters": [
+      "Ines Fujin",
+      "Mr. C.B.",
+      "Tokai Teio"
+    ],
+    "events": [
+      {
+        "name": "Legend Race (Mejiro McQueen Anime)",
+        "amount": 250
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Victoria Mile)",
+        "amount": 150
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Oaks)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-05-10",
+    "end_date": "2026-05-20",
+    "characters": [
+      "Mejiro Palmer",
+      "Matikanefukukitaru",
+      "Rice Shower"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Legend Race (Rice Shower)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Mejiro Bright)",
+        "amount": 250
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Japan Derby)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-05-18",
+    "end_date": "2026-05-29",
+    "characters": [
+      "Curren Chan",
+      "Fine Motion",
+      "Haru Urara",
+      "Ikuno Dictus"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Yasuda Kinen)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-05-28",
+    "end_date": "2026-06-07",
+    "characters": [
+      "Inari One",
+      "Admire Vega",
+      "Sakura Chiyono O"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      }
+    ]
+  },
+  {
+    "start_date": "2026-06-04",
+    "end_date": "2026-06-14",
+    "characters": [
+      "Sweep Tosho",
+      "Taiki Shuttle",
+      "Oguri Cap"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Fuji Kiseki's Showtime",
+        "amount": 1500
+      },
+      {
+        "name": "Legend Race (Tamano Cross)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Meisho Doto)",
+        "amount": 250
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Takarazuka Kinen)",
+        "amount": 150
+      },
+      {
+        "name": "G1 Celebration Missions (Teio Sho)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-06-11",
+    "end_date": "2026-06-22",
+    "characters": [
+      "Taiki Shuttle",
+      "Mejiro Dober",
+      "El Condor Pasa",
+      "Matikanetannhauser"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      },
+      {
+        "name": "G1 Celebration Missions (Japan Dirt Derby)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-06-18",
+    "end_date": "2026-06-27",
+    "characters": [
+      "Air Shakur",
+      "Air Groove",
+      "Gold City"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      }
+    ]
+  },
+  {
+    "start_date": "2026-06-25",
+    "end_date": "2026-07-04",
+    "characters": [
+      "Seiun Sky",
+      "Narita Brian",
+      "The Throne's Assemblage",
+      "El Condor Pasa",
+      "Leviathan"
+    ],
+    "events": [
+      {
+        "name": "Main Story Reward",
+        "amount": 480
+      },
+      {
+        "name": "1st Aim for the Strongest Team!",
+        "amount": 1300
+      }
+    ]
+  },
+  {
+    "start_date": "2026-07-01",
+    "end_date": "2026-07-13",
+    "characters": [
+      "Mejiro McQueen",
+      "Gold Ship",
+      "Maruzensky",
+      "Nakayama Festa"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      }
+    ]
+  },
+  {
+    "start_date": "2026-07-10",
+    "end_date": "2026-07-19",
+    "characters": [
+      "Bamboo Memory",
+      "Ikuno Dictus",
+      "Yukino Bijin"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Countdown to the 1.5th Anniversary",
+        "amount": 600
+      }
+    ]
+  },
+  {
+    "start_date": "2026-07-16",
+    "end_date": "2026-07-26",
+    "characters": [
+      "Copano Rickey",
+      "Manhattan Cafe",
+      "Seiun Sky"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Countdown to the 1.5th Anniversary",
+        "amount": 600
+      },
+      {
+        "name": "1.5th Anniversary Celebration Missions Part 1",
+        "amount": 500
+      }
+    ]
+  },
+  {
+    "start_date": "2026-07-20",
+    "end_date": "2026-08-08",
+    "characters": [
+      "Smart Falcon",
+      "Light Hello",
+      "Agnes Tachyon"
+    ],
+    "events": [
+      {
+        "name": "1.5 Anniversary Gift",
+        "amount": 3000
+      },
+      {
+        "name": "1.5 Anniversary Login Bonus",
+        "amount": 3000
+      },
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      },
+      {
+        "name": "1.5th Anniversary Celebration Missions Part 2",
+        "amount": 500
+      },
+      {
+        "name": "Tracen Academy Special: Master Trainer's Road 4",
+        "amount": 500
+      }
+    ]
+  },
+  {
+    "start_date": "2026-07-23",
+    "end_date": "2026-08-06",
+    "characters": [
+      "Winning Ticket",
+      "Narita Taishin",
+      "Tokai Teio",
+      "Twin Turbo"
+    ],
+    "events": []
+  },
+  {
+    "start_date": "2026-08-02",
+    "end_date": "2026-08-10",
+    "characters": [
+      "Yukino Bijin",
+      "Smart Falcon",
+      "Silence Suzuka"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      }
+    ]
+  },
+  {
+    "start_date": "2026-08-07",
+    "end_date": "2026-08-16",
+    "characters": [
+      "Seeking the Pearl",
+      "Daiichi Ruby",
+      "K.S.Miracle"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Trainer Skill Test",
+        "amount": 1550
+      },
+      {
+        "name": "Legend Race (Nishino Flower)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Hishi Akebono)",
+        "amount": 250
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 1 (Sprinters Stakes)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-08-14",
+    "end_date": "2026-08-26",
+    "characters": [
+      "Agnes Digital",
+      "Meisho Doto",
+      "Mejiro Palmer",
+      "Daitaku Helios"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 1 (Mile CS Nambu Hai)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-08-22",
+    "end_date": "2026-08-30",
+    "characters": [
+      "Aston Machan",
+      "Maruzensky",
+      "Fine Motion"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 1 (Shuuka Sho)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-08-26",
+    "end_date": "2026-09-02",
+    "characters": [
+      "Seeking the Pearl"
+    ],
+    "events": [
+      {
+        "name": "Autumn G1 Celebration Missions Part 1 (Kikka Sho)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-08-28",
+    "end_date": "2026-09-06",
+    "characters": [
+      "Yamanin Zephyr",
+      "Symboli Kris S Stamina",
+      "Tsurumaru Tsuyoshi"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "2nd Aim for the Strongest Team!",
+        "amount": 1500
+      },
+      {
+        "name": "Legend Race (Fine Motion)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Kawakami Princess)",
+        "amount": 250
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (Tenno Sho (Autumn))",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-09-03",
+    "end_date": "2026-09-15",
+    "characters": [
+      "Tamamo Cross",
+      "Inari One",
+      "Oguri Cap",
+      "Yaeno Muteki"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (JBC 2022)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-09-11",
+    "end_date": "2026-09-19",
+    "characters": [
+      "Nakayama Festa",
+      "Mr. C.B.",
+      "Super Creek"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Christmas First Day Login Bonus",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (Queen Elizabeth Cup)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-09-17",
+    "end_date": "2026-09-28",
+    "characters": [
+      "Wonder Acute",
+      "Eishin Flash",
+      "Narita Top Road"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (Mile Championship)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (Japan Cup)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-09-25",
+    "end_date": "2026-10-09",
+    "characters": [
+      "Vodka",
+      "Daiwa Scarlet",
+      "Narita Brian",
+      "Air Groove"
+    ],
+    "events": [
+      {
+        "name": "Christmas Login Gift",
+        "amount": 500
+      },
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (Champions Cup)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Hanshin Juvenile Fillies)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Zen-Nippon Junior Yushun)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-10-05",
+    "end_date": "2026-10-13",
+    "characters": [
+      "Zenno Rob Roy",
+      "Light Hello",
+      "Mayano Top Gun"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Asahi Hai Futurity Stakes)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-10-10",
+    "end_date": "2026-10-19",
+    "characters": [
+      "Narita Brian",
+      "Yamanin Zephyr",
+      "TM Opera O"
+    ],
+    "events": [
+      {
+        "name": "Legend Race (Mejiro Palmer)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Daiwa Scarlet)",
+        "amount": 250
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Arima Kinen)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Hopeful Stakes)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Tokyo Daishoten)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-10-16",
+    "end_date": "2026-10-28",
+    "characters": [
+      "Kitasan Black",
+      "Satono Diamond",
+      "Special Week",
+      "Sweep Tosho"
+    ],
+    "events": [
+      {
+        "name": "First Day Login Bonus",
+        "amount": 1500
+      },
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      },
+      {
+        "name": "Countdown to New Years",
+        "amount": 750
+      },
+      {
+        "name": "New Years Login Bonus",
+        "amount": 2700
+      }
+    ]
+  },
+  {
+    "start_date": "2026-10-25",
+    "end_date": "2026-11-04",
+    "characters": [
+      "Hokko Tarumae",
+      "Agnes Tachyon",
+      "Tokai Teio"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      }
+    ]
+  },
+  {
+    "start_date": "2026-11-01",
+    "end_date": "2026-11-11",
+    "characters": [
+      "Daitaku Helios",
+      "K.S.Miracle",
+      "Aston Machan"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "3rd Racing Carnival",
+        "amount": 1000
+      },
+      {
+        "name": "G1 Celebration Missions (Kawasaki Kinen)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-11-01",
+    "end_date": "2026-11-11",
+    "characters": [
+      "Rice Shower",
+      "Haru Urara",
+      "Taiki Shuttle",
+      "Matikanefukukitaru"
+    ],
+    "events": []
+  },
+  {
+    "start_date": "2026-11-08",
+    "end_date": "2026-11-22",
+    "characters": [
+      "Ines Fujin",
+      "Mejiro Ryan",
+      "Marvelous Sunday",
+      "Biko Pegasus"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      }
+    ]
+  },
+  {
+    "start_date": "2026-11-18",
+    "end_date": "2026-11-29",
+    "characters": [
+      "Shinko Windy",
+      "Maruzensky",
+      "Nishino Flower"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Countdown to the 2nd Anniversary Login Bonus",
+        "amount": 1500
+      },
+      {
+        "name": "2nd Anniversary Celebration Missions Part 1",
+        "amount": 500
+      },
+      {
+        "name": "G1 Celebration Missions (February Stakes)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-11-25",
+    "end_date": "2026-12-19",
+    "characters": [
+      "Mr. C.B.",
+      "Twin Turbo",
+      "Mejiro Ramonu",
+      "Agnes Tachyon",
+      "✩"
+    ],
+    "events": [
+      {
+        "name": "2nd Anniversary Login Gift",
+        "amount": 3000
+      },
+      {
+        "name": "2nd Anniversary Login Bonus Part 1",
+        "amount": 3000
+      },
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      },
+      {
+        "name": "2nd Anniversary Login Bonus Part 2",
+        "amount": 2250
+      }
+    ]
+  },
+  {
+    "start_date": "2026-12-05",
+    "end_date": "2026-12-15",
+    "characters": [
+      "Daiichi Ruby",
+      "Oguri Cap",
+      "Sirius Symboli"
+    ],
+    "events": [
+      {
+        "name": "2nd Anniversary Celebration Missions Part 2",
+        "amount": 500
+      },
+      {
+        "name": "2nd Anniversary Celebration Missions Part 3, SSR Selector",
+        "amount": 500
+      }
+    ]
+  },
+  {
+    "start_date": "2026-12-12",
+    "end_date": "2026-12-21",
+    "characters": [
+      "Symboli Kris S",
+      "Ancestors & Guides",
+      "Hishi Akebono"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 900
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Takamatsunomiya Kinen)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-12-18",
+    "end_date": "2026-12-30",
+    "characters": [
+      "Mejiro Ardan",
+      "Sakura Chiyono O",
+      "Nice Nature",
+      "Mejiro McQueen"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Osaka Hai)",
+        "amount": 150
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Oka Sho)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2026-12-27",
+    "end_date": "2027-01-05",
+    "characters": [
+      "Sakura Laurel",
+      "Air Groove",
+      "Eishin Flash"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Satsuki Sho)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-01-02",
+    "end_date": "2027-01-11",
+    "characters": [
+      "Neo Universe",
+      "Symboli Rudolf",
+      "Gold Ship"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Trainer Skill Test",
+        "amount": 1550
+      },
+      {
+        "name": "Legend Race (Yaeno Muteki)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Tokai Teio Anime)",
+        "amount": 250
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Tenno Sho (Spring))",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-01-08",
+    "end_date": "2027-01-20",
+    "characters": [
+      "Matikanetannhauser",
+      "Sakura Bakushin O",
+      "Mihono Bourbon",
+      "Sakura Laurel"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Kashiwa Kinen)",
+        "amount": 150
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (NHK Mile Cup)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-01-08",
+    "end_date": "2027-01-20",
+    "characters": [
+      "Gold City",
+      "Tosen Jordan",
+      "Mejiro Palmer",
+      "Daitaku Helios"
+    ],
+    "events": []
+  },
+  {
+    "start_date": "2027-01-17",
+    "end_date": "2027-01-26",
+    "characters": [
+      "Hishi Miracle",
+      "K.S.Miracle",
+      "Yamanin Zephyr"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Victoria Mile)",
+        "amount": 150
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Oaks)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-01-23",
+    "end_date": "2027-02-02",
+    "characters": [
+      "Tanino Gimlet",
+      "Jungle Pocket",
+      "Maruzensky"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "4th Racing Carnival",
+        "amount": 1000
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Japan Derby)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-01-30",
+    "end_date": "2027-02-10",
+    "characters": [
+      "Hishi Amazon",
+      "Nishino Flower",
+      "Daiwa Scarlet",
+      "Aston Machan"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Yasuda Kinen)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-02-07",
+    "end_date": "2027-02-17",
+    "characters": [
+      "Taiki Shuttle",
+      "Yamanin Zephyr",
+      "TM Opera O",
+      "Silence Suzuka"
+    ],
+    "events": [
+      {
+        "name": "Legend Race (Yamanin Zephyr)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Agnes Digital Halloween)",
+        "amount": 250
+      }
+    ]
+  },
+  {
+    "start_date": "2027-02-14",
+    "end_date": "2027-02-24",
+    "characters": [
+      "Marvelous Sunday",
+      "Mayano Top Gun",
+      "Copano Rickey"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 900
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Takarazuka Kinen)",
+        "amount": 150
+      },
+      {
+        "name": "G1 Celebration Missions (Teio Sho)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-02-21",
+    "end_date": "2027-03-04",
+    "characters": [
+      "Bamboo Memory",
+      "Tosen Jordan",
+      "Gold City",
+      "Mejiro Palmer"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      },
+      {
+        "name": "G1 Celebration Missions (Japan Dirt Derby)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-03-01",
+    "end_date": "2027-03-12",
+    "characters": [
+      "Katsuragi Ace",
+      "Daiichi Ruby",
+      "Twin Turbo"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Legend Race (Mayano Top Gun Wedding)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Sweep Tosho)",
+        "amount": 250
+      }
+    ]
+  },
+  {
+    "start_date": "2027-03-08",
+    "end_date": "2027-03-18",
+    "characters": [
+      "Sirius Symboli",
+      "Wonder Acute",
+      "Grass Wonder"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "3rd Aim for the Strongest Team!",
+        "amount": 1500
+      }
+    ]
+  },
+  {
+    "start_date": "2027-03-15",
+    "end_date": "2027-03-29",
+    "characters": [
+      "Agnes Tachyon",
+      "Silence Suzuka",
+      "Manhattan Cafe",
+      "Jungle Pocket"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      }
+    ]
+  },
+  {
+    "start_date": "2027-03-25",
+    "end_date": "2027-04-04",
+    "characters": [
+      "Copano Rickey",
+      "Hokko Tarumae",
+      "Mejiro Ramonu",
+      "Maruzensky"
+    ],
+    "events": [
+      {
+        "name": "Countdown to the 2.5th Anniversary",
+        "amount": 1500
+      },
+      {
+        "name": "Legend Race (Smart Falcon)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Kopano Riki)",
+        "amount": 250
+      },
+      {
+        "name": "2.5th Anniversary Celebration Missions Part 1",
+        "amount": 500
+      }
+    ]
+  },
+  {
+    "start_date": "2027-04-01",
+    "end_date": "2027-04-19",
+    "characters": [
+      "Narita Top Road",
+      "Mei Satake",
+      "El Condor Pasa"
+    ],
+    "events": [
+      {
+        "name": "2.5th Anniversary Login Gift",
+        "amount": 3000
+      },
+      {
+        "name": "2.5th Anniversary Login Bonus",
+        "amount": 3000
+      },
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Legend Race (Bamboo Memory)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Taiki Shuttle Camping)",
+        "amount": 250
+      },
+      {
+        "name": "2.5th Anniversary Celebration Missions Part 2",
+        "amount": 500
+      },
+      {
+        "name": "2.5th Anniversary Celebration Missions Part 3, SSR Selector",
+        "amount": 500
+      }
+    ]
+  },
+  {
+    "start_date": "2027-04-06",
+    "end_date": "2027-04-17",
+    "characters": [
+      "Gold Ship",
+      "Nakayama Festa Wit",
+      "Kitasan Black"
+    ],
+    "events": [
+      {
+        "name": "Trainer Skill Test",
+        "amount": 1550
+      }
+    ]
+  },
+  {
+    "start_date": "2027-04-14",
+    "end_date": "2027-04-23",
+    "characters": [
+      "Satono Diamond",
+      "Mejiro McQueen",
+      "Special Week"
+    ],
+    "events": []
+  },
+  {
+    "start_date": "2027-04-20",
+    "end_date": "2027-04-29",
+    "characters": [
+      "K.S.Miracle",
+      "Hishi Amazon",
+      "Taiki Shuttle"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "5th Racing Carnival",
+        "amount": 1000
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 1 (Sprinters Stakes)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-04-26",
+    "end_date": "2027-05-07",
+    "characters": [
+      "Air Shakur",
+      "Symboli Kris S",
+      "Tanino Gimlet",
+      "Tap Dance City"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      },
+      {
+        "name": "Legend Race (Kitasan Black)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Satono Diamond)",
+        "amount": 250
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 1 (Mile CS Nambu Hai)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-05-04",
+    "end_date": "2027-05-13",
+    "characters": [
+      "Jungle Pocket",
+      "Maruzensky",
+      "Super Creek"
+    ],
+    "events": [
+      {
+        "name": "Autumn G1 Celebration Missions Part 1 (Shuuka Sho)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-05-10",
+    "end_date": "2027-05-21",
+    "characters": [
+      "Mejiro Ramonu",
+      "Gold Ship",
+      "Nice Nature"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 900
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 1 (Kikka Sho)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (Tenno Sho (Autumn))",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-05-18",
+    "end_date": "2027-05-28",
+    "characters": [
+      "Kawakami Princess",
+      "Tokai Teio",
+      "King Halo",
+      "Tsurumaru Tsuyoshi"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      },
+      {
+        "name": "Legend Race (Tamano Cross)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Tosen Jordan)",
+        "amount": 250
+      }
+    ]
+  },
+  {
+    "start_date": "2027-05-25",
+    "end_date": "2027-06-05",
+    "characters": [
+      "Mejiro McQueen",
+      "Matikanetannhauser"
+    ],
+    "events": [
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (Queen Elizabeth Cup)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (Mile Championship)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-06-02",
+    "end_date": "2027-06-12",
+    "characters": [
+      "Tap Dance City",
+      "Sounds of Earth",
+      "Verxina"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "4th Aim for the Strongest Team!",
+        "amount": 1500
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (Japan Cup)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (Champions Cup)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-06-09",
+    "end_date": "2027-06-20",
+    "characters": [
+      "Mejiro Palmer",
+      "Mejiro Bright",
+      "Mejiro Dober",
+      "Mejiro Ramonu"
+    ],
+    "events": [
+      {
+        "name": "Christmas Login Gift",
+        "amount": 500
+      },
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      },
+      {
+        "name": "Legend Race (Oguri Cap Christmas)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Manhattan Cafe)",
+        "amount": 250
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Hanshin Juvenile Fillies)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Zen-Nippon Junior Yushun)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-06-16",
+    "end_date": "2027-06-25",
+    "characters": [
+      "Satono Crown",
+      "Marvelous Sunday",
+      "Jungle Pocket",
+      "Mejiro McQueen"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Asahi Hai Futurity Stakes)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-06-23",
+    "end_date": "2027-07-01",
+    "characters": [
+      "Cheval Grand",
+      "Vivlos",
+      "Royce and Royce"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "6th Racing Carnival",
+        "amount": 1000
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Arima Kinen)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Hopeful Stakes)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Tokyo Daishoten)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-06-28",
+    "end_date": "2027-07-10",
+    "characters": [
+      "Kitasan Black",
+      "Duramente",
+      "Satono Diamond"
+    ],
+    "events": [
+      {
+        "name": "New Year Login Gift",
+        "amount": 1500
+      },
+      {
+        "name": "New Year Countdown",
+        "amount": 600
+      },
+      {
+        "name": "New Year Login Bonus",
+        "amount": 2700
+      },
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      },
+      {
+        "name": "Masters Challenge",
+        "amount": 4500
+      },
+      {
+        "name": "Legend Race (Sakura Chiyono O)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Mihono Bourbon)",
+        "amount": 250
+      }
+    ]
+  },
+  {
+    "start_date": "2027-07-07",
+    "end_date": "2027-07-17",
+    "characters": [
+      "Nice Nature",
+      "El Condor Pasa",
+      "Wonder Acute",
+      "K.S. Miracle"
+    ],
+    "events": []
+  },
+  {
+    "start_date": "2027-07-14",
+    "end_date": "2027-07-26",
+    "characters": [
+      "Vivlos",
+      "Hokko Tarumae",
+      "Tanino Gimlet"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 900
+      }
+    ]
+  },
+  {
+    "start_date": "2027-07-22",
+    "end_date": "2027-08-05",
+    "characters": [
+      "Yukino Bijin",
+      "Manhattan Cafe",
+      "Winning Ticket",
+      "Sakura Bakushin O"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2160
+      },
+      {
+        "name": "Legend Race (Seeking the Pearl)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (King Halo)",
+        "amount": 250
+      }
+    ]
+  },
+  {
+    "start_date": "2027-08-01",
+    "end_date": "2027-08-11",
+    "characters": [
+      "Biko Pegasus",
+      "El Condor Pasa",
+      "Jungle Pocket",
+      "Taiki Shuttle",
+      "✩✩"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "3rd Anniversary Countdown Login Bonus",
+        "amount": 1500
+      },
+      {
+        "name": "G1 Celebration Missions (February Stakes)",
+        "amount": 150
+      },
+      {
+        "name": "3rd Anniversary Celebration Missions Part 1",
+        "amount": 500
+      }
+    ]
+  },
+  {
+    "start_date": "2027-08-08",
+    "end_date": "2027-09-03",
+    "characters": [
+      "Duramente",
+      "Ikuno Dictus",
+      "Orfevre",
+      "Ryoka Tsurugi",
+      "✩✩"
+    ],
+    "events": [
+      {
+        "name": "3rd Anniversary Login Gift",
+        "amount": 3000
+      },
+      {
+        "name": "3rd Anniversary Login Bonus Part 1",
+        "amount": 3000
+      },
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "3rd Anniversary Login Bonus Part 2",
+        "amount": 2250
+      },
+      {
+        "name": "Trainer Skill Test",
+        "amount": 1550
+      },
+      {
+        "name": "Legend Race (M.R. C.B.)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Seiun Sky)",
+        "amount": 250
+      },
+      {
+        "name": "3rd Anniversary Celebration Missions Part 2",
+        "amount": 500
+      },
+      {
+        "name": "3rd Anniversary Celebration Missions Part 3, SSR Selector",
+        "amount": 500
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Takamatsunomiya Kinen)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-08-20",
+    "end_date": "2027-08-29",
+    "characters": [
+      "Transcend",
+      "El Condor Pasa",
+      "Sounds of Earth",
+      "Tanino Gimlet"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      }
+    ]
+  },
+  {
+    "start_date": "2027-08-26",
+    "end_date": "2027-09-03",
+    "characters": [
+      "Rhein Kraft",
+      "Cheval Grand",
+      "Tap Dance City"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Main Story Reward",
+        "amount": 480
+      },
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 900
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Osaka Hai)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-09-01",
+    "end_date": "2027-09-12",
+    "characters": [
+      "Daiichi Ruby",
+      "Daitaku Helios",
+      "K.S.Miracle",
+      "Yamanin Zephyr"
+    ],
+    "events": [
+      {
+        "name": "April Fools!",
+        "amount": 500
+      },
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2910
+      },
+      {
+        "name": "Masters Challenge",
+        "amount": 4500
+      },
+      {
+        "name": "Legend Race (Inari One)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (TM Opera O New Year)",
+        "amount": 250
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Kawasaki Kinen)",
+        "amount": 150
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Oka Sho)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-09-08",
+    "end_date": "2027-09-18",
+    "characters": [
+      "Winning Ticket",
+      "Neo Universe",
+      "Air Shakur"
+    ],
+    "events": [
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Satsuki Sho)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-09-15",
+    "end_date": "2027-09-26",
+    "characters": [
+      "Sounds of Earth",
+      "El Condor Pasa",
+      "Jungle Pocket",
+      "Mejiro Palmer"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "5th Aim for the Strongest Team!",
+        "amount": 1500
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Tenno Sho (Spring))",
+        "amount": 150
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Kashiwa Kinen)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-09-23",
+    "end_date": "2027-10-03",
+    "characters": [
+      "Super Creek",
+      "Yaeno Muteki",
+      "Hishi Miracle",
+      "Narita Taishin"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2910
+      },
+      {
+        "name": "Legend Race (Ines Fujin)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Admire Vega)",
+        "amount": 250
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (NHK Mile Cup)",
+        "amount": 150
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Victoria Mile)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-09-23",
+    "end_date": "2027-10-03",
+    "characters": [
+      "Katsuragi Ace",
+      "Sakura Chiyono O",
+      "Hishi Amazon"
+    ],
+    "events": []
+  },
+  {
+    "start_date": "2027-09-30",
+    "end_date": "2027-10-10",
+    "characters": [
+      "Agnes Tachyon",
+      "Vodka",
+      "Dantsu Flame"
+    ],
+    "events": [
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Oaks)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-10-07",
+    "end_date": "2027-10-17",
+    "characters": [
+      "North Flight",
+      "El Condor Pasa",
+      "Maruzensky",
+      "Gold Ship"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 900
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Japan Derby)",
+        "amount": 150
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Yasuda Kinen)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-10-14",
+    "end_date": "2027-10-28",
+    "characters": [
+      "King Halo",
+      "Sweep Tosho",
+      "Vivlos",
+      "Seiun Sky"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2910
+      },
+      {
+        "name": "Legend Race (Daiichi Ruby)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Daitaku Helios)",
+        "amount": 250
+      }
+    ]
+  },
+  {
+    "start_date": "2027-10-24",
+    "end_date": "2027-11-06",
+    "characters": [
+      "Jungle Pocket",
+      "El Condor Pasa",
+      "Duramente",
+      "Narita Brian",
+      "4.5% 3 Star Rate"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Takarazuka Kinen)",
+        "amount": 150
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 3 (Teio Sho)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2027-11-02",
+    "end_date": "2027-11-25",
+    "characters": [
+      "Dream Journey",
+      "Yayoi Akikawa",
+      "Nishino Flower"
+    ],
+    "events": [
+      {
+        "name": "Great Food Festival Login Gift",
+        "amount": 1500
+      },
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 900
+      },
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Trainer Skill Test",
+        "amount": 1550
+      },
+      {
+        "name": "Legend Race (Nakayama Festa)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Gold Ship Summer)",
+        "amount": 250
+      },
+      {
+        "name": "\"Harvesting! Feasting! Great Food Festival\" Missions",
+        "amount": 500
+      }
+    ]
+  },
+  {
+    "start_date": "2027-11-11",
+    "end_date": "2027-11-21",
+    "characters": [
+      "Rice Shower",
+      "Dantsu Flame",
+      "Matikanefukukitaru"
+    ],
+    "events": []
+  },
+  {
+    "start_date": "2027-11-18",
+    "end_date": "2027-11-28",
+    "characters": [
+      "Calstone Light O",
+      "Duramente",
+      "Taiki Shuttle",
+      "Sakura Bakushin O"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      }
+    ]
+  },
+  {
+    "start_date": "2027-11-25",
+    "end_date": "2027-12-11",
+    "characters": [
+      "Eishin Flash",
+      "Hokko Tarumae",
+      "Smart Falcon",
+      "Copano Rickey"
+    ],
+    "events": [
+      {
+        "name": "Masters Challenge",
+        "amount": 4500
+      },
+      {
+        "name": "Legend Race (Smart Falcon Grand Live)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Wonder Acute)",
+        "amount": 250
+      }
+    ]
+  },
+  {
+    "start_date": "2027-12-06",
+    "end_date": "2027-12-16",
+    "characters": [
+      "Fine Motion",
+      "Mejiro Palmer",
+      "Pity to Select Any Character\n up to Summer Trip"
+    ],
+    "events": [
+      {
+        "name": "Countdown to 3.5th Anniversary Login Bonus",
+        "amount": 1500
+      },
+      {
+        "name": "6th Aim for the Strongest Team!",
+        "amount": 1500
+      },
+      {
+        "name": "3.5th Anniversary Celebration Missions Part 1",
+        "amount": 500
+      }
+    ]
+  },
+  {
+    "start_date": "2027-12-13",
+    "end_date": "2027-12-30",
+    "characters": [
+      "Gentildonna",
+      "Still in Love",
+      "Marvelous Sunday"
+    ],
+    "events": [
+      {
+        "name": "3.5th Anniversary Gift",
+        "amount": 3000
+      },
+      {
+        "name": "3.5th Anniversary Login Bonus",
+        "amount": 3000
+      },
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2910
+      },
+      {
+        "name": "Legend Race (Aston Machan)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Curren Chan Wedding)",
+        "amount": 250
+      },
+      {
+        "name": "3.5th Anniversary Celebration Missions Part 2",
+        "amount": 500
+      }
+    ]
+  },
+  {
+    "start_date": "2027-12-17",
+    "end_date": "2027-12-28",
+    "characters": [
+      "Neo Universe",
+      "Zenno Rob Roy",
+      "Taiki Shuttle",
+      "Fuji Kiseki"
+    ],
+    "events": []
+  },
+  {
+    "start_date": "2027-12-25",
+    "end_date": "2028-01-14",
+    "characters": [
+      "Cesario",
+      "Espoir City",
+      "Sakura Laurel"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 900
+      },
+      {
+        "name": "3.5th Anniversary Celebration Missions Part 3, SSR Selector",
+        "amount": 500
+      }
+    ]
+  },
+  {
+    "start_date": "2028-01-01",
+    "end_date": "2028-01-11",
+    "characters": [
+      "Durandal",
+      "El Condor Pasa",
+      "Yamanin Zephyr",
+      "Mejiro Ramonu"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Main Story Reward",
+        "amount": 480
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 1 (Sprinters Stakes)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 1 (Japan Dirt Derby)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-01-08",
+    "end_date": "2028-01-19",
+    "characters": [
+      "Seeking the Pearl",
+      "Mayano Top Gun",
+      "Hishi Amazon",
+      "Narita Brian"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2910
+      },
+      {
+        "name": "Legend Race (Rice Shower Halloween)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Air Shakur)",
+        "amount": 250
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 1 (Shuuka Sho)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 1 (Mile CS Nambu Hai)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-01-16",
+    "end_date": "2028-02-03",
+    "characters": [
+      "Bubble Gum Fellow",
+      "El Condor Pasa",
+      "Duramente",
+      "Winning Ticket"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "7th Racing Carnival",
+        "amount": 1000
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 1 (Kikka Sho)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (Tenno Sho (Autumn))",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-01-28",
+    "end_date": "2028-02-17",
+    "characters": [
+      "Biwa Hayahide",
+      "Daiwa Scarlet",
+      "Air Shakur"
+    ],
+    "events": [
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 900
+      },
+      {
+        "name": "Mecha Login Bonus",
+        "amount": 1500
+      },
+      {
+        "name": "Legend Race (Symboli Rudolf Festival)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Zenno Rob Roy)",
+        "amount": 250
+      },
+      {
+        "name": "\"Run, Mecha Umamusume! -Invention of Dreams-\"",
+        "amount": 500
+      },
+      {
+        "name": "Trainer Skill Test",
+        "amount": 1550
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (JBC 2024)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (Queen Elizabeth Cup)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (Mile Championship)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-02-04",
+    "end_date": "2028-02-14",
+    "characters": [
+      "Narita Taishin",
+      "Symboli Kris S Power",
+      "North Flight"
+    ],
+    "events": []
+  },
+  {
+    "start_date": "2028-02-11",
+    "end_date": "2028-02-21",
+    "characters": [
+      "Air Messiah",
+      "Vivlos",
+      "Cheval Grand",
+      "Mejiro Ramonu"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (Japan Cup)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (Champions Cup)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-02-18",
+    "end_date": "2028-03-01",
+    "characters": [
+      "Narita Top Road",
+      "Admire Vega",
+      "Agnes Digital",
+      "Meisho Doto"
+    ],
+    "events": [
+      {
+        "name": "Masters Challenge",
+        "amount": 4500
+      },
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2910
+      },
+      {
+        "name": "Legend Race (Symboli Kris S)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Daiwa Scarlet Christmas)",
+        "amount": 250
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Hanshin Juvenile Fillies)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Zen-Nippon Junior Yushun)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-02-27",
+    "end_date": "2028-03-07",
+    "characters": [
+      "Win Variation",
+      "Blast Onepiece",
+      "Bubble Gum Fellow"
+    ],
+    "events": [
+      {
+        "name": "Christmas Login Gift",
+        "amount": 500
+      },
+      {
+        "name": "7th Aim for the Strongest Team!",
+        "amount": 1500
+      },
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Asahi Hai Futurity Stakes)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Arima Kinen)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-03-04",
+    "end_date": "2028-03-12",
+    "characters": [
+      "Grass Wonder",
+      "Vivlos",
+      "Smart Falcon",
+      "Cheval Grand"
+    ],
+    "events": [
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Hopeful Stakes)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Tokyo Daishoten)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-03-10",
+    "end_date": "2028-03-24",
+    "characters": [
+      "Katsuragi Ace",
+      "Mr. C.B.",
+      "Symboli Rudolf",
+      "Mejiro Ardan"
+    ],
+    "events": [
+      {
+        "name": "New Year Login Gift",
+        "amount": 1500
+      },
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2910
+      },
+      {
+        "name": "New Year Countdown",
+        "amount": 750
+      },
+      {
+        "name": "New Year Login Bonus",
+        "amount": 2700
+      },
+      {
+        "name": "Legend Race (Matikanetanhauser)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Tosen Jordan Summer Trip)",
+        "amount": 250
+      }
+    ]
+  },
+  {
+    "start_date": "2028-03-20",
+    "end_date": "2028-03-30",
+    "characters": [
+      "Maruzensky",
+      "Seeking the Pearl",
+      "Mejiro Ramonu"
+    ],
+    "events": [
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 900
+      }
+    ]
+  },
+  {
+    "start_date": "2028-03-27",
+    "end_date": "2028-04-07",
+    "characters": [
+      "Furioso",
+      "Vivlos",
+      "Smart Falcon",
+      "Dantsu Flame"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      }
+    ]
+  },
+  {
+    "start_date": "2028-04-03",
+    "end_date": "2028-04-17",
+    "characters": [
+      "Yamanin Zephyr",
+      "Aston Machan",
+      "Curren Chan",
+      "Ikuno Dictus"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2910
+      },
+      {
+        "name": "Legend Race (Marvelous Sunday)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Air Groove Wedding)",
+        "amount": 250
+      }
+    ]
+  },
+  {
+    "start_date": "2028-04-13",
+    "end_date": "2028-04-23",
+    "characters": [
+      "Tsurumaru Tsuyoshi",
+      "Smart Falcon",
+      "Still in Love",
+      "Nishino Flower"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "4th Anniversary Countdown",
+        "amount": 1500
+      },
+      {
+        "name": "4th Anniversary Celebration Missions Part 1",
+        "amount": 500
+      },
+      {
+        "name": "G1 Celebration Missions (February Stakes)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-04-20",
+    "end_date": "2028-05-15",
+    "characters": [
+      "Orfevre",
+      "Almond Eye",
+      "Embodiment of Legends"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "4th Anniversary Login Bonus",
+        "amount": 3000
+      },
+      {
+        "name": "4th Anniversary Login Gift",
+        "amount": 3000
+      },
+      {
+        "name": "Trainer Skill Test",
+        "amount": 1550
+      },
+      {
+        "name": "4th Anniversary Celebration Missions Part 2",
+        "amount": 500
+      },
+      {
+        "name": "Legend Race (Nishino Flower Wedding)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Yukino Bijin)",
+        "amount": 250
+      }
+    ]
+  },
+  {
+    "start_date": "2028-05-01",
+    "end_date": "2028-05-11",
+    "characters": [
+      "Gran Alegria",
+      "Mejiro Bright",
+      "Rice Shower"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 900
+      },
+      {
+        "name": "4th Anniversary Login Bonus",
+        "amount": 2250
+      },
+      {
+        "name": "4th Anniversary Celebration Missions Part 3",
+        "amount": 500
+      }
+    ]
+  },
+  {
+    "start_date": "2028-05-08",
+    "end_date": "2028-05-18",
+    "characters": [
+      "No Reason",
+      "Smart Falcon",
+      "Still in Love",
+      "Narita Brian"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Takamatsunomiya Kinen)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-05-15",
+    "end_date": "2028-05-25",
+    "characters": [
+      "Tap Dance City",
+      "Tanino Gimlet",
+      "Vodka",
+      "Dream Journey"
+    ],
+    "events": [
+      {
+        "name": "April Fools!!",
+        "amount": 500
+      },
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2910
+      },
+      {
+        "name": "Legend Race (Agnes Tachyon Summer)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Neo Universe)",
+        "amount": 250
+      },
+      {
+        "name": "Masters Challenge",
+        "amount": 4500
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Osaka Hai)",
+        "amount": 150
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Kawasaki Kinen)",
+        "amount": 150
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Oka Sho)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-05-22",
+    "end_date": "2028-06-02",
+    "characters": [
+      "Sirius Symboli",
+      "Daring Tact",
+      "Daring Heart"
+    ],
+    "events": [
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Satsuki Sho)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-05-22",
+    "end_date": "2028-05-29",
+    "characters": [
+      "No Reason",
+      "Banner Might not Exist on Global"
+    ],
+    "events": []
+  },
+  {
+    "start_date": "2028-05-29",
+    "end_date": "2028-06-07",
+    "characters": [
+      "Fenomeno",
+      "Smart Falcon",
+      "Still in Love",
+      "Cheval Grand"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Tenno Sho (Spring))",
+        "amount": 150
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Kashiwa Kinen)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-06-05",
+    "end_date": "2028-06-17",
+    "characters": [
+      "Copano Rickey",
+      "Smart Falcon",
+      "Buena Vista",
+      "Transcend"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2910
+      },
+      {
+        "name": "Legend Race (Sakura Laurel)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Hishi Miracle",
+        "amount": 250
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (NHK Mile Cup)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-06-05",
+    "end_date": "2028-06-26",
+    "characters": [
+      "Oguri Cap",
+      "Gold Ship",
+      "Mejiro McQueen",
+      "Tamamo Cross",
+      "Curren Chan"
+    ],
+    "events": [
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Victoria Mile)",
+        "amount": 150
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Oaks)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-06-13",
+    "end_date": "2028-06-22",
+    "characters": [
+      "Verxina",
+      "Silence Suzuka",
+      "Curren Bouquetd'or"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 900
+      }
+    ]
+  },
+  {
+    "start_date": "2028-06-19",
+    "end_date": "2028-06-28",
+    "characters": [
+      "Loves Only You",
+      "Smart Falcon",
+      "Still in Love",
+      "Air Shakur"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 3 (Japan Derby)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-06-26",
+    "end_date": "2028-07-10",
+    "characters": [
+      "Cesario",
+      "Mejiro Ramonu",
+      "Daring Heart",
+      "Rhein Kraft"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2910
+      },
+      {
+        "name": "Legend Race (Sakura Chiyono O)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Mejiro Ardan)",
+        "amount": 250
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 3 (Yasuda Kinen)",
+        "amount": 150
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 3 (Takarazuka Kinen)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-07-05",
+    "end_date": "2028-07-19",
+    "characters": [
+      "Chrono Genesis",
+      "Smart Falcon",
+      "Still in Love",
+      "Air Shakur"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      }
+    ]
+  },
+  {
+    "start_date": "2028-07-15",
+    "end_date": "2028-08-09",
+    "characters": [
+      "Gold City",
+      "Tucker Bryne",
+      "Tamamo Cross"
+    ],
+    "events": [
+      {
+        "name": "Login Bonus",
+        "amount": 1500
+      },
+      {
+        "name": "Legend Race (Silence Suzuka Summer)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Tap Dance City)",
+        "amount": 250
+      },
+      {
+        "name": "Trainer Skill Test",
+        "amount": 1550
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 3 (Teio Sho)",
+        "amount": 150
+      },
+      {
+        "name": "New Scenario Release Celebration Missions",
+        "amount": 500
+      }
+    ]
+  },
+  {
+    "start_date": "2028-07-25",
+    "end_date": "2028-08-05",
+    "characters": [
+      "Ines Fujin",
+      "Mejiro Ryan",
+      "Kawakami Princess"
+    ],
+    "events": [
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 900
+      }
+    ]
+  },
+  {
+    "start_date": "2028-08-02",
+    "end_date": "2028-08-11",
+    "characters": [
+      "Fusaichi Pandora",
+      "Almond Eye",
+      "Narita Brian",
+      "Dream Journey"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      }
+    ]
+  },
+  {
+    "start_date": "2028-08-08",
+    "end_date": "2028-08-22",
+    "characters": [
+      "Cheval Grand",
+      "Satono Crown",
+      "Win Variation",
+      "Duramente"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2910
+      },
+      {
+        "name": "Legend Race (Sakura Bakushin O Sports)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Biko Pegasus)",
+        "amount": 250
+      },
+      {
+        "name": "Masters Challenge",
+        "amount": 4500
+      }
+    ]
+  },
+  {
+    "start_date": "2028-08-18",
+    "end_date": "2028-08-28",
+    "characters": [
+      "Vivlos",
+      "Almond Eye",
+      "Narita Brian",
+      "Dream Journey"
+    ],
+    "events": [
+      {
+        "name": "4.5th Anniversary Countdown",
+        "amount": 1500
+      },
+      {
+        "name": "4.5th Anniversary Celebration Missions Part 1",
+        "amount": 500
+      }
+    ]
+  },
+  {
+    "start_date": "2028-08-25",
+    "end_date": "2028-09-20",
+    "characters": [
+      "Still in Love",
+      "Stay Gold",
+      "Admire Groove",
+      "Rate up Banner"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "4.5th Anniversary Login Bonus",
+        "amount": 3000
+      },
+      {
+        "name": "4.5th Anniversary Login Gift",
+        "amount": 3000
+      }
+    ]
+  },
+  {
+    "start_date": "2028-08-28",
+    "end_date": "2028-09-08",
+    "characters": [
+      "K.S.Miracle",
+      "Hishi Miracle",
+      "Calstone Light O",
+      "Durandal"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2910
+      },
+      {
+        "name": "Legend Race (Fine Motion Wedding)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Vivlos)",
+        "amount": 250
+      },
+      {
+        "name": "4.5th Anniversary Celebration Missions Part 2",
+        "amount": 500
+      }
+    ]
+  },
+  {
+    "start_date": "2028-09-05",
+    "end_date": "2028-09-15",
+    "characters": [
+      "Espoir City",
+      "Daiichi Ruby",
+      "Biko Pegasus"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 900
+      },
+      {
+        "name": "4.5th Anniversary Celebration Missions Part 3",
+        "amount": 500
+      }
+    ]
+  },
+  {
+    "start_date": "2028-09-12",
+    "end_date": "2028-09-22",
+    "characters": [
+      "Believe",
+      "Almond Eye",
+      "Dream Journey",
+      "Air Shakur"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 1 (Sprinters Stakes)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-09-19",
+    "end_date": "2028-09-30",
+    "characters": [
+      "Hishi Akebono",
+      "Marvelous Sunday",
+      "Fuji Kiseki",
+      "Eishin Flash"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2910
+      },
+      {
+        "name": "Legend Race (Super Creek Halloween)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Narita Top Road)",
+        "amount": 250
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 1 (Japanese Derby)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 1 (Mile Championship Nambu Hai)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-09-27",
+    "end_date": "2028-10-07",
+    "characters": [
+      "Tosen Jordan",
+      "Curren Bouquetd'or",
+      "Sakura Chitose O"
+    ],
+    "events": [
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 900
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 1 (Shuka Sho)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-10-02",
+    "end_date": "2028-10-13",
+    "characters": [
+      "Dantsu Flame",
+      "Almond Eye",
+      "Seeking the Pearl",
+      "Nishino Flower"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 1 (Kikuka Sho)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (Tenno Sho (Autumn))",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (JBC 2025)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-10-02",
+    "end_date": "2028-10-13",
+    "characters": [
+      "Jungle Pocket"
+    ],
+    "events": []
+  },
+  {
+    "start_date": "2028-10-10",
+    "end_date": "2028-10-31",
+    "characters": [
+      "Transcend",
+      "Kiyoko Hoshina",
+      "Tokai Teio"
+    ],
+    "events": [
+      {
+        "name": "Login Bonus",
+        "amount": 1500
+      },
+      {
+        "name": "Legend Race (Katsuragi Ace)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Vodka Christmas)",
+        "amount": 250
+      },
+      {
+        "name": "Trainer Skill Test",
+        "amount": 1550
+      },
+      {
+        "name": "New Scenario Release Celebration Missions",
+        "amount": 500
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (Queen Elizabeth II Cup)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (Mile Championship)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-10-18",
+    "end_date": "2028-10-27",
+    "characters": [
+      "Wonder Acute",
+      "Mihono Bourbon",
+      "Hokko Tarumae"
+    ],
+    "events": [
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 900
+      }
+    ]
+  },
+  {
+    "start_date": "2028-10-25",
+    "end_date": "2028-11-03",
+    "characters": [
+      "Buena Vista",
+      "Almond Eye",
+      "Rhein Kraft",
+      "Espoir City"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 2 (Japan Cup)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-10-31",
+    "end_date": "2028-11-13",
+    "characters": [
+      "Nakayama Festa",
+      "Dream Journey",
+      "Gold Ship",
+      "Fenomeno"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2910
+      },
+      {
+        "name": "Legend Race (Narita Brian Blaze)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Dream Journey)",
+        "amount": 250
+      },
+      {
+        "name": "Masters Challenge",
+        "amount": 4500
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Champions Cup)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Hanshin Juvenile Fillies)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-11-09",
+    "end_date": "2028-12-07",
+    "characters": [
+      "Oguri Cap",
+      "Inari One",
+      "Mejiro Dober"
+    ],
+    "events": [
+      {
+        "name": "Christmas Gift",
+        "amount": 500
+      },
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 900
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Zen-Nippon Junior Yushun)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Asahi Hai Futurity Stakes)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Arima Kinen)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-11-16",
+    "end_date": "2028-12-15",
+    "characters": [
+      "Stay Gold",
+      "Almond Eye",
+      "Rhein Kraft",
+      "Dream Journey"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      }
+    ]
+  },
+  {
+    "start_date": "2028-11-20",
+    "end_date": "2028-12-03",
+    "characters": [
+      "Ikuno Dictus",
+      "Sakura Laurel",
+      "Fine Motion",
+      "Air Groove"
+    ],
+    "events": [
+      {
+        "name": "New Years Login Bonus",
+        "amount": 1500
+      },
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2910
+      },
+      {
+        "name": "Years End Login Bonus",
+        "amount": 900
+      },
+      {
+        "name": "Legend Race (Maruzensky Summer)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Bumble Gum Fellow)",
+        "amount": 250
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Hopeful Stakes)",
+        "amount": 150
+      },
+      {
+        "name": "Autumn G1 Celebration Missions Part 3 (Tokyo Daishoten)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2028-11-24",
+    "end_date": "2028-12-12",
+    "characters": [
+      "Gentildonna"
+    ],
+    "events": []
+  },
+  {
+    "start_date": "2028-11-24",
+    "end_date": "2028-12-12",
+    "characters": [
+      "Orfevre"
+    ],
+    "events": []
+  },
+  {
+    "start_date": "2028-11-29",
+    "end_date": "2028-12-10",
+    "characters": [
+      "Bubble Gum Fellow",
+      "King Halo",
+      "Satono Diamond"
+    ],
+    "events": [
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 900
+      }
+    ]
+  },
+  {
+    "start_date": "2028-12-06",
+    "end_date": "2028-12-17",
+    "characters": [
+      "Kiseki",
+      "Almond Eye",
+      "Rhein Kraft",
+      "Dream Journey"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      }
+    ]
+  },
+  {
+    "start_date": "2028-12-14",
+    "end_date": "2028-12-29",
+    "characters": [
+      "Taiki Shuttle",
+      "Sounds of Earth",
+      "Matikanefukukitaru",
+      "Neo Universe"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2910
+      },
+      {
+        "name": "Legend Race (Shinko Windy)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Transcend)",
+        "amount": 250
+      }
+    ]
+  },
+  {
+    "start_date": "2028-12-25",
+    "end_date": "2029-01-04",
+    "characters": [
+      "Royce and Royce",
+      "Admire Groove",
+      "Almond Eye",
+      "Rhein Kraft"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "5th Anniversary Countdown",
+        "amount": 1500
+      },
+      {
+        "name": "5th Anniversary Celebration Missions Part 1",
+        "amount": 500
+      },
+      {
+        "name": "G1 Celebration Missions (February Stakes)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2029-01-01",
+    "end_date": "2029-02-04",
+    "characters": [
+      "Almond Eye",
+      "Forever Young",
+      "Casino Drive"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "5th Anniversary Login Bonus",
+        "amount": 3000
+      },
+      {
+        "name": "5th Anniversary Login Gift",
+        "amount": 3000
+      },
+      {
+        "name": "5th Anniversary Celebration Missions Part 2",
+        "amount": 500
+      },
+      {
+        "name": "Trainer Skill Test",
+        "amount": 1550
+      },
+      {
+        "name": "Legend Race (Inari One Festival)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Biwa Hayaahide Christmas)",
+        "amount": 250
+      }
+    ]
+  },
+  {
+    "start_date": "2029-01-11",
+    "end_date": "2029-01-19",
+    "characters": [
+      "Loves Only You",
+      "Marche Lorraine",
+      "Super Creek"
+    ],
+    "events": [
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 900
+      },
+      {
+        "name": "5th Anniversary Login Bonus",
+        "amount": 2250
+      },
+      {
+        "name": "5th Anniversary Celebration Missions Part 3",
+        "amount": 500
+      }
+    ]
+  },
+  {
+    "start_date": "2029-01-17",
+    "end_date": "2029-01-28",
+    "characters": [
+      "Victoire Pisa",
+      "Tokai Teio",
+      "Admire Groove",
+      "Dream Journey"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Takamatsunomiya Kinen)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2029-01-24",
+    "end_date": "2029-02-04",
+    "characters": [
+      "Sakura Bakushin O",
+      "North Flight",
+      "Daring Tact",
+      "Daring Heart"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2910
+      },
+      {
+        "name": "Masters Challenge",
+        "amount": 4500
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Osaka Hai)",
+        "amount": 150
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Kawasaki Kinen)",
+        "amount": 150
+      },
+      {
+        "name": "Legend Race (Narita Taishin Steampunk)",
+        "amount": 250
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Oka Sho)",
+        "amount": 150
+      },
+      {
+        "name": "Legend Race (Duramente)",
+        "amount": 250
+      }
+    ]
+  },
+  {
+    "start_date": "2029-02-01",
+    "end_date": "2029-02-11",
+    "characters": [
+      "Lucky Lilac",
+      "Aston Machan",
+      "Hishi Amazon"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 900
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 1 (Satsuki Sho)",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2029-02-08",
+    "end_date": "2029-02-18",
+    "characters": [
+      "Admire Groove",
+      "Tokai Teio",
+      "Eishin Flash",
+      "Dream Journey",
+      "Banners Beyond This Point Do not Have Event Data"
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Tenno Sho (Spring))",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "start_date": "2029-02-15",
+    "end_date": "2029-02-26",
+    "characters": [
+      "Fuji Kiseki",
+      "Jungle Pocket",
+      "Tap Dance City",
+      "Agnes Digital"
+    ],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2910
+      }
+    ]
+  },
+  {
+    "start_date": "2029-02-15",
+    "end_date": "2029-02-26",
+    "characters": [
+      "Fenomeno",
+      "Nakayama Festa",
+      "Stay Gold",
+      "Dream Journey",
+      "Orfevre",
+      "D-Day",
+      "Ani",
+      "0.5th",
+      "1st",
+      "1.5th",
+      "2nd",
+      "2.5th",
+      "3rd",
+      "3.5th",
+      "4th",
+      "4.5th",
+      "5th",
+      "5.5th",
+      "6th",
+      "6.5th",
+      "7th",
+      "7.5th",
+      "8th",
+      "8.5th",
+      "9th",
+      "9.5th",
+      "10th",
+      "10.5th",
+      "11th",
+      "11.5th",
+      "12th",
+      "12.5th",
+      "13th"
+    ],
+    "events": []
+  }
+]

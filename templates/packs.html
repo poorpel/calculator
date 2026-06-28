@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Selectors — Carat Calc</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0a0a0a;
+      color: #d8d8d8;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 14px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Top Nav ── */
+    .top-nav {
+      background: #080808;
+      border-bottom: 1px solid #1e1e1e;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .top-nav-logo {
+      font-size: 12px; font-weight: 700; color: #444;
+      letter-spacing: 0.8px; text-transform: uppercase;
+      padding: 11px 18px 11px 0;
+      border-right: 1px solid #1e1e1e; margin-right: 6px; white-space: nowrap;
+    }
+    .top-nav-link {
+      display: flex; align-items: center; padding: 11px 12px;
+      color: #555; text-decoration: none; font-size: 13px; font-weight: 500;
+      transition: color 0.1s; white-space: nowrap;
+      border-bottom: 2px solid transparent; margin-bottom: -1px;
+    }
+    .top-nav-link:hover { color: #bbb; }
+    .top-nav-link.active { color: #ccc; border-bottom-color: #555; }
+    .top-nav-sep { width: 1px; height: 16px; background: #1e1e1e; margin: 0 4px; }
+
+    /* ── Grand totals bar ── */
+    .grand-bar {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 24px;
+    }
+    .grand-bar-total { display: flex; align-items: baseline; gap: 6px; }
+    .grand-bar-total .lbl { font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 0.5px; }
+    .grand-bar-total .val { font-size: 16px; font-weight: 700; color: #5ecb7a; font-variant-numeric: tabular-nums; }
+    .grand-clear-btn {
+      background: #1e1e1e; border: 1px solid #2e2e2e; border-radius: 6px;
+      color: #888; font-size: 12px; font-weight: 700; font-family: inherit;
+      padding: 5px 14px; letter-spacing: 0.4px; cursor: pointer; transition: color 0.1s, border-color 0.1s;
+    }
+    .grand-clear-btn:hover { color: #ccc; border-color: #555; }
+    .grand-bar-left  { display: flex; align-items: center; gap: 10px; }
+    .grand-bar-title { font-size: 20px; font-weight: 700; color: #fff; }
+    .grand-bar-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+    .grand-export-btn {
+      background: #1a2e1a; border: 1px solid #2e5a2e; border-radius: 6px;
+      color: #7ad87a; font-size: 12px; font-weight: 700; font-family: inherit;
+      padding: 5px 14px; letter-spacing: 0.4px; cursor: pointer; transition: background 0.1s;
+    }
+    .grand-export-btn:hover { background: #223522; }
+    .grand-import-btn {
+      background: #1a1a2e; border: 1px solid #2e2e5a; border-radius: 6px;
+      color: #7a7ad8; font-size: 12px; font-weight: 700; font-family: inherit;
+      padding: 5px 14px; letter-spacing: 0.4px; cursor: pointer; transition: background 0.1s;
+      display: flex; align-items: center;
+    }
+    .grand-import-btn:hover { background: #222235; }
+    .packs-profile-slots { display: flex; gap: 4px; align-items: center; }
+    .packs-slot-btn {
+      background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 5px;
+      color: #555; font-size: 12px; font-weight: 700; width: 26px; height: 26px;
+      cursor: pointer; transition: all 0.1s;
+      display: flex; align-items: center; justify-content: center; padding: 0;
+    }
+    .packs-slot-btn:hover { color: #bbb; border-color: #444; }
+    .packs-slot-btn.active { color: #e0e0e0; border-color: #666; background: #262626; }
+    .packs-slot-btn.empty { opacity: 0.35; }
+
+    .main {
+      flex: 1; padding: 28px 28px 60px; min-width: 0; overflow-x: auto;
+    }
+
+    /* ── Table ── */
+    .packs-table-wrap {
+      border-radius: 10px; overflow: hidden; border: 1px solid #1e1e1e;
+      display: inline-block; min-width: 100%;
+    }
+    table { border-collapse: collapse; font-size: 13px; width: 100%; }
+
+    tr.pack-hdr-row { background: #141414; }
+    th {
+      padding: 2px 14px; text-align: center; white-space: nowrap;
+      border-right: 1px solid #1a1a1a;
+      color: #888; font-size: 15px; font-weight: 600;
+      letter-spacing: 0.5px; text-transform: uppercase;
+    }
+    th:last-child { border-right: none; }
+    td {
+      padding: 7px 14px; border-right: 1px solid #1a1a1a; white-space: nowrap;
+      vertical-align: middle; text-align: left;
+    }
+    td.center, td.right { text-align: center; }
+    td:last-child { border-right: none; }
+    td.usd-col { border-right: 1px solid #1a1a1a !important; }
+    tbody tr { border-top: 1px solid #1a1a1a; }
+    tbody tr:hover { background: transparent !important; }
+    tbody tr.pack-hdr-row th { background: #141414 !important; }
+    tbody tr.pack-hdr-row:hover { background: #141414 !important; }
+    tbody tr.event-hdr th { background: #0d0d0d !important; }
+    tbody tr.event-hdr:hover { background: #0d0d0d !important; }
+    tbody tr.total-row:hover { background: #0d0d0d !important; }
+    tbody tr.cumul-row:hover { background: #0a0a0a !important; }
+
+    .sep-col {
+      width: 10px !important; min-width: 10px !important; padding: 0 !important;
+      background: #0a0a0a !important; border-right: 2px solid #262626 !important;
+    }
+    .sep-col:hover { background: #0a0a0a !important; }
+    .event-hdr { background: #0d0d0d !important; }
+    .conf-badge   { font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 3px; margin-left: 8px; vertical-align: middle; color: #3a6a3a; background: #0a1a0a; border: 1px solid #1a3a1a; }
+    .unconf-badge { font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 3px; margin-left: 8px; vertical-align: middle; color: #5a4a20; background: #1a1500; border: 1px solid #2a2010; }
+    .event-hdr:hover { background: #0d0d0d !important; }
+    .event-hdr td { color: #aaa; font-size: 22px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; padding: 10px 14px; }
+    .ev-title-th { color: #aaa !important; font-size: 22px !important; font-weight: 700 !important; letter-spacing: 0.6px !important; text-transform: uppercase !important; padding: 5px 14px !important; }
+    .event-hdr .ev-date { color: #666; font-weight: 400; margin-left: 10px; text-transform: none; letter-spacing: 0; font-size: 13px; }
+    .pack-row td.type-cell { color: #ccc; font-weight: 500; white-space: nowrap; font-size: 15px; text-align: center; }
+    .sel-row td.type-cell  { color: #ccc; font-weight: 500; white-space: nowrap; }
+    .pack-row td.num       { color: #e0e0e0; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .pack-row td.num-zero  { color: #555; font-weight: 500; font-variant-numeric: tabular-nums; }
+    .sel-row td.sel-label  { color: #666; font-size: 11px; font-style: italic; }
+    .total-row { background: #0d0d0d !important; border-top: 1px solid #2a2a2a !important; }
+    .total-row:hover { background: #111 !important; }
+    .total-row td.label    { color: #999; font-size: 15px; font-weight: 600; }
+    .total-row td.num      { color: #5ecb7a; font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .total-row td.num-zero { color: #2e5e3e; font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .cumul-row { background: #0d0d0d !important; }
+    .cumul-row:hover { background: #111 !important; }
+    .cumul-row td.label    { color: #999; font-size: 15px; font-weight: 600; }
+    .cumul-row td.num      { color: #5ecb7a; font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .cumul-row td.num-zero { color: #2e5e3e; font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+    select.qty-sel {
+      background: #181818; border: 1px solid #333; color: #ccc; border-radius: 4px;
+      padding: 3px 8px 3px 6px; font-size: 12px; cursor: pointer;
+      appearance: none; -webkit-appearance: none; text-align: center; width: 56px; font-family: inherit;
+    }
+    select.qty-sel:focus { outline: 1px solid #555; }
+    select.qty-sel:hover { border-color: #444; }
+    select.qty-sel.nonzero { color: #e0e0e0; border-color: #3a5a3a; background: #131a13; }
+    .sel-select select.qty-sel { width: auto; }
+    tr.sel-row td img { height: 140px; width: auto; border-radius: 4px; display: block; margin: auto; }
+    .sel-select {
+      border-left: 1px solid #1a1a1a !important; vertical-align: top !important;
+      padding-top: 12px !important; position: relative !important;
+      min-width: 300px; width: 300px; max-width: 300px; height: 300px; overflow: hidden;
+    }
+    td.sel-select { background: #0a0a0a !important; }
+    .sel-select select.qty-sel, .sel-select input.qty-sel {
+      width: 100% !important; box-sizing: border-box;
+      padding: 4px 10px 4px 8px !important; font-size: 14px !important; border-radius: 5px !important;
+    }
+    .sel-select input.qty-sel {
+      background: #1a1a1a; border: 1px solid #2e2e2e; color: #bbb;
+      font-family: inherit; cursor: text; text-align: center;
+    }
+    .sel-select input.qty-sel:focus { outline: 1px solid #555; color: #e0e0e0; }
+    .sel-select input.qty-sel.nonzero { color: #e0e0e0; border-color: #3a5a3a; background: #131a13; }
+    .sel-select > div { position: absolute; top: 52px; bottom: 12px; left: 12px; right: 12px; }
+    .sel-select img { height: 100%; width: 100%; border-radius: 6px; display: block; object-fit: contain; }
+    .card-sel-placeholder { display: none; }
+    .card-sel-clear {
+      position: absolute; top: 50px; right: 10px; width: 22px; height: 22px;
+      border-radius: 50%; border: none; background: #2a2a2a; color: #777;
+      font-size: 15px; line-height: 1; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; z-index: 2; padding: 0;
+    }
+    .card-sel-clear:hover { background: #3a3a3a; color: #ccc; }
+    .ev-clear-btn {
+      background: none; border: none; color: #444; cursor: pointer;
+      font-size: 20px; padding: 0 0 0 8px; line-height: 1; vertical-align: middle; font-family: inherit;
+    }
+    .ev-clear-btn:hover { color: #aaa; }
+    .su-counter { display: inline-flex; align-items: center; gap: 8px; }
+    .su-display { font-size: 15px; font-weight: 700; color: #d48a2a; letter-spacing: 0.5px; min-width: 54px; text-align: center; }
+    .su-btn { background: #1a1208; border: 1px solid #3a2a10; color: #c47a2a; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 700; padding: 2px 9px; line-height: 1.4; transition: background 0.1s, color 0.1s; }
+    .su-btn:hover { background: #2a1e10; color: #e89a3a; }
+    .su-max { font-size: 10px; color: #3a3020; }
+    .grand-card { background: #0e0e0e; border: 1px solid #1e1e1e; border-radius: 10px; padding: 16px 24px; min-width: 160px; }
+    .grand-card .lbl { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 8px; }
+    .grand-card .val { font-size: 24px; font-weight: 700; color: #5ecb7a; font-variant-numeric: tabular-nums; }
+    .su-sel-locked { opacity: 0.4; pointer-events: none; }
+    .su-status-cell { padding: 10px 14px !important; }
+    .su-info-selectors { font-size: 17px; font-weight: 600; color: #c47a2a; text-align: center; }
+    .su-info-progress  { font-size: 15px; color: #888; text-align: center; }
+    .su-info-cost      { font-size: 15px; color: #666; text-align: center; }
+  </style>
+  <style>
+    .debug-only { display: none; }
+    body.debug-mode .debug-only { display: flex; }
+    .nav-settings-wrap { margin-left: auto; position: relative; }
+    .nav-settings-btn {
+      background: none; border: none; color: #333; cursor: pointer;
+      font-size: 15px; padding: 8px 10px; transition: color 0.1s; line-height: 1;
+    }
+    .nav-settings-btn:hover { color: #888; }
+    .nav-settings-dd {
+      display: none; position: absolute; right: 0; top: calc(100% + 4px);
+      background: #111; border: 1px solid #2a2a2a; border-radius: 8px;
+      padding: 12px 16px; width: 190px; z-index: 200;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.8);
+    }
+    .nav-settings-dd.open { display: block; }
+    .nav-settings-title {
+      font-size: 10px; font-weight: 700; color: #444; letter-spacing: 0.5px;
+      text-transform: uppercase; margin-bottom: 10px;
+    }
+    .nav-settings-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    }
+    .nav-settings-label { font-size: 12px; color: #888; }
+    .nav-toggle { position: relative; width: 32px; height: 18px; flex-shrink: 0; }
+    .nav-toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+    .nav-toggle-track {
+      position: absolute; inset: 0; background: #2a2a2a; border-radius: 9px;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .nav-toggle input:checked + .nav-toggle-track { background: #3a5a3a; }
+    .nav-toggle-thumb {
+      position: absolute; top: 3px; left: 3px; width: 12px; height: 12px;
+      background: #555; border-radius: 50%; transition: all 0.2s; pointer-events: none;
+    }
+    .nav-toggle input:checked ~ .nav-toggle-thumb { left: 17px; background: #5ecb7a; }
+  </style></head>
+<body>
+
+<nav class="top-nav">
+  <div class="top-nav-logo">Carat Calc</div>
+  <a href="/" class="top-nav-link">Calculator</a>
+  <a href="/packs" class="top-nav-link active">Selectors</a>
+  <a href="/cards" class="top-nav-link">Card Tracker</a>
+  <div class="top-nav-sep"></div>
+  <a href="/timeline" class="top-nav-link">Timeline</a>
+  <a href="/data" class="top-nav-link debug-only">Data</a>
+  <a href="/updates" class="top-nav-link debug-only">Updates</a>
+  <div class="nav-settings-wrap">
+    <button class="nav-settings-btn" id="navSettingsBtn" title="Settings">⚙</button>
+    <div class="nav-settings-dd" id="navSettingsDd">
+      <div class="nav-settings-title">Settings</div>
+      <div class="nav-settings-row">
+        <span class="nav-settings-label">Debug mode</span>
+        <label class="nav-toggle">
+          <input type="checkbox" id="debugToggle">
+          <div class="nav-toggle-track"></div>
+          <div class="nav-toggle-thumb"></div>
+        </label>
+      </div>
+    </div>
+  </div></nav>
+
+<div class="main">
+  <div class="grand-bar">
+    <div class="grand-bar-left">
+      <span class="grand-bar-title">Selectors</span>
+      <div class="packs-profile-slots" id="packsProfileSlots"></div>
+    </div>
+    <div class="grand-bar-total"><span class="lbl">Carats</span><span class="val" id="grandCarats2">0</span></div>
+    <div class="grand-bar-total"><span class="lbl">USD</span><span class="val" id="grandUSD2">$0</span></div>
+    <div class="grand-bar-right">
+      <button class="grand-export-btn" id="packsExportBtn">Export JSON</button>
+      <label class="grand-import-btn">Import JSON<input type="file" id="packsImportFile" accept=".json" style="display:none"></label>
+      <button class="grand-clear-btn" onclick="clearAllPacks()">Clear All</button>
+    </div>
+  </div>
+  <div class="packs-table-wrap">
+    <table id="packsTable">
+      <tbody id="packsBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+const PACK_EVENTS = {{ anniversaries | tojson }};
+const PACK_UMA     = {{ pack_uma     | tojson }};
+const PACK_SUPPORT = {{ pack_support | tojson }};
+
+const STORE_KEY = "caratCalc_v1";
+
+const PACKS = [
+  { key: "p7500",  label: "7500 Carat Pack",   carats: 7500,  usd: 70,  max: 5 },
+  { key: "p1500",  label: "1500 Carat Pack",   carats: 1500,  usd: 14,  max: 5 },
+  { key: "pSpark", label: "Spark Enhancement", carats: 1500,  usd: 21,  max: 1 },
+  { key: "p11000", label: "11000 Carat Pack",  carats: 11000, usd: 140, max: 1 },
+];
+
+const PACK_LIMITS = {
+  1.5: { p7500: 3, p1500: 2 },
+  2:   { p7500: 3, p1500: 4 },
+  2.5: { p7500: 3, p1500: 4 },
+  3:   { p7500: 3, p1500: 4 },
+  3.5: { p7500: 3, p1500: 4 },
+  4:   { p7500: 4, p1500: 4, pSpark: 3 },
+  4.5: { p7500: 3, p1500: 4, pSpark: 3 },
+  5:   { p7500: 4, p1500: 4, pSpark: 3, p11000: 1 },
+};
+
+const SELECTORS = [
+  { key: "s21uma",   carats: 1500, usd: 21, cardType: "character", label: "$21 ★3" },
+  { key: "s70uma",   carats: 5000, usd: 70, cardType: "character", label: "$70 ★3" },
+  { key: "sfreessr", carats: 0,    usd: 0,  cardType: "support",   label: "Free SSR" },
+  { key: "s21ssr",   carats: 1500, usd: 21, cardType: "support",   label: "$21 SSR" },
+  { key: "s70ssr",   carats: 5000, usd: 70, cardType: "support",   label: "$70 SSR" },
+];
+
+const SU_STEP_COSTS = [500, 700, 1000, 1300, 1500];
+const SU_FULL_COST  = SU_STEP_COSTS.reduce((a, b) => a + b, 0);
+
+function _suTotalCost(pulls) {
+  const full = Math.floor(pulls / 5);
+  const rem  = pulls % 5;
+  return full * SU_FULL_COST + SU_STEP_COSTS.slice(0, rem).reduce((a, b) => a + b, 0);
+}
+
+function _getSuCalcPulls(bannerName) {
+  try {
+    const data = JSON.parse(localStorage.getItem(STORE_KEY) || '{}');
+    const row = (data.rows || []).find(r => r.banner === bannerName);
+    return row ? (parseInt(row.pulls) || 0) : 0;
+  } catch(e) { return 0; }
+}
+
+function _suRefreshSelectors(evId) {
+  const ev = PACK_EVENTS.find(e => e.id === evId);
+  if (!ev || !ev.selector_counts) return;
+  const sc = ev.selector_counts;
+  const suUma = sc.uma ?? 2;
+  const suSsr = sc.ssr ?? 3;
+  const suTotal = suUma + suSsr;
+  const suPulls = _getSuCalcPulls(ev.name);
+  const suDone  = Math.floor(suPulls / 5);
+  const suAvail = Math.min(suDone, suTotal);
+  const _umaKeys = ['s21uma', 's70uma'];
+  const _ssrKeys = ['sfreessr', 's21ssr', 's70ssr'];
+  const visibleKeys = [..._umaKeys.slice(0, suUma), ..._ssrKeys.slice(0, suSsr)];
+  const evState = packsState[evId] || {};
+  let filledCount = visibleKeys.filter(k => !!evState[k]).length;
+
+  let toClear = filledCount - suAvail;
+  if (toClear > 0 && packsState[evId]) {
+    for (let i = visibleKeys.length - 1; i >= 0 && toClear > 0; i--) {
+      const k = visibleKeys[i];
+      if (packsState[evId][k]) {
+        delete packsState[evId][k];
+        const inp = document.getElementById(`csel_${evId}_${k}`);
+        if (inp) { inp.value = ''; inp.classList.remove('nonzero'); }
+        const imgDiv = document.getElementById(`img_csel_${evId}_${k}`);
+        if (imgDiv) imgDiv.innerHTML = `<div class="card-sel-placeholder"></div>`;
+        const clrBtn = document.getElementById(`clr_csel_${evId}_${k}`);
+        if (clrBtn) clrBtn.style.display = 'none';
+        toClear--;
+      }
+    }
+    filledCount = visibleKeys.filter(k => !!(packsState[evId] || {})[k]).length;
+    savePacksState();
+    packsRecalc();
+  }
+
+  visibleKeys.forEach(key => {
+    const inp = document.getElementById(`csel_${evId}_${key}`);
+    if (!inp) return;
+    const td = inp.closest('td');
+    if (td) td.classList.toggle('su-sel-locked', !evState[key] && filledCount >= suAvail);
+  });
+  const statusCell = document.getElementById(`su_status_${evId}`);
+  if (statusCell) {
+    const suCost = _suTotalCost(suPulls);
+    const filledUma = _umaKeys.slice(0, suUma).filter(k => !!evState[k]).length;
+    const filledSsr = _ssrKeys.slice(0, suSsr).filter(k => !!evState[k]).length;
+    const selParts = [];
+    if (suUma > 0) selParts.push(`${filledUma}/${suUma} ★3 Uma`);
+    if (suSsr  > 0) selParts.push(`${filledSsr}/${suSsr} SSR Support`);
+    const sel  = statusCell.querySelector('.su-info-selectors');
+    const prog = statusCell.querySelector('.su-info-progress');
+    const cost = statusCell.querySelector('.su-info-cost');
+    if (sel)  sel.innerHTML  = selParts.join(' &nbsp;&middot;&nbsp; ');
+    if (prog) prog.innerHTML = `${suDone} Step Up${suDone !== 1 ? 's' : ''} Completed &nbsp;&middot;&nbsp; ${suAvail}/${suTotal} Selector${suTotal !== 1 ? 's' : ''} Unlocked`;
+    if (cost) cost.textContent = `${suCost.toLocaleString()} paid carats used`;
+  }
+}
+
+function _suRefreshAllSelectors() {
+  PACK_EVENTS.forEach(ev => { if (ev.selector_counts) _suRefreshSelectors(ev.id); });
+}
+
+let packsState = {};
+
+function loadPacksState() {
+  try { const s = localStorage.getItem("packs_state_v1"); if (s) packsState = JSON.parse(s); } catch(e) {}
+}
+
+function savePacksState() {
+  localStorage.setItem("packs_state_v1", JSON.stringify(packsState));
+}
+
+function clearAllPacks() {
+  packsState = {};
+  savePacksState();
+  renderPacksTable();
+  packsRecalc();
+}
+
+function clearEventPacks(evId) {
+  delete packsState[evId];
+  savePacksState();
+  renderPacksTable();
+  packsRecalc();
+}
+
+function getQty(evId, key) {
+  return (packsState[evId] && packsState[evId][key] != null) ? packsState[evId][key] : 0;
+}
+
+function setQty(evId, key, val) {
+  if (!packsState[evId]) packsState[evId] = {};
+  packsState[evId][key] = val;
+  savePacksState();
+  const el = document.getElementById(`sel_${evId}_${key}`);
+  if (el) el.classList.toggle("nonzero", val > 0);
+  packsRecalc();
+}
+
+function getAnnivCards(cardType, evName) {
+  const source = cardType === 'character' ? PACK_UMA : PACK_SUPPORT;
+  let cutoff = source.length;
+  for (let i = 0; i < source.length; i++) {
+    const m = source[i]._marker;
+    if (!m) continue;
+    const mNum = parseFloat(m), eNum = parseFloat(evName);
+    if (!isNaN(mNum) && !isNaN(eNum) ? mNum === eNum : m === evName) { cutoff = i; break; }
+  }
+  return source.slice(0, cutoff)
+    .filter(c => !c._marker && !c.limited)
+    .reverse()
+    .map(c => ({ name: cardType === 'support' ? `${c.id} ${c.name}` : c.name, img: c.img || '', url: c.uma_guide_url || '' }));
+}
+
+// ── Card selector combobox ────────────────────────────────────────
+const cardDD = document.createElement('div');
+cardDD.id = 'card-dd';
+Object.assign(cardDD.style, {
+  position: 'fixed', display: 'none', zIndex: '9999',
+  background: '#181818', border: '1px solid #2e2e2e', borderRadius: '6px',
+  maxHeight: '240px', overflowY: 'auto', boxShadow: '0 4px 16px rgba(0,0,0,0.6)'
+});
+document.body.appendChild(cardDD);
+
+let _cdEvId = null, _cdKey = null, _cdInput = null;
+const _cardData = {};
+
+function _renderCardDD(query) {
+  const cards = _cardData[`${_cdEvId}_${_cdKey}`] || [];
+  const q = query.trim().toLowerCase();
+  const matches = q ? cards.filter(c => c.name.toLowerCase().includes(q)) : cards;
+  cardDD.innerHTML = '';
+  if (!q) {
+    const blank = document.createElement('div');
+    blank.textContent = '—';
+    Object.assign(blank.style, { padding: '7px 12px', fontSize: '12px', color: '#555', cursor: 'pointer', whiteSpace: 'nowrap' });
+    blank.addEventListener('mouseenter', () => blank.style.background = '#252525');
+    blank.addEventListener('mouseleave', () => blank.style.background = '');
+    blank.addEventListener('mousedown', e => { e.preventDefault(); _pickCard(''); });
+    cardDD.appendChild(blank);
+  }
+  if (!matches.length) {
+    const empty = document.createElement('div');
+    empty.textContent = 'No results';
+    Object.assign(empty.style, { padding: '8px 12px', color: '#444', fontSize: '12px' });
+    cardDD.appendChild(empty);
+    return;
+  }
+  matches.forEach(c => {
+    const item = document.createElement('div');
+    item.textContent = c.name;
+    Object.assign(item.style, { padding: '7px 12px', fontSize: '12px', color: '#bbb', cursor: 'pointer', whiteSpace: 'nowrap' });
+    item.addEventListener('mouseenter', () => item.style.background = '#252525');
+    item.addEventListener('mouseleave', () => item.style.background = '');
+    item.addEventListener('mousedown', e => { e.preventDefault(); _pickCard(c.name); });
+    cardDD.appendChild(item);
+  });
+}
+
+function _positionCardDD(input) {
+  const r = input.getBoundingClientRect();
+  cardDD.style.left = r.left + 'px';
+  cardDD.style.top  = (r.bottom + 2) + 'px';
+  cardDD.style.minWidth = Math.max(r.width, 220) + 'px';
+  cardDD.style.maxWidth = '400px';
+}
+
+function _openCardDD(evId, key, input) {
+  _cdEvId = evId; _cdKey = key; _cdInput = input;
+  _renderCardDD(input.value);
+  _positionCardDD(input);
+  cardDD.style.display = 'block';
+}
+
+function _closeCardDD() {
+  cardDD.style.display = 'none';
+  _cdEvId = null; _cdKey = null; _cdInput = null;
+}
+
+function _pickCard(name) {
+  if (_cdInput) {
+    _cdInput.value = name;
+    _cdInput.classList.toggle('nonzero', !!name);
+  }
+  setCardSel(_cdEvId, _cdKey, name);
+  _closeCardDD();
+}
+
+function makeCardSelect(evId, key, cards) {
+  _cardData[`${evId}_${key}`] = cards;
+  const cur = (packsState[evId] || {})[key] || '';
+  const id = `csel_${evId}_${key}`;
+  const esc = cur.replace(/"/g, '&quot;');
+  return `<input type="text" class="qty-sel${cur ? ' nonzero' : ''}" id="${id}"
+    value="${esc}" placeholder="—" autocomplete="off"
+    onfocus="javascript:_openCardDD('${evId}','${key}',this)"
+    oninput="_renderCardDD(this.value)"
+    onblur="setTimeout(()=>{if(_cdInput===this){if(!this.value.trim())_pickCard('');_closeCardDD();}},150)"
+    onkeydown="if(event.key==='Escape'){this.value=(packsState['${evId}']||{})['${key}']||'';_closeCardDD();}"
+  >`;
+}
+
+function makeCardImg(evId, key) {
+  const cur = (packsState[evId] || {})[key] || '';
+  const cards = _cardData[`${evId}_${key}`] || [];
+  const curCard = cards.find(c => c.name === cur);
+  const id = `csel_${evId}_${key}`;
+  const imgHtml = curCard
+    ? (curCard.url ? `<a href="${curCard.url}" target="_blank" rel="noopener"><img src="${curCard.img}" alt="${curCard.name}"></a>` : `<img src="${curCard.img}" alt="${curCard.name}">`)
+    : `<div class="card-sel-placeholder"></div>`;
+  return `<div id="img_${id}">${imgHtml}</div>`;
+}
+
+function setCardSel(evId, key, val) {
+  if (!packsState[evId]) packsState[evId] = {};
+  packsState[evId][key] = val;
+  savePacksState();
+  const inp = document.getElementById(`csel_${evId}_${key}`);
+  if (inp) { inp.value = val; inp.classList.toggle('nonzero', !!val); }
+  const imgDiv = document.getElementById(`img_csel_${evId}_${key}`);
+  if (imgDiv) {
+    const card = (_cardData[`${evId}_${key}`] || []).find(c => c.name === val);
+    imgDiv.innerHTML = card
+      ? (card.url ? `<a href="${card.url}" target="_blank" rel="noopener"><img src="${card.img}" alt="${card.name}"></a>` : `<img src="${card.img}" alt="${card.name}">`)
+      : `<div class="card-sel-placeholder"></div>`;
+  }
+  const clrBtn = document.getElementById(`clr_csel_${evId}_${key}`);
+  if (clrBtn) clrBtn.style.display = val ? 'flex' : 'none';
+  packsRecalc();
+  const suEv = PACK_EVENTS.find(e => e.id === evId);
+  if (suEv && suEv.selector_counts) _suRefreshSelectors(evId);
+}
+
+function makePacksSelect(evId, key, maxV) {
+  const cur = getQty(evId, key);
+  const id = `sel_${evId}_${key}`;
+  let opts = `<option value="0"${cur === 0 ? ' selected' : ''}>—</option>`;
+  for (let i = 1; i <= maxV; i++) opts += `<option value="${i}"${i === cur ? ' selected' : ''}>${i}</option>`;
+  return `<select class="qty-sel${cur > 0 ? ' nonzero' : ''}" id="${id}" onchange="setQty('${evId}','${key}',+this.value)">${opts}</select>`;
+}
+
+function _annivNum(ev) {
+  return parseFloat((ev.name.match(/^([\d.]+)/) || [])[1]) || Infinity;
+}
+function _isSelectorVisible(ev, s) {
+  if (ev.selectors != null) return ev.selectors.includes(s.key);
+  const n = _annivNum(ev);
+  if (n === 1.5 && s.key !== 'sfreessr') return false;
+  return true;
+}
+
+function renderPacksTable() {
+  let html = '';
+  PACK_EVENTS.forEach(ev => {
+    const titleConf = ev.is_confirmed === true ? '<span class="conf-badge">confirmed</span>' : '<span class="unconf-badge">unconfirmed</span>';
+
+    const _umaKeys = ['s21uma', 's70uma'];
+    const _ssrKeys = ['sfreessr', 's21ssr', 's70ssr'];
+    const _suCounts = ev.step_up_banner ? (ev.selector_counts || {}) : null;
+    const _suUma = _suCounts ? (_suCounts.uma ?? 2) : null;
+    const _suSsr = _suCounts ? (_suCounts.ssr ?? 3) : null;
+    const _suSelVisible = _suCounts
+      ? s => (_umaKeys.includes(s.key) ? _umaKeys.indexOf(s.key) < _suUma : _ssrKeys.indexOf(s.key) < _suSsr)
+      : null;
+
+    const selHdrHtml = `<th colspan="2" style="text-align:center;border-right:1px solid #2a2a2a;">Uma Selectors</th><th colspan="3" style="text-align:center;border-right:none;">Support Selector</th>`;
+    html += `<tr class="pack-hdr-row event-hdr">
+      <th colspan="4" class="ev-title-th" style="text-align:left;"><button class="ev-clear-btn" style="float:right;" onclick="clearEventPacks('${ev.id}')">×</button>${ev.name}${titleConf}<span class="ev-date">${ev.date}</span></th>
+      ${selHdrHtml}
+    </tr>`;
+
+    const annivNum = _annivNum(ev);
+    const isPackVisible = p => {
+      if (ev.packs != null) return ev.packs.includes(p.key);
+      if (p.key === 'pSpark' && annivNum < 4) return false;
+      if (p.key === 'p11000' && annivNum < 5) return false;
+      return true;
+    };
+    const isSelectorVisible = s => _suSelVisible ? _suSelVisible(s) : _isSelectorVisible(ev, s);
+
+    const _suHdrLabels     = { s21uma: '★3', s70uma: '★3', sfreessr: 'SSR', s21ssr: 'SSR', s70ssr: 'SSR' };
+    const _normalHdrLabels = { s21uma: '$21 ★3', s70uma: '$70 ★3', sfreessr: 'Free SSR', s21ssr: '$21 SSR', s70ssr: '$70 SSR' };
+    const _hdrLabels = _suCounts ? _suHdrLabels : _normalHdrLabels;
+    const selSubHdrCells = SELECTORS.map(s => {
+      const text = isSelectorVisible(s) ? _hdrLabels[s.key] : '';
+      const br = s.key === 's70uma' ? 'border-right:1px solid #2a2a2a;' : s.key === 's70ssr' ? 'border-right:none;' : '';
+      return `<th class="center" style="${br}">${text}</th>`;
+    }).join('');
+    if (_suCounts) {
+      html += `<tr class="pack-hdr-row"><th colspan="4"></th>${selSubHdrCells}</tr>`;
+    } else {
+      html += `<tr class="pack-hdr-row">
+        <th style="width:1px;">Type</th>
+        <th class="center" style="width:1px;">Qty</th>
+        <th class="right" style="min-width:90px;">Carats</th>
+        <th class="right" style="min-width:75px;">USD</th>
+        ${selSubHdrCells}
+      </tr>`;
+    }
+    const preSelectsAndImgs = SELECTORS.map(s => {
+      if (!isSelectorVisible(s)) return '';
+      const cards = getAnnivCards(s.cardType, ev.name);
+      const hasSel = !!((packsState[ev.id] || {})[s.key]);
+      const clrBtn = `<button class="card-sel-clear" id="clr_csel_${ev.id}_${s.key}" onclick="setCardSel('${ev.id}','${s.key}','')" style="display:${hasSel?'flex':'none'};">×</button>`;
+      return makeCardSelect(ev.id, s.key, cards) + makeCardImg(ev.id, s.key) + clrBtn;
+    });
+
+    if (_suCounts) {
+      const suPulls = _getSuCalcPulls(ev.name);
+      const suDone  = Math.floor(suPulls / 5);
+      const suTotal = (_suCounts.uma || 0) + (_suCounts.ssr || 0);
+      const suAvail = Math.min(suDone, suTotal);
+      const suCost  = _suTotalCost(suPulls);
+      const _evState = packsState[ev.id] || {};
+      const _filledUma = _umaKeys.slice(0, _suUma).filter(k => !!_evState[k]).length;
+      const _filledSsr = _ssrKeys.slice(0, _suSsr).filter(k => !!_evState[k]).length;
+      const selParts = [];
+      if (_suUma > 0) selParts.push(`${_filledUma}/${_suUma} ★3 Uma`);
+      if (_suSsr  > 0) selParts.push(`${_filledSsr}/${_suSsr} SSR Support`);
+      const suSelCells = preSelectsAndImgs.map(sel => `<td class="center sel-select">${sel}</td>`).join('');
+      html += `<tr class="pack-row">
+        <td colspan="4" class="su-status-cell" id="su_status_${ev.id}">
+          <div class="su-info-selectors">${selParts.join(' &nbsp;·&nbsp; ')}</div>
+          <div class="su-info-progress">${suDone} Step Up${suDone !== 1 ? 's' : ''} Completed &nbsp;·&nbsp; ${suAvail}/${suTotal} Selector${suTotal !== 1 ? 's' : ''} Unlocked</div>
+          <div class="su-info-cost">${suCost.toLocaleString()} paid carats used</div>
+        </td>
+        ${suSelCells}
+      </tr>`;
+    } else {
+      const annivLimits = ev.pack_limits || PACK_LIMITS[annivNum] || {};
+      const getMax = pack => annivLimits[pack.key] ?? pack.max;
+      PACKS.forEach((pack, pi) => {
+        const visible = isPackVisible(pack);
+        const rightCells = pi === 0
+          ? preSelectsAndImgs.map(sel => `<td class="center sel-select" rowspan="${PACKS.length + 2}">${sel}</td>`).join('')
+          : '';
+        if (!visible) {
+          if (rightCells) {
+            html += `<tr class="pack-row">
+              <td class="type-cell" style="visibility:hidden;">${pack.label}</td>
+              <td class="center" style="visibility:hidden;">${makePacksSelect(ev.id, pack.key, getMax(pack))}</td>
+              <td class="right num-zero" style="visibility:hidden;" id="c_${ev.id}_${pack.key}">—</td>
+              <td class="right num-zero usd-col" style="visibility:hidden;" id="u_${ev.id}_${pack.key}">—</td>
+              ${rightCells}
+            </tr>`;
+          } else {
+            html += `<tr class="pack-row" style="visibility:hidden;">
+              <td class="type-cell">${pack.label}</td>
+              <td class="center">${makePacksSelect(ev.id, pack.key, getMax(pack))}</td>
+              <td class="right num-zero" id="c_${ev.id}_${pack.key}">—</td>
+              <td class="right num-zero usd-col" id="u_${ev.id}_${pack.key}">—</td>
+            </tr>`;
+          }
+        } else {
+          html += `<tr class="pack-row">
+            <td class="type-cell">${pack.label}</td>
+            <td class="center">${makePacksSelect(ev.id, pack.key, getMax(pack))}</td>
+            <td class="right num-zero" id="c_${ev.id}_${pack.key}">—</td>
+            <td class="right num-zero usd-col" id="u_${ev.id}_${pack.key}">—</td>
+            ${rightCells}
+          </tr>`;
+        }
+      });
+      html += `<tr class="total-row">
+        <td class="label">Total</td><td></td>
+        <td class="right num-zero" id="tc_${ev.id}">—</td>
+        <td class="right num-zero" id="tu_${ev.id}">—</td>
+      </tr>
+      <tr class="cumul-row">
+        <td class="label">Cumulative</td><td></td>
+        <td class="right num-zero" id="cc_${ev.id}">—</td>
+        <td class="right num-zero" id="cu_${ev.id}">—</td>
+      </tr>`;
+    }
+  });
+  document.getElementById('packsBody').innerHTML = html;
+}
+
+function fmtN(n)  { return n.toLocaleString(); }
+function fmtU2(n) { return `$${n.toLocaleString()}`; }
+
+function packsRecalc() {
+  let cumC = 0, cumU = 0, grandC = 0, grandU = 0;
+  PACK_EVENTS.forEach(ev => {
+    if (ev.step_up_banner) return;
+    let evC = 0, evU = 0;
+    PACKS.forEach(pack => {
+      const qty = getQty(ev.id, pack.key);
+      const c = qty * pack.carats, u = qty * pack.usd;
+      evC += c; evU += u;
+      const ce = document.getElementById(`c_${ev.id}_${pack.key}`);
+      const ue = document.getElementById(`u_${ev.id}_${pack.key}`);
+      if (ce) { ce.textContent = qty > 0 ? fmtN(c) : '—'; ce.className = `right ${qty > 0 ? 'num' : 'num-zero'}`; }
+      if (ue) { ue.textContent = qty > 0 ? fmtU2(u) : '—'; ue.className = `right ${qty > 0 ? 'num' : 'num-zero'}`; }
+    });
+    SELECTORS.forEach(sel => {
+      if (!_isSelectorVisible(ev, sel)) return;
+      const val = (packsState[ev.id] || {})[sel.key];
+      const qty = val ? 1 : 0;
+      evC += qty * sel.carats; evU += qty * sel.usd;
+    });
+    cumC += evC; cumU += evU; grandC += evC; grandU += evU;
+    const tc = document.getElementById(`tc_${ev.id}`);
+    const tu = document.getElementById(`tu_${ev.id}`);
+    const cc = document.getElementById(`cc_${ev.id}`);
+    const cu = document.getElementById(`cu_${ev.id}`);
+    if (tc) { tc.textContent = evC > 0 ? fmtN(evC) : '—'; tc.className = `right ${evC > 0 ? 'num' : 'num-zero'}`; }
+    if (tu) { tu.textContent = evU > 0 ? fmtU2(evU) : '—'; tu.className = `right ${evU > 0 ? 'num' : 'num-zero'}`; }
+    if (cc) { cc.textContent = cumC > 0 ? fmtN(cumC) : '—'; cc.className = `right ${cumC > 0 ? 'num' : 'num-zero'}`; }
+    if (cu) { cu.textContent = cumU > 0 ? fmtU2(cumU) : '—'; cu.className = `right ${cumU > 0 ? 'num' : 'num-zero'}`; }
+  });
+  const gce = document.getElementById('grandCarats2');
+  const gue = document.getElementById('grandUSD2');
+  if (gce) gce.textContent = fmtN(grandC);
+  if (gue) gue.textContent = fmtU2(grandU);
+}
+
+loadPacksState();
+renderPacksTable();
+packsRecalc();
+_suRefreshAllSelectors();
+
+// ── Profiles — shared with Calculator via caratCalcProfiles_v1 ───
+const CALC_PROFILE_KEY = "caratCalcProfiles_v1";
+
+function _getCalcProfiles() {
+  try {
+    const p = JSON.parse(localStorage.getItem(CALC_PROFILE_KEY));
+    if (p && Array.isArray(p.slots) && p.slots.length === 5) return p;
+  } catch(_) {}
+  return { active: 0, slots: [null, null, null, null, null] };
+}
+function _saveCalcProfiles(p) { localStorage.setItem(CALC_PROFILE_KEY, JSON.stringify(p)); }
+
+function _renderPacksProfileBtns() {
+  const cp   = _getCalcProfiles();
+  const wrap = document.getElementById("packsProfileSlots");
+  if (!wrap) return;
+  wrap.innerHTML = cp.slots.map((slot, i) => {
+    const isActive = i === cp.active;
+    const isEmpty  = slot === null;
+    return `<button class="packs-slot-btn${isActive ? ' active' : ''}${!isActive && isEmpty ? ' empty' : ''}"
+      data-slot="${i}" title="Profile ${i + 1}${isEmpty ? ' (empty)' : ''}">${i + 1}</button>`;
+  }).join('');
+  wrap.querySelectorAll('.packs-slot-btn').forEach(btn => {
+    btn.addEventListener('click', () => _switchPacksProfile(parseInt(btn.dataset.slot)));
+  });
+}
+
+function _switchPacksProfile(i) {
+  const cp = _getCalcProfiles();
+  if (i === cp.active) return;
+  // Snapshot current packs state into current calc slot
+  const snap = JSON.parse(JSON.stringify(packsState));
+  if (cp.slots[cp.active]) cp.slots[cp.active]._packsState = snap;
+  else cp.slots[cp.active] = { _packsState: snap };
+  cp.active = i;
+  _saveCalcProfiles(cp);
+  const _newSlot = cp.slots[i];
+  if (_newSlot) {
+    const { _packsState, ...calcState } = _newSlot;
+    localStorage.setItem('caratCalc_v1', JSON.stringify(calcState));
+    packsState = _packsState ? JSON.parse(JSON.stringify(_packsState)) : {};
+  } else {
+    packsState = {};
+  }
+  savePacksState();
+  renderPacksTable();
+  packsRecalc();
+  _suRefreshAllSelectors();
+  _renderPacksProfileBtns();
+}
+
+document.getElementById("packsExportBtn").addEventListener("click", () => {
+  const date = new Date().toISOString().slice(0, 10);
+  const plan = { version: 1, exported: new Date().toISOString(), packs_state: packsState };
+  const blob = new Blob([JSON.stringify(plan, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `selectors-profile-${date}.json`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+
+document.getElementById("packsImportFile").addEventListener("change", e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      const plan = JSON.parse(ev.target.result);
+      if (plan.packs_state) {
+        packsState = plan.packs_state;
+        savePacksState();
+        const _cp = _getCalcProfiles();
+        const _snap = JSON.parse(JSON.stringify(packsState));
+        if (_cp.slots[_cp.active]) _cp.slots[_cp.active]._packsState = _snap;
+        else _cp.slots[_cp.active] = { _packsState: _snap };
+        _saveCalcProfiles(_cp);
+        renderPacksTable();
+        packsRecalc();
+        _suRefreshAllSelectors();
+        _renderPacksProfileBtns();
+      }
+    } catch(_) { alert("Invalid file."); }
+    e.target.value = "";
+  };
+  reader.readAsText(file);
+});
+
+_renderPacksProfileBtns();
+</script>
+<script>
+(function() {
+  const DEBUG_KEY = 'debugMode_v1';
+  const isDebug = localStorage.getItem(DEBUG_KEY) === '1';
+  if (isDebug) document.body.classList.add('debug-mode');
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('navSettingsBtn');
+    const dd  = document.getElementById('navSettingsDd');
+    const chk = document.getElementById('debugToggle');
+    if (!btn || !dd || !chk) return;
+    chk.checked = isDebug;
+    btn.addEventListener('click', function(e) { e.stopPropagation(); dd.classList.toggle('open'); });
+    document.addEventListener('click', function() { dd.classList.remove('open'); });
+    dd.addEventListener('click', function(e) { e.stopPropagation(); });
+    chk.addEventListener('change', function() {
+      localStorage.setItem(DEBUG_KEY, chk.checked ? '1' : '0');
+      document.body.classList.toggle('debug-mode', chk.checked);
+    });
+  });
+})();
+</script></body>
+</html>

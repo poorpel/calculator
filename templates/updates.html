@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Updates — Carat Calc</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0a0a0a;
+      color: #d8d8d8;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 14px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Top Nav ── */
+    .top-nav {
+      background: #080808;
+      border-bottom: 1px solid #1e1e1e;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .top-nav-logo {
+      font-size: 12px;
+      font-weight: 700;
+      color: #444;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 11px 18px 11px 0;
+      border-right: 1px solid #1e1e1e;
+      margin-right: 6px;
+      white-space: nowrap;
+    }
+    .top-nav-link {
+      display: flex;
+      align-items: center;
+      padding: 11px 12px;
+      color: #555;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.1s;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+    .top-nav-link:hover { color: #bbb; }
+    .top-nav-link.active { color: #ccc; border-bottom-color: #555; }
+    .top-nav-sep { width: 1px; height: 16px; background: #1e1e1e; margin: 0 4px; }
+
+    .main {
+      flex: 1;
+      padding: 28px 28px 40px;
+      min-width: 0;
+      overflow-x: auto;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    header h1 { font-size: 20px; font-weight: 700; color: #fff; }
+
+    .table-wrap {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #1e1e1e;
+    }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+
+    thead tr {
+      background: #141414;
+      color: #666;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    th, td {
+      padding: 8px 14px;
+      text-align: left;
+      border-right: 1px solid #1a1a1a;
+    }
+    th:last-child, td:last-child { border-right: none; }
+
+    tbody tr { border-top: 1px solid #1a1a1a; }
+    tbody tr:hover { background: #131313; }
+    tbody tr:nth-child(even) { background: #0d0d0d; }
+    tbody tr:nth-child(even):hover { background: #131313; }
+
+    td.ts    { color: #555; font-size: 12px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    td.name  { color: #ccc; font-weight: 500; }
+    td.field { color: #666; font-size: 12px; }
+    td.date  { color: #d8d8d8; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    td.old   { color: #888; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .badge-new       { background: #0d2b1a; color: #4caf80; }
+    .badge-date      { background: #1a1a2b; color: #7a8fcc; }
+    .badge-character { background: #1f1810; color: #c4874a; }
+    .badge-support   { background: #101a1f; color: #4a9cc4; }
+    .badge-anniversary { background: #1f1020; color: #b46ed4; }
+    .badge-champions_meeting { background: #1f1a10; color: #c4b44a; }
+    .badge-league_of_heroes  { background: #0e1820; color: #5ab0d8; }
+
+    .empty { color: #444; padding: 24px; text-align: center; }
+  </style>
+  <style>
+    .debug-only { display: none; }
+    body.debug-mode .debug-only { display: flex; }
+    .nav-settings-wrap { margin-left: auto; position: relative; }
+    .nav-settings-btn {
+      background: none; border: none; color: #333; cursor: pointer;
+      font-size: 15px; padding: 8px 10px; transition: color 0.1s; line-height: 1;
+    }
+    .nav-settings-btn:hover { color: #888; }
+    .nav-settings-dd {
+      display: none; position: absolute; right: 0; top: calc(100% + 4px);
+      background: #111; border: 1px solid #2a2a2a; border-radius: 8px;
+      padding: 12px 16px; width: 190px; z-index: 200;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.8);
+    }
+    .nav-settings-dd.open { display: block; }
+    .nav-settings-title {
+      font-size: 10px; font-weight: 700; color: #444; letter-spacing: 0.5px;
+      text-transform: uppercase; margin-bottom: 10px;
+    }
+    .nav-settings-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    }
+    .nav-settings-label { font-size: 12px; color: #888; }
+    .nav-toggle { position: relative; width: 32px; height: 18px; flex-shrink: 0; }
+    .nav-toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+    .nav-toggle-track {
+      position: absolute; inset: 0; background: #2a2a2a; border-radius: 9px;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .nav-toggle input:checked + .nav-toggle-track { background: #3a5a3a; }
+    .nav-toggle-thumb {
+      position: absolute; top: 3px; left: 3px; width: 12px; height: 12px;
+      background: #555; border-radius: 50%; transition: all 0.2s; pointer-events: none;
+    }
+    .nav-toggle input:checked ~ .nav-toggle-thumb { left: 17px; background: #5ecb7a; }
+  </style></head>
+<body>
+
+<nav class="top-nav">
+  <div class="top-nav-logo">Carat Calc</div>
+  <a href="/" class="top-nav-link">Calculator</a>
+  <a href="/packs" class="top-nav-link">Selectors</a>
+  <a href="/cards" class="top-nav-link">Card Tracker</a>
+  <div class="top-nav-sep"></div>
+  <a href="/timeline" class="top-nav-link">Timeline</a>
+  <a href="/data" class="top-nav-link debug-only">Data</a>
+  <a href="/updates" class="top-nav-link debug-only active">Updates</a>
+  <div class="nav-settings-wrap">
+    <button class="nav-settings-btn" id="navSettingsBtn" title="Settings">⚙</button>
+    <div class="nav-settings-dd" id="navSettingsDd">
+      <div class="nav-settings-title">Settings</div>
+      <div class="nav-settings-row">
+        <span class="nav-settings-label">Debug mode</span>
+        <label class="nav-toggle">
+          <input type="checkbox" id="debugToggle">
+          <div class="nav-toggle-track"></div>
+          <div class="nav-toggle-thumb"></div>
+        </label>
+      </div>
+    </div>
+  </div></nav>
+
+<div class="main">
+  <header>
+    <h1>Updates</h1>
+  </header>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Changed</th>
+          <th>Kind</th>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Field</th>
+          <th>Old</th>
+          <th>New</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if log %}
+          {% for entry in log %}
+          <tr>
+            <td class="ts">{{ entry.timestamp[:16].replace('T', ' ') }}</td>
+            <td>
+              {% if entry.kind == 'new_event' %}
+                <span class="badge badge-new">New</span>
+              {% else %}
+                <span class="badge badge-date">Date</span>
+              {% endif %}
+            </td>
+            <td><span class="badge badge-{{ entry.event_type }}">{{ entry.event_type.replace('_', ' ') }}</span></td>
+            <td class="name">{{ entry.name }}</td>
+            <td class="field">
+              {% if entry.kind == 'new_event' %}
+                —
+              {% else %}
+                {{ entry.field.replace('_', ' ') }}
+              {% endif %}
+            </td>
+            <td class="old">
+              {% if entry.kind == 'new_event' %}
+                —
+              {% else %}
+                {{ (entry.old or '—')[:19].replace('T', ' ') }}
+              {% endif %}
+            </td>
+            <td class="date">
+              {% if entry.kind == 'new_event' %}
+                {{ (entry.start_date or '—')[:10] }}
+              {% else %}
+                {{ (entry.new or '—')[:19].replace('T', ' ') }}
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        {% else %}
+          <tr><td colspan="7" class="empty">No updates logged yet.</td></tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+</script>
+<script>
+(function() {
+  const DEBUG_KEY = 'debugMode_v1';
+  const isDebug = localStorage.getItem(DEBUG_KEY) === '1';
+  if (isDebug) document.body.classList.add('debug-mode');
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('navSettingsBtn');
+    const dd  = document.getElementById('navSettingsDd');
+    const chk = document.getElementById('debugToggle');
+    if (!btn || !dd || !chk) return;
+    chk.checked = isDebug;
+    btn.addEventListener('click', function(e) { e.stopPropagation(); dd.classList.toggle('open'); });
+    document.addEventListener('click', function() { dd.classList.remove('open'); });
+    dd.addEventListener('click', function(e) { e.stopPropagation(); });
+    chk.addEventListener('change', function() {
+      localStorage.setItem(DEBUG_KEY, chk.checked ? '1' : '0');
+      document.body.classList.toggle('debug-mode', chk.checked);
+    });
+  });
+})();
+</script></body>
+</html>

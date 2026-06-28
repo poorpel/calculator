@@ -1,0 +1,2595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carat Calculator</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0a0a0a;
+      color: #d8d8d8;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 14px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Top Nav ── */
+    .top-nav {
+      background: #080808;
+      border-bottom: 1px solid #1e1e1e;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .top-nav-logo {
+      font-size: 12px;
+      font-weight: 700;
+      color: #444;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 11px 18px 11px 0;
+      border-right: 1px solid #1e1e1e;
+      margin-right: 6px;
+      white-space: nowrap;
+    }
+    .top-nav-link {
+      display: flex;
+      align-items: center;
+      padding: 11px 12px;
+      color: #555;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.1s;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+    .top-nav-link:hover { color: #bbb; }
+    .top-nav-link.active { color: #ccc; border-bottom-color: #555; }
+    .top-nav-sep { width: 1px; height: 16px; background: #1e1e1e; margin: 0 4px; }
+
+    /* ── Main ── */
+    .main {
+      flex: 1;
+      padding: 28px 28px 40px;
+      min-width: 0;
+      overflow-x: auto;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    header h1 { font-size: 20px; font-weight: 700; color: #fff; letter-spacing: 0.2px; }
+
+    .profile-slots { display: flex; gap: 4px; align-items: center; }
+    .profile-slot-btn {
+      background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 5px;
+      color: #555; font-size: 12px; font-weight: 700; width: 26px; height: 26px;
+      cursor: pointer; transition: all 0.1s;
+      display: flex; align-items: center; justify-content: center; padding: 0;
+    }
+    .profile-slot-btn:hover { color: #bbb; border-color: #444; }
+    .profile-slot-btn.active { color: #e0e0e0; border-color: #666; background: #262626; }
+    .profile-slot-btn.empty { opacity: 0.35; }
+
+    /* ── Panel grid ── */
+    .panels-toggle-bar { display: flex; justify-content: flex-end; margin-bottom: 6px; }
+    .panels-toggle-btn {
+      background: none; border: none; color: #3a3a3a; font-size: 11px; font-weight: 600;
+      letter-spacing: 0.4px; cursor: pointer; padding: 2px 4px; transition: color 0.1s;
+    }
+    .panels-toggle-btn:hover { color: #666; }
+    .section-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    .section-group.collapsed { display: none; }
+
+    .panel {
+      background: #0f0f0f;
+      border: 1px solid #1e1e1e;
+      border-radius: 10px;
+      overflow: hidden;
+      min-width: 260px;
+    }
+
+    .panel-title {
+      background: #141414;
+      padding: 8px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #777;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      border-bottom: 1px solid #1e1e1e;
+      text-align: center;
+    }
+
+    .panel-body { padding: 0; }
+
+    /* ── Info table rows ── */
+    .info-row {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    .info-row:last-child { border-bottom: none; }
+
+    .info-label {
+      flex: 1;
+      padding: 8px 14px;
+      color: #777;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .info-value {
+      display: flex;
+      align-items: center;
+    }
+
+    .info-value select {
+      background: #181818;
+      border: none;
+      border-left: 1px solid #2a2a2a;
+      color: #d0d0d0;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 7px 10px;
+      outline: none;
+      cursor: pointer;
+      width: 140px;
+      transition: border-color 0.1s, background 0.1s;
+    }
+    .info-value select:hover { background: #1e1e1e; border-left-color: #3a3a3a; }
+    .info-value select:focus { background: #1e1e1e; border-left-color: #555; }
+    .info-value select option { background: #1a1a1a; }
+
+    .info-input {
+      background: #181818;
+      border: none;
+      border-left: 1px solid #2a2a2a;
+      color: #d0d0d0;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: inherit;
+      padding: 7px 10px;
+      outline: none;
+      width: 140px;
+      transition: border-color 0.1s, background 0.1s;
+    }
+    .info-input:hover { background: #1e1e1e; border-left-color: #3a3a3a; }
+    .info-input:focus { background: #1e1e1e; border-left-color: #555; }
+    .info-input::placeholder { color: #444; }
+    .info-input.input-invalid { border-left-color: #c03030 !important; background: #1a0808 !important; color: #ff7070 !important; }
+
+    .cell-pulls input.input-invalid { border-left-color: #c03030 !important; background: #1a0808 !important; color: #ff7070 !important; }
+
+    .info-num {
+      padding: 7px 14px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #aaa;
+      border-left: 1px solid #1e1e1e;
+      width: 60px;
+      text-align: right;
+      background: transparent;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ── Event Checklist ── */
+    .ev-list { display: flex; flex-direction: column; }
+    .ev-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 14px;
+      border-bottom: 1px solid #1a1a1a;
+      transition: background 0.1s;
+      cursor: pointer;
+      user-select: none;
+    }
+    .ev-item:last-child { border-bottom: none; }
+    .ev-item:hover { background: #131313; }
+    .ev-item.checked { opacity: 0.35; }
+    .ev-cb {
+      width: 14px; height: 14px;
+      border: 1px solid #333;
+      border-radius: 3px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: #181818;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .ev-item.checked .ev-cb { background: #1a2e1a; border-color: #3a6a3a; }
+    .ev-cb::after { content: ''; display: none; width: 8px; height: 5px; border-left: 2px solid #5ecb7a; border-bottom: 2px solid #5ecb7a; transform: rotate(-45deg) translate(1px,-1px); }
+    .ev-item.checked .ev-cb::after { display: block; }
+    .ev-name { flex: 1; font-size: 12px; color: #bbb; }
+    .ev-amt  { font-size: 12px; font-weight: 700; color: #5ecb7a; white-space: nowrap; }
+    .ev-none { padding: 14px; font-size: 12px; color: #444; text-align: center; }
+
+    /* ── Calculator section ── */
+    .calc-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+    .calc-header h2 { font-size: 15px; font-weight: 700; color: #fff; }
+
+    .table-wrap {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #1e1e1e;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 13px;
+    }
+
+    thead tr {
+      background: #141414;
+      color: #666;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    th, td {
+      padding: 9px 12px;
+      text-align: center;
+      white-space: nowrap;
+      border-right: 1px solid #1a1a1a;
+    }
+    th:last-child, td:last-child { border-right: none; }
+    th.center, td.center { text-align: center; }
+
+    tbody tr { transition: background 0.1s; }
+    tbody td { border-top: 1px solid #1a1a1a; }
+    tr.detail-row > td, tr.anniv-sep > td { border-top: none; }
+    tbody tr:hover { background: #131313; }
+    tbody tr:nth-child(even) { background: #0d0d0d; }
+    tbody tr:nth-child(even):hover { background: #131313; }
+
+    /* editable: type dropdown */
+    .type-cell select {
+      background: transparent;
+      border: none;
+      color: #bbb;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+      padding: 0;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* editable: banner name */
+    td.banner-cell { overflow: hidden; }
+    td.banner-cell input {
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      border-radius: 4px;
+      color: #e0e0e0;
+      font-size: 13px;
+      font-family: inherit;
+      font-weight: 600;
+      outline: none;
+      width: 100%;
+      padding: 4px 8px;
+      text-align: center;
+      text-overflow: ellipsis;
+    }
+    td.banner-cell input:hover { border-color: #3a3a3a; }
+    td.banner-cell input:focus { background: #1a1a1a; border-color: #555; text-align: left; text-overflow: clip; }
+    td.banner-cell input::placeholder { color: #444; }
+
+    /* read-only cells */
+    .cell-auto { color: #444; font-style: italic; }
+    .cell-pct  { color: #444; }
+    tr.row-active .cell-auto { color: #d8d8d8; font-style: normal; font-weight: 700; }
+    .cell-ticket-pulls { cursor: pointer; user-select: none; }
+    .cell-su-combined { font-weight: 700; }
+    .su-status-cell { padding:10px 14px; text-align:center !important; line-height:1.9; }
+    .su-info-selectors { font-size:17px; font-weight:600; color:#c47a2a; }
+    .su-info-progress  { font-size:15px; color:#888; }
+    .su-info-cost      { font-size:15px; color:#666; }
+    .su-sel-locked input.qty-sel { opacity:0.3; pointer-events:none; }
+    .su-sel-locked .card-sel-placeholder { opacity:0.3; }
+    tr.tix-disabled .cell-ticket-pulls { color: #444; text-decoration: line-through; }
+    tr.row-active .date-start, tr.row-active .date-end { font-weight: 700; }
+    tr.row-active .cell-pct  { color: #d8d8d8; }
+    .cell-pulls input {
+      background: #1a1a1a;
+      border: none;
+      border-left: 1px solid #1e1e1e;
+      color: #e0e0e0;
+      font-size: 13px;
+      font-family: inherit;
+      padding: 5px 8px;
+      outline: none;
+      width: 68px;
+      text-align: center;
+    }
+    .cell-pulls input::placeholder { color: #333; }
+
+    /* hide number input spinners */
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+    input[type=number] { -moz-appearance: textfield; appearance: textfield; }
+    .cell-pct-none { color: #5ecb7a; font-weight: 600; }
+
+    /* row numbering */
+    #calcBody { counter-reset: rownum; }
+    #calcBody tr.calc-row { counter-increment: rownum; }
+    .row-num { width: 28px; min-width: 28px; color: #ffffff; font-size: 11px; font-weight: 700; }
+    .row-num::before { content: counter(rownum); }
+    .clear-row-btn { background:none;border:none;color:#a03030;cursor:pointer;font-size:13px;padding:3px 6px;border-radius:3px;line-height:1;transition:color 0.1s,background 0.1s; }
+    .clear-row-btn:hover { color:#e07070;background:#1a0d0d; }
+    .drag-handle { width:18px;min-width:18px;color:#2a2a2a;cursor:grab;font-size:14px;text-align:center;user-select:none;padding:0 4px; }
+    .drag-handle:hover { color:#555; }
+    tr.calc-row.dragging { opacity:0.4; }
+    tr.calc-row.drag-over { outline:1px solid #555; }
+
+    /* cards column — fixed width for 2 images */
+    .cards-col { width: 100px; min-width: 100px; }
+    td.cards-cell { width: 100px; min-width: 100px; max-width: 100px; padding: 4px 8px; }
+    .cards-inner { display: flex; gap: 8px; justify-content: center; align-items: center; }
+
+    .sort-btn {
+      padding: 5px 14px;
+      background: #1a1a1a;
+      border: 1px solid #2e2e2e;
+      border-radius: 6px;
+      color: #888;
+      font-size: 12px;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.1s, color 0.1s;
+    }
+    .sort-btn:hover { background: #222; color: #ccc; }
+
+    tr.row-overpulled { background: rgba(200, 40, 40, 0.12) !important; }
+    tr.row-overpulled:hover { background: rgba(200, 40, 40, 0.18) !important; }
+    tr.row-overpulled .cell-pulls input { border-left-color: #c03030 !important; color: #ff7070 !important; }
+    /* ── Settings panel ── */
+    .settings-wrap { position: relative; }
+    .settings-btn {
+      background: #161616; border: 1px solid #2a2a2a; border-radius: 6px;
+      color: #666; cursor: pointer; padding: 5px 8px; display: flex;
+      align-items: center; justify-content: center; transition: background 0.1s, color 0.1s, border-color 0.1s;
+    }
+    .settings-btn:hover { background: #1e1e1e; color: #bbb; border-color: #3a3a3a; }
+    .settings-btn.open { background: #1e1e1e; color: #ccc; border-color: #444; }
+    .settings-panel {
+      position: absolute; top: calc(100% + 8px); right: 0;
+      background: #111; border: 1px solid #2a2a2a; border-radius: 10px;
+      width: 320px; z-index: 9999; box-shadow: 0 12px 40px rgba(0,0,0,0.85);
+      display: none; overflow: hidden;
+    }
+    .settings-panel.open { display: block; }
+    .settings-ph {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px 10px; border-bottom: 1px solid #1e1e1e;
+    }
+    .settings-ph-title { font-size: 12px; font-weight: 700; color: #888; letter-spacing: 0.4px; text-transform: uppercase; }
+    .settings-close {
+      background: none; border: none; color: #444; cursor: pointer;
+      font-size: 14px; line-height: 1; padding: 2px 4px; border-radius: 3px; transition: color 0.1s;
+    }
+    .settings-close:hover { color: #bbb; }
+    .settings-stitle {
+      font-size: 10px; font-weight: 700; color: #3a3a3a;
+      letter-spacing: 0.8px; text-transform: uppercase; padding: 10px 16px 4px;
+    }
+    .settings-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 16px; cursor: pointer; transition: background 0.1s;
+    }
+    .settings-item:hover { background: #171717; }
+    .settings-item-label { font-size: 13px; color: #bbb; user-select: none; }
+    .tog {
+      position: relative; width: 34px; height: 19px; flex-shrink: 0;
+      display: inline-flex; align-items: center;
+    }
+    .tog input { opacity: 0; width: 0; height: 0; position: absolute; }
+    .tog-track {
+      position: absolute; inset: 0; background: #272727;
+      border-radius: 10px; transition: background 0.2s;
+    }
+    .tog input:checked + .tog-track { background: #2e5e2e; }
+    .tog-thumb {
+      position: absolute; width: 15px; height: 15px; top: 2px; left: 2px;
+      background: #555; border-radius: 50%; transition: left 0.2s, background 0.2s; pointer-events: none;
+    }
+    .tog input:checked ~ .tog-thumb { left: 17px; background: #5ecb7a; }
+    .settings-divider { height: 1px; background: #1e1e1e; margin: 4px 0; }
+    .settings-action {
+      display: flex; align-items: center; width: 100%; background: none; border: none;
+      padding: 8px 16px; color: #aaa; font-size: 13px; font-family: inherit;
+      cursor: pointer; text-align: left; transition: background 0.1s, color 0.1s;
+    }
+    .settings-action:hover { background: #171717; color: #ddd; }
+    .settings-action.danger { color: #a06060; }
+    .settings-action.danger:hover { background: #1a0d0d; color: #e07070; }
+    /* column visibility toggles */
+    #calcTable.hide-probs .cell-pct, #calcTable.hide-probs .cell-pct-none,
+    #calcTable.hide-probs .prob-th { display: none; }
+    .ticket-row-disabled { opacity: 0.3; pointer-events: none; }
+    /* ── Detail Panel ── */
+    .expand-btn { background:none;border:none;color:#444;cursor:pointer;font-size:12px;padding:3px 7px;border-radius:3px;transition:color 0.1s,background 0.1s;line-height:1; }
+    .expand-btn:hover { color:#aaa;background:#1a1a1a; }
+    tr.detail-row > td { padding:0; }
+    .detail-panel { display:flex;border-top:1px solid #1a1a1a;background:#070707; }
+    .dp-col { flex:1;padding:12px 16px;border-right:1px solid #141414;font-size:12px;min-width:0; }
+    .dp-col:last-child { border-right:none; }
+    .dp-lbl { font-size:10px;font-weight:700;color:#666;letter-spacing:0.6px;text-transform:uppercase;margin-bottom:6px; }
+    .dp-lbl+.dp-lbl { margin-top:10px; }
+    .dp-row { display:flex;justify-content:space-between;align-items:baseline;color:#aaa;line-height:1.75;gap:8px; }
+    .dp-row > span:first-child { min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap; }
+    .dp-row > span:last-child { color:#ffffff;font-weight:600;flex-shrink:0; }
+    .dp-sub { font-size:11px;color:#666;padding-left:8px;margin-top:-3px;line-height:1.5; }
+    .dp-neg > span:last-child { color:#e07070 !important; }
+    .dp-sub { padding-left:12px;font-size:11px;opacity:0.7;line-height:1.55; }
+    .dp-green > span:last-child { color:#5ecb7a !important; }
+    .dp-sep { border:none;border-top:1px solid #1e1e1e;margin:4px 0; }
+    .anniv-sep td { padding: 6px 0 4px; }
+    .anniv-sep-inner { display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;color:#c49030;letter-spacing:0.5px;text-transform:uppercase; }
+    .anniv-sep-inner::before,.anniv-sep-inner::after { content:'';flex:1;height:0;border-top:1px solid;border-image:linear-gradient(to right,transparent,#8a6a20) 1; }
+    .anniv-sep-inner::after { border-image:linear-gradient(to left,transparent,#8a6a20) 1; }
+    .dp-total { display:flex;justify-content:space-between;align-items:baseline;font-weight:700;color:#777;border-top:1px solid #1a1a1a;margin-top:5px;padding-top:5px; }
+    .dp-total > span:last-child { color:#5ecb7a;font-size:13px; }
+    .dp-details { margin-top:3px; }
+    .dp-details > summary { font-size:10px;color:#555;cursor:pointer;padding:2px 0;list-style:none;user-select:none; }
+    .dp-details > summary::-webkit-details-marker { display:none; }
+    .dp-details > summary::before { content:'▶ ';font-size:8px; }
+    .dp-details[open] > summary::before { content:'▼ '; }
+
+    /* ── Tabs (kept for potential future use) ── */
+    .tab-btn {
+      padding:8px 20px; background:transparent; border:none; border-bottom:2px solid transparent;
+      color:#555; font-size:13px; font-weight:600; font-family:inherit; cursor:pointer;
+      margin-bottom:-1px; transition:color 0.1s, border-color 0.1s;
+    }
+    .tab-btn:hover { color:#bbb; }
+    .tab-btn.active { color:#ccc; border-bottom-color:#555; }
+
+  </style>
+  <style>
+    .debug-only { display: none; }
+    body.debug-mode .debug-only { display: flex; }
+    .nav-settings-wrap { margin-left: auto; position: relative; }
+    .nav-settings-btn {
+      background: none; border: none; color: #333; cursor: pointer;
+      font-size: 15px; padding: 8px 10px; transition: color 0.1s; line-height: 1;
+    }
+    .nav-settings-btn:hover { color: #888; }
+    .nav-settings-dd {
+      display: none; position: absolute; right: 0; top: calc(100% + 4px);
+      background: #111; border: 1px solid #2a2a2a; border-radius: 8px;
+      padding: 12px 16px; width: 190px; z-index: 200;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.8);
+    }
+    .nav-settings-dd.open { display: block; }
+    .nav-settings-title {
+      font-size: 10px; font-weight: 700; color: #444; letter-spacing: 0.5px;
+      text-transform: uppercase; margin-bottom: 10px;
+    }
+    .nav-settings-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    }
+    .nav-settings-label { font-size: 12px; color: #888; }
+    .nav-toggle { position: relative; width: 32px; height: 18px; flex-shrink: 0; }
+    .nav-toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+    .nav-toggle-track {
+      position: absolute; inset: 0; background: #2a2a2a; border-radius: 9px;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .nav-toggle input:checked + .nav-toggle-track { background: #3a5a3a; }
+    .nav-toggle-thumb {
+      position: absolute; top: 3px; left: 3px; width: 12px; height: 12px;
+      background: #555; border-radius: 50%; transition: all 0.2s; pointer-events: none;
+    }
+    .nav-toggle input:checked ~ .nav-toggle-thumb { left: 17px; background: #5ecb7a; }
+  </style></head>
+<body>
+
+<nav class="top-nav">
+  <div class="top-nav-logo">Carat Calc</div>
+  <a href="/" class="top-nav-link active">Calculator</a>
+  <a href="/packs" class="top-nav-link">Selectors</a>
+  <a href="/cards" class="top-nav-link">Card Tracker</a>
+  <div class="top-nav-sep"></div>
+  <a href="/timeline" class="top-nav-link">Timeline</a>
+  <a href="/data" class="top-nav-link debug-only">Data</a>
+  <a href="/updates" class="top-nav-link debug-only">Updates</a>
+  <div class="nav-settings-wrap">
+    <button class="nav-settings-btn" id="navSettingsBtn" title="Settings">⚙</button>
+    <div class="nav-settings-dd" id="navSettingsDd">
+      <div class="nav-settings-title">Settings</div>
+      <div class="nav-settings-row">
+        <span class="nav-settings-label">Debug mode</span>
+        <label class="nav-toggle">
+          <input type="checkbox" id="debugToggle">
+          <div class="nav-toggle-track"></div>
+          <div class="nav-toggle-thumb"></div>
+        </label>
+      </div>
+    </div>
+  </div></nav>
+
+<div class="main">
+  <header>
+    <h1>Carat Calculator</h1>
+    <div class="profile-slots" id="profileSlots"></div>
+    <div style="margin-left:auto;display:flex;gap:8px;align-items:center;">
+      <button id="exportBtn" style="background:#1a2e1a;border:1px solid #2e5a2e;border-radius:6px;color:#7ad87a;cursor:pointer;font-size:12px;font-weight:700;padding:5px 14px;letter-spacing:0.4px;transition:background 0.1s,color 0.1s;" onmouseover="this.style.background='#223522'" onmouseout="this.style.background='#1a2e1a'">Export JSON</button>
+      <label id="importLabel" style="background:#1a1a2e;border:1px solid #2e2e5a;border-radius:6px;color:#7a7ad8;cursor:pointer;font-size:12px;font-weight:700;padding:5px 14px;letter-spacing:0.4px;transition:background 0.1s,color 0.1s;" onmouseover="this.style.background='#222235'" onmouseout="this.style.background='#1a1a2e'">Import JSON<input type="file" id="importFile" accept=".json" style="display:none"></label>
+      <button id="clearPlanBtn" style="background:#1e1e1e;border:1px solid #2e2e2e;border-radius:6px;color:#888;cursor:pointer;font-size:12px;font-weight:700;padding:5px 14px;letter-spacing:0.4px;transition:color 0.1s,border-color 0.1s;" onmouseover="this.style.color='#ccc';this.style.borderColor='#555'" onmouseout="this.style.color='#888';this.style.borderColor='#2e2e2e'">Clear All</button>
+      <div class="settings-wrap">
+        <button class="settings-btn" id="settingsBtn" title="Settings">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+            <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.475l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+          </svg>
+        </button>
+        <div class="settings-panel" id="settingsPanel">
+          <div class="settings-ph">
+            <span class="settings-ph-title">Settings</span>
+            <button class="settings-close" id="settingsClose">✕</button>
+          </div>
+          <div class="settings-stitle">Display</div>
+          <label class="settings-item" for="togProbs">
+            <span class="settings-item-label">Probability Columns</span>
+            <span class="tog">
+              <input type="checkbox" id="togProbs" checked>
+              <span class="tog-track"></span>
+              <span class="tog-thumb"></span>
+            </span>
+          </label>
+          <div class="settings-divider"></div>
+          <div class="settings-stitle">Tickets</div>
+          <label class="settings-item" for="togTickets">
+            <span class="settings-item-label">Track Tickets</span>
+            <span class="tog">
+              <input type="checkbox" id="togTickets" checked>
+              <span class="tog-track"></span>
+              <span class="tog-thumb"></span>
+            </span>
+          </label>
+          <label class="settings-item" for="togPvPTickets">
+            <span class="settings-item-label">PvP Tickets</span>
+            <span class="tog">
+              <input type="checkbox" id="togPvPTickets" checked>
+              <span class="tog-track"></span>
+              <span class="tog-thumb"></span>
+            </span>
+          </label>
+          <label class="settings-item" for="togMonthlyShop">
+            <span class="settings-item-label">Monthly Shop Tickets</span>
+            <span class="tog">
+              <input type="checkbox" id="togMonthlyShop" checked>
+              <span class="tog-track"></span>
+              <span class="tog-thumb"></span>
+            </span>
+          </label>
+          <label class="settings-item" for="togEventTickets">
+            <span class="settings-item-label">Event Tickets</span>
+            <span class="tog">
+              <input type="checkbox" id="togEventTickets">
+              <span class="tog-track"></span>
+              <span class="tog-thumb"></span>
+            </span>
+          </label>
+          <label class="settings-item" for="togTrainingPassTickets">
+            <span class="settings-item-label">Training Pass Tickets</span>
+            <span class="tog">
+              <input type="checkbox" id="togTrainingPassTickets">
+              <span class="tog-track"></span>
+              <span class="tog-thumb"></span>
+            </span>
+          </label>
+          <div class="settings-divider"></div>
+          <div class="settings-stitle">Paid Carats</div>
+          <label class="settings-item" for="togPackPaidCarats">
+            <span class="settings-item-label">Pack Page Carats</span>
+            <span class="tog">
+              <input type="checkbox" id="togPackPaidCarats" checked>
+              <span class="tog-track"></span>
+              <span class="tog-thumb"></span>
+            </span>
+          </label>
+          <div class="settings-divider"></div>
+          <div class="settings-stitle">Actions</div>
+          <button class="settings-action" id="sClearPulls">Clear All Pull Counts</button>
+          <button class="settings-action" id="sClearResources">Clear Resources</button>
+          <button class="settings-action danger" id="sClearAll">Clear All Data</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <div id="tab-calculator">
+
+  <!-- Top panels -->
+  <div class="panels-toggle-bar">
+    <button class="panels-toggle-btn" id="togglePanels">Hide ▲</button>
+  </div>
+  <div class="section-group" id="topPanels">
+
+    <!-- Input Your Information -->
+    <div class="panel" style="min-width:300px;">
+      <div class="panel-title">Your Information</div>
+      <div class="panel-body">
+
+        <div class="info-row">
+          <div class="info-label">Team Trials:</div>
+          <div class="info-value">
+            <select id="teamTrials">
+              <option>Class 6</option>
+              <option>Class 5.5</option>
+              <option>Class 5</option>
+              <option selected>Class 4</option>
+              <option>Class 3</option>
+              <option>Class 2</option>
+              <option>Class 1</option>
+            </select>
+          </div>
+          <div class="info-num" id="teamTrialsVal">150</div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">Club Rank:</div>
+          <div class="info-value">
+            <select id="clubRank">
+              <option>SS</option>
+              <option>S+</option>
+              <option>S</option>
+              <option>A+</option>
+              <option>A</option>
+              <option selected>B+</option>
+              <option>B</option>
+              <option>C+</option>
+              <option>C</option>
+              <option>D+</option>
+            </select>
+          </div>
+          <div class="info-num" id="clubRankVal">1350</div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">Champion's Meeting:</div>
+          <div class="info-value">
+            <select id="champMeeting">
+              <option>Champion</option>
+              <option>Second</option>
+              <option>Third</option>
+              <option>Group B 1st</option>
+              <option selected>Group B 2nd</option>
+              <option>Group B 3rd</option>
+              <option>Open League 1st</option>
+              <option>Open League 2nd</option>
+              <option>Open League 3rd</option>
+              <option>None</option>
+            </select>
+          </div>
+          <div class="info-num" id="champVal">1250</div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">League of Heroes:</div>
+          <div class="info-value">
+            <select id="leagueHeroes">
+              <option>Platinum 4</option>
+              <option>Platinum 3</option>
+              <option>Platinum 2</option>
+              <option>Platinum 1</option>
+              <option selected>Gold 4</option>
+              <option>Gold 3</option>
+              <option>Gold 2</option>
+              <option>Gold 1</option>
+              <option>Silver 4</option>
+              <option>None</option>
+            </select>
+          </div>
+          <div class="info-num" id="leagueVal">1300</div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">Daily Carat Pack:</div>
+          <div class="info-value">
+            <select id="dailyPack">
+              <option selected>No</option>
+              <option>Yes</option>
+            </select>
+          </div>
+          <div class="info-num" id="dailyPackVal">0</div>
+        </div>
+
+        <div class="info-row" id="packStartRow">
+          <div class="info-label">Pack Start Date:</div>
+          <div class="info-value">
+            <input type="date" id="packStartDate"
+              style="background:#1a1a1a;border:none;color:#d8d8d8;font-size:13px;font-family:inherit;padding:7px 10px;outline:none;width:140px;cursor:pointer;color-scheme:dark;">
+          </div>
+          <div style="width:60px;"></div>
+        </div>
+
+        <div class="info-row" style="opacity:0.35;pointer-events:none;">
+          <div class="info-label">Training Pass:</div>
+          <div class="info-value">
+            <select id="trainingPass">
+              <option selected>Free</option>
+              <option>Paid</option>
+            </select>
+          </div>
+          <div class="info-num" id="trainingPassVal">500</div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">Login Day 1:</div>
+          <div class="info-value">
+            <select id="loginDay1">
+              <option selected>Monday</option>
+              <option>Tuesday</option>
+              <option>Wednesday</option>
+              <option>Thursday</option>
+              <option>Friday</option>
+              <option>Saturday</option>
+              <option>Sunday</option>
+            </select>
+          </div>
+          <div style="width:60px;"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Current Resources -->
+    <div class="panel" style="min-width:180px;">
+      <div class="panel-title">Current Resources</div>
+      <div class="panel-body">
+
+        <div class="info-row">
+          <div class="info-label">Carats:</div>
+          <div class="info-value">
+            <input type="text" inputmode="numeric" id="resCarat" min="0" placeholder="0" class="info-input">
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">Paid Carats:</div>
+          <div class="info-value">
+            <input type="text" inputmode="numeric" id="resPaidCarat" min="0" placeholder="0" class="info-input">
+          </div>
+        </div>
+
+        <div class="info-row" id="ticketRowUma">
+          <div class="info-label">Uma Tickets:</div>
+          <div class="info-value">
+            <input type="text" inputmode="numeric" id="resUmaTicket" min="0" placeholder="0" class="info-input">
+          </div>
+        </div>
+
+        <div class="info-row" id="ticketRowSupport">
+          <div class="info-label">Support Tickets:</div>
+          <div class="info-value">
+            <input type="text" inputmode="numeric" id="resSupportTicket" min="0" placeholder="0" class="info-input">
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">SSR Crystals:</div>
+          <div class="info-value">
+            <input type="text" inputmode="numeric" id="resSSRCrystal" min="0" placeholder="0" class="info-input">
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">SSR Shards:</div>
+          <div class="info-value">
+            <input type="text" inputmode="numeric" id="resSSRShard" min="0" placeholder="0" class="info-input">
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">SR Crystals:</div>
+          <div class="info-value">
+            <input type="text" inputmode="numeric" id="resSRCrystal" min="0" placeholder="0" class="info-input">
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">SR Shards:</div>
+          <div class="info-value">
+            <input type="text" inputmode="numeric" id="resSRShard" min="0" placeholder="0" class="info-input">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Current Events Checklist -->
+    <div class="panel" style="min-width:220px;max-width:320px;">
+      <div class="panel-title">Current Events</div>
+      <div class="panel-body ev-list" id="evChecklist"></div>
+    </div>
+
+  </div><!-- /section-group -->
+
+  <!-- Calculator -->
+  <div class="calc-header">
+    <h2>Calculator</h2>
+    <button class="sort-btn" id="sortBanners">Sort by Start Date</button>
+    <span id="sortIndicator" style="font-size:11px;font-weight:600;letter-spacing:0.3px;"></span>
+    <div style="display:flex;align-items:center;gap:6px;margin-left:auto;">
+      <span style="font-size:12px;color:#444;"># Rows</span>
+      <input type="number" id="numBanners" min="1" max="100" value="8"
+        style="background:#1a1a1a;border:1px solid #222;border-radius:5px;color:#5ecb7a;font-size:13px;font-weight:700;padding:4px 8px;width:60px;outline:none;text-align:center;">
+    </div>
+  </div>
+
+  <div id="calcTableWrap" class="table-wrap">
+    <table id="calcTable">
+      <thead>
+        <tr>
+          <th style="width:18px;"></th>
+          <th class="center" style="width:28px;"></th>
+          <th class="center cards-col">Cards</th>
+          <th class="center" style="min-width:180px;">Banner</th>
+          <th class="center" style="width:110px;">Start Date</th>
+          <th class="center" style="width:110px;">End Date</th>
+          <th class="center" style="width:100px;">Carat Est.</th>
+          <th class="center" style="width:100px;">Paid Est.</th>
+          <th class="center" style="width:100px;">Total</th>
+          <th class="center" style="width:80px;">Free Pulls</th>
+          <th class="center" style="width:80px;">Ticket Pulls</th>
+          <th class="center" style="width:80px;">Paid Pulls</th>
+          <th class="center" style="width:90px;">Max Pulls</th>
+          <th class="center" style="width:80px;"># Pulls</th>
+          <th class="center prob-th" style="width:60px;">None</th>
+          <th class="center prob-th" style="width:60px;">0LB</th>
+          <th class="center prob-th" style="width:60px;">1LB</th>
+          <th class="center prob-th" style="width:60px;">2LB</th>
+          <th class="center prob-th" style="width:60px;">3LB</th>
+          <th class="center prob-th" style="width:60px;">MLB</th>
+          <th style="width:36px;"></th>
+          <th style="width:36px;"></th>
+        </tr>
+      </thead>
+      <tbody id="calcBody"></tbody>
+    </table>
+  </div>
+
+  </div><!-- /tab-calculator -->
+
+
+</div>
+
+<script>
+// ── Banner data from server ──────────────────────────────────────
+const BANNER_DATA = {{ banners | tojson }};
+const PACK_UMA     = {{ pack_uma     | tojson }};
+const PACK_SUPPORT = {{ pack_support | tojson }};
+// name → img lookup from banner data (for card images in selectors)
+const _cardImgMap = {};
+for (const b of BANNER_DATA) {
+  for (const c of (b.cards || [])) {
+    if (c.name && c.img && !_cardImgMap[c.name]) _cardImgMap[c.name] = c.img;
+  }
+}
+const ANNIV_DATES = new Map(
+  BANNER_DATA.filter(b => b.type === "anniversary" && b.start).map(b => [b.start, b.name])
+);
+// map calculator type → JSON type
+const TYPE_MAP = { 'Uma': 'character', 'Support': 'support' };
+
+
+
+// ── Export / Import ─────────────────────────────────────────────
+document.getElementById("exportBtn").addEventListener("click", () => {
+  let checkedEvents = [];
+  try { checkedEvents = JSON.parse(localStorage.getItem(CL_KEY)) || []; } catch(_) {}
+
+  const rows = Array.from(document.querySelectorAll("#calcBody tr.calc-row"))
+    .filter(tr => tr.querySelector(".banner-cell input").value.trim())
+    .map(tr => ({
+      type:        tr.dataset.bannerType || "",
+      banner:      tr.querySelector(".banner-cell input").value.trim(),
+      start:       tr.querySelector(".date-start").textContent.trim(),
+      end:         tr.querySelector(".date-end").textContent.trim(),
+      pulls:       parseInt(tr.querySelector(".cell-pulls input").value) || 0,
+      free_pulls:  parseInt(tr.querySelector(".cell-free-pulls").textContent) || 0,
+      is_step_up:  tr.dataset.isStepUp === '1',
+      tix_disabled: tr.classList.contains("tix-disabled"),
+    }));
+
+  const plan = {
+    version: 1,
+    exported: new Date().toISOString(),
+    settings: {
+      team_trials:    document.getElementById("teamTrials").value,
+      club_rank:      document.getElementById("clubRank").value,
+      champ_meeting:  document.getElementById("champMeeting").value,
+      league_heroes:  document.getElementById("leagueHeroes").value,
+      daily_pack:     document.getElementById("dailyPack").value,
+      pack_start_date: document.getElementById("packStartDate").value,
+      training_pass:  document.getElementById("trainingPass").value,
+      login_day:      document.getElementById("loginDay1").value,
+    },
+    resources: {
+      carats:          parseInt(document.getElementById("resCarat").value) || 0,
+      paid_carats:     parseInt(document.getElementById("resPaidCarat").value) || 0,
+      uma_tickets:     parseInt(document.getElementById("resUmaTicket").value) || 0,
+      support_tickets: parseInt(document.getElementById("resSupportTicket").value) || 0,
+      ssr_crystals:    parseInt(document.getElementById("resSSRCrystal").value) || 0,
+      sr_crystals:     parseInt(document.getElementById("resSRCrystal").value) || 0,
+      ssr_shards:      parseInt(document.getElementById("resSSRShard").value) || 0,
+      sr_shards:       parseInt(document.getElementById("resSRShard").value) || 0,
+    },
+    banners: rows,
+    completed_events: checkedEvents,
+    packs_state: packsState,
+    card_tracker:  (() => { try { return JSON.parse(localStorage.getItem("cardTracker_v1"))  || {}; } catch(_) { return {}; } })(),
+    card_crystals: (() => { try { return JSON.parse(localStorage.getItem("cardCrystals_v1")) || {}; } catch(_) { return {}; } })(),
+    banner_alloc:  (() => { try { return JSON.parse(localStorage.getItem("bannerAlloc_v1"))  || {}; } catch(_) { return {}; } })(),
+  };
+
+  const blob = new Blob([JSON.stringify(plan, null, 2)], { type: "application/json" });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement("a");
+  const date = new Date().toISOString().slice(0, 10);
+  a.href = url; a.download = `pull-plan-${date}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+document.getElementById("importFile").addEventListener("change", e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    let plan;
+    try { plan = JSON.parse(ev.target.result); } catch(_) {
+      alert("Invalid JSON file."); return;
+    }
+    if (!plan.version || !plan.banners) { alert("Unrecognized format."); return; }
+
+    const set = (id, val) => { const el = document.getElementById(id); if (el && val != null) el.value = val; };
+    const s = plan.settings || {};
+    set("teamTrials",    s.team_trials);
+    set("clubRank",      s.club_rank);
+    set("champMeeting",  s.champ_meeting);
+    set("leagueHeroes",  s.league_heroes);
+    set("dailyPack",     s.daily_pack);
+    set("packStartDate", s.pack_start_date);
+    set("trainingPass",  s.training_pass);
+    set("loginDay1",     s.login_day);
+    ["teamTrials","clubRank","champMeeting","leagueHeroes","dailyPack","trainingPass"]
+      .forEach(id => document.getElementById(id).dispatchEvent(new Event("change")));
+
+    const r = plan.resources || {};
+    set("resCarat",         r.carats);
+    set("resPaidCarat",     r.paid_carats);
+    set("resUmaTicket",     r.uma_tickets);
+    set("resSupportTicket", r.support_tickets);
+    set("resSSRCrystal",    r.ssr_crystals);
+    set("resSRCrystal",     r.sr_crystals);
+    set("resSSRShard",      r.ssr_shards);
+    set("resSRShard",       r.sr_shards);
+
+    // Restore rows
+    const numBanners = Math.max(plan.banners.length, 1);
+    set("numBanners", numBanners);
+    _loading = true;
+    setRowCount(numBanners);
+    _loading = false;
+
+    const tableRows = document.querySelectorAll("#calcBody tr.calc-row");
+    plan.banners.forEach((b, i) => {
+      const tr = tableRows[i];
+      if (!tr) return;
+      tr.dataset.bannerType = b.type || "Uma";
+      tr.querySelector(".banner-cell input").value = b.banner || "";
+      tr.querySelector(".date-start").textContent  = b.start || "—";
+      tr.querySelector(".date-end").textContent    = b.end   || "—";
+      tr.querySelector(".cell-pulls input").value  = b.pulls || 0;
+      tr.querySelector(".cell-free-pulls").textContent = b.free_pulls > 0 ? b.free_pulls : "—";
+      if (b.banner) tr.classList.add("row-active");
+      if (b.tix_disabled) tr.classList.add("tix-disabled");
+
+      // Re-fetch cards and restore step-up mode from BANNER_DATA
+      const jsonType = b.is_step_up ? "step_up" : (b.type === "Uma") ? "character" : "support";
+      const found = BANNER_DATA.find(bd => bd.name === b.banner && (b.is_step_up ? bd.type === "step_up" : bd.type === jsonType));
+      if (b.is_step_up) _applyStepUpMode(tr, _getSuMaxPulls(b.banner));
+      if (found && found.cards) {
+        tr.querySelector(".cards-cell").innerHTML = `<div class="cards-inner">${found.cards.slice(0,2).map(c =>
+          `<a href="${c.url}" target="_blank" rel="noopener" title="${c.name}"><img src="${c.img}" alt="${c.name}" style="height:44px;width:auto;border-radius:3px;"></a>`
+        ).join("")}</div>`;
+      }
+    });
+
+    if (plan.completed_events) {
+      localStorage.setItem(CL_KEY, JSON.stringify(plan.completed_events));
+    }
+    if (plan.packs_state) {
+      packsState = plan.packs_state;
+      localStorage.setItem("packs_state_v1", JSON.stringify(packsState));
+    }
+    if (plan.card_tracker)  localStorage.setItem("cardTracker_v1",  JSON.stringify(plan.card_tracker));
+    if (plan.card_crystals) localStorage.setItem("cardCrystals_v1", JSON.stringify(plan.card_crystals));
+    if (plan.banner_alloc)  localStorage.setItem("bannerAlloc_v1",  JSON.stringify(plan.banner_alloc));
+
+    renderChecklist();
+    updateAllCarats();
+    saveAll();
+    e.target.value = "";
+  };
+  reader.readAsText(file);
+});
+
+// ── Reference data ──────────────────────────────────────────────
+const TEAM_TRIALS   = { 'Class 6':375,'Class 5.5':262,'Class 5':225,'Class 4':150,'Class 3':75,'Class 2':35,'Class 1':0 };
+const CLUB_RANK     = { 'SS':4500,'S+':3600,'S':3150,'A+':2700,'A':2250,'B+':1800,'B':1350,'C+':900,'C':450,'D+':225 };
+const CHAMP_MEETING = { 'Champion':3300,'Second':2400,'Third':1600,'Group B 1st':1800,'Group B 2nd':1250,'Group B 3rd':1000,'Open League 1st':1500,'Open League 2nd':1250,'Open League 3rd':1000,'None':0 };
+const CHAMP_MEETING_TICKETS = { 'Champion':10,'Second':8,'Third':6,'Group B 1st':6,'Group B 2nd':4,'Group B 3rd':2,'Open League 1st':6,'Open League 2nd':4,'Open League 3rd':2,'None':0 };
+const LEAGUE_HEROES = { 'Platinum 4':3300,'Platinum 3':2800,'Platinum 2':2300,'Platinum 1':1800,'Gold 4':1300,'Gold 3':1000,'Gold 2':700,'Gold 1':550,'Silver 4':400,'None':0 };
+const LEAGUE_HEROES_TICKETS = { 'Platinum 4':4,'Platinum 3':4,'Platinum 2':4,'Platinum 1':4,'Gold 4':4,'Gold 3':2,'Gold 2':2,'Gold 1':0,'Silver 4':0,'None':0 };
+const DAILY_PACK    = { 'No':0,'Yes':2000 };
+const TRAINING_PASS = { 'Free':500,'Paid':1000 };
+
+function bindDropdown(selectId, valId, table) {
+  const sel = document.getElementById(selectId);
+  const val = document.getElementById(valId);
+  const update = () => { val.textContent = (table[sel.value] ?? 0).toLocaleString(); };
+  sel.addEventListener("change", update);
+  update();
+}
+bindDropdown("teamTrials",   "teamTrialsVal",   TEAM_TRIALS);
+bindDropdown("clubRank",     "clubRankVal",     CLUB_RANK);
+bindDropdown("champMeeting", "champVal",        CHAMP_MEETING);
+bindDropdown("leagueHeroes", "leagueVal",       LEAGUE_HEROES);
+bindDropdown("dailyPack",    "dailyPackVal",    DAILY_PACK);
+bindDropdown("trainingPass", "trainingPassVal", TRAINING_PASS);
+
+(function() {
+  const sel = document.getElementById("dailyPack");
+  const row = document.getElementById("packStartRow");
+  const apply = () => {
+    const isNo = sel.value === "No";
+    row.style.opacity = isNo ? "0.35" : "";
+    row.style.pointerEvents = isNo ? "none" : "";
+  };
+  sel.addEventListener("change", apply);
+  apply();
+})();
+
+// ── Banner combobox ──────────────────────────────────────────────
+const dd = document.createElement("div");
+dd.id = "banner-dd";
+Object.assign(dd.style, {
+  position:"fixed", display:"none", zIndex:"9999",
+  background:"#181818", border:"1px solid #2e2e2e", borderRadius:"6px",
+  maxHeight:"220px", overflowY:"auto", boxShadow:"0 4px 16px rgba(0,0,0,0.6)"
+});
+document.body.appendChild(dd);
+
+let ddInput = null, ddRow = null;
+
+const TODAY = new Date().toISOString().slice(0, 10);
+
+function filteredBanners(query) {
+  const q = query.trim().toLowerCase();
+  return BANNER_DATA.filter(b => {
+    if (b.type === 'anniversary' || b.type === 'champions_meeting' || b.type === 'league_of_heroes') return false;
+    if (b.end && b.end < TODAY) return false;
+    return !q || b.name.toLowerCase().includes(q)
+      || (b.card_names || []).some(n => n.toLowerCase().includes(q))
+      || (b.cards || []).some(c => c.name.toLowerCase().includes(q));
+  });
+}
+
+function renderDD(query) {
+  const matches = filteredBanners(query);
+  dd.innerHTML = "";
+  if (!matches.length) {
+    const empty = Object.assign(document.createElement("div"), {textContent:"No banners found"});
+    Object.assign(empty.style, {padding:"8px 12px", color:"#444", fontSize:"12px"});
+    dd.appendChild(empty);
+    return;
+  }
+  matches.forEach(b => {
+    const item = document.createElement("div");
+    const badge = b.type === 'character'
+      ? '<span style="font-size:10px;color:#5a8ad4;background:#0d1525;border:1px solid #1a2a40;border-radius:3px;padding:1px 5px;margin-right:7px;flex-shrink:0;">UMA</span>'
+      : b.type === 'step_up'
+      ? '<span style="font-size:10px;color:#c47a2a;background:#1e1508;border:1px solid #3a2a0a;border-radius:3px;padding:1px 5px;margin-right:7px;flex-shrink:0;">STEP UP</span>'
+      : '<span style="font-size:10px;color:#9a6ac8;background:#140d1e;border:1px solid #2a1a3a;border-radius:3px;padding:1px 5px;margin-right:7px;flex-shrink:0;">SUP</span>';
+    item.innerHTML = badge + `<span>${b.name}</span>`;
+    Object.assign(item.style, {padding:"7px 12px", fontSize:"12px", color:"#bbb", cursor:"pointer", display:"flex", alignItems:"center", lineHeight:"1.4"});
+    item.addEventListener("mouseenter", () => item.style.background = "#252525");
+    item.addEventListener("mouseleave", () => item.style.background = "");
+    item.addEventListener("mousedown", e => { e.preventDefault(); pickBanner(b); });
+    dd.appendChild(item);
+  });
+}
+
+function positionDD(input) {
+  const r = input.getBoundingClientRect();
+  dd.style.left  = r.left + "px";
+  dd.style.top   = (r.bottom + 2) + "px";
+  dd.style.width = "max-content";
+  dd.style.minWidth = Math.max(r.width, 300) + "px";
+  dd.style.maxWidth = "600px";
+}
+
+function openDD(input, row) {
+  ddInput = input; ddRow = row;
+  renderDD(input.value);
+  positionDD(input);
+  dd.style.display = "block";
+}
+
+function closeDD() {
+  dd.style.display = "none";
+  ddInput = null; ddRow = null;
+}
+
+// ── Carat calculation ─────────────────────────────────────────────
+const DOW = { Monday:1, Tuesday:2, Wednesday:3, Thursday:4, Friday:5, Saturday:6, Sunday:0 };
+
+function parseLocalDate(str) {
+  const [y, m, d] = str.split("-").map(Number);
+  return new Date(y, m - 1, d);
+}
+
+function computeCaratBreakdown(endDateStr) {
+  if (!endDateStr || endDateStr === "—") return null;
+  const today = new Date(); today.setHours(0,0,0,0);
+  const end   = parseLocalDate(endDateStr);
+  const days  = Math.round((end - today) / 86400000);
+  if (days <= 0) return null;
+
+  const teamTrialsAmt = TEAM_TRIALS[document.getElementById("teamTrials").value] ?? 0;
+  const clubRankAmt   = CLUB_RANK[document.getElementById("clubRank").value]     ?? 0;
+  const day1JS        = DOW[document.getElementById("loginDay1").value]           ?? 1;
+  const resCarat      = parseInt(document.getElementById("resCarat").value) || 0;
+
+  let mondays = 0, monthStarts = 0;
+  let day1c = 0, day3c = 0, day5c = 0, day7c = 0;
+  for (let i = 1; i <= days; i++) {
+    const d = new Date(today); d.setDate(today.getDate() + i);
+    const dow = d.getDay();
+    const pos = ((dow - day1JS + 7) % 7) + 1;
+    if (pos === 1) day1c++;
+    else if (pos === 3) day3c++;
+    else if (pos === 5) day5c++;
+    else if (pos === 7) day7c++;
+    if (dow === 1) mondays++;
+    if (d.getDate() === 1) monthStarts++;
+  }
+
+  const daily          = days * 75;
+  const teamTrialsTotal = mondays * teamTrialsAmt;
+  const clubRankTotal   = monthStarts * clubRankAmt;
+  const loginBonusTotal = (day1c + day3c + day5c) * 25 + day7c * 75;
+
+  const hasPack = document.getElementById("dailyPack").value === "Yes";
+  let packDailyTotal = 0, packBonusMonths = 0, packBonusTotal = 0;
+  if (hasPack) {
+    packDailyTotal = days * 50;
+    const packStart = document.getElementById("packStartDate").value;
+    if (packStart) {
+      const startDay = parseLocalDate(packStart).getDate();
+      for (let i = 1; i <= days; i++) {
+        const d = new Date(today); d.setDate(today.getDate() + i);
+        if (d.getDate() === startDay) packBonusMonths++;
+      }
+      packBonusTotal = packBonusMonths * 500;
+    }
+  }
+
+  const caratTotal = resCarat + daily + teamTrialsTotal + clubRankTotal + loginBonusTotal + packDailyTotal;
+  const total = caratTotal + packBonusTotal;
+  return {
+    days, daily,
+    mondays, teamTrialsAmt, teamTrialsTotal,
+    monthStarts, clubRankAmt, clubRankTotal,
+    day1c, day3c, day5c, day7c, loginBonusTotal,
+    hasPack, packDailyTotal, packBonusMonths, packBonusTotal,
+    resCarat, caratTotal, total,
+  };
+}
+
+function _evCode(ev) {
+  const name = ev.name || '';
+  const annivM = name.match(/^([\d.]+)(?:st|nd|rd|th)?\s+Anniversary/i);
+  if (annivM) return `[${annivM[1]}]`;
+  if (/trainer support pack/i.test(name)) return '[TSP]';
+  const nyM = name.match(/new\s*years?\s*(\d{4})/i);
+  if (nyM) return `[NY${nyM[1].slice(-2)}]`;
+  return '';
+}
+
+function getPacksPaidCaratItems(endDateStr) {
+  if (!document.getElementById("togPackPaidCarats")?.checked) return [];
+  if (!endDateStr || endDateStr === "—") return [];
+  const today = new Date(); today.setHours(0,0,0,0);
+  const end = parseLocalDate(endDateStr);
+  if (end <= today) return [];
+  const items = [];
+  for (const ev of PACK_EVENTS) {
+    if (!ev.start) continue;
+    const evDate = parseLocalDate(ev.start);
+    if (evDate < today || evDate > end) continue;
+    const st = packsState[ev.id] || {};
+    const code = _evCode(ev);
+    const prefix = code ? `${code} ` : '';
+    if (!ev.step_up_banner) {
+      for (const pk of PACKS) {
+        const qty = st[pk.key] || 0;
+        if (qty > 0)
+          items.push({ name: `${prefix}${pk.label} ×${qty}`, amount: qty * pk.carats });
+      }
+      for (const sel of SELECTORS) {
+        if (sel.carats <= 0 || !_isSelectorVisible(ev, sel)) continue;
+        if (st[sel.key]) {
+          const label = (ev.selector_labels && ev.selector_labels[sel.key]) || sel.label;
+          items.push({ name: `${prefix}${label}`, amount: sel.carats });
+        }
+      }
+    }
+  }
+  return items;
+}
+
+function computePaidCaratEst(endDateStr) {
+  if (!endDateStr || endDateStr === "—") return null;
+  const today = new Date(); today.setHours(0,0,0,0);
+  const end = parseLocalDate(endDateStr);
+  if (Math.round((end - today) / 86400000) <= 0) return 0;
+  const bd = computeCaratBreakdown(endDateStr);
+  const resPaidCarat = parseInt(document.getElementById("resPaidCarat").value) || 0;
+  const packPaidTotal = getPacksPaidCaratItems(endDateStr).reduce((s, i) => s + i.amount, 0);
+  return (bd ? bd.packBonusTotal : 0) + resPaidCarat + packPaidTotal;
+}
+
+function computeCaratEst(endDateStr) {
+  if (!endDateStr || endDateStr === "—") return null;
+  const today = new Date(); today.setHours(0,0,0,0);
+  const end   = parseLocalDate(endDateStr);
+  if (Math.round((end - today) / 86400000) <= 0) return 0;
+  const bd = computeCaratBreakdown(endDateStr);
+  return bd ? bd.caratTotal : 0;
+}
+
+const CL_KEY = "evChecklist_v1";
+
+function getCheckedEventNames() {
+  let checked = [];
+  try { checked = JSON.parse(localStorage.getItem(CL_KEY)) || []; } catch(_) {}
+  return new Set(checked.map(k => k.split("|")[0]));
+}
+
+function getCMAmount() {
+  return CHAMP_MEETING[document.getElementById("champMeeting").value] || 0;
+}
+function getCMTickets() {
+  return CHAMP_MEETING_TICKETS[document.getElementById("champMeeting").value] || 0;
+}
+function getLOHAmount() {
+  return LEAGUE_HEROES[document.getElementById("leagueHeroes").value] || 0;
+}
+function getLOHTickets() {
+  return LEAGUE_HEROES_TICKETS[document.getElementById("leagueHeroes").value] || 0;
+}
+
+// Returns { total, items } — items is list of {name, amount} for the detail panel.
+// When fromDate is given, only includes banners whose start falls in (fromDate, toDate].
+// When fromDate is null, uses cumulative logic (all banners up to toDate still running today).
+function getEventDetails(toDate, fromDate, seenSet) {
+  if (!toDate || toDate === "—") return { total: 0, items: [] };
+  const checkedNames = getCheckedEventNames();
+  let total = 0;
+  const items = [];
+  for (const b of BANNER_DATA) {
+    if (!b.start || !b.end) continue;
+    const inRange = fromDate
+      ? (b.start > fromDate && b.start <= toDate)
+      : (b.start < toDate && b.end >= TODAY);
+    if (inRange) {
+      const withinCount = {};
+      for (const ev of (b.events || [])) {
+        withinCount[ev.name] = (withinCount[ev.name] || 0) + 1;
+        const evKey = b.start + "|" + ev.name + "|" + withinCount[ev.name];
+        if (!seenSet.has(evKey) && !checkedNames.has(ev.name)) {
+          seenSet.add(evKey);
+          total += ev.amount;
+          items.push({ key: evKey, name: ev.name, amount: ev.amount, start: b.start, sortKey: b.start });
+        }
+      }
+    }
+    if (b.type === "champions_meeting" || b.type === "league_of_heroes") {
+      const lohInRange = fromDate
+        ? (b.end > fromDate && b.end <= toDate)
+        : (b.end >= TODAY && b.end <= toDate && b.start < toDate);
+      if (lohInRange) {
+        const isLOH = b.type === "league_of_heroes";
+        const prefix = isLOH ? "LoH" : "CM";
+        const numStr = b.meeting_number != null ? ` #${b.meeting_number}` : "";
+        const cmKey = `[${prefix}${numStr}] ${b.name}|${b.start}`;
+        const cmNameKey = `[CM] ${b.name}`;
+        const cmAmount = isLOH ? getLOHAmount() : getCMAmount();
+        if (!seenSet.has(cmKey) && !checkedNames.has(cmNameKey)) {
+          seenSet.add(cmKey);
+          total += cmAmount;
+          items.push({ key: cmKey, name: b.name, amount: cmAmount, isCM: true, isLOH, meetingNum: b.meeting_number, start: b.start, sortKey: b.start });
+        }
+      }
+    }
+  }
+  items.sort((a, b) => (a.sortKey || "").localeCompare(b.sortKey || ""));
+  return { total, items };
+}
+
+function getEventEst(toDate, fromDate, seenSet) {
+  return getEventDetails(toDate, fromDate, seenSet).total;
+}
+
+const BD_COLORS = [
+  { border:'#3a5fa0', bg:'#0d1525', headerBg:'#1a2a40', text:'#7ab0f0' },
+  { border:'#6a4a8a', bg:'#140d1e', headerBg:'#2a1a3a', text:'#b08ad8' },
+  { border:'#8a5a20', bg:'#1a1000', headerBg:'#2a1e08', text:'#d4904a' },
+  { border:'#2a6a40', bg:'#0a1a10', headerBg:'#102a18', text:'#6ac898' },
+];
+
+
+function checkPullLimit(tr) {
+  const maxText = tr.querySelector(".cell-max-pulls")?.textContent.trim();
+  const maxVal  = parseInt(maxText?.replace(/,/g, "")) || 0;
+  const pullsVal = parseInt(tr.querySelector(".cell-pulls input")?.value) || 0;
+  tr.classList.toggle("row-overpulled", pullsVal > 0 && maxVal > 0 && pullsVal > maxVal);
+}
+
+function countMonthStartsTo(dateStr) {
+  const to = new Date(dateStr + 'T00:00:00');
+  let d = new Date(TODAY + 'T00:00:00');
+  d = new Date(d.getFullYear(), d.getMonth() + 1, 1);
+  let count = 0;
+  while (d <= to) { count++; d.setMonth(d.getMonth() + 1); }
+  return count;
+}
+
+function getBannerTicketRewards(toDateStr) {
+  if (!toDateStr || toDateStr === "—") return { uma: 0, support: 0 };
+  let uma = 0, support = 0;
+  for (const b of BANNER_DATA) {
+    if (!b.start || b.start > toDateStr) continue;
+    if (b.end && b.end < TODAY) continue;
+    if (!b.rewards) continue;
+    uma     += b.rewards.uma_ticket     || 0;
+    support += b.rewards.support_ticket || 0;
+  }
+  return { uma, support };
+}
+
+let _isSorted = false;
+
+function _calcIsSorted() {
+  const dates = [...document.querySelectorAll("#calcBody tr.calc-row")]
+    .map(tr => tr.querySelector(".date-start")?.textContent.trim())
+    .filter(d => d && d !== "—");
+  return dates.length === 0 || dates.every((d, i) => i === 0 || d >= dates[i - 1]);
+}
+
+function updateSortIndicator() {
+  const nowSorted = _calcIsSorted();
+  if (_isSorted && !nowSorted) {
+    document.querySelectorAll("tr.anniv-sep").forEach(el => el.remove());
+  } else if (!_isSorted && nowSorted) {
+    insertAnnivSeparators();
+  }
+  _isSorted = nowSorted;
+  const el = document.getElementById("sortIndicator");
+  if (el) {
+    el.textContent = nowSorted ? "✓ Sorted" : "✗ Not Sorted";
+    el.style.color = nowSorted ? "#5ecb7a" : "#c45050";
+  }
+}
+
+function insertAnnivSeparators() {
+  document.querySelectorAll("tr.anniv-sep").forEach(el => el.remove());
+  const seen = new Set();
+  for (const tr of document.querySelectorAll("#calcBody tr.calc-row")) {
+    const startStr = tr.querySelector(".date-start")?.textContent.trim();
+    if (startStr && startStr !== "—" && ANNIV_DATES.has(startStr) && !seen.has(startStr)) {
+      seen.add(startStr);
+      const sep = document.createElement("tr");
+      sep.className = "anniv-sep";
+      sep.innerHTML = `<td colspan="100"><div class="anniv-sep-inner">${ANNIV_DATES.get(startStr)}</div></td>`;
+      tr.parentNode.insertBefore(sep, tr);
+    }
+  }
+}
+
+function updateAllCarats() {
+  const trackTickets = document.getElementById("togTickets")?.checked !== false;
+  const resUmaTickets     = trackTickets ? (parseInt(document.getElementById("resUmaTicket").value) || 0) : 0;
+  const resSupportTickets = trackTickets ? (parseInt(document.getElementById("resSupportTicket").value) || 0) : 0;
+
+  let spentCarat          = 0;
+  let spentPaid           = 0;
+  let spentEventCarat     = 0;
+  let spentUmaTickets     = 0;
+  let spentSupportTickets = 0;
+
+  const trackPvP          = document.getElementById("togPvPTickets")?.checked !== false;
+  const trackMonthlyShop  = document.getElementById("togMonthlyShop")?.checked !== false;
+  const trackEventTickets = document.getElementById("togEventTickets")?.checked === true;
+
+  const cmTicketPerCM  = (trackTickets && trackPvP) ? getCMTickets() : 0;
+  const lohTicketPerLOH = (trackTickets && trackPvP) ? getLOHTickets() : 0;
+  const futureCMs = (trackTickets && trackPvP) ? [...BANNER_DATA]
+    .filter(b => b.type === 'champions_meeting' && b.end >= TODAY)
+    .sort((a, b) => a.end.localeCompare(b.end)) : [];
+  const futureLOHs = (trackTickets && trackPvP) ? [...BANNER_DATA]
+    .filter(b => b.type === 'league_of_heroes' && b.end >= TODAY)
+    .sort((a, b) => a.end.localeCompare(b.end)) : [];
+  const seenCMKeys  = new Set();
+  const seenLOHKeys = new Set();
+  let bonusUmaTickets     = 0;
+  let bonusSupportTickets = 0;
+  let bonusUmaLOH         = 0;
+  let bonusSupportLOH     = 0;
+  let shopUmaAcc          = 0;
+  let shopSupportAcc      = 0;
+  let seenMonthStarts     = 0;
+
+  const ttClass = document.getElementById("teamTrials").value;
+  const crClass = document.getElementById("clubRank").value;
+
+  const shownEventKeys = new Set();
+  let spentHistory = [];
+  let shownReserveUma          = false;
+  let shownReserveSupport      = false;
+  let lastUmaReportedBonus     = 0;
+  let lastSupportReportedBonus = 0;
+  let lastUmaReportedLOH       = 0;
+  let lastSupportReportedLOH   = 0;
+  let lastShopUmaReported      = 0;
+  let lastShopSupportReported  = 0;
+  let cmCountAtLastUma         = 0;
+  let cmCountAtLastSupport     = 0;
+  let lohCountAtLastUma        = 0;
+  let lohCountAtLastSupport    = 0;
+  let prevStartStr             = null;
+
+  const _calcRows = [...document.querySelectorAll("#calcBody tr.calc-row")].sort((a, b) => {
+    const da = a.querySelector(".date-start")?.textContent.trim() || "";
+    const db = b.querySelector(".date-start")?.textContent.trim() || "";
+    if (!da || da === "—") return 1;
+    if (!db || db === "—") return -1;
+    return da.localeCompare(db);
+  });
+
+  for (const tr of _calcRows) {
+    const endStr = tr.querySelector(".date-end")?.textContent.trim();
+    const startStr = tr.querySelector(".date-start")?.textContent.trim();
+
+    const rawCarat    = computeCaratEst(endStr);
+    const rawPaid     = computePaidCaratEst(endStr);
+    const packItems   = getPacksPaidCaratItems(endStr);
+    const hasDate  = rawCarat !== null;
+
+    if (endStr && endStr !== "—") {
+      for (const cm of futureCMs) {
+        if (cm.end <= endStr && !seenCMKeys.has(cm.name + cm.end)) {
+          seenCMKeys.add(cm.name + cm.end);
+          bonusUmaTickets     += cmTicketPerCM;
+          bonusSupportTickets += cmTicketPerCM;
+        }
+      }
+      for (const loh of futureLOHs) {
+        if (loh.end <= endStr && !seenLOHKeys.has(loh.name + loh.end)) {
+          seenLOHKeys.add(loh.name + loh.end);
+          bonusUmaTickets  += lohTicketPerLOH;
+          bonusSupportTickets += lohTicketPerLOH;
+          bonusUmaLOH      += lohTicketPerLOH;
+          bonusSupportLOH  += lohTicketPerLOH;
+        }
+      }
+      if (trackTickets && trackMonthlyShop) {
+        const totalMonths = countMonthStartsTo(endStr);
+        const newMonths   = totalMonths - seenMonthStarts;
+        if (newMonths > 0) {
+          bonusUmaTickets     += newMonths * 4;
+          bonusSupportTickets += newMonths * 4;
+          shopUmaAcc          += newMonths * 4;
+          shopSupportAcc      += newMonths * 4;
+          seenMonthStarts      = totalMonths;
+        }
+      }
+    }
+
+    const bannerType = tr.dataset.bannerType || "";
+
+    const rewardTix      = (trackTickets && trackEventTickets) ? getBannerTicketRewards(startStr || endStr) : { uma: 0, support: 0 };
+    const totalRewardUma     = rewardTix.uma;
+    const totalRewardSupport = rewardTix.support;
+
+    const ticketsAvail = bannerType === "Uma"
+      ? Math.max(0, resUmaTickets + bonusUmaTickets + totalRewardUma - spentUmaTickets)
+      : bannerType === "Support"
+      ? Math.max(0, resSupportTickets + bonusSupportTickets + totalRewardSupport - spentSupportTickets)
+      : 0;
+
+    // Per-type incremental: what's new since the last banner of THIS type
+    const tktBase          = bannerType === "Uma" ? resUmaTickets : resSupportTickets;
+    const showTktReserve   = tktBase > 0 && !(bannerType === "Uma" ? shownReserveUma : shownReserveSupport);
+    const typeBonus        = bannerType === "Uma" ? bonusUmaTickets : bonusSupportTickets;
+    const newBonusForType  = typeBonus - (bannerType === "Uma" ? lastUmaReportedBonus : lastSupportReportedBonus);
+    const newCMsForType    = seenCMKeys.size - (bannerType === "Uma" ? cmCountAtLastUma : cmCountAtLastSupport);
+    const newLOHsForType   = seenLOHKeys.size - (bannerType === "Uma" ? lohCountAtLastUma : lohCountAtLastSupport);
+    const newShopForType   = (bannerType === "Uma" ? shopUmaAcc : shopSupportAcc) - (bannerType === "Uma" ? lastShopUmaReported : lastShopSupportReported);
+    const typeLOHBonus     = (bannerType === "Uma" ? bonusUmaLOH : bonusSupportLOH);
+    const newLOHBonusForType = typeLOHBonus - (bannerType === "Uma" ? lastUmaReportedLOH : lastSupportReportedLOH);
+    const newCMBonusForType = newBonusForType - newShopForType - newLOHBonusForType;
+
+    tr.querySelector(".cell-ticket-pulls").textContent = ticketsAvail > 0 ? ticketsAvail.toLocaleString() : "—";
+    tr.querySelector(".cell-paid-pulls").textContent   = "—";
+
+    if (!hasDate) {
+      tr.querySelector(".cell-carat").textContent      = "—";
+      tr.querySelector(".cell-paid-carat").textContent = "—";
+      tr.querySelector(".cell-total").textContent      = "—";
+      tr.querySelector(".cell-max-pulls").textContent  = "—";
+      checkPullLimit(tr);
+      continue;
+    }
+
+    const evDetails = getEventDetails(endStr, null, new Set());
+    const evVal = Math.max(0, evDetails.total - spentEventCarat);
+
+    const availCarat = Math.max(0, rawCarat - spentCarat);
+    const caratDeficit = Math.max(0, spentCarat - rawCarat);
+    const availPaid  = Math.max(0, rawPaid - spentPaid - caratDeficit);
+    const totalVal   = availCarat + availPaid + evVal;
+
+    tr.querySelector(".cell-carat").textContent      = (availCarat + evVal).toLocaleString();
+    tr.querySelector(".cell-paid-carat").textContent = availPaid.toLocaleString();
+    tr.querySelector(".cell-total").textContent      = totalVal.toLocaleString();
+
+    const freePullsVal = parseInt(tr.querySelector(".cell-free-pulls").textContent) || 0;
+    const tixDisabled  = tr.classList.contains("tix-disabled");
+    const isStepUp     = tr.dataset.isStepUp === '1';
+    let suMaxPulls = 0;
+    if (isStepUp) {
+      const selectorMax   = parseInt(tr.dataset.suSelectorMax) || 0;
+      const affordableMax = _suMaxAffordable(availPaid);
+      suMaxPulls = selectorMax > 0 ? Math.min(selectorMax, affordableMax) : 0;
+      tr.dataset.suMaxPulls = suMaxPulls;
+    }
+    const tixForMax    = tixDisabled ? 0 : ticketsAvail;
+    const maxPulls = isStepUp
+      ? suMaxPulls
+      : (totalVal > 0 || freePullsVal > 0 || tixForMax > 0)
+        ? Math.floor(totalVal / 150) + freePullsVal + tixForMax
+        : 0;
+    tr.querySelector(".cell-max-pulls").textContent = maxPulls > 0 ? maxPulls.toLocaleString() : "—";
+
+    checkPullLimit(tr);
+
+    const priorHistory = [...spentHistory];
+
+    const _pullsInp = tr.querySelector('.cell-pulls input');
+    let pullsEntered = parseInt(_pullsInp.value) || 0;
+    if (isStepUp && suMaxPulls > 0 && pullsEntered > suMaxPulls) {
+      pullsEntered = suMaxPulls;
+    }
+    let caratUsedByRow = 0, paidUsedByRow = 0, freeUsedByRow = 0, ticketsUsedByRow = 0, evUsedByRow = 0;
+    if (pullsEntered > 0) {
+      if (isStepUp) {
+        paidUsedByRow = Math.min(availPaid, _suTotalCost(pullsEntered));
+        spentPaid += paidUsedByRow;
+      } else {
+        freeUsedByRow     = Math.min(freePullsVal, pullsEntered);
+        const afterFree   = pullsEntered - freeUsedByRow;
+        const effectiveTix = tr.classList.contains("tix-disabled") ? 0 : ticketsAvail;
+        ticketsUsedByRow  = Math.min(effectiveTix, afterFree);
+        const afterTix    = afterFree - ticketsUsedByRow;
+        const caratCost   = afterTix * 150;
+        caratUsedByRow    = Math.min(availCarat, caratCost);
+        evUsedByRow       = Math.min(evVal, Math.max(0, caratCost - caratUsedByRow));
+        paidUsedByRow     = Math.min(availPaid,  Math.max(0, caratCost - caratUsedByRow - evUsedByRow));
+        spentCarat += caratUsedByRow;
+        spentPaid  += paidUsedByRow;
+        spentEventCarat += evUsedByRow;
+        if (bannerType === "Uma")     spentUmaTickets     += ticketsUsedByRow;
+        if (bannerType === "Support") spentSupportTickets += ticketsUsedByRow;
+      }
+      const bName = tr.querySelector(".banner-cell input")?.value || "?";
+      if (caratUsedByRow > 0 || paidUsedByRow > 0 || evUsedByRow > 0 || ticketsUsedByRow > 0)
+        spentHistory.push({ banner: bName, carat: caratUsedByRow, paid: paidUsedByRow, ev: evUsedByRow, tickets: ticketsUsedByRow, type: bannerType });
+    }
+
+    // Inject breakdown into the paired detail row
+    if (tr._detailRow) {
+      const bd = computeCaratBreakdown(endStr);
+      const resPaidCarat = parseInt(document.getElementById("resPaidCarat").value) || 0;
+      const detailCell = tr._detailRow.querySelector("td");
+      if (bd) {
+        const windowEvDetails = getEventDetails(startStr, prevStartStr, new Set());
+        const priorEvTotal = Math.max(0, evDetails.total - windowEvDetails.total);
+        const evRows = (() => {
+          let html = '';
+          if (priorEvTotal > 0) html += `<div class="dp-row" style="color:#888;"><span>From prior banners</span><span>+${priorEvTotal.toLocaleString()}</span></div>`;
+          let prevGroup = null;
+          for (const ev of windowEvDetails.items) {
+            const grp = ev.isCM ? 'CM|' + ev.start : ev.start;
+            if (prevGroup !== null && prevGroup !== grp) html += `<hr class="dp-sep">`;
+            prevGroup = grp;
+            const evPrefix = ev.isCM ? (ev.isLOH ? `[LoH${ev.meetingNum != null ? ` #${ev.meetingNum}` : ''}] ` : `[CM${ev.meetingNum != null ? ` #${ev.meetingNum}` : ''}] `) : '';
+            html += `<div class="dp-row"><span>${evPrefix}${ev.name}</span><span>+${ev.amount.toLocaleString()}</span></div>`;
+          }
+          if (!priorEvTotal && !windowEvDetails.items.length) html = `<div class="dp-row"><span style="font-style:italic;color:#777;">None</span><span>—</span></div>`;
+          return html;
+        })();
+
+        const deductRows = priorHistory.length > 0
+          ? priorHistory.map(h => {
+              const normal = h.carat + (h.ev || 0);
+              const tot = normal + h.paid;
+              const valStr = tot > 0 ? `−${tot.toLocaleString()}` : (h.tickets > 0 ? '' : '—');
+              const subs = [
+                normal      > 0 ? `<div class="dp-row dp-neg dp-sub"><span>Normal</span><span>−${normal.toLocaleString()}</span></div>` : '',
+                h.paid      > 0 ? `<div class="dp-row dp-neg dp-sub"><span>Paid</span><span>−${h.paid.toLocaleString()}</span></div>` : '',
+                h.tickets   > 0 ? `<div class="dp-row dp-neg dp-sub"><span>Tickets</span><span>−${h.tickets}</span></div>` : '',
+              ].join('');
+              return `<div class="dp-row dp-neg"><span>${h.banner}</span><span>${valStr}</span></div>${subs}`;
+            }).join('')
+          : `<div class="dp-row"><span style="font-style:italic;color:#777;">None</span><span>—</span></div>`;
+
+        const priorTotalNormal     = priorHistory.reduce((s, h) => s + h.carat + (h.ev || 0), 0);
+        const priorTotalPaid       = priorHistory.reduce((s, h) => s + h.paid, 0);
+        const priorTotalUmaTix     = priorHistory.filter(h => h.type === "Uma").reduce((s, h) => s + h.tickets, 0);
+        const priorTotalSupportTix = priorHistory.filter(h => h.type === "Support").reduce((s, h) => s + h.tickets, 0);
+        const priorSummaryRows = priorHistory.length === 0
+          ? `<div class="dp-row"><span style="font-style:italic;color:#777;">None</span><span>—</span></div>`
+          : ([
+              priorTotalNormal     > 0 ? `<div class="dp-row dp-neg"><span>Normal carats</span><span>−${priorTotalNormal.toLocaleString()}</span></div>` : '',
+              priorTotalPaid       > 0 ? `<div class="dp-row dp-neg"><span>Paid carats</span><span>−${priorTotalPaid.toLocaleString()}</span></div>` : '',
+              priorTotalUmaTix     > 0 ? `<div class="dp-row dp-neg"><span>Uma tickets</span><span>−${priorTotalUmaTix}</span></div>` : '',
+              priorTotalSupportTix > 0 ? `<div class="dp-row dp-neg"><span>Support tickets</span><span>−${priorTotalSupportTix}</span></div>` : '',
+            ].filter(Boolean).join('') || `<div class="dp-row"><span style="font-style:italic;color:#777;">None</span><span>—</span></div>`);
+
+        const actualPullCost = caratUsedByRow + paidUsedByRow + evUsedByRow;
+        const pullParts = [];
+        if (freeUsedByRow    > 0) pullParts.push(`${freeUsedByRow} free`);
+        if (ticketsUsedByRow > 0) pullParts.push(`${ticketsUsedByRow} ticket${ticketsUsedByRow !== 1 ? 's' : ''}`);
+        const pullNormal = caratUsedByRow + evUsedByRow;
+        const pullSubs = [
+          pullNormal    > 0 ? `<div class="dp-row dp-neg dp-sub"><span>Normal</span><span>−${pullNormal.toLocaleString()}</span></div>` : '',
+          paidUsedByRow > 0 ? `<div class="dp-row dp-neg dp-sub"><span>Paid</span><span>−${paidUsedByRow.toLocaleString()}</span></div>` : '',
+          ticketsUsedByRow > 0 ? `<div class="dp-row dp-neg dp-sub"><span>Tickets</span><span>−${ticketsUsedByRow}</span></div>` : '',
+        ].join('');
+        const pullRows = pullsEntered > 0
+          ? `<div class="dp-row dp-neg"><span>${pullsEntered} pulls${pullParts.length ? ` (${pullParts.join(', ')})` : ''}</span><span>${actualPullCost > 0 ? `−${actualPullCost.toLocaleString()}` : '—'}</span></div>${pullSubs}`
+          : `<div class="dp-row"><span style="font-style:italic;color:#777;">No pulls entered</span><span>—</span></div>`;
+
+        detailCell.innerHTML = `<div class="detail-panel">
+          <div class="dp-col">
+            <div class="dp-lbl">Carat Income (${bd.days} days)</div>
+            <div class="dp-row"><span>Carat Reserve</span><span>${bd.resCarat.toLocaleString()}</span></div>
+            <div class="dp-row"><span>Daily (75 × ${bd.days})</span><span>${bd.daily.toLocaleString()}</span></div>
+            <div class="dp-row"><span>Login Bonus (d1/3/5 ×${bd.day1c + bd.day3c + bd.day5c} · d7 ×${bd.day7c})</span><span>${bd.loginBonusTotal.toLocaleString()}</span></div>
+            <div class="dp-row"><span>Team Trials (${ttClass} · ${bd.teamTrialsAmt.toLocaleString()}/wk × ${bd.mondays})</span><span>${bd.teamTrialsTotal.toLocaleString()}</span></div>
+            <div class="dp-row"><span>Club Rank (${crClass} · ${bd.clubRankAmt.toLocaleString()}/mo × ${bd.monthStarts})</span><span>${bd.clubRankTotal.toLocaleString()}</span></div>
+            ${bd.hasPack ? `<div class="dp-row"><span>Daily Pack (50/day × ${bd.days})</span><span>${bd.packDailyTotal.toLocaleString()}</span></div>` : ""}
+            ${evDetails.total > 0 ? `<div class="dp-row"><span>Events</span><span>${evDetails.total.toLocaleString()}</span></div>` : ""}
+            <div class="dp-total"><span>Carat Est.</span><span>${(rawCarat + evDetails.total).toLocaleString()}</span></div>
+            ${priorTotalNormal > 0 ? `<div class="dp-row dp-neg"><span>Prior deductions</span><span>−${priorTotalNormal.toLocaleString()}</span></div>` : ''}
+            <div class="dp-row dp-green"><span>Remaining</span><span>${(availCarat + evVal).toLocaleString()}</span></div>
+            ${bd.packBonusTotal > 0 || resPaidCarat > 0 || packItems.length > 0 ? `
+            <div class="dp-lbl">Paid Income</div>
+            <div class="dp-total"><span>Paid Est.</span><span>${rawPaid.toLocaleString()}</span></div>
+            ${(rawPaid - availPaid) > 0 ? `<div class="dp-row dp-neg"><span>Prior deductions</span><span>−${(rawPaid - availPaid).toLocaleString()}</span></div>` : ''}
+            <div class="dp-row dp-green"><span>Remaining</span><span>${availPaid.toLocaleString()}</span></div>
+            <details class="dp-details"><summary>Show breakdown</summary>
+              ${resPaidCarat > 0 ? `<div class="dp-row"><span>Paid Reserve</span><span>${resPaidCarat.toLocaleString()}</span></div>` : ""}
+              ${bd.packBonusTotal > 0 ? `<div class="dp-row"><span>Pack Bonus × ${bd.packBonusMonths} mo</span><span>${bd.packBonusTotal.toLocaleString()}</span></div>` : ""}
+              ${packItems.map(item => `<div class="dp-row"><span>${item.name}</span><span>${item.amount.toLocaleString()}</span></div>`).join('')}
+            </details>` : ""}
+            ${(() => {
+              if (!trackTickets || !bannerType) return '';
+              const bonusType    = bannerType === "Uma" ? bonusUmaTickets : bonusSupportTickets;
+              const shopType     = bannerType === "Uma" ? shopUmaAcc : shopSupportAcc;
+              const lohType      = bannerType === "Uma" ? bonusUmaLOH : bonusSupportLOH;
+              const cmOnlyType   = bonusType - shopType - lohType;
+              const rwdTix       = bannerType === "Uma" ? totalRewardUma : totalRewardSupport;
+              const totalTix     = tktBase + bonusType + rwdTix;
+              if (totalTix === 0) return '';
+              const priorSpentTix = totalTix - ticketsAvail;
+              let items = '';
+              if (tktBase > 0) items += `<div class="dp-row"><span>Reserve</span><span>+${tktBase}</span></div>`;
+              if (cmOnlyType > 0) items += `<div class="dp-row"><span>Champion's Meeting${seenCMKeys.size > 1 ? ` (${seenCMKeys.size})` : ''}</span><span>+${cmOnlyType}</span></div>`;
+              if (lohType > 0) items += `<div class="dp-row"><span>League of Heroes${seenLOHKeys.size > 1 ? ` (${seenLOHKeys.size})` : ''}</span><span>+${lohType}</span></div>`;
+              if (shopType > 0) { const shopMo = shopType / 4; items += `<div class="dp-row"><span>Monthly Shop ×${shopMo} mo</span><span>+${shopType}</span></div>`; }
+              if (rwdTix > 0) items += `<div class="dp-row"><span>${bannerType} Ticket Rewards</span><span>+${rwdTix}</span></div>`;
+              let html = `<div class="dp-lbl" style="margin-top:10px;">${bannerType} Tickets</div>`;
+              html += `<div class="dp-total"><span>${bannerType} Tickets</span><span>${totalTix}</span></div>`;
+              if (priorSpentTix > 0) html += `<div class="dp-row dp-neg"><span>Prior deductions</span><span>−${priorSpentTix}</span></div>`;
+              html += `<div class="dp-row dp-green"><span>Remaining</span><span>${ticketsAvail}</span></div>`;
+              html += `<details class="dp-details"><summary>Show breakdown</summary>${items}</details>`;
+              return tixDisabled ? `<div style="opacity:0.35">${html}</div>` : html;
+            })()}
+          </div>
+          <div class="dp-col">
+            <div class="dp-lbl">Events</div>
+            ${evRows}
+            ${windowEvDetails.total > 0 ? `<div class="dp-row dp-green"><span>Total this banner</span><span>${windowEvDetails.total.toLocaleString()}</span></div>` : ''}
+            <div class="dp-total"><span>Event Est.</span><span>${evDetails.total.toLocaleString()}</span></div>
+          </div>
+          <div class="dp-col">
+            <div class="dp-lbl">Prior Deductions</div>
+            ${priorSummaryRows}
+            ${priorHistory.length > 0 ? `<details class="dp-details"><summary>Show per banner</summary>${deductRows}</details>` : ''}
+            <div class="dp-lbl">Available</div>
+            <div class="dp-row"><span>Carat Est.</span><span>${(availCarat + evVal).toLocaleString()}</span></div>
+            <div class="dp-row"><span>Paid Est.</span><span>${availPaid.toLocaleString()}</span></div>
+            <div class="dp-total"><span>Total Carats</span><span>${totalVal.toLocaleString()}</span></div>
+            <div class="dp-row" style="margin-top:8px;"><span>Carat Pulls</span><span>${Math.floor(totalVal / 150).toLocaleString()}</span></div>
+            ${freePullsVal > 0 ? `<div class="dp-row"><span>Free Pulls</span><span>${freePullsVal}</span></div>` : ""}
+            ${ticketsAvail > 0 ? `<div class="dp-row"${tixDisabled ? ' style="opacity:0.35"' : ''}><span>${bannerType} Tickets</span><span>${ticketsAvail}</span></div>` : ""}
+            <div class="dp-total"><span>Max Pulls</span><span>${maxPulls > 0 ? maxPulls.toLocaleString() : "—"}</span></div>
+            <div class="dp-lbl">This Banner's Pull Cost</div>
+            ${pullRows}
+          </div>
+        </div>`;
+      }
+      if (bannerType === "Uma") {
+        if (showTktReserve) shownReserveUma = true;
+        lastUmaReportedBonus  = bonusUmaTickets;
+        lastUmaReportedLOH    = bonusUmaLOH;
+        lastShopUmaReported   = shopUmaAcc;
+        cmCountAtLastUma      = seenCMKeys.size;
+        lohCountAtLastUma     = seenLOHKeys.size;
+      } else if (bannerType === "Support") {
+        if (showTktReserve) shownReserveSupport = true;
+        lastSupportReportedBonus = bonusSupportTickets;
+        lastSupportReportedLOH   = bonusSupportLOH;
+        lastShopSupportReported  = shopSupportAcc;
+        cmCountAtLastSupport     = seenCMKeys.size;
+        lohCountAtLastSupport    = seenLOHKeys.size;
+      }
+      evDetails.items.forEach(ev => shownEventKeys.add(ev.key));
+    }
+    if (startStr && startStr !== "—") prevStartStr = startStr;
+  }
+
+  updateSortIndicator();
+}
+
+function pickBanner(b) {
+  if (!ddInput || !ddRow) return;
+  ddInput.value = b.name;
+  ddRow.dataset.bannerType = b.type === 'character' ? 'Uma' : b.type === 'support' ? 'Support' : '';
+  ddRow.querySelector(".date-start").textContent = b.start || "—";
+  ddRow.querySelector(".date-end").textContent   = b.end   || "—";
+  const cardsCell = ddRow.querySelector(".cards-cell");
+  cardsCell.innerHTML = `<div class="cards-inner">${(b.cards || []).slice(0, 2).map(c =>
+    `<a href="${c.url}" target="_blank" rel="noopener" title="${c.name}"><img src="${c.img}" alt="${c.name}" style="height:44px;width:auto;border-radius:3px;"></a>`
+  ).join("")}</div>`;
+  ddRow.querySelector(".cell-free-pulls").textContent = (b.free > 0) ? b.free : "—";
+  if (b.type === 'step_up') {
+    const maxPulls = _getSuMaxPulls(b.name);
+    _applyStepUpMode(ddRow, maxPulls);
+  } else {
+    _clearStepUpMode(ddRow);
+  }
+  ddRow.classList.add("row-active");
+  closeDD();
+  updateAllCarats();
+  saveAll();
+}
+
+document.addEventListener("click",  e => { if (e.target !== ddInput && !dd.contains(e.target)) closeDD(); });
+document.addEventListener("scroll", () => { if (ddInput) positionDD(ddInput); }, true);
+window.addEventListener("resize",   () => { if (ddInput) positionDD(ddInput); });
+
+// ── Rows ─────────────────────────────────────────────────────────
+function makeRow(data = {}) {
+  const tr = document.createElement("tr");
+  tr.className = "calc-row";
+  tr.innerHTML = `
+    <td class="drag-handle">⠿</td>
+    <td class="row-num center"></td>
+    <td class="cards-cell center"></td>
+    <td class="banner-cell"><input type="text" placeholder="Search banner…" autocomplete="off"></td>
+    <td class="date-start cell-auto center">—</td>
+    <td class="date-end cell-auto center">—</td>
+    <td class="cell-carat cell-auto">—</td>
+    <td class="cell-paid-carat cell-auto center">—</td>
+    <td class="cell-total cell-auto center">—</td>
+    <td class="center cell-su-combined" colspan="3" style="display:none;">—</td>
+    <td class="center cell-auto cell-free-pulls">—</td>
+    <td class="center cell-auto cell-ticket-pulls">—</td>
+    <td class="center cell-auto cell-paid-pulls">—</td>
+    <td class="center cell-auto cell-max-pulls">—</td>
+    <td class="center cell-pulls"><input type="text" inputmode="numeric" placeholder="0"></td>
+    <td class="center cell-pct-none">100.0%</td>
+    <td class="center cell-pct">0.0%</td>
+    <td class="center cell-pct">0.0%</td>
+    <td class="center cell-pct">0.0%</td>
+    <td class="center cell-pct">0.0%</td>
+    <td class="center cell-pct">0.0%</td>
+    <td class="center"><button class="expand-btn" title="Show breakdown">▼</button></td>
+    <td class="center"><button class="clear-row-btn" title="Clear row">✕</button></td>
+  `;
+
+  const detailRow = document.createElement("tr");
+  detailRow.className = "detail-row";
+  detailRow.style.display = "none";
+  const detailCell = document.createElement("td");
+  detailCell.colSpan = 20;
+  detailCell.className = "detail-cell";
+  detailCell.innerHTML = '<div class="detail-panel" style="padding:12px 16px;color:#444;font-size:12px;">Select a banner to see the breakdown.</div>';
+  detailRow.appendChild(detailCell);
+  tr._detailRow = detailRow;
+
+  const expandBtn = tr.querySelector(".expand-btn");
+  expandBtn.addEventListener("click", () => {
+    const open = detailRow.style.display !== "none";
+    detailRow.style.display = open ? "none" : "";
+    expandBtn.textContent = open ? "▼" : "▲";
+  });
+
+  const bannerInput   = tr.querySelector(".banner-cell input");
+  const pullsInput    = tr.querySelector(".cell-pulls input");
+
+  // restore saved data
+  if (data.type)        tr.dataset.bannerType = data.type;
+  if (data.banner)      bannerInput.value = data.banner;
+  if (data.startDate)   tr.querySelector(".date-start").textContent = data.startDate;
+  if (data.endDate)     tr.querySelector(".date-end").textContent   = data.endDate;
+  if (data.cardsHTML)   tr.querySelector(".cards-cell").innerHTML   = data.cardsHTML;
+  if (data.pulls) pullsInput.value = data.pulls;
+  if (data.tixDisabled) tr.classList.add("tix-disabled");
+  if (data.banner) {
+    const jsonType = data.type ? (TYPE_MAP[data.type] || null) : null;
+    const found = BANNER_DATA.find(b => b.name === data.banner && (!jsonType || b.type === jsonType));
+    if (found) {
+      tr.querySelector(".cell-free-pulls").textContent = (found.free > 0) ? found.free : "—";
+      if (!data.type) tr.dataset.bannerType = found.type === 'character' ? 'Uma' : found.type === 'support' ? 'Support' : '';
+      if (found.type === 'step_up') _applyStepUpMode(tr, _getSuMaxPulls(found.name));
+    } else if (data.freePulls && data.freePulls !== "—") {
+      tr.querySelector(".cell-free-pulls").textContent = data.freePulls;
+    }
+    tr.classList.add("row-active");
+  }
+
+  // combobox events
+  bannerInput.addEventListener("focus", () => openDD(bannerInput, tr));
+  bannerInput.addEventListener("input", () => {
+    ddInput = bannerInput; ddRow = tr;
+    renderDD(bannerInput.value);
+    positionDD(bannerInput);
+    dd.style.display = "block";
+    saveAll();
+  });
+  bannerInput.addEventListener("keydown", e => {
+    if (e.key === "Escape") closeDD();
+    if (e.key === "Enter") {
+      const first = dd.querySelector("div");
+      if (first) first.dispatchEvent(new MouseEvent("mousedown"));
+    }
+  });
+
+  pullsInput.addEventListener("input", () => {
+    if (tr.dataset.isStepUp === '1') {
+      const max = parseInt(tr.dataset.suMaxPulls) || 0;
+      if (max > 0 && (parseInt(pullsInput.value) || 0) > max) pullsInput.value = max;
+      _suUpdateCombined(tr);
+    }
+    updateAllCarats(); saveAll();
+  });
+  return { mainRow: tr, detailRow };
+}
+
+function setRowCount(n, rowData) {
+  n = Math.max(1, Math.min(100, n));
+  const body = document.getElementById("calcBody");
+  const mainRows = () => [...body.querySelectorAll("tr.calc-row")];
+  while (mainRows().length < n) {
+    const idx = mainRows().length;
+    const { mainRow, detailRow } = makeRow(rowData ? (rowData[idx] || {}) : {});
+    body.appendChild(mainRow);
+    body.appendChild(detailRow);
+  }
+  while (mainRows().length > n) {
+    const rows = mainRows();
+    const last = rows[rows.length - 1];
+    if (last._detailRow) last._detailRow.remove();
+    last.remove();
+  }
+}
+
+// ── Persistence ──────────────────────────────────────────────────
+const STORE_KEY   = "caratCalc_v1";
+const PROFILE_KEY = "caratCalcProfiles_v1";
+let _loading = false;
+
+function _loadProfiles() {
+  try {
+    const p = JSON.parse(localStorage.getItem(PROFILE_KEY));
+    if (p && Array.isArray(p.slots) && p.slots.length === 5) return p;
+  } catch(_) {}
+  // First load: migrate existing caratCalc_v1 into slot 0
+  let existing = null;
+  try { existing = JSON.parse(localStorage.getItem(STORE_KEY)); } catch(_) {}
+  return { active: 0, slots: [existing, null, null, null, null] };
+}
+function _saveProfiles() { localStorage.setItem(PROFILE_KEY, JSON.stringify(_profiles)); }
+
+let _profiles = _loadProfiles();
+
+function _renderProfileBtns() {
+  const wrap = document.getElementById("profileSlots");
+  if (!wrap) return;
+  wrap.innerHTML = _profiles.slots.map((slot, i) => {
+    const isActive = i === _profiles.active;
+    const isEmpty  = slot === null;
+    return `<button class="profile-slot-btn${isActive ? ' active' : ''}${!isActive && isEmpty ? ' empty' : ''}"
+      data-slot="${i}" title="Profile ${i + 1}${isEmpty ? ' (empty)' : ''}">${i + 1}</button>`;
+  }).join('');
+  wrap.querySelectorAll('.profile-slot-btn').forEach(btn => {
+    btn.addEventListener('click', () => switchProfile(parseInt(btn.dataset.slot)));
+  });
+}
+
+function switchProfile(i) {
+  if (i === _profiles.active) return;
+  // Snapshot current slot before leaving (include packs state)
+  const _departCalc  = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
+  let   _departPacks = null;
+  try { _departPacks = JSON.parse(localStorage.getItem("packs_state_v1")); } catch(_) {}
+  _profiles.slots[_profiles.active] = _departCalc ? { ..._departCalc, _packsState: _departPacks } : null;
+  _profiles.active = i;
+  _saveProfiles();
+
+  const slot = _profiles.slots[i];
+  // Clear existing rows
+  const body = document.getElementById("calcBody");
+  body.innerHTML = "";
+
+  _loading = true;
+  if (slot) {
+    const { _packsState, ...calcState } = slot;
+    localStorage.setItem(STORE_KEY, JSON.stringify(calcState));
+    // Restore packs state (null = clear it for this profile)
+    if (_packsState != null) {
+      localStorage.setItem("packs_state_v1", JSON.stringify(_packsState));
+    } else {
+      localStorage.removeItem("packs_state_v1");
+    }
+    loadAll(calcState);
+    loadPacksState();
+    const count = parseInt(calcState.numBanners) || 8;
+    document.getElementById("numBanners").value = count;
+    setRowCount(count, calcState.rows || []);
+  } else {
+    localStorage.removeItem(STORE_KEY);
+    localStorage.removeItem("packs_state_v1");
+    // Reset all form inputs to blank/default
+    ["teamTrials","clubRank","champMeeting","leagueHeroes","dailyPack","trainingPass"].forEach(id => {
+      const el = document.getElementById(id); if (el) el.value = "0";
+    });
+    ["loginDay1","packStartDate"].forEach(id => {
+      const el = document.getElementById(id); if (el) el.value = "";
+    });
+    ["resCarat","resPaidCarat","resUmaTicket","resSupportTicket",
+     "resSSRCrystal","resSRCrystal","resSSRShard","resSRShard"].forEach(id => {
+      const el = document.getElementById(id); if (el) el.value = "0";
+    });
+    packsState = {};
+    document.getElementById("numBanners").value = 8;
+    setRowCount(8, null);
+  }
+  _loading = false;
+
+  ["teamTrials","clubRank","champMeeting","leagueHeroes","dailyPack","trainingPass"]
+    .forEach(id => document.getElementById(id)?.dispatchEvent(new Event("change")));
+  pruneExpiredRows();
+  renderChecklist();
+  updateAllCarats();
+  _renderProfileBtns();
+}
+
+function saveAll() {
+  if (_loading) return;
+  const rows = Array.from(document.querySelectorAll("#calcBody tr.calc-row")).map(tr => ({
+    type:      tr.dataset.bannerType || "",
+    banner:    tr.querySelector(".banner-cell input").value,
+    startDate:  tr.querySelector(".date-start").textContent.trim(),
+    endDate:    tr.querySelector(".date-end").textContent.trim(),
+    cardsHTML:  tr.querySelector(".cards-cell").innerHTML,
+    pulls:      tr.querySelector(".cell-pulls input").value,
+    freePulls:  tr.querySelector(".cell-free-pulls").textContent.trim(),
+    tixDisabled: tr.classList.contains("tix-disabled"),
+  }));
+  const state = {
+    teamTrials: document.getElementById("teamTrials").value,
+    clubRank: document.getElementById("clubRank").value,
+    champMeeting: document.getElementById("champMeeting").value,
+    leagueHeroes: document.getElementById("leagueHeroes").value,
+    dailyPack: document.getElementById("dailyPack").value,
+    packStartDate: document.getElementById("packStartDate").value,
+    trainingPass: document.getElementById("trainingPass").value,
+    loginDay1: document.getElementById("loginDay1").value,
+    resCarat: document.getElementById("resCarat").value,
+    resPaidCarat: document.getElementById("resPaidCarat").value,
+    resUmaTicket: document.getElementById("resUmaTicket").value,
+    resSupportTicket: document.getElementById("resSupportTicket").value,
+    resSSRCrystal: document.getElementById("resSSRCrystal").value,
+    resSRCrystal: document.getElementById("resSRCrystal").value,
+    resSSRShard: document.getElementById("resSSRShard").value,
+    resSRShard: document.getElementById("resSRShard").value,
+    numBanners: document.getElementById("numBanners").value,
+    rows,
+  };
+  let _packsSnap = null;
+  try { _packsSnap = JSON.parse(localStorage.getItem("packs_state_v1")); } catch(_) {}
+  const stateWithPacks = { ...state, _packsState: _packsSnap };
+  localStorage.setItem(STORE_KEY, JSON.stringify(state));
+  // Keep active profile slot in sync
+  _profiles.slots[_profiles.active] = stateWithPacks;
+  _saveProfiles();
+}
+
+function loadAll(stateOverride) {
+  let state = stateOverride || null;
+  if (!state) {
+    try { state = JSON.parse(localStorage.getItem(STORE_KEY)); } catch (_) {}
+  }
+  if (!state) return null;
+  const set = (id, val) => { const el = document.getElementById(id); if (el && val != null) el.value = val; };
+  set("teamTrials", state.teamTrials); set("clubRank", state.clubRank);
+  set("champMeeting", state.champMeeting); set("leagueHeroes", state.leagueHeroes);
+  set("dailyPack", state.dailyPack); set("packStartDate", state.packStartDate); set("trainingPass", state.trainingPass);
+  set("loginDay1", state.loginDay1);
+  set("resCarat", state.resCarat); set("resPaidCarat", state.resPaidCarat);
+  set("resUmaTicket", state.resUmaTicket);
+  set("resSupportTicket", state.resSupportTicket); set("resSSRCrystal", state.resSSRCrystal);
+  set("resSRCrystal", state.resSRCrystal); set("resSSRShard", state.resSSRShard);
+  set("resSRShard", state.resSRShard);
+  if (state.numBanners != null)
+    document.getElementById("numBanners").value = state.numBanners;
+  ["teamTrials","clubRank","champMeeting","leagueHeroes","dailyPack","trainingPass"]
+    .forEach(id => document.getElementById(id).dispatchEvent(new Event("change")));
+  return state;
+}
+
+// ── Event checklist ──────────────────────────────────────────────
+function renderChecklist() {
+  const container = document.getElementById("evChecklist");
+  const seen = new Set(), events = [];
+  const sorted = [...BANNER_DATA].sort((a, b) => (a.start || "").localeCompare(b.start || ""));
+  for (const b of sorted) {
+    if (!b.start || !b.end) continue;
+    if (b.start <= TODAY && b.end >= TODAY) {
+      for (const ev of (b.events || [])) {
+        if (!seen.has(ev.name)) { seen.add(ev.name); events.push({ name: ev.name, amount: ev.amount, sortKey: b.end }); }
+      }
+      if (b.type === "champions_meeting" || b.type === "league_of_heroes") {
+        const cmKey = `[CM] ${b.name}`;
+        if (!seen.has(cmKey)) {
+          seen.add(cmKey);
+          events.push({ name: cmKey, display: b.name, amount: b.type === "league_of_heroes" ? getLOHAmount() : getCMAmount(), sortKey: b.end });
+        }
+      }
+    }
+  }
+  events.sort((a, b) => (a.sortKey || "").localeCompare(b.sortKey || ""));
+  let checked = [];
+  try { checked = JSON.parse(localStorage.getItem(CL_KEY)) || []; } catch(_) {}
+  const checkedSet = new Set(checked);
+  if (!events.length) {
+    container.innerHTML = '<div class="ev-none">No active events</div>';
+    return;
+  }
+  container.innerHTML = events.map(ev => {
+    const key = `${ev.name}|${ev.amount}`;
+    const label = ev.display || ev.name;
+    return `<div class="ev-item${checkedSet.has(key) ? " checked" : ""}" data-key="${key}">
+      <div class="ev-cb"></div><span class="ev-name">${label}</span><span class="ev-amt">+${ev.amount.toLocaleString()}</span>
+    </div>`;
+  }).join("");
+}
+
+document.getElementById("evChecklist").addEventListener("click", e => {
+  const item = e.target.closest(".ev-item");
+  if (!item) return;
+  item.classList.toggle("checked");
+  const checked = Array.from(document.querySelectorAll("#evChecklist .ev-item.checked"))
+    .map(el => el.dataset.key);
+  localStorage.setItem(CL_KEY, JSON.stringify(checked));
+  updateAllCarats();
+});
+
+["teamTrials","clubRank","champMeeting","leagueHeroes","dailyPack","trainingPass","loginDay1"]
+  .forEach(id => document.getElementById(id).addEventListener("change", saveAll));
+document.getElementById("packStartDate").addEventListener("change", () => { updateAllCarats(); saveAll(); });
+["loginDay1","dailyPack","teamTrials","clubRank","champMeeting"].forEach(id => {
+  document.getElementById(id).addEventListener("change", () => { updateAllCarats(); renderChecklist(); });
+});
+["resCarat","resPaidCarat","resUmaTicket","resSupportTicket","resSSRCrystal","resSRCrystal","resSSRShard","resSRShard"]
+  .forEach(id => document.getElementById(id).addEventListener("input", saveAll));
+["resCarat","resPaidCarat","resUmaTicket","resSupportTicket"].forEach(id =>
+  document.getElementById(id).addEventListener("input", updateAllCarats));
+
+const numBannersInput = document.getElementById("numBanners");
+numBannersInput.addEventListener("change", function() {
+  let v = Math.max(4, Math.min(100, parseInt(this.value) || 4));
+  this.value = v; setRowCount(v); saveAll();
+});
+
+function pruneExpiredRows() {
+  const body = document.getElementById("calcBody");
+  let removed = 0;
+  for (const tr of [...body.querySelectorAll("tr.calc-row")]) {
+    const endStr = tr.querySelector(".date-end")?.textContent.trim();
+    if (endStr && endStr !== "—" && endStr < TODAY) {
+      if (tr._detailRow) tr._detailRow.remove();
+      tr.remove();
+      removed++;
+    }
+  }
+  if (removed > 0) {
+    const remaining = body.querySelectorAll("tr.calc-row").length;
+    const numEl = document.getElementById("numBanners");
+    if (numEl) numEl.value = Math.max(1, remaining);
+    saveAll();
+  }
+}
+
+// ── Packs data (declared early — referenced by updateAllCarats via getPacksPaidCaratItems) ──
+const PACK_EVENTS = {{ anniversaries | tojson }};
+
+const PACKS = [
+  { key: "p7500",  label: "7500 Carat Pack",   carats: 7500,  usd: 70,  max: 5 },
+  { key: "p1500",  label: "1500 Carat Pack",   carats: 1500,  usd: 14,  max: 5 },
+  { key: "pSpark", label: "Spark Enhancement", carats: 1500,  usd: 21,  max: 1 },
+  { key: "p11000", label: "11000 Carat Pack",  carats: 11000, usd: 140, max: 1 },
+];
+
+
+const SELECTORS = [
+  { key: "s21uma",   carats: 1500, usd: 21, cardType: "character", label: "$21 ★3" },
+  { key: "s70uma",   carats: 5000, usd: 70, cardType: "character", label: "$70 ★3" },
+  { key: "sfreessr", carats: 0,    usd: 0,  cardType: "support",   label: "Free SSR" },
+  { key: "s21ssr",   carats: 1500, usd: 21, cardType: "support",   label: "$21 SSR" },
+  { key: "s70ssr",   carats: 5000, usd: 70, cardType: "support",   label: "$70 SSR" },
+];
+
+const SU_STEP_COSTS = [500, 700, 1000, 1300, 1500];
+const SU_FULL_COST  = SU_STEP_COSTS.reduce((a, b) => a + b, 0); // 5000
+function _suTotalCost(pulls) {
+  const full = Math.floor(pulls / 5);
+  const rem  = pulls % 5;
+  return full * SU_FULL_COST + SU_STEP_COSTS.slice(0, rem).reduce((a, b) => a + b, 0);
+}
+function _suMaxAffordable(availPaid) {
+  const fullCycles = Math.floor(availPaid / SU_FULL_COST);
+  let pulls = fullCycles * 5;
+  let rem = availPaid - fullCycles * SU_FULL_COST;
+  for (const cost of SU_STEP_COSTS) {
+    if (rem < cost) break;
+    rem -= cost;
+    pulls++;
+  }
+  return pulls;
+}
+
+function _getSuCalcPulls(bannerName) {
+  try {
+    const data = JSON.parse(localStorage.getItem(STORE_KEY) || '{}');
+    const row = (data.rows || []).find(r => r.banner === bannerName);
+    return row ? (parseInt(row.pulls) || 0) : 0;
+  } catch(e) { return 0; }
+}
+
+
+let packsState = {};
+
+// ── Init ─────────────────────────────────────────────────────────
+_loading = true;
+const saved = loadAll(_profiles.slots[_profiles.active]);
+const initialCount = parseInt(numBannersInput.value) || 8;
+setRowCount(initialCount, saved ? saved.rows : null);
+_loading = false;
+pruneExpiredRows();
+renderChecklist();
+updateAllCarats();
+if (_isSorted) insertAnnivSeparators();
+_renderProfileBtns();
+
+// ── Input validation: digits only, red flash on invalid ──────────
+function _isDigitsInput(el) {
+  return el.classList.contains("info-input") || !!el.closest(".cell-pulls");
+}
+document.addEventListener("input", e => {
+  const el = e.target;
+  if (!_isDigitsInput(el)) return;
+  const valid = /^\d*$/.test(el.value);
+  if (!valid) {
+    el.classList.add("input-invalid");
+    el.value = el.value.replace(/[^0-9]/g, "");
+    setTimeout(() => el.classList.remove("input-invalid"), 600);
+  }
+});
+document.addEventListener("keydown", e => {
+  const el = e.target;
+  if (!_isDigitsInput(el)) return;
+  const blocked = !e.key.match(/^[0-9]$/) &&
+    !["Backspace","Delete","ArrowLeft","ArrowRight","Tab","Home","End"].includes(e.key) &&
+    !e.ctrlKey && !e.metaKey;
+  if (blocked) {
+    e.preventDefault();
+    el.classList.add("input-invalid");
+    setTimeout(() => el.classList.remove("input-invalid"), 600);
+  }
+});
+
+document.getElementById("calcBody").addEventListener("click", e => {
+  const cell = e.target.closest(".cell-ticket-pulls");
+  if (!cell) return;
+  const tr = cell.closest("tr.calc-row");
+  if (!tr) return;
+  tr.classList.toggle("tix-disabled");
+  updateAllCarats();
+  saveAll();
+});
+
+document.getElementById("calcBody").addEventListener("click", e => {
+  const btn = e.target.closest(".clear-row-btn");
+  if (!btn) return;
+  const tr = btn.closest("tr.calc-row");
+  if (!tr) return;
+  tr.querySelector(".banner-cell input").value = "";
+  tr.querySelector(".date-start").textContent = "—";
+  tr.querySelector(".date-end").textContent = "—";
+  tr.querySelector(".cards-cell").innerHTML = "";
+  tr.querySelector(".cell-pulls input").value = "";
+  tr.classList.remove("tix-disabled");
+  delete tr.dataset.bannerType;
+  _clearStepUpMode(tr);
+  updateAllCarats();
+  saveAll();
+});
+
+document.getElementById("sortBanners").addEventListener("click", () => {
+  const body = document.getElementById("calcBody");
+  body.querySelectorAll("tr.anniv-sep").forEach(r => r.remove());
+  const calcRows = Array.from(body.querySelectorAll("tr.calc-row"));
+  calcRows.sort((a, b) => {
+    const da = a.querySelector(".date-start").textContent.trim();
+    const db = b.querySelector(".date-start").textContent.trim();
+    if (da === "—" && db === "—") return 0;
+    if (da === "—") return 1; if (db === "—") return -1;
+    return da.localeCompare(db);
+  });
+  calcRows.forEach(r => {
+    body.appendChild(r);
+    if (r._detailRow) body.appendChild(r._detailRow);
+  });
+  insertAnnivSeparators();
+  updateAllCarats();
+  saveAll();
+});
+
+// ── Drag to reorder ──────────────────────────────────────────────
+let _dragSrc = null, _lastDragTarget = null, _lastDragAfter = null;
+
+function _dragCleanup() {
+  document.querySelectorAll("#calcBody tr.calc-row").forEach(r => {
+    r.draggable = false;
+    r.classList.remove("dragging");
+  });
+  _dragSrc = null; _lastDragTarget = null; _lastDragAfter = null;
+}
+
+function _movePair(src, ref, insertBefore) {
+  if (insertBefore) {
+    ref.before(src);
+  } else {
+    (ref._detailRow || ref).after(src);
+  }
+  if (src._detailRow) src.after(src._detailRow);
+}
+
+document.getElementById("calcBody").addEventListener("mousedown", e => {
+  const handle = e.target.closest(".drag-handle");
+  const tr = handle?.closest("tr.calc-row");
+  document.querySelectorAll("#calcBody tr.calc-row").forEach(r => { r.draggable = false; });
+  if (tr) tr.draggable = true;
+});
+
+document.addEventListener("mouseup", () => {
+  if (!_dragSrc) document.querySelectorAll("#calcBody tr.calc-row").forEach(r => { r.draggable = false; });
+});
+
+document.getElementById("calcBody").addEventListener("dragstart", e => {
+  const tr = e.target.closest("tr.calc-row");
+  if (!tr || !tr.draggable) { e.preventDefault(); return; }
+  _dragSrc = tr;
+  e.dataTransfer.effectAllowed = "move";
+  e.dataTransfer.setData("text", "");
+  setTimeout(() => { if (_dragSrc) _dragSrc.classList.add("dragging"); }, 0);
+});
+
+document.getElementById("calcBody").addEventListener("dragover", e => {
+  e.preventDefault();
+  if (!_dragSrc) return;
+  const target = e.target.closest("tr.calc-row");
+  if (!target || target === _dragSrc) return;
+  const rect = target.getBoundingClientRect();
+  const after = e.clientY > rect.top + rect.height / 2;
+  if (target === _lastDragTarget && after === _lastDragAfter) return;
+  _lastDragTarget = target; _lastDragAfter = after;
+  document.getElementById("calcBody").querySelectorAll("tr.anniv-sep").forEach(r => r.remove());
+  _movePair(_dragSrc, target, !after);
+});
+
+document.getElementById("calcBody").addEventListener("drop", e => { e.preventDefault(); });
+
+document.getElementById("calcBody").addEventListener("dragend", () => {
+  _dragCleanup();
+  updateAllCarats();
+  saveAll();
+});
+
+// ── Settings ─────────────────────────────────────────────────────
+const SETTINGS_KEY = "caratCalcSettings_v1";
+const settingsBtn   = document.getElementById("settingsBtn");
+const settingsPanel = document.getElementById("settingsPanel");
+const settingsClose = document.getElementById("settingsClose");
+const calcTable     = document.getElementById("calcTable");
+
+function applyTicketSetting(track) {
+  document.getElementById("ticketRowUma").classList.toggle("ticket-row-disabled", !track);
+  document.getElementById("ticketRowSupport").classList.toggle("ticket-row-disabled", !track);
+}
+
+function loadSettings() {
+  let s = {};
+  try { s = JSON.parse(localStorage.getItem(SETTINGS_KEY)) || {}; } catch(_) {}
+  const showProbs    = s.showProbs    !== false;
+  const trackTickets = s.trackTickets !== false;
+  document.getElementById("togProbs").checked               = showProbs;
+  document.getElementById("togTickets").checked             = trackTickets;
+  document.getElementById("togPvPTickets").checked          = s.trackPvP         !== false;
+  document.getElementById("togMonthlyShop").checked         = s.trackMonthlyShop !== false;
+  document.getElementById("togEventTickets").checked        = s.trackEventTickets === true;
+  document.getElementById("togTrainingPassTickets").checked = s.trackTrainingPass === true;
+  document.getElementById("togPackPaidCarats").checked      = s.trackPackPaidCarats !== false;
+  calcTable.classList.toggle("hide-probs", !showProbs);
+  applyTicketSetting(trackTickets);
+  updateAllCarats();
+}
+
+function saveSettings() {
+  localStorage.setItem(SETTINGS_KEY, JSON.stringify({
+    showProbs:          document.getElementById("togProbs").checked,
+    trackTickets:       document.getElementById("togTickets").checked,
+    trackPvP:           document.getElementById("togPvPTickets").checked,
+    trackMonthlyShop:   document.getElementById("togMonthlyShop").checked,
+    trackEventTickets:  document.getElementById("togEventTickets").checked,
+    trackTrainingPass:  document.getElementById("togTrainingPassTickets").checked,
+    trackPackPaidCarats: document.getElementById("togPackPaidCarats").checked,
+  }));
+}
+
+function openSettings() {
+  settingsPanel.classList.add("open");
+  settingsBtn.classList.add("open");
+}
+
+function closeSettings() {
+  settingsPanel.classList.remove("open");
+  settingsBtn.classList.remove("open");
+}
+
+settingsBtn.addEventListener("click", e => {
+  e.stopPropagation();
+  settingsPanel.classList.contains("open") ? closeSettings() : openSettings();
+});
+
+settingsClose.addEventListener("click", closeSettings);
+
+document.addEventListener("click", e => {
+  if (!document.getElementById("settingsWrap")?.contains(e.target)) closeSettings();
+});
+
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeSettings(); });
+
+document.getElementById("togProbs").addEventListener("change", () => {
+  calcTable.classList.toggle("hide-probs", !document.getElementById("togProbs").checked);
+  saveSettings();
+});
+
+document.getElementById("togTickets").addEventListener("change", () => {
+  applyTicketSetting(document.getElementById("togTickets").checked);
+  saveSettings();
+  updateAllCarats();
+});
+["togPvPTickets", "togMonthlyShop"].forEach(id => {
+  document.getElementById(id).addEventListener("change", () => { saveSettings(); updateAllCarats(); });
+});
+document.getElementById("togEventTickets").addEventListener("change", () => { saveSettings(); updateAllCarats(); });
+document.getElementById("togTrainingPassTickets").addEventListener("change", saveSettings);
+document.getElementById("togPackPaidCarats").addEventListener("change", () => { saveSettings(); updateAllCarats(); });
+
+document.getElementById("sClearPulls").addEventListener("click", () => {
+  document.querySelectorAll("#calcBody .cell-pulls input").forEach(inp => {
+    inp.value = "";
+    inp.dispatchEvent(new Event("input"));
+  });
+  closeSettings();
+});
+
+document.getElementById("sClearResources").addEventListener("click", () => {
+  ["resCarat","resPaidCarat","resUmaTicket","resSupportTicket",
+   "resSSRCrystal","resSRCrystal","resSSRShard","resSRShard"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = "";
+  });
+  updateAllCarats();
+  saveAll();
+  closeSettings();
+});
+
+document.getElementById("clearPlanBtn").addEventListener("click", () => {
+  const hasData = Array.from(document.querySelectorAll("#calcBody tr.calc-row"))
+    .some(tr => tr.querySelector(".banner-cell input").value.trim());
+  if (!hasData) return;
+  if (!confirm("Clear all banner rows for this profile? This cannot be undone.")) return;
+  document.querySelectorAll("#calcBody tr.calc-row").forEach(tr => {
+    tr.querySelector(".banner-cell input").value = "";
+    tr.querySelector(".date-start").textContent = "—";
+    tr.querySelector(".date-end").textContent = "—";
+    tr.querySelector(".cards-cell").innerHTML = "";
+    tr.querySelector(".cell-pulls input").value = "";
+    tr.classList.remove("tix-disabled", "row-active");
+    delete tr.dataset.bannerType;
+    _clearStepUpMode(tr);
+  });
+  updateAllCarats();
+  saveAll();
+});
+
+document.getElementById("sClearAll").addEventListener("click", () => {
+  if (!confirm("Clear all saved data? This cannot be undone.")) return;
+  localStorage.removeItem(STORE_KEY);
+  localStorage.removeItem(CL_KEY);
+  localStorage.removeItem(PROFILE_KEY);
+  location.reload();
+});
+
+// wire the settings-wrap id (needed for outside-click check)
+document.querySelector(".settings-wrap").id = "settingsWrap";
+
+loadSettings();
+
+// ── Top panels toggle ─────────────────────────────────────────────
+(function() {
+  const panelsEl = document.getElementById("topPanels");
+  const btn      = document.getElementById("togglePanels");
+  function applyPanels(hidden) {
+    panelsEl.classList.toggle("collapsed", hidden);
+    btn.textContent = hidden ? "Show ▼" : "Hide ▲";
+  }
+  applyPanels(localStorage.getItem("panelsHidden") === "1");
+  btn.addEventListener("click", () => {
+    const hidden = !panelsEl.classList.contains("collapsed");
+    localStorage.setItem("panelsHidden", hidden ? "1" : "0");
+    applyPanels(hidden);
+  });
+})();
+
+// ── Packs state (read-only in calculator — packs editing is at /packs) ──
+
+function loadPacksState() {
+  try { const s = localStorage.getItem("packs_state_v1"); if (s) packsState = JSON.parse(s); } catch(e) {}
+}
+
+function _getSuMaxPulls(bannerName) {
+  const ev = PACK_EVENTS.find(e => e.name === bannerName);
+  if (!ev || !ev.selector_counts) return 0;
+  return ((ev.selector_counts.uma || 0) + (ev.selector_counts.ssr || 0)) * 5;
+}
+function _suUpdateCombined(tr) {
+  const pulls = parseInt(tr.querySelector('.cell-pulls input').value) || 0;
+  const stepUps = Math.floor(pulls / 5);
+  const steps   = pulls % 5;
+  tr.querySelector('.cell-su-combined').textContent =
+    `${stepUps} Step Up${stepUps !== 1 ? 's' : ''} | ${steps} Step${steps !== 1 ? 's' : ''}`;
+}
+function _applyStepUpMode(tr, maxPulls) {
+  tr.dataset.isStepUp = '1';
+  tr.dataset.suSelectorMax = maxPulls;
+  tr.dataset.suMaxPulls = maxPulls;
+  tr.querySelector('.cell-su-combined').style.display = '';
+  tr.querySelector('.cell-free-pulls').style.display  = 'none';
+  tr.querySelector('.cell-ticket-pulls').style.display = 'none';
+  tr.querySelector('.cell-paid-pulls').style.display  = 'none';
+  _suUpdateCombined(tr);
+}
+function _clearStepUpMode(tr) {
+  delete tr.dataset.isStepUp;
+  delete tr.dataset.suMaxPulls;
+  tr.querySelector('.cell-su-combined').style.display  = 'none';
+  tr.querySelector('.cell-free-pulls').style.display   = '';
+  tr.querySelector('.cell-ticket-pulls').style.display = '';
+  tr.querySelector('.cell-paid-pulls').style.display   = '';
+}
+
+function _annivNum(ev) {
+  return parseFloat((ev.name.match(/^([\d.]+)/) || [])[1]) || Infinity;
+}
+function _isSelectorVisible(ev, s) {
+  if (ev.selectors != null) return ev.selectors.includes(s.key);
+  const n = _annivNum(ev);
+  if (n === 1.5 && s.key !== 'sfreessr') return false;
+  return true;
+}
+
+
+loadPacksState();
+updateAllCarats();
+
+// ── Card Tracker integration ──────────────────────────────────────
+// cardTracker_v1 stores { [cardId]: 1 } for each tracked card.
+// Copy counts and sources are derived live by cards.html from packs_state_v1 / caratCalc_v1.
+</script>
+<script>
+(function() {
+  const DEBUG_KEY = 'debugMode_v1';
+  const isDebug = localStorage.getItem(DEBUG_KEY) === '1';
+  if (isDebug) document.body.classList.add('debug-mode');
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('navSettingsBtn');
+    const dd  = document.getElementById('navSettingsDd');
+    const chk = document.getElementById('debugToggle');
+    if (!btn || !dd || !chk) return;
+    chk.checked = isDebug;
+    btn.addEventListener('click', function(e) { e.stopPropagation(); dd.classList.toggle('open'); });
+    document.addEventListener('click', function() { dd.classList.remove('open'); });
+    dd.addEventListener('click', function(e) { e.stopPropagation(); });
+    chk.addEventListener('change', function() {
+      localStorage.setItem(DEBUG_KEY, chk.checked ? '1' : '0');
+      document.body.classList.toggle('debug-mode', chk.checked);
+    });
+  });
+})();
+</script></body>
+</html>

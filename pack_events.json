@@ -1,0 +1,173 @@
+{
+  "_readme": "Add custom events to the 'events' array. They are merged with anniversaries from timeline_banners_output.json. Events already present by name are ignored.",
+  "_template": {
+    "name": "Name shown in the pack table header (required)",
+    "id": "Unique ID string e.g. e11 (required)",
+    "jp_start": "JP release date YYYY-MM-DD — global date is estimated automatically",
+    "start": "Override: exact global date YYYY-MM-DD (takes priority over jp_start)",
+    "end": "Optional end date YYYY-MM-DD",
+    "packs": "Optional — list of pack keys to show. Omit to use automatic logic. Use [] to show none.",
+    "pack_limits": "Optional — max quantity per pack key e.g. {\"p7500\": 3, \"p1500\": 2}. Omit to use automatic logic.",
+    "selectors": "Optional — list of selector keys to show. Omit to use automatic logic. Use [] to show none.",
+    "step_up_banner": "Optional — banner_name of a step_up entry in custom_banners.json. Name and start date are copied automatically by sync.",
+    "selector_counts": "step_up only — max quantity per selector key e.g. {\"s21uma\": 3, \"s21ssr\": 2}. Renders quantity dropdowns instead of checkboxes.",
+    "selector_labels": "Optional — override display labels per selector key e.g. {\"s21uma\": \"★3\", \"s21ssr\": \"SSR\"}."
+  },
+  "_step_up_template": {
+    "_note": "Step-up events: name and start are synced automatically from the linked custom_banners step_up entry. Only add selectors/packs that apply.",
+    "name": "Copied from the step_up banner_name — set manually if not using sync",
+    "id": "Unique ID string e.g. stepup1",
+    "step_up_banner": "Must match banner_name of the step_up entry in custom_banners.json exactly",
+    "start": "Copied from the step_up start_date — set manually if not using sync",
+    "packs": [],
+    "selectors": [
+      "s21uma"
+    ],
+    "selector_counts": {
+      "s21uma": 3,
+      "s21ssr": 2
+    },
+    "selector_labels": {
+      "s21uma": "★3",
+      "s70uma": "★3",
+      "s21ssr": "SSR",
+      "s70ssr": "SSR"
+    }
+  },
+  "_options": {
+    "packs": [
+      "p7500",
+      "p1500",
+      "pSpark",
+      "p11000"
+    ],
+    "selectors": [
+      "s21uma",
+      "s70uma",
+      "sfreessr",
+      "s21ssr",
+      "s70ssr"
+    ]
+  },
+  "events": [
+    {
+      "name": "Trainer Support Pack",
+      "id": "custom1",
+      "jp_start": "2023-10-05",
+      "packs": [],
+      "selectors": [
+        "s21uma",
+        "s21ssr"
+      ],
+      "_estimated_start": "2027-05-28",
+      "_estimated_date": "May 28, 2027 (est.)"
+    },
+    {
+      "name": "New Years 2024",
+      "id": "custom2",
+      "jp_start": "2023-12-28",
+      "packs": [
+        "p7500",
+        "p1500"
+      ],
+      "selectors": [
+        "s21uma"
+      ],
+      "pack_limits": {
+        "p7500": 3,
+        "p1500": 4
+      },
+      "_estimated_start": "2027-07-31",
+      "_estimated_date": "July 31, 2027 (est.)"
+    },
+    {
+      "name": "New Years 2025",
+      "id": "custom3",
+      "jp_start": "2024-12-27",
+      "packs": [
+        "p7500",
+        "p1500"
+      ],
+      "selectors": [],
+      "pack_limits": {
+        "p7500": 3,
+        "p1500": 4
+      },
+      "_estimated_start": "2028-05-03",
+      "_estimated_date": "May 3, 2028 (est.)"
+    },
+    {
+      "name": "New Years 2026",
+      "id": "custom4",
+      "jp_start": "2025-12-26",
+      "packs": [
+        "p7500",
+        "p1500",
+        "pSpark"
+      ],
+      "selectors": [],
+      "pack_limits": {
+        "p7500": 3,
+        "p1500": 4,
+        "pSpark": 3
+      },
+      "_estimated_start": "2029-02-03",
+      "_estimated_date": "February 3, 2029 (est.)"
+    },
+    {
+      "name": "3rd Anniversary Step Up",
+      "id": "stepup-custom-step-3",
+      "step_up_banner": "3rd Anniversary",
+      "packs": [],
+      "selector_counts": {
+        "uma": 1,
+        "ssr": 1
+      },
+      "start": "2027-09-13"
+    },
+    {
+      "name": "3.5th Anniversary Step Up",
+      "id": "stepup-custom-step-3.5",
+      "step_up_banner": "3.5th Anniversary",
+      "packs": [],
+      "selector_counts": {
+        "uma": 0,
+        "ssr": 2
+      },
+      "start": "2028-01-29"
+    },
+    {
+      "name": "4th Anniversary Step Up",
+      "id": "stepup-custom-step-4",
+      "step_up_banner": "4th Anniversary",
+      "packs": [],
+      "selector_counts": {
+        "uma": 2,
+        "ssr": 3
+      },
+      "start": "2028-06-17"
+    },
+    {
+      "name": "4.5th Anniversary Step Up",
+      "id": "stepup-custom-step-4.5",
+      "step_up_banner": "4.5th Anniversary",
+      "packs": [],
+      "selector_counts": {
+        "uma": 0,
+        "ssr": 2
+      },
+      "start": "2028-11-02"
+    },
+    {
+      "name": "5th Anniversary Step Up",
+      "id": "stepup-custom-step-5",
+      "step_up_banner": "5th Anniversary",
+      "packs": [],
+      "selector_counts": {
+        "uma": 2,
+        "ssr": 3
+      },
+      "start": "2029-03-22"
+    }
+  ]
+}
