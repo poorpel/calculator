@@ -1,10 +1,60 @@
-from flask import Flask, render_template, jsonify
-import json, threading, urllib.request
+from flask import Flask, render_template, jsonify, session, redirect, request
+import json, threading, urllib.request, os, requests as req_lib
 from pathlib import Path
 from collections import OrderedDict
 from datetime import date, timedelta, datetime, timezone
 
 app = Flask(__name__)
+app.secret_key = os.getenv("SECRET_KEY", "dev-secret-change-me")
+
+DISCORD_CLIENT_ID     = os.getenv("DISCORD_CLIENT_ID", "")
+DISCORD_CLIENT_SECRET = os.getenv("DISCORD_CLIENT_SECRET", "")
+DISCORD_REDIRECT_URI  = os.getenv("DISCORD_REDIRECT_URI", "http://localhost:5000/callback")
+
+@app.route("/login")
+def login():
+    return redirect(
+        "https://discord.com/oauth2/authorize"
+        f"?client_id={DISCORD_CLIENT_ID}"
+        f"&redirect_uri={DISCORD_REDIRECT_URI}"
+        "&response_type=code&scope=identify"
+    )
+
+@app.route("/callback")
+def callback():
+    code = request.args.get("code")
+    if not code:
+        return redirect("/")
+    try:
+        r = req_lib.post("https://discord.com/api/oauth2/token", data={
+            "client_id":     DISCORD_CLIENT_ID,
+            "client_secret": DISCORD_CLIENT_SECRET,
+            "grant_type":    "authorization_code",
+            "code":          code,
+            "redirect_uri":  DISCORD_REDIRECT_URI,
+        }, headers={"Content-Type": "application/x-www-form-urlencoded"})
+        token = r.json().get("access_token")
+        if not token:
+            return redirect("/")
+        user = req_lib.get("https://discord.com/api/users/@me",
+            headers={"Authorization": f"Bearer {token}"}).json()
+        session["user"] = {
+            "id":       user["id"],
+            "username": user["username"],
+            "avatar":   user.get("avatar"),
+        }
+    except Exception as e:
+        print(f"[discord oauth] error: {e}")
+    return redirect("/")
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/")
+
+@app.route("/api/me")
+def api_me():
+    return jsonify(session.get("user"))
 
 BASE = Path(__file__).parent
 
@@ -189,7 +239,8 @@ def index():
     pack_uma     = _enrich_pack(json.loads((BASE / "pack_uma.json").read_text(encoding="utf-8")),     is_char=True)
     pack_support = _enrich_pack(json.loads((BASE / "pack_support.json").read_text(encoding="utf-8")), is_char=False)
     return render_template("index.html", banners=banners, anniversaries=anniversaries,
-                           pack_uma=pack_uma, pack_support=pack_support)
+                           pack_uma=pack_uma, pack_support=pack_support,
+                           user=session.get("user"))
 
 @app.route("/debug-packs")
 def debug_packs():
@@ -322,7 +373,8 @@ def packs():
     pack_uma     = _enrich_pack(json.loads((BASE / "pack_uma.json").read_text(encoding="utf-8")),     is_char=True)
     pack_support = _enrich_pack(json.loads((BASE / "pack_support.json").read_text(encoding="utf-8")), is_char=False)
     return render_template("packs.html", anniversaries=anniversaries,
-                           pack_uma=pack_uma, pack_support=pack_support)
+                           pack_uma=pack_uma, pack_support=pack_support,
+                           user=session.get("user"))
 
 @app.route("/cards")
 def cards():
