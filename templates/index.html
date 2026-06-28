@@ -562,7 +562,7 @@
           <label class="settings-item" for="togProbs">
             <span class="settings-item-label">Probability Columns</span>
             <span class="tog">
-              <input type="checkbox" id="togProbs" checked>
+              <input type="checkbox" id="togProbs">
               <span class="tog-track"></span>
               <span class="tog-thumb"></span>
             </span>
@@ -1639,7 +1639,7 @@ function updateAllCarats() {
       const resPaidCarat = parseInt(document.getElementById("resPaidCarat").value) || 0;
       const detailCell = tr._detailRow.querySelector("td");
       if (bd) {
-        const windowEvDetails = getEventDetails(startStr, prevStartStr, new Set());
+        const windowEvDetails = getEventDetails(endStr, prevStartStr, new Set());
         const priorEvTotal = Math.max(0, evDetails.total - windowEvDetails.total);
         const evRows = (() => {
           let html = '';
@@ -2383,7 +2383,7 @@ function applyTicketSetting(track) {
 function loadSettings() {
   let s = {};
   try { s = JSON.parse(localStorage.getItem(SETTINGS_KEY)) || {}; } catch(_) {}
-  const showProbs    = s.showProbs    !== false;
+  const showProbs    = s.showProbs    === true;
   const trackTickets = s.trackTickets !== false;
   document.getElementById("togProbs").checked               = showProbs;
   document.getElementById("togTickets").checked             = trackTickets;
