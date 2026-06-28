@@ -509,11 +509,14 @@ def timeline():
         seen, events = set(), []
         reward_totals = {"uma_ticket": 0, "support_ticket": 0, "ssr": 0, "sr": 0}
         for b in group_banners:
+            sorted_cards = _sorted_cards(b)
             if b.get("type") in ("anniversary", "step_up"):
                 b["banner_name"] = _anniv_display_name(b.get("banner_name") or "")
+            elif b.get("type") in ("character", "support") and sorted_cards:
+                b["banner_name"] = ", ".join(c["name"] for c in sorted_cards)
             else:
                 b["banner_name"] = _strip_banner(b.get("banner_name") or "")
-            b["cards"] = [_make_card(c) for c in _sorted_cards(b)]
+            b["cards"] = [_make_card(c) for c in sorted_cards]
             within_count = {}
             for ev in (b.get("events") or []):
                 within_count[ev["name"]] = within_count.get(ev["name"], 0) + 1

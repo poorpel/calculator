@@ -265,7 +265,7 @@
 
     tbody tr { transition: background 0.1s; }
     tbody td { border-top: 1px solid #1a1a1a; }
-    tr.detail-row > td, tr.anniv-sep > td { border-top: none; }
+    tr.detail-row > td { border-top: none; }
     tbody tr:hover { background: #131313; }
     tbody tr:nth-child(even) { background: #0d0d0d; }
     tbody tr:nth-child(even):hover { background: #131313; }
@@ -309,6 +309,7 @@
     .cell-pct  { color: #444; }
     tr.row-active .cell-auto { color: #d8d8d8; font-style: normal; font-weight: 700; }
     .cell-ticket-pulls { cursor: pointer; user-select: none; }
+    .cell-ticket-pulls:hover { background: #1e1e1e; border-radius: 4px; }
     .cell-su-combined { font-weight: 700; }
     .su-status-cell { padding:10px 14px; text-align:center !important; line-height:1.9; }
     .su-info-selectors { font-size:17px; font-weight:600; color:#c47a2a; }
@@ -337,7 +338,8 @@
     input[type=number]::-webkit-inner-spin-button,
     input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
     input[type=number] { -moz-appearance: textfield; appearance: textfield; }
-    .cell-pct-none { color: #5ecb7a; font-weight: 600; }
+    .cell-pct-none, .cell-pct { font-weight: 700; width: 48px; font-size: 11px; padding-left: 2px; padding-right: 2px; }
+    .prob-th { width: 48px; font-size: 11px; padding-left: 2px; padding-right: 2px; }
 
     /* row numbering */
     #calcBody { counter-reset: rownum; }
@@ -463,6 +465,21 @@
     .dp-details > summary { font-size:10px;color:#555;cursor:pointer;padding:2px 0;list-style:none;user-select:none; }
     .dp-details > summary::-webkit-details-marker { display:none; }
     .dp-details > summary::before { content:'▶ ';font-size:8px; }
+    .dp-explain-btn { background:#1a1a1a;border:1px solid #2a2a2a;border-radius:4px;color:#666;font-size:10px;font-weight:700;font-family:inherit;padding:2px 8px;cursor:pointer;letter-spacing:0.3px;transition:color 0.1s,border-color 0.1s; }
+    .dp-explain-btn:hover { color:#bbb;border-color:#444; }
+    .dp-explain-hdr { display:flex;align-items:center;justify-content:flex-end;padding:6px 12px 0;border-top:1px solid #1a1a1a;background:#070707; }
+    #explainOverlay { position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.7);display:none; }
+    #explainBox { position:fixed;inset:24px;z-index:10000;background:#111;border:1px solid #2e2e2e;border-radius:10px;box-shadow:0 8px 48px rgba(0,0,0,0.8);padding:32px 40px;font-size:13px;line-height:1.75;color:#ccc;display:none;overflow-y:auto; }
+    #explainBox h3 { font-size:13px;font-weight:700;color:#fff;margin:0 0 14px;padding-bottom:8px;border-bottom:1px solid #222; }
+    #explainBox p { margin:0 0 6px;color:#aaa; }
+    #explainBox strong { color:#fff; }
+    #explainBox .explain-close { position:sticky;top:0;float:right;background:#1e1e1e;border:1px solid #333;border-radius:6px;color:#aaa;font-size:13px;font-weight:700;font-family:inherit;padding:6px 16px;cursor:pointer;letter-spacing:0.3px;transition:color 0.1s,border-color 0.1s;margin:0 0 16px 16px; }
+    #explainBox .explain-close:hover { color:#fff;border-color:#555; }
+    #explainBox .ex-cols { column-count:2;column-gap:40px;column-rule:1px solid #1e1e1e; }
+    #explainBox .ex-section { break-inside:avoid;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #1e1e1e; }
+    #explainBox .ex-section:last-child { margin-bottom:0;padding-bottom:0;border-bottom:none; }
+    #explainBox .ex-lbl { font-size:10px;font-weight:700;color:#555;letter-spacing:0.6px;text-transform:uppercase;margin-bottom:6px; }
+    #explainBox .ex-total { margin-top:8px;padding-top:6px;border-top:1px solid #1e1e1e;font-weight:700;color:#e0e0e0;font-size:13px; }
     .dp-details[open] > summary::before { content:'▼ '; }
 
     /* ── Tabs (kept for potential future use) ── */
@@ -868,12 +885,12 @@
           <th class="center" style="width:80px;">Paid Pulls</th>
           <th class="center" style="width:90px;">Max Pulls</th>
           <th class="center" style="width:80px;"># Pulls</th>
-          <th class="center prob-th" style="width:60px;">None</th>
-          <th class="center prob-th" style="width:60px;">0LB</th>
-          <th class="center prob-th" style="width:60px;">1LB</th>
-          <th class="center prob-th" style="width:60px;">2LB</th>
-          <th class="center prob-th" style="width:60px;">3LB</th>
-          <th class="center prob-th" style="width:60px;">MLB</th>
+          <th class="center prob-th" style="width:48px;">None</th>
+          <th class="center prob-th" style="width:48px;">0LB</th>
+          <th class="center prob-th" style="width:48px;">1LB</th>
+          <th class="center prob-th" style="width:48px;">2LB</th>
+          <th class="center prob-th" style="width:48px;">3LB</th>
+          <th class="center prob-th" style="width:48px;">MLB</th>
           <th style="width:36px;"></th>
           <th style="width:36px;"></th>
         </tr>
@@ -1095,6 +1112,154 @@ Object.assign(dd.style, {
 });
 document.body.appendChild(dd);
 
+// ── Explain box ──────────────────────────────────────────────────
+const explainOverlay = document.createElement("div");
+explainOverlay.id = "explainOverlay";
+document.body.appendChild(explainOverlay);
+const explainBox = document.createElement("div");
+explainBox.id = "explainBox";
+document.body.appendChild(explainBox);
+function _closeExplain() { explainBox.style.display = "none"; explainOverlay.style.display = "none"; }
+explainOverlay.addEventListener("click", _closeExplain);
+
+function _fmtDate(str) {
+  if (!str || str === "—") return str;
+  const [y, m, d] = str.split("-").map(Number);
+  return new Date(y, m - 1, d).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+}
+
+function showExplainBox(bannerName, endStr, ex, btn) {
+  const { bd, evTotal, evCMTotal, evLOHTotal, rawPaid, resPaidCarat, packBonusTotal, packBonusMonths,
+          freePullsVal, ticketsAvail, tktBase, bannerType,
+          bonusTix, shopTix, lohTix, rwdTix, cmCount, lohCount,
+          priorTotalNormal, rawPaidDeduct, maxPulls, pullsEntered,
+          cmCaratRate, lohCaratRate, cmTixRate, lohTixRate, tixDeduct, tixDisabled } = ex;
+
+  const todayStr = new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+  const endFmt   = _fmtDate(endStr);
+  const ttClass  = document.getElementById("teamTrials").value || "your class";
+  const crClass  = document.getElementById("clubRank").value   || "your rank";
+  const sc  = v => `<strong style="color:#5ecb7a">${v.toLocaleString()}</strong>`;   // free carats
+  const sp  = v => `<strong style="color:#7a9ed8">${v.toLocaleString()}</strong>`;   // paid carats
+  const sd  = v => `<strong style="color:#aaa">${v.toLocaleString()}</strong>`;      // days/counts
+  const st  = v => `<strong style="color:#c47a2a">${v.toLocaleString()}</strong>`;   // tickets
+  const spu = v => `<strong style="color:#d4b060">${v.toLocaleString()}</strong>`;   // pulls
+  const sneg= v => `<strong style="color:#e07070">${v.toLocaleString()}</strong>`;   // deductions
+  const s   = v => `<strong>${v.toLocaleString()}</strong>`;
+
+  let html = `<button class="explain-close" onclick="_closeExplain()">Close</button><h3>${bannerName} — Breakdown</h3><div class="ex-cols">`;
+
+  // ── Carat Income ──
+  html += `<div class="ex-section"><div class="ex-lbl">Carat Income</div>`;
+  html += `<p>As of <strong>${todayStr}</strong>, you have ${sc(bd.resCarat)} carats in reserve.</p>`;
+  html += `<p>From today until the end of <strong>${bannerName}</strong> on <strong>${endFmt}</strong>, ${sd(bd.days)} days will have passed.</p>`;
+  html += `<p>At 75 carats a day, that's ${sc(bd.daily)} carats from daily rewards.</p>`;
+  const loginDays = bd.day1c + bd.day3c + bd.day5c;
+  html += `<p>Your login cycle hits days 1, 3, or 5 ${sd(loginDays)} times (25 carats each) and day 7 ${sd(bd.day7c)} times (75 carats each) — ${sc(bd.loginBonusTotal)} carats from login bonuses.</p>`;
+  if (bd.teamTrialsTotal > 0)
+    html += `<p>${sd(bd.mondays)} Team Trials weeks at ${ttClass} (${sc(bd.teamTrialsAmt)}/week) gives ${sc(bd.teamTrialsTotal)} carats.</p>`;
+  if (bd.clubRankTotal > 0)
+    html += `<p>Club Rank resets ${sd(bd.monthStarts)} time${bd.monthStarts !== 1 ? "s" : ""} at ${crClass} (${sc(bd.clubRankAmt)}/month) — ${sc(bd.clubRankTotal)} carats.</p>`;
+  if (bd.hasPack && bd.packDailyTotal > 0)
+    html += `<p>The daily pack adds 50 carats/day × ${sd(bd.days)} days = ${sc(bd.packDailyTotal)} carats.</p>`;
+  if (evTotal > 0) {
+    const evRegular = evTotal - evCMTotal - evLOHTotal;
+    const evParts = [];
+    if (evRegular > 0) evParts.push(`${sc(evRegular)} from general events`);
+    if (evCMTotal > 0) evParts.push(`${sc(evCMTotal)} from Champion's Meeting${cmCount > 1 ? ` (${sd(cmCount)} × ${sc(cmCaratRate)})` : ` (${sc(cmCaratRate)}/event)`}`);
+    if (evLOHTotal > 0) evParts.push(`${sc(evLOHTotal)} from League of Heroes${lohCount > 1 ? ` (${sd(lohCount)} × ${sc(lohCaratRate)})` : ` (${sc(lohCaratRate)}/event)`}`);
+    const evDetail = evParts.length > 1 ? ` — ${evParts.join(", ")}` : "";
+    html += `<p>Estimated event rewards total ${sc(evTotal)} carats${evDetail}.</p>`;
+  }
+  const caratIncome = bd.caratTotal + evTotal;
+  html += `<div class="ex-total">Carat Income Total: ${sc(caratIncome)}</div></div>`;
+
+  // ── Paid Carats ──
+  if (rawPaid > 0) {
+    html += `<div class="ex-section"><div class="ex-lbl">Paid Carats</div>`;
+    if (resPaidCarat > 0) html += `<p>You're starting with ${sp(resPaidCarat)} paid carats already saved up.</p>`;
+    if (packBonusTotal > 0) html += `<p>Your pack will hit its monthly renewal ${sd(packBonusMonths)} time${packBonusMonths !== 1 ? "s" : ""} before the banner ends, adding ${sp(packBonusTotal)} paid carats in bonuses.</p>`;
+    const otherPaid = rawPaid - resPaidCarat - packBonusTotal;
+    if (otherPaid > 0) html += `<p>You'll also pick up ${sp(otherPaid)} paid carats from other pack purchases.</p>`;
+    html += `<div class="ex-total">Paid Total: ${sp(rawPaid)}</div></div>`;
+  }
+
+  // ── Tickets ──
+  const totalTix = tktBase + bonusTix + rwdTix;
+  if (totalTix > 0) {
+    const cmOnly = bonusTix - shopTix - lohTix;
+    html += `<div class="ex-section"><div class="ex-lbl">${bannerType || ""} Tickets</div>`;
+    if (tktBase > 0) html += `<p>You already have ${st(tktBase)} ${bannerType || ""} ticket${tktBase !== 1 ? "s" : ""} saved up.</p>`;
+    if (cmOnly > 0) html += `<p>${cmCount > 1 ? `Across ${sd(cmCount)} Champion's Meetings` : "A Champion's Meeting"} will reward you with ${st(cmOnly)} ticket${cmOnly !== 1 ? "s" : ""}${cmTixRate > 0 ? ` (${st(cmTixRate)}/event)` : ""}.</p>`;
+    if (lohTix > 0) html += `<p>${lohCount > 1 ? `Across ${sd(lohCount)} League of Heroes events` : "League of Heroes"} will add ${st(lohTix)} ticket${lohTix !== 1 ? "s" : ""}${lohTixRate > 0 ? ` (${st(lohTixRate)}/event)` : ""}.</p>`;
+    if (shopTix > 0) html += `<p>The monthly shop (Cleat Shop) contributes ${st(4)} ticket${4 !== 1 ? "s" : ""} per month — ${st(shopTix)} total over this period.</p>`;
+    if (rwdTix > 0) html += `<p>Banner rewards will give you ${st(rwdTix)} more ticket${rwdTix !== 1 ? "s" : ""}.</p>`;
+    html += `<div class="ex-total">Ticket Total: ${st(totalTix)}</div>`;
+    if (tixDisabled) html += `<p style="color:#e07070;font-size:11px;margin-top:6px">Tickets are disabled for this banner — they won't count toward your pull total.</p>`;
+    html += `</div>`;
+  }
+
+  // ── Grand total before deductions ──
+  const grandTotal = caratIncome + rawPaid;
+  html += `<div class="ex-section" style="break-before:column"><div class="ex-lbl">Total So Far</div>`;
+  if (rawPaid > 0)
+    html += `<p>Adding your ${sc(caratIncome)} free carats and ${sp(rawPaid)} paid carats together, you're looking at ${s(grandTotal)} carats in total before any deductions.</p>`;
+  else
+    html += `<p>All together, that's ${sc(grandTotal)} carats heading into this banner.</p>`;
+  html += `</div>`;
+
+  // ── Deductions ──
+  const totalDeductions = priorTotalNormal + rawPaidDeduct;
+  const afterDeductions = grandTotal - totalDeductions;
+  const afterCarat = caratIncome - priorTotalNormal;
+  const afterPaid  = rawPaid - rawPaidDeduct;
+  const totalTixForDeduct = tktBase + (bonusTix || 0) + (rwdTix || 0);
+  const tixDeductActual = Math.max(0, totalTixForDeduct - ticketsAvail);
+  if (totalDeductions > 0 || tixDeductActual > 0) {
+    html += `<div class="ex-section"><div class="ex-lbl">Prior Deductions</div>`;
+    html += `<p>Earlier banners have already claimed a portion of your resources. Here's what's left after accounting for them:</p>`;
+    html += `<p>Free carats: ${sc(caratIncome)} − ${sneg(priorTotalNormal)} = ${sc(afterCarat)}</p>`;
+    if (rawPaid > 0)
+      html += `<p>Paid carats: ${sp(rawPaid)} − ${sneg(rawPaidDeduct)} = ${sp(afterPaid)}</p>`;
+    if (tixDeductActual > 0)
+      html += `<p>${bannerType || ""} tickets: ${st(totalTixForDeduct)} − ${sneg(tixDeductActual)} = ${st(ticketsAvail)} remaining.</p>`;
+    html += `<div class="ex-total">After Deductions: ${sc(afterCarat)}${rawPaid > 0 ? ` free + ${sp(afterPaid)} paid` : ` free`} = ${s(afterDeductions)}${tixDeductActual > 0 ? `, ${st(ticketsAvail)} tickets` : ``}</div></div>`;
+  }
+
+  // ── Pulls breakdown ──
+  const caratPulls = Math.floor(afterDeductions / 150);
+  html += `<div class="ex-section"><div class="ex-lbl">Pulls</div>`;
+  html += `<p>At 150 carats per pull, your ${s(afterDeductions)} carats convert to ${spu(caratPulls)} carat pulls.</p>`;
+  if (freePullsVal > 0) html += `<p>On top of that, you have ${spu(freePullsVal)} free pull${freePullsVal !== 1 ? "s" : ""} that don't cost any carats.</p>`;
+  if (ticketsAvail > 0 && !tixDisabled) html += `<p>You also have ${st(ticketsAvail)} ${bannerType || ""} ticket${ticketsAvail !== 1 ? "s" : ""}, each good for one pull.</p>`;
+  if (ticketsAvail > 0 && tixDisabled) html += `<p>You have ${st(ticketsAvail)} ${bannerType || ""} ticket${ticketsAvail !== 1 ? "s" : ""}, but they're <span style="color:#e07070">disabled</span> for this banner and won't contribute to your pull total.</p>`;
+  html += `<div class="ex-total">Maximum Pulls: ${spu(maxPulls)}</div>`;
+  if (pullsEntered > 0) {
+    const shortfall = pullsEntered - maxPulls;
+    if (shortfall > 0)
+      html += `<p>You've entered ${spu(pullsEntered)} pulls, but you're ${spu(shortfall)} pull${shortfall !== 1 ? "s" : ""} short of that — you won't quite reach your goal with current resources.</p>`;
+    else if (shortfall === 0)
+      html += `<p>You've entered ${spu(pullsEntered)} pulls — that's exactly what you can afford. Perfect.</p>`;
+    else
+      html += `<p>You've entered ${spu(pullsEntered)} pulls, which is well within your budget — you have ${spu(-shortfall)} pull${-shortfall !== 1 ? "s" : ""} to spare.</p>`;
+    if (bannerType === "Support") {
+      const probs = supportCopyProbs(pullsEntered);
+      const fmt = v => (v * 100).toFixed(1) + "%";
+      const sp2 = (label, v) => `<span style="display:inline-flex;gap:4px;align-items:center"><span style="color:#888;font-size:11px">${label}</span><strong style="color:#d4b060">${fmt(v)}</strong></span>`;
+      html += `<p style="margin-top:6px">With ${spu(pullsEntered)} pulls on a Support banner, your copy odds are: ${sp2("0 copies", probs[0])}, ${sp2("1 copy", probs[1])}, ${sp2("2 copies", probs[2])}, ${sp2("3 copies", probs[3])}, ${sp2("4 copies", probs[4])}, ${sp2("MLB", probs[5])}.</p>`;
+    }
+  } else {
+    html += `<p>No pulls entered yet — add a pull count to see sufficiency and probability odds.</p>`;
+  }
+  html += `</div>`;
+
+  html += `</div>`;
+  explainBox.innerHTML = html;
+  explainOverlay.style.display = "block";
+  explainBox.style.display = "block";
+  explainBox.scrollTop = 0;
+}
+
 let ddInput = null, ddRow = null;
 
 const TODAY = new Date().toISOString().slice(0, 10);
@@ -1126,7 +1291,9 @@ function renderDD(query) {
       : b.type === 'step_up'
       ? '<span style="font-size:10px;color:#c47a2a;background:#1e1508;border:1px solid #3a2a0a;border-radius:3px;padding:1px 5px;margin-right:7px;flex-shrink:0;">STEP UP</span>'
       : '<span style="font-size:10px;color:#9a6ac8;background:#140d1e;border:1px solid #2a1a3a;border-radius:3px;padding:1px 5px;margin-right:7px;flex-shrink:0;">SUP</span>';
-    item.innerHTML = badge + `<span>${b.name}</span>`;
+    const ssrParts = b.name.split(', ').filter(p => p.includes('SSR'));
+    const displayName = ssrParts.length ? ssrParts.join(', ') : b.name;
+    item.innerHTML = badge + `<span>${displayName}</span>`;
     Object.assign(item.style, {padding:"7px 12px", fontSize:"12px", color:"#bbb", cursor:"pointer", display:"flex", alignItems:"center", lineHeight:"1.4"});
     item.addEventListener("mouseenter", () => item.style.background = "#252525");
     item.addEventListener("mouseleave", () => item.style.background = "");
@@ -1433,6 +1600,32 @@ function insertAnnivSeparators() {
   }
 }
 
+// ── Probability helpers ──────────────────────────────────────────
+function _logBinom(n, k) {
+  let r = 0;
+  for (let i = 0; i < k; i++) r += Math.log(n - i) - Math.log(i + 1);
+  return r;
+}
+function _binomPMF(n, k, p) {
+  if (k < 0 || k > n) return 0;
+  if (p === 0) return k === 0 ? 1 : 0;
+  if (p === 1) return k === n ? 1 : 0;
+  return Math.exp(_logBinom(n, k) + k * Math.log(p) + (n - k) * Math.log(1 - p));
+}
+// Returns array [P(0 copies), P(1 copy), P(2), P(3), P(4), P(>=5)]
+function supportCopyProbs(pulls) {
+  const p = 0.0075;
+  const guaranteed = Math.floor(pulls / 200);
+  const probs = new Array(6).fill(0);
+  for (let j = 0; j <= pulls; j++) {
+    const pmf = _binomPMF(pulls, j, p);
+    if (pmf < 1e-12) { if (j > 0) break; else continue; }
+    const total = guaranteed + j;
+    probs[Math.min(total, 5)] += pmf;
+  }
+  return probs;
+}
+
 function updateAllCarats() {
   const trackTickets = document.getElementById("togTickets")?.checked !== false;
   const resUmaTickets     = trackTickets ? (parseInt(document.getElementById("resUmaTicket").value) || 0) : 0;
@@ -1568,7 +1761,7 @@ function updateAllCarats() {
       continue;
     }
 
-    const evDetails = getEventDetails(endStr, null, new Set());
+    const evDetails = getEventDetails(startStr, null, new Set());
     const evVal = Math.max(0, evDetails.total - spentEventCarat);
 
     const availCarat = Math.max(0, rawCarat - spentCarat);
@@ -1633,6 +1826,27 @@ function updateAllCarats() {
         spentHistory.push({ banner: bName, carat: caratUsedByRow, paid: paidUsedByRow, ev: evUsedByRow, tickets: ticketsUsedByRow, type: bannerType });
     }
 
+    // Update probability columns
+    {
+      const pctNone = tr.querySelector(".cell-pct-none");
+      const pctCells = tr.querySelectorAll(".cell-pct");
+      if (pctNone && pctCells.length === 5) {
+        if (bannerType === "Support" && pullsEntered > 0) {
+          const probs = supportCopyProbs(pullsEntered);
+          const fmt = v => (v * 100).toFixed(1) + "%";
+          pctNone.textContent = fmt(probs[0]);
+          pctCells[0].textContent = fmt(probs[1]);
+          pctCells[1].textContent = fmt(probs[2]);
+          pctCells[2].textContent = fmt(probs[3]);
+          pctCells[3].textContent = fmt(probs[4]);
+          pctCells[4].textContent = fmt(probs[5]);
+        } else {
+          pctNone.textContent = "—";
+          pctCells.forEach(c => c.textContent = "—");
+        }
+      }
+    }
+
     // Inject breakdown into the paired detail row
     if (tr._detailRow) {
       const bd = computeCaratBreakdown(endStr);
@@ -1643,7 +1857,7 @@ function updateAllCarats() {
         const priorEvTotal = Math.max(0, evDetails.total - windowEvDetails.total);
         const evRows = (() => {
           let html = '';
-          if (priorEvTotal > 0) html += `<div class="dp-row" style="color:#888;"><span>From prior banners</span><span>+${priorEvTotal.toLocaleString()}</span></div>`;
+          if (prevStartStr && priorEvTotal > 0) html += `<div class="dp-row" style="color:#888;"><span>From prior banners</span><span>+${priorEvTotal.toLocaleString()}</span></div>`;
           let prevGroup = null;
           for (const ev of windowEvDetails.items) {
             const grp = ev.isCM ? 'CM|' + ev.start : ev.start;
@@ -1697,7 +1911,7 @@ function updateAllCarats() {
           ? `<div class="dp-row dp-neg"><span>${pullsEntered} pulls${pullParts.length ? ` (${pullParts.join(', ')})` : ''}</span><span>${actualPullCost > 0 ? `−${actualPullCost.toLocaleString()}` : '—'}</span></div>${pullSubs}`
           : `<div class="dp-row"><span style="font-style:italic;color:#777;">No pulls entered</span><span>—</span></div>`;
 
-        detailCell.innerHTML = `<div class="detail-panel">
+        detailCell.innerHTML = `<div class="dp-explain-hdr"><button class="dp-explain-btn">Explain</button></div><div class="detail-panel">
           <div class="dp-col">
             <div class="dp-lbl">Carat Income (${bd.days} days)</div>
             <div class="dp-row"><span>Carat Reserve</span><span>${bd.resCarat.toLocaleString()}</span></div>
@@ -1748,7 +1962,7 @@ function updateAllCarats() {
             <div class="dp-lbl">Events</div>
             ${evRows}
             ${windowEvDetails.total > 0 ? `<div class="dp-row dp-green"><span>Total this banner</span><span>${windowEvDetails.total.toLocaleString()}</span></div>` : ''}
-            <div class="dp-total"><span>Event Est.</span><span>${evDetails.total.toLocaleString()}</span></div>
+            <div class="dp-total"><span>Event Est.</span><span>${(windowEvDetails.total + (prevStartStr ? priorEvTotal : 0)).toLocaleString()}</span></div>
           </div>
           <div class="dp-col">
             <div class="dp-lbl">Prior Deductions</div>
@@ -1766,6 +1980,33 @@ function updateAllCarats() {
             ${pullRows}
           </div>
         </div>`;
+        const explainBtn = detailCell.querySelector(".dp-explain-btn");
+        if (explainBtn) {
+          const _bd = bd, _name = tr.querySelector(".banner-cell input")?.value || "this banner";
+          const _evTotal = windowEvDetails.total + (prevStartStr ? priorEvTotal : 0);
+          const _bonusTix = bannerType === "Uma" ? bonusUmaTickets : bonusSupportTickets;
+          const _shopTix  = bannerType === "Uma" ? shopUmaAcc : shopSupportAcc;
+          const _lohTix   = bannerType === "Uma" ? bonusUmaLOH : bonusSupportLOH;
+          const _rwdTix   = bannerType === "Uma" ? totalRewardUma : totalRewardSupport;
+          const _allEvItems = [...windowEvDetails.items, ...(prevStartStr ? evDetails.items.filter(e => !windowEvDetails.items.find(w => w.key === e.key)) : [])];
+          const _evCMTotal  = _allEvItems.filter(e => e.isCM && !e.isLOH).reduce((a, e) => a + e.amount, 0);
+          const _evLOHTotal = _allEvItems.filter(e => e.isLOH).reduce((a, e) => a + e.amount, 0);
+          const _ex = {
+            bd, evTotal: _evTotal, evCMTotal: _evCMTotal, evLOHTotal: _evLOHTotal,
+            rawPaid, resPaidCarat: parseInt(document.getElementById("resPaidCarat").value) || 0,
+            packBonusTotal: bd.packBonusTotal, packBonusMonths: bd.packBonusMonths,
+            freePullsVal, ticketsAvail, tktBase, bannerType,
+            bonusTix: _bonusTix, shopTix: _shopTix, lohTix: _lohTix, rwdTix: _rwdTix,
+            cmCount: seenCMKeys.size, lohCount: seenLOHKeys.size,
+            priorTotalNormal, rawPaidDeduct: rawPaid - availPaid,
+            maxPulls, pullsEntered,
+            cmCaratRate: getCMAmount(), lohCaratRate: getLOHAmount(),
+            cmTixRate: cmTicketPerCM, lohTixRate: lohTicketPerLOH,
+            tixDeduct: bannerType === "Uma" ? spentUmaTickets : bannerType === "Support" ? spentSupportTickets : 0,
+            tixDisabled,
+          };
+          explainBtn.addEventListener("click", e => { e.stopPropagation(); showExplainBox(_name, endStr, _ex, explainBtn); });
+        }
       }
       if (bannerType === "Uma") {
         if (showTktReserve) shownReserveUma = true;
@@ -1792,7 +2033,8 @@ function updateAllCarats() {
 
 function pickBanner(b) {
   if (!ddInput || !ddRow) return;
-  ddInput.value = b.name;
+  const ssrParts = b.name.split(', ').filter(p => p.includes('SSR'));
+  ddInput.value = ssrParts.length ? ssrParts.join(', ') : b.name;
   ddRow.dataset.bannerType = b.type === 'character' ? 'Uma' : b.type === 'support' ? 'Support' : '';
   ddRow.querySelector(".date-start").textContent = b.start || "—";
   ddRow.querySelector(".date-end").textContent   = b.end   || "—";
@@ -1851,7 +2093,7 @@ function makeRow(data = {}) {
   detailRow.className = "detail-row";
   detailRow.style.display = "none";
   const detailCell = document.createElement("td");
-  detailCell.colSpan = 20;
+  detailCell.colSpan = 100;
   detailCell.className = "detail-cell";
   detailCell.innerHTML = '<div class="detail-panel" style="padding:12px 16px;color:#444;font-size:12px;">Select a banner to see the breakdown.</div>';
   detailRow.appendChild(detailCell);

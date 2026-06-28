@@ -92,7 +92,7 @@
 
     /* ── Table ── */
     .packs-table-wrap {
-      border-radius: 10px; overflow: hidden; border: 1px solid #1e1e1e;
+      border-radius: 10px; overflow-x: auto; overflow-y: visible; border: 1px solid #1e1e1e;
       display: inline-block; min-width: 100%;
     }
     table { border-collapse: collapse; font-size: 13px; width: 100%; }
@@ -850,6 +850,20 @@ document.getElementById("packsImportFile").addEventListener("change", e => {
 });
 
 _renderPacksProfileBtns();
+
+// ── Auto-fit table to container ──
+const _tableWrap = document.querySelector('.packs-table-wrap');
+const _mainEl    = document.querySelector('.main');
+function _fitTable() {
+  if (!_tableWrap || !_mainEl) return;
+  _tableWrap.style.zoom = 1;
+  const avail   = _mainEl.clientWidth - 56; // subtract padding
+  const natural = _tableWrap.scrollWidth;
+  if (natural > avail) {
+    _tableWrap.style.zoom = Math.max(0.4, avail / natural);
+  }
+}
+new ResizeObserver(_fitTable).observe(_mainEl);
 </script>
 <script>
 (function() {
