@@ -110,6 +110,22 @@ def logout():
 def api_me():
     return jsonify(session.get("user"))
 
+@app.route("/api/plan/<discord_id>")
+def api_plan_get(discord_id):
+    key = request.args.get("key")
+    if not key or key != os.getenv("PLAN_API_KEY"):
+        return jsonify(error="unauthorized"), 401
+    try:
+        with _get_db() as conn:
+            with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
+                cur.execute("SELECT plan_data, updated_at FROM plans WHERE discord_id = %s", (discord_id,))
+                row = cur.fetchone()
+    except Exception as e:
+        return jsonify(error=str(e)), 500
+    if not row:
+        return jsonify(error="not found"), 404
+    return jsonify(plan=row["plan_data"], updated_at=str(row["updated_at"]))
+
 @app.route("/api/plan/init-db", methods=["POST"])
 def api_plan_init_db():
     u = session.get("user")
