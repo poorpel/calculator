@@ -97,6 +97,25 @@ def api_me():
 
 ADMIN_DISCORD_ID = os.getenv("ADMIN_DISCORD_ID", "")
 
+@app.route("/admin/db-status")
+def admin_db_status():
+    u = session.get("user")
+    if not u or u["id"] != ADMIN_DISCORD_ID:
+        return "Unauthorized", 403
+    info = {"DATABASE_URL_set": bool(os.getenv("DATABASE_URL"))}
+    try:
+        with _get_db() as conn:
+            with conn.cursor() as cur:
+                cur.execute("SELECT COUNT(*) FROM users")
+                info["user_count"] = cur.fetchone()[0]
+                cur.execute("SELECT table_name FROM information_schema.tables WHERE table_schema='public'")
+                info["tables"] = [r[0] for r in cur.fetchall()]
+        info["db_ok"] = True
+    except Exception as e:
+        info["db_ok"] = False
+        info["error"] = str(e)
+    return jsonify(info)
+
 @app.route("/admin/users")
 def admin_users():
     u = session.get("user")
