@@ -7,6 +7,43 @@ from datetime import date, timedelta, datetime, timezone
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY", "dev-secret-change-me")
 
+# ── Database ─────────────────────────────────────────────────────────────────
+import psycopg2, psycopg2.extras
+
+def _get_db():
+    return psycopg2.connect(os.getenv("DATABASE_URL"), sslmode="require")
+
+def _init_db():
+    try:
+        with _get_db() as conn:
+            with conn.cursor() as cur:
+                cur.execute("""
+                    CREATE TABLE IF NOT EXISTS users (
+                        discord_id   TEXT PRIMARY KEY,
+                        username     TEXT,
+                        last_ip      TEXT,
+                        first_login  TIMESTAMPTZ DEFAULT NOW(),
+                        last_login   TIMESTAMPTZ DEFAULT NOW()
+                    )
+                """)
+    except Exception as e:
+        print(f"[db] init error: {e}")
+
+def _record_login(user, ip=None):
+    try:
+        with _get_db() as conn:
+            with conn.cursor() as cur:
+                cur.execute("""
+                    INSERT INTO users (discord_id, username, last_ip, first_login, last_login)
+                    VALUES (%s, %s, %s, NOW(), NOW())
+                    ON CONFLICT (discord_id) DO UPDATE
+                      SET username = EXCLUDED.username, last_ip = EXCLUDED.last_ip, last_login = NOW()
+                """, (user["id"], user["username"], ip))
+    except Exception as e:
+        print(f"[db] record_login error: {e}")
+
+threading.Thread(target=_init_db, daemon=True).start()
+
 DISCORD_CLIENT_ID     = os.getenv("DISCORD_CLIENT_ID", "")
 DISCORD_CLIENT_SECRET = os.getenv("DISCORD_CLIENT_SECRET", "")
 DISCORD_REDIRECT_URI  = os.getenv("DISCORD_REDIRECT_URI", "http://localhost:5000/callback")
@@ -43,6 +80,8 @@ def callback():
             "username": user["username"],
             "avatar":   user.get("avatar"),
         }
+        ip = request.headers.get("X-Forwarded-For", request.remote_addr).split(",")[0].strip()
+        _record_login(session["user"], ip)
     except Exception as e:
         print(f"[discord oauth] error: {e}")
     return redirect("/")
