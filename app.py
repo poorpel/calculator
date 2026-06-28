@@ -110,6 +110,14 @@ def logout():
 def api_me():
     return jsonify(session.get("user"))
 
+@app.route("/api/plan/init-db", methods=["POST"])
+def api_plan_init_db():
+    u = session.get("user")
+    if not u:
+        return jsonify(ok=False), 401
+    _init_db()
+    return jsonify(ok=True)
+
 @app.route("/api/plan/save", methods=["POST"])
 def api_plan_save():
     u = session.get("user")
