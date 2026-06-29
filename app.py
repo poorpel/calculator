@@ -583,6 +583,15 @@ def packs():
                            pack_uma=pack_uma, pack_support=pack_support,
                            user=session.get("user"))
 
+@app.route("/credits")
+def credits_page():
+    try:
+        raw = json.loads((BASE / "credits.json").read_text(encoding="utf-8"))
+        entries = [e for e in raw if e.get("name") and e.get("role")]
+    except Exception:
+        entries = []
+    return render_template("credits.html", entries=entries, user=session.get("user"))
+
 @app.route("/updates")
 def updates():
     try:

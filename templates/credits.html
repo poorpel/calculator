@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Updates — Carat Calc</title>
+  <title>Credits — Carat Calc</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -46,31 +46,22 @@
 
     h1 { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 32px; }
 
-    .entry { margin-bottom: 36px; }
+    .credit-entry {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 16px 0; border-bottom: 1px solid #141414;
+    }
+    .credit-entry:last-child { border-bottom: none; }
 
-    .entry-header {
-      display: flex; align-items: baseline; gap: 14px; margin-bottom: 10px;
+    .credit-name {
+      font-size: 15px; font-weight: 700; color: #e8e8e8; margin-bottom: 4px;
     }
-    .entry-title {
-      font-size: 16px; font-weight: 700; color: #e8e8e8;
+    .credit-name a {
+      color: #7289da; text-decoration: none;
     }
-    .entry-date {
-      font-size: 12px; color: #555; font-weight: 500;
-    }
+    .credit-name a:hover { text-decoration: underline; }
 
-    .entry ul {
-      list-style: none; padding: 0;
-      border-left: 2px solid #1e1e1e;
-      padding-left: 16px;
-      display: flex; flex-direction: column; gap: 6px;
-    }
-    .entry ul li {
-      color: #aaa; font-size: 13.5px; line-height: 1.5;
-    }
-    .entry ul li::before {
-      content: "— ";
-      color: #444;
-    }
+    .credit-role { font-size: 13px; color: #666; }
+    .credit-discord { font-size: 12px; color: #444; margin-top: 3px; }
 
     .empty { color: #555; font-size: 14px; margin-top: 40px; }
   </style>
@@ -84,8 +75,8 @@
   <a href="/cards" class="top-nav-link">Card Tracker</a>
   <div class="top-nav-sep"></div>
   <a href="/timeline" class="top-nav-link">Timeline</a>
-  <a href="/updates" class="top-nav-link active">Updates</a>
-  <a href="/credits" class="top-nav-link">Credits</a>
+  <a href="/updates" class="top-nav-link">Updates</a>
+  <a href="/credits" class="top-nav-link active">Credits</a>
   <div style="margin-left:auto;display:flex;align-items:center;gap:10px">
     <button id="feedbackBtn" style="font-size:12px;color:#888;background:none;border:1px solid #222;border-radius:4px;padding:4px 10px;cursor:pointer;transition:color 0.1s,border-color 0.1s;" onmouseover="this.style.color='#ccc';this.style.borderColor='#444'" onmouseout="this.style.color='#888';this.style.borderColor='#222'">Report / Suggest</button>
     {% if user %}
@@ -101,27 +92,30 @@
 </nav>
 
 <div class="main">
-  <h1>Updates</h1>
+  <h1>Credits</h1>
 
   {% if entries %}
     {% for entry in entries %}
-    <div class="entry">
-      <div class="entry-header">
-        <span class="entry-title">{{ entry.title }}</span>
-        <span class="entry-date">{{ entry.date }}</span>
+    <div class="credit-entry">
+      <div>
+        <div class="credit-name">
+          {% if entry.url %}
+            <a href="{{ entry.url }}" target="_blank" rel="noopener">{{ entry.name }}</a>
+          {% else %}
+            {{ entry.name }}
+          {% endif %}
+        </div>
+        <div class="credit-role">{{ entry.role }}</div>
+        {% if entry.discord %}
+          <div class="credit-discord">{{ entry.discord }}</div>
+        {% endif %}
       </div>
-      <ul>
-        {% for item in entry.notes %}
-        <li>{{ item }}</li>
-        {% endfor %}
-      </ul>
     </div>
     {% endfor %}
   {% else %}
-    <p class="empty">No updates yet.</p>
+    <p class="empty">No credits yet.</p>
   {% endif %}
 </div>
-
 
 <!-- ── Feedback Modal ────────────────────────────────────────────── -->
 <style>

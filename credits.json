@@ -1,0 +1,16 @@
+[
+  {
+    "_comment": "Add entries in any order. 'url' and 'discord' are optional.",
+    "_template": {
+      "name": "Person's name or handle",
+      "role": "What they helped with",
+      "url": "https://optional-link.com",
+      "discord": "optional_username"
+    }
+  },
+  {
+    "name": "Global Effective Spending in Umamusume",
+    "role": "Step-up banner documentation",
+    "url": "https://docs.google.com/document/d/1LRguS1n7Z1qiiJi8Hk2NRGnHGAARmqU_V7VnO76sCoE/edit?usp=sharing"
+  }
+]
