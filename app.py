@@ -183,7 +183,7 @@ def api_plan_save():
 
 def _dm_feedback(fb_type, message, discord_id, discord_user, ip):
     token    = os.getenv("BOT_TOKEN")
-    owner_id = os.getenv("OWNER_DISCORD_ID")
+    owner_id = os.getenv("ADMIN_DISCORD_ID")
     if not token or not owner_id:
         return
     headers = {"Authorization": f"Bot {token}", "Content-Type": "application/json"}
