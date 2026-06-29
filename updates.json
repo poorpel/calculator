@@ -1,0 +1,23 @@
+[
+  {
+    "_comment": "Add new entries at the TOP of this list (most recent first).",
+    "_template": {
+      "date": "YYYY-MM-DD",
+      "title": "Short title for this update",
+      "notes": [
+        "One bullet point per line",
+        "Add as many as you want",
+        "Delete this _template block when adding real entries"
+      ]
+    }
+  },
+  {
+    "date": "2026-06-28",
+    "title": "Site launch",
+    "notes": [
+      "Calculator is now live at caratcalculator.moe",
+      "Discord login support",
+      "Pull plans saved to your account"
+    ]
+  }
+]

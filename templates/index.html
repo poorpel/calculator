@@ -31,12 +31,12 @@
       z-index: 100;
     }
     .top-nav-logo {
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 700;
       color: #444;
       letter-spacing: 0.8px;
       text-transform: uppercase;
-      padding: 11px 18px 11px 0;
+      padding: 20px 18px 20px 0;
       border-right: 1px solid #1e1e1e;
       margin-right: 6px;
       white-space: nowrap;
@@ -44,10 +44,10 @@
     .top-nav-link {
       display: flex;
       align-items: center;
-      padding: 11px 12px;
+      padding: 20px 14px;
       color: #555;
       text-decoration: none;
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 500;
       transition: color 0.1s;
       white-space: nowrap;
@@ -311,7 +311,16 @@
     tr.row-active .cell-auto { color: #d8d8d8; font-style: normal; font-weight: 700; }
     .cell-ticket-pulls { cursor: pointer; user-select: none; }
     .cell-ticket-pulls:hover { background: #1e1e1e; border-radius: 4px; }
-    .cell-su-combined { font-weight: 700; }
+    .cell-su-combined { font-weight: 700; position: relative; }
+    .cell-su-combined .su-inner { display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .su-help-btn {
+      width: 16px; height: 16px; border-radius: 50%;
+      border: 1px solid #444; background: none; color: #555;
+      font-size: 10px; font-weight: 700; font-family: inherit;
+      cursor: pointer; line-height: 1; padding: 0; flex-shrink: 0;
+      transition: color 0.1s, border-color 0.1s;
+    }
+    .su-help-btn:hover { color: #bbb; border-color: #888; }
     .su-status-cell { padding:10px 14px; text-align:center !important; line-height:1.9; }
     .su-info-selectors { font-size:17px; font-weight:600; color:#c47a2a; }
     .su-info-progress  { font-size:15px; color:#888; }
@@ -319,7 +328,7 @@
     .su-sel-locked input.qty-sel { opacity:0.3; pointer-events:none; }
     .su-sel-locked .card-sel-placeholder { opacity:0.3; }
     tr.tix-disabled .cell-ticket-pulls { color: #444; text-decoration: line-through; }
-    tr.row-active .date-start, tr.row-active .date-end { font-weight: 700; }
+    tr.row-active .date-display { font-weight: 700; }
     tr.row-active .cell-pct  { color: #d8d8d8; }
     .cell-pulls input {
       background: #1a1a1a;
@@ -466,7 +475,7 @@
     .dp-details > summary { font-size:10px;color:#555;cursor:pointer;padding:2px 0;list-style:none;user-select:none; }
     .dp-details > summary::-webkit-details-marker { display:none; }
     .dp-details > summary::before { content:'▶ ';font-size:8px; }
-    .dp-explain-btn { background:#1a1a1a;border:1px solid #2a2a2a;border-radius:4px;color:#666;font-size:10px;font-weight:700;font-family:inherit;padding:2px 8px;cursor:pointer;letter-spacing:0.3px;transition:color 0.1s,border-color 0.1s; }
+    .dp-explain-btn { background:#1a1a1a;border:1px solid #2a2a2a;border-radius:6px;color:#888;font-size:13px;font-weight:600;font-family:inherit;padding:6px 18px;cursor:pointer;letter-spacing:0.3px;transition:color 0.1s,border-color 0.1s; }
     .dp-explain-btn:hover { color:#bbb;border-color:#444; }
     .dp-explain-hdr { display:flex;align-items:center;justify-content:flex-end;padding:6px 12px 0;border-top:1px solid #1a1a1a;background:#070707; }
     #explainOverlay { position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.7);display:none; }
@@ -540,8 +549,10 @@
   <div class="top-nav-sep"></div>
   <a href="/timeline" class="top-nav-link">Timeline</a>
   <a href="/data" class="top-nav-link debug-only">Data</a>
-  <a href="/updates" class="top-nav-link debug-only">Updates</a>
+  <a href="/updates" class="top-nav-link">Updates</a>
   <div style="margin-left:auto;display:flex;align-items:center;gap:10px">
+    <button id="feedbackBtn" style="font-size:12px;color:#888;background:none;border:1px solid #222;border-radius:4px;padding:4px 10px;cursor:pointer;transition:color 0.1s,border-color 0.1s;" onmouseover="this.style.color='#ccc';this.style.borderColor='#444'" onmouseout="this.style.color='#888';this.style.borderColor='#222'">Report / Suggest</button>
+    <button id="tourBtn" style="font-size:12px;color:#888;background:none;border:1px solid #222;border-radius:4px;padding:4px 10px;cursor:pointer;transition:color 0.1s,border-color 0.1s;" onmouseover="this.style.color='#ccc';this.style.borderColor='#444'" onmouseout="this.style.color='#888';this.style.borderColor='#222'">Take a tour</button>
     {% if user %}
       {% if user.avatar %}
         <img src="https://cdn.discordapp.com/avatars/{{ user.id }}/{{ user.avatar }}.png" style="width:26px;height:26px;border-radius:50%;object-fit:cover;">
@@ -889,8 +900,7 @@
           <th class="center" style="width:28px;"></th>
           <th class="center cards-col">Cards</th>
           <th class="center" style="min-width:180px;">Banner</th>
-          <th class="center" style="width:110px;">Start Date</th>
-          <th class="center" style="width:110px;">End Date</th>
+          <th class="center" style="width:200px;">Date</th>
           <th class="center" style="width:100px;">Carat Est.</th>
           <th class="center" style="width:100px;">Paid Est.</th>
           <th class="center" style="width:100px;">Total</th>
@@ -898,7 +908,7 @@
           <th class="center" style="width:80px;">Ticket Pulls</th>
           <th class="center" style="width:80px;">Paid Pulls</th>
           <th class="center" style="width:90px;">Max Pulls</th>
-          <th class="center" style="width:80px;"># Pulls</th>
+          <th class="center" style="width:80px;">Pulls</th>
           <th class="center prob-th" style="width:48px;">None</th>
           <th class="center prob-th" style="width:48px;">0LB</th>
           <th class="center prob-th" style="width:48px;">1LB</th>
@@ -1048,6 +1058,7 @@ document.getElementById("importFile").addEventListener("change", e => {
       tr.querySelector(".banner-cell input").value = b.banner || "";
       tr.querySelector(".date-start").textContent  = b.start || "—";
       tr.querySelector(".date-end").textContent    = b.end   || "—";
+      _updateDateDisplay(tr);
       tr.querySelector(".cell-pulls input").value  = b.pulls || 0;
       tr.querySelector(".cell-free-pulls").textContent = b.free_pulls > 0 ? b.free_pulls : "—";
       if (b.banner) tr.classList.add("row-active");
@@ -1150,7 +1161,8 @@ function showExplainBox(bannerName, endStr, ex, btn) {
           freePullsVal, ticketsAvail, tktBase, bannerType,
           bonusTix, shopTix, lohTix, rwdTix, cmCount, lohCount,
           priorTotalNormal, rawPaidDeduct, maxPulls, pullsEntered,
-          cmCaratRate, lohCaratRate, cmTixRate, lohTixRate, tixDeduct, tixDisabled } = ex;
+          cmCaratRate, lohCaratRate, cmTixRate, lohTixRate, tixDeduct, tixDisabled,
+          isStepUp, availPaid, suSelectorMax } = ex;
 
   const todayStr = new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
   const endFmt   = _fmtDate(endStr);
@@ -1203,7 +1215,7 @@ function showExplainBox(bannerName, endStr, ex, btn) {
 
   // ── Tickets ──
   const totalTix = tktBase + bonusTix + rwdTix;
-  if (totalTix > 0) {
+  if (!isStepUp && totalTix > 0) {
     const cmOnly = bonusTix - shopTix - lohTix;
     html += `<div class="ex-section"><div class="ex-lbl">${bannerType || ""} Tickets</div>`;
     if (tktBase > 0) html += `<p>You already have ${st(tktBase)} ${bannerType || ""} ticket${tktBase !== 1 ? "s" : ""} saved up.</p>`;
@@ -1244,13 +1256,36 @@ function showExplainBox(bannerName, endStr, ex, btn) {
   }
 
   // ── Pulls breakdown ──
-  const caratPulls = Math.floor(afterDeductions / 150);
   html += `<div class="ex-section"><div class="ex-lbl">Pulls</div>`;
-  html += `<p>At 150 carats per pull, your ${s(afterDeductions)} carats convert to ${spu(caratPulls)} carat pulls.</p>`;
-  if (freePullsVal > 0) html += `<p>On top of that, you have ${spu(freePullsVal)} free pull${freePullsVal !== 1 ? "s" : ""} that don't cost any carats.</p>`;
-  if (ticketsAvail > 0 && !tixDisabled) html += `<p>You also have ${st(ticketsAvail)} ${bannerType || ""} ticket${ticketsAvail !== 1 ? "s" : ""}, each good for one pull.</p>`;
-  if (ticketsAvail > 0 && tixDisabled) html += `<p>You have ${st(ticketsAvail)} ${bannerType || ""} ticket${ticketsAvail !== 1 ? "s" : ""}, but they're <span style="color:#e07070">disabled</span> for this banner and won't contribute to your pull total.</p>`;
-  html += `<div class="ex-total">Maximum Pulls: ${spu(maxPulls)}</div>`;
+  if (isStepUp) {
+    const SU_COSTS = [500, 700, 1000, 1300, 1500];
+    const SU_FULL  = 5000;
+    const paid = availPaid;
+    const fullStepUps = Math.floor(paid / SU_FULL);
+    const remainder   = paid % SU_FULL;
+    let extraSteps = 0, spent = 0;
+    for (const cost of SU_COSTS) { if (spent + cost <= remainder) { extraSteps++; spent += cost; } else break; }
+    const totalPulls = fullStepUps * 5 + extraSteps;
+    html += `<p>Step ups use paid carats only. You have ${sp(paid)} paid carats available.</p>`;
+    html += `<p>Each step costs 500 → 700 → 1,000 → 1,300 → 1,500 carats. A full step up (5 steps) costs ${sp(SU_FULL)} paid carats and awards a selector.</p>`;
+    const maxFullStepUps = suSelectorMax > 0 ? Math.floor(suSelectorMax / 5) : Infinity;
+    if (suSelectorMax > 0) html += `<p>This step up allows a maximum of ${spu(maxFullStepUps)} full step up${maxFullStepUps !== 1 ? "s" : ""} (${spu(maxFullStepUps)} selector${maxFullStepUps !== 1 ? "s" : ""}).</p>`;
+    const cappedStepUps = isFinite(maxFullStepUps) ? Math.min(fullStepUps, maxFullStepUps) : fullStepUps;
+    const cappedExtra   = cappedStepUps < fullStepUps ? 0 : extraSteps;
+    const cappedPulls   = cappedStepUps * 5 + cappedExtra;
+    if (cappedStepUps > 0)
+      html += `<p>You can afford ${spu(cappedStepUps)} full step up${cappedStepUps !== 1 ? "s" : ""} (${spu(cappedStepUps)} selector${cappedStepUps !== 1 ? "s" : ""})${cappedStepUps < fullStepUps ? " — capped by the banner limit" : ""}${cappedExtra > 0 ? `, plus ${spu(cappedExtra)} additional step${cappedExtra !== 1 ? "s" : ""} into the next cycle` : ""} — ${spu(cappedPulls)} steps total.</p>`;
+    else
+      html += `<p>You can afford ${spu(extraSteps)} step${extraSteps !== 1 ? "s" : ""} — not enough for a full step up yet.</p>`;
+    html += `<div class="ex-total">Maximum Pulls: ${spu(maxPulls)}</div>`;
+  } else {
+    const caratPulls = Math.floor(afterDeductions / 150);
+    html += `<p>At 150 carats per pull, your ${s(afterDeductions)} carats convert to ${spu(caratPulls)} carat pulls.</p>`;
+    if (freePullsVal > 0) html += `<p>On top of that, you have ${spu(freePullsVal)} free pull${freePullsVal !== 1 ? "s" : ""} that don't cost any carats.</p>`;
+    if (ticketsAvail > 0 && !tixDisabled) html += `<p>You also have ${st(ticketsAvail)} ${bannerType || ""} ticket${ticketsAvail !== 1 ? "s" : ""}, each good for one pull.</p>`;
+    if (ticketsAvail > 0 && tixDisabled) html += `<p>You have ${st(ticketsAvail)} ${bannerType || ""} ticket${ticketsAvail !== 1 ? "s" : ""}, but they're <span style="color:#e07070">disabled</span> for this banner and won't contribute to your pull total.</p>`;
+    html += `<div class="ex-total">Maximum Pulls: ${spu(maxPulls)}</div>`;
+  }
   if (pullsEntered > 0) {
     const shortfall = pullsEntered - maxPulls;
     if (shortfall > 0)
@@ -1990,13 +2025,28 @@ function updateAllCarats() {
             ${priorSummaryRows}
             ${priorHistory.length > 0 ? `<details class="dp-details"><summary>Show per banner</summary>${deductRows}</details>` : ''}
             <div class="dp-lbl">Available</div>
+            ${isStepUp ? (() => {
+              const SU_FULL = 5000;
+              const suMaxPulls   = parseInt(tr.dataset.suSelectorMax) || 0;
+              const suMaxFull    = suMaxPulls > 0 ? Math.floor(suMaxPulls / 5) : 0;
+              const full    = Math.floor(availPaid / SU_FULL);
+              const rem     = availPaid % SU_FULL;
+              const costs   = [500,700,1000,1300,1500];
+              let extra = 0, spent = 0;
+              for (const c of costs) { if (spent + c <= rem) { extra++; spent += c; } else break; }
+              const cappedFull  = suMaxFull > 0 ? Math.min(full, suMaxFull) : full;
+              const cappedPulls = suMaxFull > 0 ? Math.min(full * 5 + extra, suMaxFull * 5) : full * 5 + extra;
+              return `<div class="dp-row"><span>Paid carats</span><span>${availPaid.toLocaleString()}</span></div>
+              <div class="dp-row"><span>Full step ups</span><span>${cappedFull}${suMaxFull > 0 ? ` / ${suMaxFull} max` : ""}</span></div>
+              <div class="dp-total"><span>Max Pulls</span><span>${cappedPulls > 0 ? cappedPulls.toLocaleString() : "—"}</span></div>`;
+            })() : `
             <div class="dp-row"><span>Carat Est.</span><span>${(availCarat + evVal).toLocaleString()}</span></div>
             <div class="dp-row"><span>Paid Est.</span><span>${availPaid.toLocaleString()}</span></div>
             <div class="dp-total"><span>Total Carats</span><span>${totalVal.toLocaleString()}</span></div>
             <div class="dp-row" style="margin-top:8px;"><span>Carat Pulls</span><span>${Math.floor(totalVal / 150).toLocaleString()}</span></div>
             ${freePullsVal > 0 ? `<div class="dp-row"><span>Free Pulls</span><span>${freePullsVal}</span></div>` : ""}
             ${ticketsAvail > 0 ? `<div class="dp-row"${tixDisabled ? ' style="opacity:0.35"' : ''}><span>${bannerType} Tickets</span><span>${ticketsAvail}</span></div>` : ""}
-            <div class="dp-total"><span>Max Pulls</span><span>${maxPulls > 0 ? maxPulls.toLocaleString() : "—"}</span></div>
+            <div class="dp-total"><span>Max Pulls</span><span>${maxPulls > 0 ? maxPulls.toLocaleString() : "—"}</span></div>`}
             <div class="dp-lbl">This Banner's Pull Cost</div>
             ${pullRows}
           </div>
@@ -2025,6 +2075,8 @@ function updateAllCarats() {
             cmTixRate: cmTicketPerCM, lohTixRate: lohTicketPerLOH,
             tixDeduct: bannerType === "Uma" ? spentUmaTickets : bannerType === "Support" ? spentSupportTickets : 0,
             tixDisabled,
+            isStepUp, availPaid,
+            suSelectorMax: parseInt(tr.dataset.suSelectorMax) || 0,
           };
           explainBtn.addEventListener("click", e => { e.stopPropagation(); showExplainBox(_name, endStr, _ex, explainBtn); });
         }
@@ -2059,6 +2111,7 @@ function pickBanner(b) {
   ddRow.dataset.bannerType = b.type === 'character' ? 'Uma' : b.type === 'support' ? 'Support' : '';
   ddRow.querySelector(".date-start").textContent = b.start || "—";
   ddRow.querySelector(".date-end").textContent   = b.end   || "—";
+  _updateDateDisplay(ddRow);
   const cardsCell = ddRow.querySelector(".cards-cell");
   cardsCell.innerHTML = `<div class="cards-inner">${(b.cards || []).slice(0, 2).map(c =>
     `<a href="${c.url}" target="_blank" rel="noopener" title="${c.name}"><img src="${c.img}" alt="${c.name}" style="height:44px;width:auto;border-radius:3px;"></a>`
@@ -2110,8 +2163,11 @@ function makeRow(data = {}) {
     <td class="row-num center"></td>
     <td class="cards-cell center"></td>
     <td class="banner-cell"><input type="text" placeholder="Search banner…" autocomplete="off"></td>
-    <td class="date-start cell-auto center">—</td>
-    <td class="date-end cell-auto center">—</td>
+    <td class="date-range cell-auto center" style="white-space:nowrap;">
+      <span class="date-start" style="display:none">—</span>
+      <span class="date-end" style="display:none">—</span>
+      <span class="date-display">—</span>
+    </td>
     <td class="cell-carat cell-auto">—</td>
     <td class="cell-paid-carat cell-auto center">—</td>
     <td class="cell-total cell-auto center">—</td>
@@ -2156,13 +2212,16 @@ function makeRow(data = {}) {
   if (data.banner)      bannerInput.value = data.banner;
   if (data.startDate)   tr.querySelector(".date-start").textContent = data.startDate;
   if (data.endDate)     tr.querySelector(".date-end").textContent   = data.endDate;
+  _updateDateDisplay(tr);
   if (data.cardsHTML)   tr.querySelector(".cards-cell").innerHTML   = data.cardsHTML;
   if (data.pulls) pullsInput.value = data.pulls;
   if (data.tixDisabled) tr.classList.add("tix-disabled");
   if (data.banner) {
     const jsonType = data.type ? (TYPE_MAP[data.type] || null) : null;
     const found = BANNER_DATA.find(b => b.name === data.banner && (!jsonType || b.type === jsonType));
-    if (found) {
+    if (data.isStepUp) {
+      _applyStepUpMode(tr, _getSuMaxPulls(data.banner));
+    } else if (found) {
       tr.querySelector(".cell-free-pulls").textContent = (found.free > 0) ? found.free : "—";
       if (!data.type) tr.dataset.bannerType = found.type === 'character' ? 'Uma' : found.type === 'support' ? 'Support' : '';
       if (found.type === 'step_up') _applyStepUpMode(tr, _getSuMaxPulls(found.name));
@@ -2216,6 +2275,23 @@ function setRowCount(n, rowData) {
     if (last._detailRow) last._detailRow.remove();
     last.remove();
   }
+}
+
+// ── Date formatting ──────────────────────────────────────────────
+const _MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+function _fmtDate(str) {
+  if (!str || str === "—") return "—";
+  const [y, m, d] = str.split("-").map(Number);
+  if (!y || !m || !d) return str;
+  return `${_MONTHS[m - 1]} ${d}, ${y}`;
+}
+function _updateDateDisplay(tr) {
+  const s = tr.querySelector(".date-start")?.textContent.trim();
+  const e = tr.querySelector(".date-end")?.textContent.trim();
+  const disp = tr.querySelector(".date-display");
+  if (!disp) return;
+  if ((!s || s === "—") && (!e || e === "—")) { disp.textContent = "—"; return; }
+  disp.textContent = `${_fmtDate(s)} → ${_fmtDate(e)}`;
 }
 
 // ── Persistence ──────────────────────────────────────────────────
@@ -2320,6 +2396,7 @@ function saveAll() {
     pulls:       tr.querySelector(".cell-pulls input").value,
     freePulls:   parseInt(tr.querySelector(".cell-free-pulls").textContent) || 0,
     tixDisabled: tr.classList.contains("tix-disabled"),
+    isStepUp:    tr.dataset.isStepUp === '1',
     caratsFree:  parseInt(tr.dataset.caratsFree)  || 0,
     caratsPaid:  parseInt(tr.dataset.caratsPaid)  || 0,
     tickets:     parseInt(tr.dataset.ticketsAvail) || 0,
@@ -2589,6 +2666,7 @@ document.getElementById("calcBody").addEventListener("click", e => {
   tr.querySelector(".banner-cell input").value = "";
   tr.querySelector(".date-start").textContent = "—";
   tr.querySelector(".date-end").textContent = "—";
+  _updateDateDisplay(tr);
   tr.querySelector(".cards-cell").innerHTML = "";
   tr.querySelector(".cell-pulls input").value = "";
   tr.classList.remove("tix-disabled");
@@ -2779,15 +2857,17 @@ document.getElementById("sClearResources").addEventListener("click", () => {
   closeSettings();
 });
 
-document.getElementById("clearPlanBtn").addEventListener("click", () => {
+document.getElementById("clearPlanBtn").addEventListener("click", async () => {
   const hasData = Array.from(document.querySelectorAll("#calcBody tr.calc-row"))
     .some(tr => tr.querySelector(".banner-cell input").value.trim());
   if (!hasData) return;
-  if (!confirm("Clear all banner rows for this profile? This cannot be undone.")) return;
+  const ok = await showConfirm("Clear all banner rows for this profile?<br><strong>This cannot be undone.</strong>", "Clear All");
+  if (!ok) return;
   document.querySelectorAll("#calcBody tr.calc-row").forEach(tr => {
     tr.querySelector(".banner-cell input").value = "";
     tr.querySelector(".date-start").textContent = "—";
     tr.querySelector(".date-end").textContent = "—";
+    _updateDateDisplay(tr);
     tr.querySelector(".cards-cell").innerHTML = "";
     tr.querySelector(".cell-pulls input").value = "";
     tr.classList.remove("tix-disabled", "row-active");
@@ -2798,8 +2878,9 @@ document.getElementById("clearPlanBtn").addEventListener("click", () => {
   saveAll();
 });
 
-document.getElementById("sClearAll").addEventListener("click", () => {
-  if (!confirm("Clear all saved data? This cannot be undone.")) return;
+document.getElementById("sClearAll").addEventListener("click", async () => {
+  const ok = await showConfirm("Clear <strong>all saved data</strong> including your plan, resources, and profiles?<br><strong>This cannot be undone.</strong>", "Clear Everything");
+  if (!ok) return;
   localStorage.removeItem(STORE_KEY);
   localStorage.removeItem(CL_KEY);
   localStorage.removeItem(PROFILE_KEY);
@@ -2842,9 +2923,17 @@ function _suUpdateCombined(tr) {
   const pulls = parseInt(tr.querySelector('.cell-pulls input').value) || 0;
   const stepUps = Math.floor(pulls / 5);
   const steps   = pulls % 5;
-  tr.querySelector('.cell-su-combined').textContent =
-    `${stepUps} Step Up${stepUps !== 1 ? 's' : ''} | ${steps} Step${steps !== 1 ? 's' : ''}`;
+  const label = `${stepUps} Step Up${stepUps !== 1 ? 's' : ''} | ${steps} Step${steps !== 1 ? 's' : ''}`;
+  const cell = tr.querySelector('.cell-su-combined');
+  cell.innerHTML = `<div class="su-inner"><span>${label}</span><button class="su-help-btn" tabindex="-1">?</button></div>`;
 }
+document.addEventListener('click', e => {
+  if (e.target.closest('.su-help-btn')) {
+    e.stopPropagation();
+    document.getElementById('suInfoOverlay').classList.add('open');
+  }
+});
+
 function _applyStepUpMode(tr, maxPulls) {
   tr.dataset.isStepUp = '1';
   tr.dataset.suSelectorMax = maxPulls;
@@ -2902,5 +2991,662 @@ updateAllCarats();
     });
   });
 })();
-</script></body>
+</script>
+
+<!-- ── Step-Up Info Modal ─────────────────────────────────────────── -->
+<style>
+  #suInfoOverlay {
+    display: none; position: fixed; inset: 0; z-index: 10000;
+    background: rgba(0,0,0,0.75); align-items: center; justify-content: center;
+  }
+  #suInfoOverlay.open { display: flex; }
+  #suInfoBox {
+    background: #111; border: 1px solid #2a2a2a; border-radius: 12px;
+    padding: 32px 36px 28px; width: 700px; max-width: 95vw; max-height: 88vh;
+    overflow-y: auto; box-shadow: 0 16px 48px rgba(0,0,0,0.9);
+    position: relative;
+  }
+  #suInfoBox h2 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+  #suInfoBox p  { font-size: 13px; color: #999; line-height: 1.65; margin-bottom: 14px; }
+  #suInfoBox strong { color: #e0e0e0; }
+  #suInfoBox .su-close {
+    position: absolute; top: 16px; right: 18px;
+    background: #1e1e1e; border: 1px solid #333; border-radius: 6px;
+    color: #aaa; font-size: 13px; font-weight: 700; font-family: inherit;
+    padding: 5px 14px; cursor: pointer; transition: color 0.1s, border-color 0.1s;
+  }
+  #suInfoBox .su-close:hover { color: #fff; border-color: #555; }
+  .su-table {
+    width: 100%; border-collapse: collapse; font-size: 13px;
+    margin-bottom: 20px; border: 1px solid #1e1e1e; border-radius: 8px; overflow: hidden;
+  }
+  .su-table thead tr { background: #0f0f0f; }
+  .su-table th {
+    padding: 9px 14px; text-align: right; font-size: 11px; font-weight: 700;
+    color: #555; letter-spacing: 0.5px; text-transform: uppercase;
+    border-bottom: 1px solid #1e1e1e;
+  }
+  .su-table th:first-child { text-align: left; }
+  .su-table td {
+    padding: 9px 14px; text-align: right; color: #bbb;
+    border-top: 1px solid #141414;
+  }
+  .su-table td:first-child { text-align: left; color: #888; }
+  .su-table tr.su-total td { font-weight: 700; color: #e0e0e0; background: #0d0d0d; border-top: 1px solid #2a2a2a; }
+  .su-table td.su-benefit { color: #aaa; font-size: 12px; }
+  .su-section-title {
+    font-size: 11px; font-weight: 700; color: #555; letter-spacing: 0.6px;
+    text-transform: uppercase; margin: 22px 0 10px;
+  }
+  .su-avail-table {
+    width: 100%; border-collapse: collapse; font-size: 12px;
+    border: 1px solid #1e1e1e; border-radius: 8px; overflow: hidden; margin-bottom: 8px;
+  }
+  .su-avail-table thead tr { background: #0f0f0f; }
+  .su-avail-table th {
+    padding: 8px 12px; text-align: left; font-size: 11px; font-weight: 700;
+    color: #555; letter-spacing: 0.4px; text-transform: uppercase;
+    border-bottom: 1px solid #1e1e1e;
+  }
+  .su-avail-table td { padding: 8px 12px; color: #999; border-top: 1px solid #141414; vertical-align: top; }
+  .su-avail-table td:first-child { color: #ccc; font-weight: 600; white-space: nowrap; }
+</style>
+<div id="suInfoOverlay">
+  <div id="suInfoBox">
+    <button class="su-close" id="suInfoClose">Close</button>
+    <h2>Step-Up Banners</h2>
+    <p style="font-size:12px;color:#555;margin-bottom:18px;">Quoted from <a href="https://docs.google.com/document/d/1LRguS1n7Z1qiiJi8Hk2NRGnHGAARmqU_V7VnO76sCoE/edit?usp=sharing" target="_blank" rel="noopener" style="color:#7289da;text-decoration:none;">Global Effective Spending in Umamusume</a></p>
+    <p>This is a great way to use your paid Carats. First, you select 10 3 ★ Umas or SSRs, which make up your rate-up pool. Then you do 10 Pulls at the following Paid Carat amounts and receive the following benefits.</p>
+
+    <table class="su-table">
+      <thead><tr><th>Step</th><th>Paid Carats</th><th>Benefit</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>500</td><td class="su-benefit">Guaranteed 2★ Uma or Higher / SR Card or Higher</td></tr>
+        <tr><td>2</td><td>700</td><td class="su-benefit">Guaranteed 2★ Uma or Higher / SR Card or Higher</td></tr>
+        <tr><td>3</td><td>1,000</td><td class="su-benefit">Guaranteed 3★ Uma / SSR Card</td></tr>
+        <tr><td>4</td><td>1,300</td><td class="su-benefit">Guaranteed 3★ Uma / SSR Card</td></tr>
+        <tr><td>5</td><td>1,500</td><td class="su-benefit">Guaranteed Selector 3★ Uma / SSR Card</td></tr>
+        <tr class="su-total"><td>Total</td><td>5,000</td><td class="su-benefit">3★ Umas / 3 SSR Cards including a selectable Uma or SSR</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>Yes, you will have a Selector from this for only 5,000 Carats.</strong></p>
+    <p>Any 3 ★ Uma or SSRs will only be from your selected pool, and you could pull the same SSR or 3 ★ Uma Multiple times. This is first offered at the 3rd anniversary, and the number of times you can use the Step-Up banner varies by Anniversary:</p>
+
+    <div class="su-section-title">Availability by Anniversary (JP)</div>
+    <table class="su-avail-table">
+      <thead><tr><th>Anniversary</th><th>3★ Uma</th><th>SSR</th></tr></thead>
+      <tbody>
+        <tr><td>3rd</td><td>1 step-up cycle</td><td>1 step-up cycle</td></tr>
+        <tr><td>3.5th</td><td>Not available</td><td>2 step-up cycles</td></tr>
+        <tr><td>4th</td><td>2 step-up cycles</td><td>3 step-up cycles</td></tr>
+        <tr><td>4.5th</td><td>Not available</td><td>2 step-up cycles</td></tr>
+        <tr><td>5th</td><td>2 step-up cycles</td><td>3 step-up cycles</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+(function() {
+  const overlay = document.getElementById('suInfoOverlay');
+  document.getElementById('suInfoClose').addEventListener('click', () => overlay.classList.remove('open'));
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.remove('open'); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') overlay.classList.remove('open'); });
+})();
+</script>
+
+<!-- ── Confirm Modal ─────────────────────────────────────────────── -->
+<style>
+  #confirmOverlay {
+    display: none; position: fixed; inset: 0; z-index: 10000;
+    background: rgba(0,0,0,0.7); align-items: center; justify-content: center;
+  }
+  #confirmOverlay.open { display: flex; }
+  #confirmBox {
+    background: #111; border: 1px solid #2a2a2a; border-radius: 12px;
+    padding: 28px 28px 20px; width: 360px; max-width: 92vw;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.9);
+  }
+  #confirmMsg {
+    font-size: 14px; color: #ccc; line-height: 1.6; margin-bottom: 22px;
+  }
+  #confirmMsg strong { color: #fff; }
+  .confirm-actions {
+    display: flex; justify-content: flex-end; gap: 8px;
+  }
+  .confirm-cancel {
+    background: #1a1a1a; border: 1px solid #2e2e2e; border-radius: 6px;
+    color: #888; cursor: pointer; font-size: 13px; font-weight: 600;
+    padding: 7px 18px; transition: color 0.1s, border-color 0.1s;
+  }
+  .confirm-cancel:hover { color: #ccc; border-color: #555; }
+  .confirm-ok {
+    background: #2e1a1a; border: 1px solid #5a2e2e; border-radius: 6px;
+    color: #e07070; cursor: pointer; font-size: 13px; font-weight: 600;
+    padding: 7px 18px; transition: background 0.1s;
+  }
+  .confirm-ok:hover { background: #3a2020; }
+</style>
+<div id="confirmOverlay">
+  <div id="confirmBox">
+    <div id="confirmMsg"></div>
+    <div class="confirm-actions">
+      <button class="confirm-cancel" id="confirmCancel">Cancel</button>
+      <button class="confirm-ok" id="confirmOk">Confirm</button>
+    </div>
+  </div>
+</div>
+<script>
+(function() {
+  const overlay = document.getElementById('confirmOverlay');
+  const msgEl   = document.getElementById('confirmMsg');
+  const btnOk   = document.getElementById('confirmOk');
+  const btnCancel = document.getElementById('confirmCancel');
+  let _resolve = null;
+
+  window.showConfirm = function(msg, okLabel) {
+    msgEl.innerHTML = msg;
+    btnOk.textContent = okLabel || 'Confirm';
+    overlay.classList.add('open');
+    return new Promise(res => { _resolve = res; });
+  };
+
+  function close(result) {
+    overlay.classList.remove('open');
+    if (_resolve) { _resolve(result); _resolve = null; }
+  }
+
+  btnOk.addEventListener('click', () => close(true));
+  btnCancel.addEventListener('click', () => close(false));
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('open')) close(false); });
+})();
+</script>
+
+<!-- ── Tutorial ───────────────────────────────────────────────────── -->
+<style>
+  #tourOverlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    pointer-events: none;
+  }
+  #tourOverlay.active { display: block; }
+
+  #tourSpotlight {
+    position: absolute;
+    border-radius: 8px;
+    box-shadow: 0 0 0 9999px rgba(0,0,0,0.78);
+    transition: top 0.35s cubic-bezier(.4,0,.2,1),
+                left 0.35s cubic-bezier(.4,0,.2,1),
+                width 0.35s cubic-bezier(.4,0,.2,1),
+                height 0.35s cubic-bezier(.4,0,.2,1);
+    pointer-events: none;
+  }
+  #tourSpotlight.no-target {
+    top: 50% !important; left: 50% !important;
+    width: 0 !important; height: 0 !important;
+    box-shadow: 0 0 0 9999px rgba(0,0,0,0.78);
+  }
+
+  #tourCard {
+    position: absolute;
+    background: #111;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 20px 22px 16px;
+    width: 340px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.9);
+    pointer-events: all;
+    transition: top 0.35s cubic-bezier(.4,0,.2,1),
+                left 0.35s cubic-bezier(.4,0,.2,1),
+                opacity 0.2s;
+  }
+  #tourCard.hidden { opacity: 0; pointer-events: none; }
+
+  #tourTitle {
+    font-size: 14px;
+    font-weight: 700;
+    color: #e8e8e8;
+    margin-bottom: 8px;
+  }
+  #tourBody {
+    font-size: 13px;
+    color: #999;
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+  .tour-footer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tour-counter {
+    font-size: 11px;
+    color: #444;
+    font-weight: 600;
+    flex: 1;
+    text-align: center;
+  }
+  .tour-btn {
+    background: #1a1a1a;
+    border: 1px solid #2e2e2e;
+    border-radius: 6px;
+    color: #888;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    transition: color 0.1s, border-color 0.1s;
+  }
+  .tour-btn:hover { color: #ccc; border-color: #555; }
+  .tour-btn.primary {
+    background: #1a2e1a;
+    border-color: #2e5a2e;
+    color: #7ad87a;
+  }
+  .tour-btn.primary:hover { background: #223522; }
+  .tour-skip {
+    background: none;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    font-size: 11px;
+    padding: 0;
+    transition: color 0.1s;
+  }
+  .tour-skip:hover { color: #888; }
+</style>
+
+<div id="tourOverlay">
+  <div id="tourSpotlight"></div>
+  <div id="tourCard">
+    <div id="tourTitle"></div>
+    <div id="tourBody"></div>
+    <div class="tour-footer">
+      <button class="tour-btn" id="tourPrev">Previous</button>
+      <span class="tour-counter" id="tourCounter"></span>
+      <button class="tour-skip" id="tourSkip">Skip tutorial</button>
+      <button class="tour-btn primary" id="tourNext">Next</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const STEPS = [
+    {
+      target: null,
+      title: "Welcome to Carat Calculator",
+      body: "This quick tour walks you through the main features so you can start planning your pulls. It only takes a minute.",
+    },
+    {
+      target: "#topPanels .panel:nth-child(1)",
+      title: "Your Information",
+      body: "Set your Team Trials rank, Club Rank, Champion's Meeting result, and League of Heroes tier — these determine your recurring carat income.<br><br><strong style='color:#ccc'>Pack Start Date</strong> is the renewal date of your Daily Carat Pack, if you have one.<br><br><strong style='color:#ccc'>Login Day 1</strong> is the day of the week you treat as your start for weekly rewards — it doesn't have to be exact.",
+      placement: "right",
+    },
+    {
+      target: "#topPanels .panel:nth-child(2)",
+      title: "Current Resources",
+      body: "Enter your current carats, paid carats, and tickets here. The calculator uses these as your starting balance and counts down as you plan pulls.",
+      placement: "right",
+    },
+    {
+      target: "#profileSlots",
+      title: "Multiple Profiles",
+      body: "You can save multiple separate plans using profiles — useful for comparing different spending scenarios or planning across different accounts. Switch between them instantly without losing your work.",
+      placement: "bottom",
+    },
+    {
+      target: "#calcTableWrap",
+      title: "Banner Plan",
+      body: "Each row is a banner you're planning to pull on. The calculator estimates how many carats you'll have by each banner's start date and shows how many pulls you can afford.",
+      placement: "top",
+    },
+    {
+      target: "#calcBody tr.calc-row:first-child .banner-cell",
+      title: "Picking a Banner",
+      body: "Type a banner name in the Banner column — it will autocomplete from the current banner list and fill in the dates automatically.",
+      placement: "bottom",
+    },
+    {
+      targets: ["#calcTable thead th:nth-child(6)", "#calcTable thead th:nth-child(7)", "#calcTable thead th:nth-child(8)"],
+      title: "Carat Estimates",
+      body: "<strong style='color:#ccc'>Carat Est.</strong> shows the free carats you'll earn by this banner's start date based on your income settings.<br><br><strong style='color:#ccc'>Paid Est.</strong> shows paid carats separately, since those can only be spent on certain banners or step-ups.<br><br><strong style='color:#ccc'>Total</strong> is the combined amount available.",
+      placement: "bottom",
+    },
+    {
+      targets: ["#calcTable thead th:nth-child(9)", "#calcTable thead th:nth-child(10)", "#calcTable thead th:nth-child(11)"],
+      title: "Pull Breakdown",
+      body: "<strong style='color:#ccc'>Free Pulls</strong> are the bonus free pulls included with the banner.<br><br><strong style='color:#ccc'>Ticket Pulls</strong> are pulls from any Uma or Support tickets you have.<br><br><strong style='color:#ccc'>Paid Pulls</strong> are pulls from paid carats. Each column updates as you plan pulls on earlier rows.",
+      placement: "bottom",
+    },
+    {
+      target: "#calcBody tr.calc-row:first-child .cell-pulls",
+      title: "Setting Your Pulls",
+      body: "Enter how many pulls you plan to spend in the Pulls column. The running carat balance updates instantly across all rows below it.",
+      placement: "bottom",
+    },
+    {
+      target: "#calcBody tr.calc-row:first-child .expand-btn",
+      title: "Row Breakdown",
+      body: "Click the ▼ button on any row to see a detailed breakdown of how the numbers were calculated.",
+      placement: "left",
+      onLeave(dir) {
+        if (dir === 'next') {
+          const btn = document.querySelector("#calcBody tr.calc-row:first-child .expand-btn");
+          if (btn && btn.textContent.trim() === '▼') btn.click();
+        }
+      },
+    },
+    {
+      target: "#calcBody tr.calc-row:first-child + tr.detail-row .detail-panel",
+      title: "Income Breakdown",
+      body: "This panel shows exactly how the carat estimate was calculated — daily income, login bonuses, Team Trials, Club Rank, events, and any deductions from earlier rows in your plan.",
+      placement: "top",
+    },
+    {
+      target: "#calcBody tr.calc-row:first-child + tr.detail-row .dp-explain-btn",
+      title: "Explain Button",
+      body: "Click <strong style='color:#ccc'>Explain</strong> for a more detailed summary of this row — including available pulls broken down by source and how your carats are being spent.",
+      placement: "top",
+      onLeave(dir) {
+        if (dir === 'next') {
+          const btn = document.querySelector("#calcBody tr.calc-row:first-child .expand-btn");
+          if (btn && btn.textContent.trim() === '▲') btn.click();
+        }
+      },
+    },
+    {
+      target: "#topPanels .panel:nth-child(3)",
+      title: "Current Events",
+      body: "Check off events you've completed and claimed carats for. This keeps the income estimate accurate so it doesn't count rewards you've already received.",
+      placement: "left",
+    },
+    {
+      target: "a[href='/packs']",
+      title: "Selectors Page",
+      body: "The Selectors page helps you figure out how to spend selector tickets from step-up banners — showing which cards are available and letting you plan which ones to pick.",
+      placement: "bottom",
+    },
+    {
+      target: "a[href='/cards']",
+      title: "Card Tracker",
+      body: "Card Tracker lets you keep track of which cards you own and their limit break levels, so you know exactly what you're still missing.",
+      placement: "bottom",
+    },
+    {
+      target: "#tourBtn",
+      title: "You're all set!",
+      body: "Click <strong style='color:#e8e8e8'>Take a tour</strong> any time to revisit this walkthrough. Log in with Discord to save your plan across devices.",
+      placement: "bottom",
+    },
+  ];
+
+  const PAD = 10;
+
+  let step = 0;
+  let active = false;
+
+  const overlay   = document.getElementById('tourOverlay');
+  const spotlight = document.getElementById('tourSpotlight');
+  const card      = document.getElementById('tourCard');
+  const titleEl   = document.getElementById('tourTitle');
+  const bodyEl    = document.getElementById('tourBody');
+  const counter   = document.getElementById('tourCounter');
+  const btnPrev   = document.getElementById('tourPrev');
+  const btnNext   = document.getElementById('tourNext');
+  const btnSkip   = document.getElementById('tourSkip');
+
+  function getTarget(s) {
+    if (!s.target && !s.targets) return null;
+    if (s.targets) {
+      const els = s.targets.map(sel => document.querySelector(sel)).filter(Boolean);
+      return els.length ? els : null;
+    }
+    return document.querySelector(s.target) || null;
+  }
+
+  function getBoundingUnion(els) {
+    let top = Infinity, left = Infinity, bottom = -Infinity, right = -Infinity;
+    for (const el of els) {
+      const r = el.getBoundingClientRect();
+      top    = Math.min(top,    r.top);
+      left   = Math.min(left,   r.left);
+      bottom = Math.max(bottom, r.bottom);
+      right  = Math.max(right,  r.right);
+    }
+    return { top, left, width: right - left, height: bottom - top };
+  }
+
+  function positionSpotlight(el) {
+    if (!el) {
+      spotlight.classList.add('no-target');
+      return;
+    }
+    spotlight.classList.remove('no-target');
+    const r = Array.isArray(el) ? getBoundingUnion(el) : el.getBoundingClientRect();
+    spotlight.style.top    = (r.top    - PAD) + 'px';
+    spotlight.style.left   = (r.left   - PAD) + 'px';
+    spotlight.style.width  = (r.width  + PAD * 2) + 'px';
+    spotlight.style.height = (r.height + PAD * 2) + 'px';
+  }
+
+  function positionCard(el, placement) {
+    const cardW = 340;
+    const cardH = card.offsetHeight || 180;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    let top, left;
+
+    if (!el || !placement) {
+      top  = vh / 2 - cardH / 2;
+      left = vw / 2 - cardW / 2;
+    } else {
+      const r = Array.isArray(el) ? getBoundingUnion(el) : el.getBoundingClientRect();
+      const margin = PAD + 18;
+      if (placement === 'right') {
+        top  = r.top + r.height / 2 - cardH / 2;
+        left = r.right + margin;
+      } else if (placement === 'left') {
+        top  = r.top + r.height / 2 - cardH / 2;
+        left = r.left - cardW - margin;
+      } else if (placement === 'bottom') {
+        top  = r.bottom + margin;
+        left = r.left + r.width / 2 - cardW / 2;
+      } else { // top
+        top  = r.top - cardH - margin;
+        left = r.left + r.width / 2 - cardW / 2;
+      }
+      left = Math.max(12, Math.min(left, vw - cardW - 12));
+      top  = Math.max(12, Math.min(top,  vh - cardH - 12));
+    }
+    card.style.top  = top  + 'px';
+    card.style.left = left + 'px';
+  }
+
+  function scrollIntoView(el) {
+    if (!el) return;
+    const target = Array.isArray(el) ? el[0] : el;
+    const r = target.getBoundingClientRect();
+    const pad = 80;
+    if (r.top < pad || r.bottom > window.innerHeight - pad) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  function render() {
+    const s = STEPS[step];
+    const el = getTarget(s);
+
+    titleEl.textContent = s.title;
+    bodyEl.innerHTML    = s.body;
+    counter.textContent = `${step + 1} of ${STEPS.length}`;
+    btnPrev.style.visibility = step === 0 ? 'hidden' : 'visible';
+    btnNext.textContent = step === STEPS.length - 1 ? 'Done' : 'Next';
+
+    if (el) scrollIntoView(el);
+
+    setTimeout(() => {
+      positionSpotlight(el);
+      positionCard(el, s.placement);
+    }, el ? 80 : 0);
+  }
+
+  function start() {
+    active = true;
+    step = 0;
+    overlay.classList.add('active');
+    card.classList.remove('hidden');
+    render();
+  }
+
+  function close() {
+    active = false;
+    overlay.classList.remove('active');
+  }
+
+  function navigate(dir) {
+    const s = STEPS[step];
+    if (s.onLeave) s.onLeave(dir);
+    if (dir === 'next') {
+      if (step < STEPS.length - 1) { step++; render(); }
+      else close();
+    } else {
+      if (step > 0) { step--; render(); }
+    }
+  }
+
+  btnNext.addEventListener('click', () => navigate('next'));
+  btnPrev.addEventListener('click', () => navigate('prev'));
+  btnSkip.addEventListener('click', close);
+
+  document.getElementById('tourBtn').addEventListener('click', start);
+
+  function reposition() {
+    if (!active) return;
+    const s = STEPS[step];
+    const el = getTarget(s);
+    positionSpotlight(el);
+    positionCard(el, s.placement);
+  }
+
+  window.addEventListener('resize', reposition);
+  window.addEventListener('scroll', reposition, { passive: true });
+  // also catch scroll inside any scrollable container (e.g. the table wrapper)
+  document.addEventListener('scroll', reposition, { passive: true, capture: true });
+})();
+</script>
+
+<!-- ── Feedback Modal ────────────────────────────────────────────── -->
+<style>
+  #feedbackOverlay {
+    display: none; position: fixed; inset: 0; z-index: 10000;
+    background: rgba(0,0,0,0.7); align-items: center; justify-content: center;
+  }
+  #feedbackOverlay.open { display: flex; }
+  #feedbackBox {
+    background: #111; border: 1px solid #2a2a2a; border-radius: 12px;
+    padding: 28px 28px 22px; width: 420px; max-width: 94vw;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.9); position: relative;
+  }
+  #feedbackBox h3 { font-size: 15px; font-weight: 700; color: #e8e8e8; margin-bottom: 16px; }
+  .fb-row { margin-bottom: 14px; }
+  .fb-label { font-size: 11px; font-weight: 700; color: #555; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; }
+  .fb-select, .fb-textarea {
+    width: 100%; background: #181818; border: 1px solid #2a2a2a; border-radius: 6px;
+    color: #d8d8d8; font-size: 13px; font-family: inherit; padding: 8px 12px;
+    outline: none; transition: border-color 0.1s; box-sizing: border-box;
+  }
+  .fb-select:focus, .fb-textarea:focus { border-color: #444; }
+  .fb-textarea { resize: vertical; min-height: 100px; }
+  .fb-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 4px; }
+  .fb-cancel {
+    background: #1a1a1a; border: 1px solid #2e2e2e; border-radius: 6px;
+    color: #888; cursor: pointer; font-size: 13px; font-weight: 600;
+    padding: 7px 18px; transition: color 0.1s, border-color 0.1s;
+  }
+  .fb-cancel:hover { color: #ccc; border-color: #555; }
+  .fb-submit {
+    background: #1a2e1a; border: 1px solid #2e5a2e; border-radius: 6px;
+    color: #7ad87a; cursor: pointer; font-size: 13px; font-weight: 600;
+    padding: 7px 18px; transition: background 0.1s;
+  }
+  .fb-submit:hover { background: #223522; }
+  .fb-submit:disabled { opacity: 0.5; cursor: default; }
+  #feedbackStatus { font-size: 12px; margin-top: 10px; text-align: center; }
+</style>
+<div id="feedbackOverlay">
+  <div id="feedbackBox">
+    <h3>Report an Issue / Suggestion</h3>
+    <div class="fb-row">
+      <div class="fb-label">Type</div>
+      <select class="fb-select" id="fbType">
+        <option value="issue">Bug / Issue</option>
+        <option value="suggestion">Suggestion</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+    <div class="fb-row">
+      <div class="fb-label">Message</div>
+      <textarea class="fb-textarea" id="fbMessage" placeholder="Describe the issue or suggestion..."></textarea>
+    </div>
+    <div class="fb-actions">
+      <button class="fb-cancel" id="fbCancel">Cancel</button>
+      <button class="fb-submit" id="fbSubmit">Submit</button>
+    </div>
+    <div id="feedbackStatus"></div>
+  </div>
+</div>
+<script>
+(function() {
+  const overlay  = document.getElementById('feedbackOverlay');
+  const status   = document.getElementById('feedbackStatus');
+  const msgEl    = document.getElementById('fbMessage');
+  const typeEl   = document.getElementById('fbType');
+  const submitBtn = document.getElementById('fbSubmit');
+
+  function open()  { overlay.classList.add('open'); status.textContent = ''; msgEl.value = ''; submitBtn.disabled = false; }
+  function close() { overlay.classList.remove('open'); }
+
+  document.getElementById('fbCancel').addEventListener('click', close);
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+  const triggerBtn = document.getElementById('feedbackBtn');
+  if (triggerBtn) triggerBtn.addEventListener('click', open);
+
+  submitBtn.addEventListener('click', async () => {
+    const message = msgEl.value.trim();
+    if (!message) { status.style.color = '#e07070'; status.textContent = 'Please enter a message.'; return; }
+    submitBtn.disabled = true;
+    status.style.color = '#888';
+    status.textContent = 'Sending...';
+    try {
+      const res = await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: typeEl.value, message })
+      });
+      const data = await res.json();
+      if (data.ok) {
+        status.style.color = '#7ad87a';
+        status.textContent = 'Submitted! Thank you.';
+        setTimeout(close, 1400);
+      } else {
+        status.style.color = '#e07070';
+        status.textContent = data.error || 'Something went wrong.';
+        submitBtn.disabled = false;
+      }
+    } catch {
+      status.style.color = '#e07070';
+      status.textContent = 'Network error. Please try again.';
+      submitBtn.disabled = false;
+    }
+  });
+})();
+</script>
+</body>
 </html>

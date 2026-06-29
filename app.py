@@ -7,11 +7,25 @@ from datetime import date, timedelta, datetime, timezone
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY", "dev-secret-change-me")
 
+@app.template_filter("fmtdate")
+def _fmtdate(s):
+    if not s:
+        return ""
+    try:
+        from datetime import date
+        d = date.fromisoformat(str(s)[:10])
+        return f"{d.strftime('%B')} {d.day}, {d.year}"
+    except Exception:
+        return s
+
 # ── Database ─────────────────────────────────────────────────────────────────
 import psycopg2, psycopg2.extras
 
 def _get_db():
-    return psycopg2.connect(os.getenv("DATABASE_URL"), sslmode="require")
+    url = os.getenv("DATABASE_URL")
+    if not url:
+        raise RuntimeError("DATABASE_URL not set")
+    return psycopg2.connect(url, sslmode="require")
 
 def _init_db():
     try:
@@ -39,6 +53,17 @@ def _init_db():
                         discord_id   TEXT PRIMARY KEY,
                         plan_data    JSONB,
                         updated_at   TIMESTAMPTZ DEFAULT NOW()
+                    )
+                """)
+                cur.execute("""
+                    CREATE TABLE IF NOT EXISTS feedback (
+                        id           SERIAL PRIMARY KEY,
+                        created_at   TIMESTAMPTZ DEFAULT NOW(),
+                        ip           TEXT,
+                        discord_id   TEXT,
+                        discord_user TEXT,
+                        type         TEXT,
+                        message      TEXT NOT NULL
                     )
                 """)
     except Exception as e:
@@ -154,6 +179,74 @@ def api_plan_save():
     except Exception as e:
         print(f"[plan save] error: {e}")
         return jsonify(ok=False, error=str(e)), 500
+    return jsonify(ok=True)
+
+def _dm_feedback(fb_type, message, discord_id, discord_user, ip):
+    token    = os.getenv("BOT_TOKEN")
+    owner_id = os.getenv("OWNER_DISCORD_ID")
+    if not token or not owner_id:
+        return
+    headers = {"Authorization": f"Bot {token}", "Content-Type": "application/json"}
+    type_colors = {"issue": 0xe07070, "suggestion": 0x7ad87a, "other": 0x7289da}
+    color = type_colors.get(fb_type, 0x888888)
+    fields = [{"name": "Type", "value": fb_type.capitalize(), "inline": True}]
+    if discord_user:
+        fields.append({"name": "Discord", "value": f"{discord_user} (`{discord_id}`)", "inline": True})
+    else:
+        fields.append({"name": "Discord", "value": "Not logged in", "inline": True})
+    fields.append({"name": "IP", "value": ip, "inline": True})
+    embed = {
+        "title": "New Feedback",
+        "description": message,
+        "color": color,
+        "fields": fields,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    }
+    try:
+        # open / get DM channel
+        dm_res = req_lib.post(
+            "https://discord.com/api/v10/users/@me/channels",
+            headers=headers,
+            json={"recipient_id": owner_id},
+            timeout=8,
+        )
+        channel_id = dm_res.json().get("id")
+        if not channel_id:
+            print(f"[feedback dm] failed to get DM channel: {dm_res.text}")
+            return
+        req_lib.post(
+            f"https://discord.com/api/v10/channels/{channel_id}/messages",
+            headers=headers,
+            json={"embeds": [embed]},
+            timeout=8,
+        )
+    except Exception as e:
+        print(f"[feedback dm] error: {e}")
+
+@app.route("/api/feedback", methods=["POST"])
+def api_feedback():
+    data       = request.get_json(silent=True) or {}
+    message    = (data.get("message") or "").strip()
+    fb_type    = (data.get("type") or "issue").strip()
+    if not message:
+        return jsonify(ok=False, error="Message required"), 400
+    if len(message) > 2000:
+        return jsonify(ok=False, error="Message too long"), 400
+    ip         = request.headers.get("X-Forwarded-For", request.remote_addr).split(",")[0].strip()
+    user       = session.get("user")
+    discord_id   = user.get("id")       if user else None
+    discord_user = user.get("username") if user else None
+    try:
+        with _get_db() as conn:
+            with conn.cursor() as cur:
+                cur.execute("""
+                    INSERT INTO feedback (ip, discord_id, discord_user, type, message)
+                    VALUES (%s, %s, %s, %s, %s)
+                """, (ip, discord_id, discord_user, fb_type, message))
+    except Exception as e:
+        print(f"[feedback] error: {e}")
+        return jsonify(ok=False, error="Server error"), 500
+    threading.Thread(target=_dm_feedback, args=(fb_type, message, discord_id, discord_user, ip), daemon=True).start()
     return jsonify(ok=True)
 
 @app.route("/api/track", methods=["POST"])
@@ -415,14 +508,6 @@ def refresh():
     _download_all_cards()
     return jsonify(ok=True)
 
-@app.route("/updates")
-def updates():
-    try:
-        log = json.loads((BASE / "updates_log.json").read_text(encoding="utf-8"))
-    except (FileNotFoundError, json.JSONDecodeError):
-        log = []
-    log_sorted = sorted(log, key=lambda e: e.get("timestamp", ""), reverse=True)
-    return render_template("updates.html", log=log_sorted)
 
 def _enrich_pack(entries, is_char):
     out = []
@@ -497,6 +582,15 @@ def packs():
     return render_template("packs.html", anniversaries=anniversaries,
                            pack_uma=pack_uma, pack_support=pack_support,
                            user=session.get("user"))
+
+@app.route("/updates")
+def updates():
+    try:
+        raw = json.loads((BASE / "updates.json").read_text(encoding="utf-8"))
+        entries = [e for e in raw if e.get("date") and e.get("title")]
+    except Exception:
+        entries = []
+    return render_template("updates.html", entries=entries, user=session.get("user"))
 
 @app.route("/cards")
 def cards():

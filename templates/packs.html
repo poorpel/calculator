@@ -30,14 +30,14 @@
       z-index: 100;
     }
     .top-nav-logo {
-      font-size: 12px; font-weight: 700; color: #444;
+      font-size: 14px; font-weight: 700; color: #444;
       letter-spacing: 0.8px; text-transform: uppercase;
-      padding: 11px 18px 11px 0;
+      padding: 20px 18px 20px 0;
       border-right: 1px solid #1e1e1e; margin-right: 6px; white-space: nowrap;
     }
     .top-nav-link {
-      display: flex; align-items: center; padding: 11px 12px;
-      color: #555; text-decoration: none; font-size: 13px; font-weight: 500;
+      display: flex; align-items: center; padding: 20px 14px;
+      color: #555; text-decoration: none; font-size: 15px; font-weight: 500;
       transition: color 0.1s; white-space: nowrap;
       border-bottom: 2px solid transparent; margin-bottom: -1px;
     }
@@ -251,8 +251,20 @@
   <div class="top-nav-sep"></div>
   <a href="/timeline" class="top-nav-link">Timeline</a>
   <a href="/data" class="top-nav-link debug-only">Data</a>
-  <a href="/updates" class="top-nav-link debug-only">Updates</a>
-  <div class="nav-settings-wrap">
+  <a href="/updates" class="top-nav-link">Updates</a>
+  <div style="margin-left:auto;display:flex;align-items:center;gap:10px">
+    <button id="feedbackBtn" style="font-size:12px;color:#888;background:none;border:1px solid #222;border-radius:4px;padding:4px 10px;cursor:pointer;transition:color 0.1s,border-color 0.1s;" onmouseover="this.style.color='#ccc';this.style.borderColor='#444'" onmouseout="this.style.color='#888';this.style.borderColor='#222'">Report / Suggest</button>
+    {% if user %}
+      {% if user.avatar %}
+        <img src="https://cdn.discordapp.com/avatars/{{ user.id }}/{{ user.avatar }}.png" style="width:26px;height:26px;border-radius:50%;object-fit:cover;">
+      {% endif %}
+      <span style="font-size:12px;color:#888">{{ user.username }}</span>
+      <a href="/logout" style="font-size:12px;color:#555;text-decoration:none;padding:4px 8px;border:1px solid #222;border-radius:4px;">Logout</a>
+    {% else %}
+      <a href="/login" style="font-size:12px;color:#7289da;text-decoration:none;padding:4px 10px;border:1px solid #2a2d3a;border-radius:4px;background:#1a1c24;">Login with Discord</a>
+    {% endif %}
+  </div>
+  <div class="nav-settings-wrap" style="margin-left:0">
     <button class="nav-settings-btn" id="navSettingsBtn" title="Settings">⚙</button>
     <div class="nav-settings-dd" id="navSettingsDd">
       <div class="nav-settings-title">Settings</div>
@@ -314,11 +326,11 @@ const PACK_LIMITS = {
 };
 
 const SELECTORS = [
-  { key: "s21uma",   carats: 1500, usd: 21, cardType: "character", label: "$21 ★3" },
-  { key: "s70uma",   carats: 5000, usd: 70, cardType: "character", label: "$70 ★3" },
-  { key: "sfreessr", carats: 0,    usd: 0,  cardType: "support",   label: "Free SSR" },
-  { key: "s21ssr",   carats: 1500, usd: 21, cardType: "support",   label: "$21 SSR" },
-  { key: "s70ssr",   carats: 5000, usd: 70, cardType: "support",   label: "$70 SSR" },
+  { key: "s21uma",   carats: 1500, usd: 21, cardType: "character", label: "$21" },
+  { key: "s70uma",   carats: 5000, usd: 70, cardType: "character", label: "$70" },
+  { key: "sfreessr", carats: 0,    usd: 0,  cardType: "support",   label: "Free" },
+  { key: "s21ssr",   carats: 1500, usd: 21, cardType: "support",   label: "$21" },
+  { key: "s70ssr",   carats: 5000, usd: 70, cardType: "support",   label: "$70" },
 ];
 
 const SU_STEP_COSTS = [500, 700, 1000, 1300, 1500];
@@ -386,8 +398,8 @@ function _suRefreshSelectors(evId) {
     const filledUma = _umaKeys.slice(0, suUma).filter(k => !!evState[k]).length;
     const filledSsr = _ssrKeys.slice(0, suSsr).filter(k => !!evState[k]).length;
     const selParts = [];
-    if (suUma > 0) selParts.push(`${filledUma}/${suUma} ★3 Uma`);
-    if (suSsr  > 0) selParts.push(`${filledSsr}/${suSsr} SSR Support`);
+    if (suUma > 0) selParts.push(`${filledUma}/${suUma} UMA`);
+    if (suSsr  > 0) selParts.push(`${filledSsr}/${suSsr} SSR`);
     const sel  = statusCell.querySelector('.su-info-selectors');
     const prog = statusCell.querySelector('.su-info-progress');
     const cost = statusCell.querySelector('.su-info-cost');
@@ -619,8 +631,8 @@ function renderPacksTable() {
     };
     const isSelectorVisible = s => _suSelVisible ? _suSelVisible(s) : _isSelectorVisible(ev, s);
 
-    const _suHdrLabels     = { s21uma: '★3', s70uma: '★3', sfreessr: 'SSR', s21ssr: 'SSR', s70ssr: 'SSR' };
-    const _normalHdrLabels = { s21uma: '$21 ★3', s70uma: '$70 ★3', sfreessr: 'Free SSR', s21ssr: '$21 SSR', s70ssr: '$70 SSR' };
+    const _suHdrLabels     = { s21uma: 'UMA', s70uma: 'UMA', sfreessr: 'SSR', s21ssr: 'SSR', s70ssr: 'SSR' };
+    const _normalHdrLabels = { s21uma: '$21', s70uma: '$70', sfreessr: 'Free', s21ssr: '$21', s70ssr: '$70' };
     const _hdrLabels = _suCounts ? _suHdrLabels : _normalHdrLabels;
     const selSubHdrCells = SELECTORS.map(s => {
       const text = isSelectorVisible(s) ? _hdrLabels[s.key] : '';
@@ -660,10 +672,11 @@ function renderPacksTable() {
       if (_suSsr  > 0) selParts.push(`${_filledSsr}/${_suSsr} SSR Support`);
       const suSelCells = preSelectsAndImgs.map(sel => `<td class="center sel-select">${sel}</td>`).join('');
       html += `<tr class="pack-row">
-        <td colspan="4" class="su-status-cell" id="su_status_${ev.id}">
+        <td colspan="4" class="su-status-cell" id="su_status_${ev.id}" style="position:relative;">
           <div class="su-info-selectors">${selParts.join(' &nbsp;·&nbsp; ')}</div>
           <div class="su-info-progress">${suDone} Step Up${suDone !== 1 ? 's' : ''} Completed &nbsp;·&nbsp; ${suAvail}/${suTotal} Selector${suTotal !== 1 ? 's' : ''} Unlocked</div>
           <div class="su-info-cost">${suCost.toLocaleString()} paid carats used</div>
+          <button class="su-help-btn" style="position:absolute;top:10px;right:10px;" onclick="document.getElementById('suInfoOverlay').classList.add('open')">?</button>
         </td>
         ${suSelCells}
       </tr>`;
@@ -885,5 +898,218 @@ new ResizeObserver(_fitTable).observe(_mainEl);
     });
   });
 })();
-</script></body>
+</script>
+
+<!-- ── Step-Up Info Modal ─────────────────────────────────────────── -->
+<style>
+  .su-help-btn {
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 1px solid #444; background: none; color: #666;
+    font-size: 13px; font-weight: 700; font-family: inherit;
+    cursor: pointer; line-height: 1; padding: 0; flex-shrink: 0;
+    transition: color 0.1s, border-color 0.1s;
+  }
+  .su-help-btn:hover { color: #bbb; border-color: #888; }
+  #suInfoOverlay {
+    display: none; position: fixed; inset: 0; z-index: 10000;
+    background: rgba(0,0,0,0.75); align-items: center; justify-content: center;
+  }
+  #suInfoOverlay.open { display: flex; }
+  #suInfoBox {
+    background: #111; border: 1px solid #2a2a2a; border-radius: 12px;
+    padding: 32px 36px 28px; width: 700px; max-width: 95vw; max-height: 88vh;
+    overflow-y: auto; box-shadow: 0 16px 48px rgba(0,0,0,0.9); position: relative;
+  }
+  #suInfoBox h2 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+  #suInfoBox p  { font-size: 13px; color: #999; line-height: 1.65; margin-bottom: 14px; }
+  #suInfoBox strong { color: #e0e0e0; }
+  #suInfoBox .su-close {
+    position: absolute; top: 16px; right: 18px;
+    background: #1e1e1e; border: 1px solid #333; border-radius: 6px;
+    color: #aaa; font-size: 13px; font-weight: 700; font-family: inherit;
+    padding: 5px 14px; cursor: pointer; transition: color 0.1s, border-color 0.1s;
+  }
+  #suInfoBox .su-close:hover { color: #fff; border-color: #555; }
+  .su-table {
+    width: 100%; border-collapse: collapse; font-size: 13px;
+    margin-bottom: 20px; border: 1px solid #1e1e1e; border-radius: 8px; overflow: hidden;
+  }
+  .su-table thead tr { background: #0f0f0f; }
+  .su-table th {
+    padding: 9px 14px; text-align: right; font-size: 11px; font-weight: 700;
+    color: #555; letter-spacing: 0.5px; text-transform: uppercase;
+    border-bottom: 1px solid #1e1e1e;
+  }
+  .su-table th:first-child { text-align: left; }
+  .su-table td { padding: 9px 14px; text-align: right; color: #bbb; border-top: 1px solid #141414; }
+  .su-table td:first-child { text-align: left; color: #888; }
+  .su-table tr.su-total td { font-weight: 700; color: #e0e0e0; background: #0d0d0d; border-top: 1px solid #2a2a2a; }
+  .su-table td.su-benefit { color: #aaa; font-size: 12px; }
+  .su-section-title {
+    font-size: 11px; font-weight: 700; color: #555; letter-spacing: 0.6px;
+    text-transform: uppercase; margin: 22px 0 10px;
+  }
+  .su-avail-table {
+    width: 100%; border-collapse: collapse; font-size: 12px;
+    border: 1px solid #1e1e1e; border-radius: 8px; overflow: hidden; margin-bottom: 8px;
+  }
+  .su-avail-table thead tr { background: #0f0f0f; }
+  .su-avail-table th {
+    padding: 8px 12px; text-align: left; font-size: 11px; font-weight: 700;
+    color: #555; letter-spacing: 0.4px; text-transform: uppercase;
+    border-bottom: 1px solid #1e1e1e;
+  }
+  .su-avail-table td { padding: 8px 12px; color: #999; border-top: 1px solid #141414; vertical-align: top; }
+  .su-avail-table td:first-child { color: #ccc; font-weight: 600; white-space: nowrap; }
+</style>
+<div id="suInfoOverlay">
+  <div id="suInfoBox">
+    <button class="su-close" id="suInfoClose">Close</button>
+    <h2>Step-Up Banners</h2>
+    <p style="font-size:12px;color:#555;margin-bottom:18px;">Quoted from <a href="https://docs.google.com/document/d/1LRguS1n7Z1qiiJi8Hk2NRGnHGAARmqU_V7VnO76sCoE/edit?usp=sharing" target="_blank" rel="noopener" style="color:#7289da;text-decoration:none;">Global Effective Spending in Umamusume</a></p>
+    <p>This is a great way to use your paid Carats. First, you select 10 3 ★ Umas or SSRs, which make up your rate-up pool. Then you do 10 Pulls at the following Paid Carat amounts and receive the following benefits.</p>
+    <table class="su-table">
+      <thead><tr><th>Step</th><th>Paid Carats</th><th>Benefit</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>500</td><td class="su-benefit">Guaranteed 2★ Uma or Higher / SR Card or Higher</td></tr>
+        <tr><td>2</td><td>700</td><td class="su-benefit">Guaranteed 2★ Uma or Higher / SR Card or Higher</td></tr>
+        <tr><td>3</td><td>1,000</td><td class="su-benefit">Guaranteed 3★ Uma / SSR Card</td></tr>
+        <tr><td>4</td><td>1,300</td><td class="su-benefit">Guaranteed 3★ Uma / SSR Card</td></tr>
+        <tr><td>5</td><td>1,500</td><td class="su-benefit">Guaranteed Selector 3★ Uma / SSR Card</td></tr>
+        <tr class="su-total"><td>Total</td><td>5,000</td><td class="su-benefit">3★ Umas / 3 SSR Cards including a selectable Uma or SSR</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Yes, you will have a Selector from this for only 5,000 Carats.</strong></p>
+    <p>Any 3 ★ Uma or SSRs will only be from your selected pool, and you could pull the same SSR or 3 ★ Uma Multiple times. This is first offered at the 3rd anniversary, and the number of times you can use the Step-Up banner varies by Anniversary:</p>
+    <div class="su-section-title">Availability by Anniversary (JP)</div>
+    <table class="su-avail-table">
+      <thead><tr><th>Anniversary</th><th>3★ Uma</th><th>SSR</th></tr></thead>
+      <tbody>
+        <tr><td>3rd</td><td>1 step-up cycle</td><td>1 step-up cycle</td></tr>
+        <tr><td>3.5th</td><td>Not available</td><td>2 step-up cycles</td></tr>
+        <tr><td>4th</td><td>2 step-up cycles</td><td>3 step-up cycles</td></tr>
+        <tr><td>4.5th</td><td>Not available</td><td>2 step-up cycles</td></tr>
+        <tr><td>5th</td><td>2 step-up cycles</td><td>3 step-up cycles</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+(function() {
+  const overlay = document.getElementById('suInfoOverlay');
+  document.getElementById('suInfoClose').addEventListener('click', () => overlay.classList.remove('open'));
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.remove('open'); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') overlay.classList.remove('open'); });
+})();
+</script>
+
+<!-- ── Feedback Modal ────────────────────────────────────────────── -->
+<style>
+  #feedbackOverlay {
+    display: none; position: fixed; inset: 0; z-index: 10000;
+    background: rgba(0,0,0,0.7); align-items: center; justify-content: center;
+  }
+  #feedbackOverlay.open { display: flex; }
+  #feedbackBox {
+    background: #111; border: 1px solid #2a2a2a; border-radius: 12px;
+    padding: 28px 28px 22px; width: 420px; max-width: 94vw;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.9); position: relative;
+  }
+  #feedbackBox h3 { font-size: 15px; font-weight: 700; color: #e8e8e8; margin-bottom: 16px; }
+  .fb-row { margin-bottom: 14px; }
+  .fb-label { font-size: 11px; font-weight: 700; color: #555; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; }
+  .fb-select, .fb-textarea {
+    width: 100%; background: #181818; border: 1px solid #2a2a2a; border-radius: 6px;
+    color: #d8d8d8; font-size: 13px; font-family: inherit; padding: 8px 12px;
+    outline: none; transition: border-color 0.1s; box-sizing: border-box;
+  }
+  .fb-select:focus, .fb-textarea:focus { border-color: #444; }
+  .fb-textarea { resize: vertical; min-height: 100px; }
+  .fb-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 4px; }
+  .fb-cancel {
+    background: #1a1a1a; border: 1px solid #2e2e2e; border-radius: 6px;
+    color: #888; cursor: pointer; font-size: 13px; font-weight: 600;
+    padding: 7px 18px; transition: color 0.1s, border-color 0.1s;
+  }
+  .fb-cancel:hover { color: #ccc; border-color: #555; }
+  .fb-submit {
+    background: #1a2e1a; border: 1px solid #2e5a2e; border-radius: 6px;
+    color: #7ad87a; cursor: pointer; font-size: 13px; font-weight: 600;
+    padding: 7px 18px; transition: background 0.1s;
+  }
+  .fb-submit:hover { background: #223522; }
+  .fb-submit:disabled { opacity: 0.5; cursor: default; }
+  #feedbackStatus { font-size: 12px; margin-top: 10px; text-align: center; }
+</style>
+<div id="feedbackOverlay">
+  <div id="feedbackBox">
+    <h3>Report an Issue / Suggestion</h3>
+    <div class="fb-row">
+      <div class="fb-label">Type</div>
+      <select class="fb-select" id="fbType">
+        <option value="issue">Bug / Issue</option>
+        <option value="suggestion">Suggestion</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+    <div class="fb-row">
+      <div class="fb-label">Message</div>
+      <textarea class="fb-textarea" id="fbMessage" placeholder="Describe the issue or suggestion..."></textarea>
+    </div>
+    <div class="fb-actions">
+      <button class="fb-cancel" id="fbCancel">Cancel</button>
+      <button class="fb-submit" id="fbSubmit">Submit</button>
+    </div>
+    <div id="feedbackStatus"></div>
+  </div>
+</div>
+<script>
+(function() {
+  const overlay  = document.getElementById('feedbackOverlay');
+  const status   = document.getElementById('feedbackStatus');
+  const msgEl    = document.getElementById('fbMessage');
+  const typeEl   = document.getElementById('fbType');
+  const submitBtn = document.getElementById('fbSubmit');
+
+  function open()  { overlay.classList.add('open'); status.textContent = ''; msgEl.value = ''; submitBtn.disabled = false; }
+  function close() { overlay.classList.remove('open'); }
+
+  document.getElementById('fbCancel').addEventListener('click', close);
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+  const triggerBtn = document.getElementById('feedbackBtn');
+  if (triggerBtn) triggerBtn.addEventListener('click', open);
+
+  submitBtn.addEventListener('click', async () => {
+    const message = msgEl.value.trim();
+    if (!message) { status.style.color = '#e07070'; status.textContent = 'Please enter a message.'; return; }
+    submitBtn.disabled = true;
+    status.style.color = '#888';
+    status.textContent = 'Sending...';
+    try {
+      const res = await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: typeEl.value, message })
+      });
+      const data = await res.json();
+      if (data.ok) {
+        status.style.color = '#7ad87a';
+        status.textContent = 'Submitted! Thank you.';
+        setTimeout(close, 1400);
+      } else {
+        status.style.color = '#e07070';
+        status.textContent = data.error || 'Something went wrong.';
+        submitBtn.disabled = false;
+      }
+    } catch {
+      status.style.color = '#e07070';
+      status.textContent = 'Network error. Please try again.';
+      submitBtn.disabled = false;
+    }
+  });
+})();
+</script>
+</body>
 </html>

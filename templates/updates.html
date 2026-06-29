@@ -17,7 +17,6 @@
       flex-direction: column;
     }
 
-    /* ── Top Nav ── */
     .top-nav {
       background: #080808;
       border-bottom: 1px solid #1e1e1e;
@@ -30,140 +29,52 @@
       z-index: 100;
     }
     .top-nav-logo {
-      font-size: 12px;
-      font-weight: 700;
-      color: #444;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      padding: 11px 18px 11px 0;
-      border-right: 1px solid #1e1e1e;
-      margin-right: 6px;
-      white-space: nowrap;
+      font-size: 14px; font-weight: 700; color: #444; letter-spacing: 0.8px;
+      text-transform: uppercase; padding: 20px 18px 20px 0;
+      border-right: 1px solid #1e1e1e; margin-right: 6px; white-space: nowrap;
     }
     .top-nav-link {
-      display: flex;
-      align-items: center;
-      padding: 11px 12px;
-      color: #555;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 500;
-      transition: color 0.1s;
-      white-space: nowrap;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -1px;
+      display: flex; align-items: center; padding: 20px 14px; color: #555;
+      text-decoration: none; font-size: 15px; font-weight: 500; transition: color 0.1s;
+      white-space: nowrap; border-bottom: 2px solid transparent; margin-bottom: -1px;
     }
     .top-nav-link:hover { color: #bbb; }
     .top-nav-link.active { color: #ccc; border-bottom-color: #555; }
     .top-nav-sep { width: 1px; height: 16px; background: #1e1e1e; margin: 0 4px; }
 
-    .main {
-      flex: 1;
-      padding: 28px 28px 40px;
-      min-width: 0;
-      overflow-x: auto;
+    .main { flex: 1; padding: 36px 36px 80px; max-width: 760px; }
+
+    h1 { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 32px; }
+
+    .entry { margin-bottom: 36px; }
+
+    .entry-header {
+      display: flex; align-items: baseline; gap: 14px; margin-bottom: 10px;
+    }
+    .entry-title {
+      font-size: 16px; font-weight: 700; color: #e8e8e8;
+    }
+    .entry-date {
+      font-size: 12px; color: #555; font-weight: 500;
     }
 
-    header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 28px;
+    .entry ul {
+      list-style: none; padding: 0;
+      border-left: 2px solid #1e1e1e;
+      padding-left: 16px;
+      display: flex; flex-direction: column; gap: 6px;
     }
-    header h1 { font-size: 20px; font-weight: 700; color: #fff; }
-
-    .table-wrap {
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid #1e1e1e;
+    .entry ul li {
+      color: #aaa; font-size: 13.5px; line-height: 1.5;
     }
-
-    table { width: 100%; border-collapse: collapse; font-size: 13px; }
-
-    thead tr {
-      background: #141414;
-      color: #666;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
+    .entry ul li::before {
+      content: "— ";
+      color: #444;
     }
 
-    th, td {
-      padding: 8px 14px;
-      text-align: left;
-      border-right: 1px solid #1a1a1a;
-    }
-    th:last-child, td:last-child { border-right: none; }
-
-    tbody tr { border-top: 1px solid #1a1a1a; }
-    tbody tr:hover { background: #131313; }
-    tbody tr:nth-child(even) { background: #0d0d0d; }
-    tbody tr:nth-child(even):hover { background: #131313; }
-
-    td.ts    { color: #555; font-size: 12px; white-space: nowrap; font-variant-numeric: tabular-nums; }
-    td.name  { color: #ccc; font-weight: 500; }
-    td.field { color: #666; font-size: 12px; }
-    td.date  { color: #d8d8d8; font-variant-numeric: tabular-nums; white-space: nowrap; }
-    td.old   { color: #888; font-variant-numeric: tabular-nums; white-space: nowrap; }
-
-    .badge {
-      display: inline-block;
-      padding: 2px 7px;
-      border-radius: 4px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.4px;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-    .badge-new       { background: #0d2b1a; color: #4caf80; }
-    .badge-date      { background: #1a1a2b; color: #7a8fcc; }
-    .badge-character { background: #1f1810; color: #c4874a; }
-    .badge-support   { background: #101a1f; color: #4a9cc4; }
-    .badge-anniversary { background: #1f1020; color: #b46ed4; }
-    .badge-champions_meeting { background: #1f1a10; color: #c4b44a; }
-    .badge-league_of_heroes  { background: #0e1820; color: #5ab0d8; }
-
-    .empty { color: #444; padding: 24px; text-align: center; }
+    .empty { color: #555; font-size: 14px; margin-top: 40px; }
   </style>
-  <style>
-    .debug-only { display: none; }
-    body.debug-mode .debug-only { display: flex; }
-    .nav-settings-wrap { margin-left: auto; position: relative; }
-    .nav-settings-btn {
-      background: none; border: none; color: #333; cursor: pointer;
-      font-size: 15px; padding: 8px 10px; transition: color 0.1s; line-height: 1;
-    }
-    .nav-settings-btn:hover { color: #888; }
-    .nav-settings-dd {
-      display: none; position: absolute; right: 0; top: calc(100% + 4px);
-      background: #111; border: 1px solid #2a2a2a; border-radius: 8px;
-      padding: 12px 16px; width: 190px; z-index: 200;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.8);
-    }
-    .nav-settings-dd.open { display: block; }
-    .nav-settings-title {
-      font-size: 10px; font-weight: 700; color: #444; letter-spacing: 0.5px;
-      text-transform: uppercase; margin-bottom: 10px;
-    }
-    .nav-settings-row {
-      display: flex; align-items: center; justify-content: space-between; gap: 10px;
-    }
-    .nav-settings-label { font-size: 12px; color: #888; }
-    .nav-toggle { position: relative; width: 32px; height: 18px; flex-shrink: 0; }
-    .nav-toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
-    .nav-toggle-track {
-      position: absolute; inset: 0; background: #2a2a2a; border-radius: 9px;
-      cursor: pointer; transition: background 0.2s;
-    }
-    .nav-toggle input:checked + .nav-toggle-track { background: #3a5a3a; }
-    .nav-toggle-thumb {
-      position: absolute; top: 3px; left: 3px; width: 12px; height: 12px;
-      background: #555; border-radius: 50%; transition: all 0.2s; pointer-events: none;
-    }
-    .nav-toggle input:checked ~ .nav-toggle-thumb { left: 17px; background: #5ecb7a; }
-  </style></head>
+</head>
 <body>
 
 <nav class="top-nav">
@@ -173,107 +84,151 @@
   <a href="/cards" class="top-nav-link">Card Tracker</a>
   <div class="top-nav-sep"></div>
   <a href="/timeline" class="top-nav-link">Timeline</a>
-  <a href="/data" class="top-nav-link debug-only">Data</a>
-  <a href="/updates" class="top-nav-link debug-only active">Updates</a>
-  <div class="nav-settings-wrap">
-    <button class="nav-settings-btn" id="navSettingsBtn" title="Settings">⚙</button>
-    <div class="nav-settings-dd" id="navSettingsDd">
-      <div class="nav-settings-title">Settings</div>
-      <div class="nav-settings-row">
-        <span class="nav-settings-label">Debug mode</span>
-        <label class="nav-toggle">
-          <input type="checkbox" id="debugToggle">
-          <div class="nav-toggle-track"></div>
-          <div class="nav-toggle-thumb"></div>
-        </label>
-      </div>
-    </div>
-  </div></nav>
+  <a href="/updates" class="top-nav-link active">Updates</a>
+  <div style="margin-left:auto;display:flex;align-items:center;gap:10px">
+    <button id="feedbackBtn" style="font-size:12px;color:#888;background:none;border:1px solid #222;border-radius:4px;padding:4px 10px;cursor:pointer;transition:color 0.1s,border-color 0.1s;" onmouseover="this.style.color='#ccc';this.style.borderColor='#444'" onmouseout="this.style.color='#888';this.style.borderColor='#222'">Report / Suggest</button>
+    {% if user %}
+      {% if user.avatar %}
+        <img src="https://cdn.discordapp.com/avatars/{{ user.id }}/{{ user.avatar }}.png" style="width:26px;height:26px;border-radius:50%;object-fit:cover;">
+      {% endif %}
+      <span style="font-size:12px;color:#888">{{ user.username }}</span>
+      <a href="/logout" style="font-size:12px;color:#555;text-decoration:none;padding:4px 8px;border:1px solid #222;border-radius:4px;">Logout</a>
+    {% else %}
+      <a href="/login" style="font-size:12px;color:#7289da;text-decoration:none;padding:4px 10px;border:1px solid #2a2d3a;border-radius:4px;background:#1a1c24;">Login with Discord</a>
+    {% endif %}
+  </div>
+</nav>
 
 <div class="main">
-  <header>
-    <h1>Updates</h1>
-  </header>
+  <h1>Updates</h1>
 
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Changed</th>
-          <th>Kind</th>
-          <th>Type</th>
-          <th>Name</th>
-          <th>Field</th>
-          <th>Old</th>
-          <th>New</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% if log %}
-          {% for entry in log %}
-          <tr>
-            <td class="ts">{{ entry.timestamp[:16].replace('T', ' ') }}</td>
-            <td>
-              {% if entry.kind == 'new_event' %}
-                <span class="badge badge-new">New</span>
-              {% else %}
-                <span class="badge badge-date">Date</span>
-              {% endif %}
-            </td>
-            <td><span class="badge badge-{{ entry.event_type }}">{{ entry.event_type.replace('_', ' ') }}</span></td>
-            <td class="name">{{ entry.name }}</td>
-            <td class="field">
-              {% if entry.kind == 'new_event' %}
-                —
-              {% else %}
-                {{ entry.field.replace('_', ' ') }}
-              {% endif %}
-            </td>
-            <td class="old">
-              {% if entry.kind == 'new_event' %}
-                —
-              {% else %}
-                {{ (entry.old or '—')[:19].replace('T', ' ') }}
-              {% endif %}
-            </td>
-            <td class="date">
-              {% if entry.kind == 'new_event' %}
-                {{ (entry.start_date or '—')[:10] }}
-              {% else %}
-                {{ (entry.new or '—')[:19].replace('T', ' ') }}
-              {% endif %}
-            </td>
-          </tr>
-          {% endfor %}
-        {% else %}
-          <tr><td colspan="7" class="empty">No updates logged yet.</td></tr>
-        {% endif %}
-      </tbody>
-    </table>
-  </div>
+  {% if entries %}
+    {% for entry in entries %}
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">{{ entry.title }}</span>
+        <span class="entry-date">{{ entry.date }}</span>
+      </div>
+      <ul>
+        {% for item in entry.notes %}
+        <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  {% else %}
+    <p class="empty">No updates yet.</p>
+  {% endif %}
 </div>
 
-<script>
-</script>
+
+<!-- ── Feedback Modal ────────────────────────────────────────────── -->
+<style>
+  #feedbackOverlay {
+    display: none; position: fixed; inset: 0; z-index: 10000;
+    background: rgba(0,0,0,0.7); align-items: center; justify-content: center;
+  }
+  #feedbackOverlay.open { display: flex; }
+  #feedbackBox {
+    background: #111; border: 1px solid #2a2a2a; border-radius: 12px;
+    padding: 28px 28px 22px; width: 420px; max-width: 94vw;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.9); position: relative;
+  }
+  #feedbackBox h3 { font-size: 15px; font-weight: 700; color: #e8e8e8; margin-bottom: 16px; }
+  .fb-row { margin-bottom: 14px; }
+  .fb-label { font-size: 11px; font-weight: 700; color: #555; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; }
+  .fb-select, .fb-textarea {
+    width: 100%; background: #181818; border: 1px solid #2a2a2a; border-radius: 6px;
+    color: #d8d8d8; font-size: 13px; font-family: inherit; padding: 8px 12px;
+    outline: none; transition: border-color 0.1s; box-sizing: border-box;
+  }
+  .fb-select:focus, .fb-textarea:focus { border-color: #444; }
+  .fb-textarea { resize: vertical; min-height: 100px; }
+  .fb-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 4px; }
+  .fb-cancel {
+    background: #1a1a1a; border: 1px solid #2e2e2e; border-radius: 6px;
+    color: #888; cursor: pointer; font-size: 13px; font-weight: 600;
+    padding: 7px 18px; transition: color 0.1s, border-color 0.1s;
+  }
+  .fb-cancel:hover { color: #ccc; border-color: #555; }
+  .fb-submit {
+    background: #1a2e1a; border: 1px solid #2e5a2e; border-radius: 6px;
+    color: #7ad87a; cursor: pointer; font-size: 13px; font-weight: 600;
+    padding: 7px 18px; transition: background 0.1s;
+  }
+  .fb-submit:hover { background: #223522; }
+  .fb-submit:disabled { opacity: 0.5; cursor: default; }
+  #feedbackStatus { font-size: 12px; margin-top: 10px; text-align: center; }
+</style>
+<div id="feedbackOverlay">
+  <div id="feedbackBox">
+    <h3>Report an Issue / Suggestion</h3>
+    <div class="fb-row">
+      <div class="fb-label">Type</div>
+      <select class="fb-select" id="fbType">
+        <option value="issue">Bug / Issue</option>
+        <option value="suggestion">Suggestion</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+    <div class="fb-row">
+      <div class="fb-label">Message</div>
+      <textarea class="fb-textarea" id="fbMessage" placeholder="Describe the issue or suggestion..."></textarea>
+    </div>
+    <div class="fb-actions">
+      <button class="fb-cancel" id="fbCancel">Cancel</button>
+      <button class="fb-submit" id="fbSubmit">Submit</button>
+    </div>
+    <div id="feedbackStatus"></div>
+  </div>
+</div>
 <script>
 (function() {
-  const DEBUG_KEY = 'debugMode_v1';
-  const isDebug = localStorage.getItem(DEBUG_KEY) === '1';
-  if (isDebug) document.body.classList.add('debug-mode');
-  document.addEventListener('DOMContentLoaded', function() {
-    const btn = document.getElementById('navSettingsBtn');
-    const dd  = document.getElementById('navSettingsDd');
-    const chk = document.getElementById('debugToggle');
-    if (!btn || !dd || !chk) return;
-    chk.checked = isDebug;
-    btn.addEventListener('click', function(e) { e.stopPropagation(); dd.classList.toggle('open'); });
-    document.addEventListener('click', function() { dd.classList.remove('open'); });
-    dd.addEventListener('click', function(e) { e.stopPropagation(); });
-    chk.addEventListener('change', function() {
-      localStorage.setItem(DEBUG_KEY, chk.checked ? '1' : '0');
-      document.body.classList.toggle('debug-mode', chk.checked);
-    });
+  const overlay  = document.getElementById('feedbackOverlay');
+  const status   = document.getElementById('feedbackStatus');
+  const msgEl    = document.getElementById('fbMessage');
+  const typeEl   = document.getElementById('fbType');
+  const submitBtn = document.getElementById('fbSubmit');
+
+  function open()  { overlay.classList.add('open'); status.textContent = ''; msgEl.value = ''; submitBtn.disabled = false; }
+  function close() { overlay.classList.remove('open'); }
+
+  document.getElementById('fbCancel').addEventListener('click', close);
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+  const triggerBtn = document.getElementById('feedbackBtn');
+  if (triggerBtn) triggerBtn.addEventListener('click', open);
+
+  submitBtn.addEventListener('click', async () => {
+    const message = msgEl.value.trim();
+    if (!message) { status.style.color = '#e07070'; status.textContent = 'Please enter a message.'; return; }
+    submitBtn.disabled = true;
+    status.style.color = '#888';
+    status.textContent = 'Sending...';
+    try {
+      const res = await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: typeEl.value, message })
+      });
+      const data = await res.json();
+      if (data.ok) {
+        status.style.color = '#7ad87a';
+        status.textContent = 'Submitted! Thank you.';
+        setTimeout(close, 1400);
+      } else {
+        status.style.color = '#e07070';
+        status.textContent = data.error || 'Something went wrong.';
+        submitBtn.disabled = false;
+      }
+    } catch {
+      status.style.color = '#e07070';
+      status.textContent = 'Network error. Please try again.';
+      submitBtn.disabled = false;
+    }
   });
 })();
-</script></body>
+</script>
+</body>
 </html>

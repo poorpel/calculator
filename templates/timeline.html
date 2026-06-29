@@ -30,12 +30,12 @@
       z-index: 100;
     }
     .top-nav-logo {
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 700;
       color: #444;
       letter-spacing: 0.8px;
       text-transform: uppercase;
-      padding: 11px 18px 11px 0;
+      padding: 20px 18px 20px 0;
       border-right: 1px solid #1e1e1e;
       margin-right: 6px;
       white-space: nowrap;
@@ -43,10 +43,10 @@
     .top-nav-link {
       display: flex;
       align-items: center;
-      padding: 11px 12px;
+      padding: 20px 14px;
       color: #555;
       text-decoration: none;
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 500;
       transition: color 0.1s;
       white-space: nowrap;
@@ -258,8 +258,20 @@
   <div class="top-nav-sep"></div>
   <a href="/timeline" class="top-nav-link active">Timeline</a>
   <a href="/data" class="top-nav-link debug-only">Data</a>
-  <a href="/updates" class="top-nav-link debug-only">Updates</a>
-  <div class="nav-settings-wrap">
+  <a href="/updates" class="top-nav-link">Updates</a>
+  <div style="margin-left:auto;display:flex;align-items:center;gap:10px">
+    <button id="feedbackBtn" style="font-size:12px;color:#888;background:none;border:1px solid #222;border-radius:4px;padding:4px 10px;cursor:pointer;transition:color 0.1s,border-color 0.1s;" onmouseover="this.style.color='#ccc';this.style.borderColor='#444'" onmouseout="this.style.color='#888';this.style.borderColor='#222'">Report / Suggest</button>
+    {% if user %}
+      {% if user.avatar %}
+        <img src="https://cdn.discordapp.com/avatars/{{ user.id }}/{{ user.avatar }}.png" style="width:26px;height:26px;border-radius:50%;object-fit:cover;">
+      {% endif %}
+      <span style="font-size:12px;color:#888">{{ user.username }}</span>
+      <a href="/logout" style="font-size:12px;color:#555;text-decoration:none;padding:4px 8px;border:1px solid #222;border-radius:4px;">Logout</a>
+    {% else %}
+      <a href="/login" style="font-size:12px;color:#7289da;text-decoration:none;padding:4px 10px;border:1px solid #2a2d3a;border-radius:4px;background:#1a1c24;">Login with Discord</a>
+    {% endif %}
+  </div>
+  <div class="nav-settings-wrap" style="margin-left:0">
     <button class="nav-settings-btn" id="navSettingsBtn" title="Settings">⚙</button>
     <div class="nav-settings-dd" id="navSettingsDd">
       <div class="nav-settings-title">Settings</div>
@@ -292,8 +304,8 @@
   {% for g in groups %}
   <div class="month-group">
     <div class="month-label">
-      <span class="date-start">{{ g.date }}</span>
-      {% if g.end_date %}<span class="date-arrow">→</span><span class="date-end">{{ g.end_date }}</span>{% endif %}
+      <span class="date-start">{{ g.date | fmtdate }}</span>
+      {% if g.end_date %}<span class="date-arrow">→</span><span class="date-end">{{ g.end_date | fmtdate }}</span>{% endif %}
     </div>
 
     {% for b in g.banners %}
@@ -422,5 +434,114 @@ document.querySelectorAll(".filter-btn").forEach(btn => {
     });
   });
 })();
-</script></body>
+</script>
+<!-- ── Feedback Modal ────────────────────────────────────────────── -->
+<style>
+  #feedbackOverlay {
+    display: none; position: fixed; inset: 0; z-index: 10000;
+    background: rgba(0,0,0,0.7); align-items: center; justify-content: center;
+  }
+  #feedbackOverlay.open { display: flex; }
+  #feedbackBox {
+    background: #111; border: 1px solid #2a2a2a; border-radius: 12px;
+    padding: 28px 28px 22px; width: 420px; max-width: 94vw;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.9); position: relative;
+  }
+  #feedbackBox h3 { font-size: 15px; font-weight: 700; color: #e8e8e8; margin-bottom: 16px; }
+  .fb-row { margin-bottom: 14px; }
+  .fb-label { font-size: 11px; font-weight: 700; color: #555; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; }
+  .fb-select, .fb-textarea {
+    width: 100%; background: #181818; border: 1px solid #2a2a2a; border-radius: 6px;
+    color: #d8d8d8; font-size: 13px; font-family: inherit; padding: 8px 12px;
+    outline: none; transition: border-color 0.1s; box-sizing: border-box;
+  }
+  .fb-select:focus, .fb-textarea:focus { border-color: #444; }
+  .fb-textarea { resize: vertical; min-height: 100px; }
+  .fb-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 4px; }
+  .fb-cancel {
+    background: #1a1a1a; border: 1px solid #2e2e2e; border-radius: 6px;
+    color: #888; cursor: pointer; font-size: 13px; font-weight: 600;
+    padding: 7px 18px; transition: color 0.1s, border-color 0.1s;
+  }
+  .fb-cancel:hover { color: #ccc; border-color: #555; }
+  .fb-submit {
+    background: #1a2e1a; border: 1px solid #2e5a2e; border-radius: 6px;
+    color: #7ad87a; cursor: pointer; font-size: 13px; font-weight: 600;
+    padding: 7px 18px; transition: background 0.1s;
+  }
+  .fb-submit:hover { background: #223522; }
+  .fb-submit:disabled { opacity: 0.5; cursor: default; }
+  #feedbackStatus { font-size: 12px; margin-top: 10px; text-align: center; }
+</style>
+<div id="feedbackOverlay">
+  <div id="feedbackBox">
+    <h3>Report an Issue / Suggestion</h3>
+    <div class="fb-row">
+      <div class="fb-label">Type</div>
+      <select class="fb-select" id="fbType">
+        <option value="issue">Bug / Issue</option>
+        <option value="suggestion">Suggestion</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+    <div class="fb-row">
+      <div class="fb-label">Message</div>
+      <textarea class="fb-textarea" id="fbMessage" placeholder="Describe the issue or suggestion..."></textarea>
+    </div>
+    <div class="fb-actions">
+      <button class="fb-cancel" id="fbCancel">Cancel</button>
+      <button class="fb-submit" id="fbSubmit">Submit</button>
+    </div>
+    <div id="feedbackStatus"></div>
+  </div>
+</div>
+<script>
+(function() {
+  const overlay  = document.getElementById('feedbackOverlay');
+  const status   = document.getElementById('feedbackStatus');
+  const msgEl    = document.getElementById('fbMessage');
+  const typeEl   = document.getElementById('fbType');
+  const submitBtn = document.getElementById('fbSubmit');
+
+  function open()  { overlay.classList.add('open'); status.textContent = ''; msgEl.value = ''; submitBtn.disabled = false; }
+  function close() { overlay.classList.remove('open'); }
+
+  document.getElementById('fbCancel').addEventListener('click', close);
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+  const triggerBtn = document.getElementById('feedbackBtn');
+  if (triggerBtn) triggerBtn.addEventListener('click', open);
+
+  submitBtn.addEventListener('click', async () => {
+    const message = msgEl.value.trim();
+    if (!message) { status.style.color = '#e07070'; status.textContent = 'Please enter a message.'; return; }
+    submitBtn.disabled = true;
+    status.style.color = '#888';
+    status.textContent = 'Sending...';
+    try {
+      const res = await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: typeEl.value, message })
+      });
+      const data = await res.json();
+      if (data.ok) {
+        status.style.color = '#7ad87a';
+        status.textContent = 'Submitted! Thank you.';
+        setTimeout(close, 1400);
+      } else {
+        status.style.color = '#e07070';
+        status.textContent = data.error || 'Something went wrong.';
+        submitBtn.disabled = false;
+      }
+    } catch {
+      status.style.color = '#e07070';
+      status.textContent = 'Network error. Please try again.';
+      submitBtn.disabled = false;
+    }
+  });
+})();
+</script>
+</body>
 </html>
