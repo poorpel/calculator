@@ -1110,7 +1110,9 @@ const CHAMP_MEETING_TICKETS = { 'Champion':10,'Second':8,'Third':6,'Group B 1st'
 const LEAGUE_HEROES = { 'Platinum 4':3300,'Platinum 3':2800,'Platinum 2':2300,'Platinum 1':1800,'Gold 4':1300,'Gold 3':1000,'Gold 2':700,'Gold 1':550,'Silver 4':400,'None':0 };
 const LEAGUE_HEROES_TICKETS = { 'Platinum 4':4,'Platinum 3':4,'Platinum 2':4,'Platinum 1':4,'Gold 4':4,'Gold 3':2,'Gold 2':2,'Gold 1':0,'Silver 4':0,'None':0 };
 const DAILY_PACK    = { 'No':0,'Yes':2000 };
-const TRAINING_PASS = { 'Free':500,'Paid':1000 };
+const TRAINING_PASS    = { 'Free':500,'Paid':1850 };
+const TP_FREE_START    = "2027-08-09"; // 3rd Anniversary — when Training Pass free track begins
+const TP_PAID_START    = "2027-12-14"; // when Training Pass paid track begins
 
 function bindDropdown(selectId, valId, table) {
   const sel = document.getElementById(selectId);
@@ -1170,7 +1172,7 @@ function showExplainBox(bannerName, endStr, ex, btn) {
           bonusTix, shopTix, lohTix, rwdTix, cmCount, lohCount,
           priorTotalNormal, rawPaidDeduct, maxPulls, pullsEntered,
           cmCaratRate, lohCaratRate, cmTixRate, lohTixRate, tixDeduct, tixDisabled,
-          isStepUp, availPaid, suSelectorMax } = ex;
+          isStepUp, availPaid, suSelectorMax, tpType } = ex;
 
   const todayStr = new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
   const endFmt   = _fmtDate(endStr);
@@ -1199,6 +1201,8 @@ function showExplainBox(bannerName, endStr, ex, btn) {
     html += `<p>Club Rank resets ${sd(bd.monthStarts)} time${bd.monthStarts !== 1 ? "s" : ""} at ${crClass} (${sc(bd.clubRankAmt)}/month) — ${sc(bd.clubRankTotal)} carats.</p>`;
   if (bd.hasPack && bd.packDailyTotal > 0)
     html += `<p>The daily pack adds 50 carats/day × ${sd(bd.days)} days = ${sc(bd.packDailyTotal)} carats.</p>`;
+  if (bd.tpFreeTotal > 0)
+    html += `<p>Your ${bd.tpType} Training Pass contributes ${sc(bd.tpFreeRate.toLocaleString())} carats/month × ${sd(bd.tpFreeMonths)} month${bd.tpFreeMonths !== 1 ? "s" : ""} (counting from the 3rd Anniversary on Aug 9, 2027) = ${sc(bd.tpFreeTotal)} carats.</p>`;
   if (evTotal > 0) {
     const evRegular = evTotal - evCMTotal - evLOHTotal;
     const evParts = [];
@@ -1216,7 +1220,11 @@ function showExplainBox(bannerName, endStr, ex, btn) {
     html += `<div class="ex-section"><div class="ex-lbl">Paid Carats</div>`;
     if (resPaidCarat > 0) html += `<p>You're starting with ${sp(resPaidCarat)} paid carats already saved up.</p>`;
     if (packBonusTotal > 0) html += `<p>Your pack will hit its monthly renewal ${sd(packBonusMonths)} time${packBonusMonths !== 1 ? "s" : ""} before the banner ends, adding ${sp(packBonusTotal)} paid carats in bonuses.</p>`;
-    const otherPaid = rawPaid - resPaidCarat - packBonusTotal;
+    const tpPaidFrom2 = new Date(Math.max(new Date().setHours(0,0,0,0), parseLocalDate(TP_PAID_START).getTime()));
+    const tpPaidMonths2 = tpPaidFrom2 < parseLocalDate(endStr) ? monthsBetween(tpPaidFrom2, parseLocalDate(endStr)) : 0;
+    const tpPaidTotal2 = tpType === "Paid" ? tpPaidMonths2 * 350 : 0;
+    if (tpPaidTotal2 > 0) html += `<p>Your Paid Training Pass adds ${sp(350)} paid carats/month × ${sd(tpPaidMonths2)} month${tpPaidMonths2 !== 1 ? "s" : ""} (from Dec 14, 2027) = ${sp(tpPaidTotal2)} paid carats.</p>`;
+    const otherPaid = rawPaid - resPaidCarat - packBonusTotal - tpPaidTotal2;
     if (otherPaid > 0) html += `<p>You'll also pick up ${sp(otherPaid)} paid carats from other pack purchases.</p>`;
     html += `<div class="ex-total">Paid Total: ${sp(rawPaid)}</div></div>`;
   }
@@ -1391,6 +1399,12 @@ function parseLocalDate(str) {
   return new Date(y, m - 1, d);
 }
 
+function monthsBetween(from, to) {
+  let m = (to.getFullYear() - from.getFullYear()) * 12 + (to.getMonth() - from.getMonth());
+  if (to.getDate() < from.getDate()) m--;
+  return Math.max(0, m);
+}
+
 function computeCaratBreakdown(endDateStr) {
   if (!endDateStr || endDateStr === "—") return null;
   const today = new Date(); today.setHours(0,0,0,0);
@@ -1427,17 +1441,27 @@ function computeCaratBreakdown(endDateStr) {
   if (hasPack) {
     packDailyTotal = days * 50;
     const packStart = document.getElementById("packStartDate").value;
-    if (packStart) {
-      const startDay = parseLocalDate(packStart).getDate();
-      for (let i = 1; i <= days; i++) {
-        const d = new Date(today); d.setDate(today.getDate() + i);
-        if (d.getDate() === startDay) packBonusMonths++;
+    {
+      const startDay = packStart ? parseLocalDate(packStart).getDate() : today.getDate();
+      let cur = new Date(today.getFullYear(), today.getMonth(), 1);
+      while (cur <= end) {
+        const lastDay = new Date(cur.getFullYear(), cur.getMonth() + 1, 0).getDate();
+        const billingDay = Math.min(startDay, lastDay);
+        const billing = new Date(cur.getFullYear(), cur.getMonth(), billingDay);
+        if (billing > today && billing <= end) packBonusMonths++;
+        cur.setMonth(cur.getMonth() + 1);
       }
       packBonusTotal = packBonusMonths * 500;
     }
   }
 
-  const caratTotal = resCarat + daily + teamTrialsTotal + clubRankTotal + loginBonusTotal + packDailyTotal;
+  const tpType      = document.getElementById("trainingPass").value;
+  const tpFreeRate  = tpType === "Paid" ? 1850 : 500;
+  const tpFreeFrom  = new Date(Math.max(today.getTime(), parseLocalDate(TP_FREE_START).getTime()));
+  const tpFreeMonths = tpFreeFrom < end ? monthsBetween(tpFreeFrom, end) : 0;
+  const tpFreeTotal  = tpFreeMonths * tpFreeRate;
+
+  const caratTotal = resCarat + daily + teamTrialsTotal + clubRankTotal + loginBonusTotal + packDailyTotal + tpFreeTotal;
   const total = caratTotal + packBonusTotal;
   return {
     days, daily,
@@ -1445,6 +1469,7 @@ function computeCaratBreakdown(endDateStr) {
     monthStarts, clubRankAmt, clubRankTotal,
     day1c, day3c, day5c, day7c, loginBonusTotal,
     hasPack, packDailyTotal, packBonusMonths, packBonusTotal,
+    tpType, tpFreeRate, tpFreeMonths, tpFreeTotal,
     resCarat, caratTotal, total,
   };
 }
@@ -1499,7 +1524,11 @@ function computePaidCaratEst(endDateStr) {
   const bd = computeCaratBreakdown(endDateStr);
   const resPaidCarat = parseInt(document.getElementById("resPaidCarat").value) || 0;
   const packPaidTotal = getPacksPaidCaratItems(endDateStr).reduce((s, i) => s + i.amount, 0);
-  return (bd ? bd.packBonusTotal : 0) + resPaidCarat + packPaidTotal;
+  const tpType     = document.getElementById("trainingPass").value;
+  const tpPaidFrom = new Date(Math.max(today.getTime(), parseLocalDate(TP_PAID_START).getTime()));
+  const tpPaidMonths = tpPaidFrom < end ? monthsBetween(tpPaidFrom, end) : 0;
+  const tpPaidTotal  = tpType === "Paid" ? tpPaidMonths * 350 : 0;
+  return (bd ? bd.packBonusTotal : 0) + resPaidCarat + packPaidTotal + tpPaidTotal;
 }
 
 function computeCaratEst(endDateStr) {
@@ -1984,6 +2013,7 @@ function updateAllCarats() {
             <div class="dp-row"><span>Team Trials (${ttClass} · ${bd.teamTrialsAmt.toLocaleString()}/wk × ${bd.mondays})</span><span>${bd.teamTrialsTotal.toLocaleString()}</span></div>
             <div class="dp-row"><span>Club Rank (${crClass} · ${bd.clubRankAmt.toLocaleString()}/mo × ${bd.monthStarts})</span><span>${bd.clubRankTotal.toLocaleString()}</span></div>
             ${bd.hasPack ? `<div class="dp-row"><span>Daily Pack (50/day × ${bd.days})</span><span>${bd.packDailyTotal.toLocaleString()}</span></div>` : ""}
+            ${bd.tpFreeTotal > 0 ? `<div class="dp-row"><span>Training Pass (${bd.tpFreeRate.toLocaleString()}/mo × ${bd.tpFreeMonths})</span><span>${bd.tpFreeTotal.toLocaleString()}</span></div>` : ""}
             ${evDetails.total > 0 ? `<div class="dp-row"><span>Events</span><span>${evDetails.total.toLocaleString()}</span></div>` : ""}
             <div class="dp-total"><span>Carat Est.</span><span>${(rawCarat + evDetails.total).toLocaleString()}</span></div>
             ${priorTotalNormal > 0 ? `<div class="dp-row dp-neg"><span>Prior deductions</span><span>−${priorTotalNormal.toLocaleString()}</span></div>` : ''}
@@ -1996,6 +2026,7 @@ function updateAllCarats() {
             <details class="dp-details"><summary>Show breakdown</summary>
               ${resPaidCarat > 0 ? `<div class="dp-row"><span>Paid Reserve</span><span>${resPaidCarat.toLocaleString()}</span></div>` : ""}
               ${bd.packBonusTotal > 0 ? `<div class="dp-row"><span>Pack Bonus × ${bd.packBonusMonths} mo</span><span>${bd.packBonusTotal.toLocaleString()}</span></div>` : ""}
+              ${(() => { const tpType = document.getElementById("trainingPass").value; const tpPaidFrom = new Date(Math.max(new Date().setHours(0,0,0,0), parseLocalDate(TP_PAID_START).getTime())); const tpPaidMonths = tpPaidFrom < parseLocalDate(endStr) ? monthsBetween(tpPaidFrom, parseLocalDate(endStr)) : 0; const tpPaidTotal = tpType === "Paid" ? tpPaidMonths * 350 : 0; return tpPaidTotal > 0 ? `<div class="dp-row"><span>Training Pass Paid × ${tpPaidMonths} mo</span><span>${tpPaidTotal.toLocaleString()}</span></div>` : ""; })()}
               ${packItems.map(item => `<div class="dp-row"><span>${item.name}</span><span>${item.amount.toLocaleString()}</span></div>`).join('')}
             </details>` : ""}
             ${(() => {
@@ -2085,6 +2116,7 @@ function updateAllCarats() {
             tixDisabled,
             isStepUp, availPaid,
             suSelectorMax: parseInt(tr.dataset.suSelectorMax) || 0,
+            tpType: bd.tpType,
           };
           explainBtn.addEventListener("click", e => { e.stopPropagation(); showExplainBox(_name, endStr, _ex, explainBtn); });
         }
@@ -3328,7 +3360,7 @@ updateAllCarats();
     {
       targets: ["#calcTable thead th:nth-child(9)", "#calcTable thead th:nth-child(10)", "#calcTable thead th:nth-child(11)"],
       title: "Pull Breakdown",
-      body: "<strong style='color:#ccc'>Free Pulls</strong> are the bonus free pulls included with the banner.<br><br><strong style='color:#ccc'>Ticket Pulls</strong> are pulls from any Uma or Support tickets you have.<br><br><strong style='color:#ccc'>Paid Pulls</strong> are pulls from paid carats. Each column updates as you plan pulls on earlier rows.",
+      body: "<strong style='color:#ccc'>Free Pulls</strong> are the bonus free pulls included with the banner.<br><br><strong style='color:#ccc'>Ticket Pulls</strong> are pulls from any Uma or Support tickets you have. Click the Ticket Pulls cell on any row to toggle tickets on or off for that banner.<br><br><strong style='color:#ccc'>Paid Pulls</strong> are pulls from paid carats. Each column updates as you plan pulls on earlier rows.",
       placement: "bottom",
     },
     {
