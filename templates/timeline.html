@@ -29,17 +29,6 @@
       top: 0;
       z-index: 100;
     }
-    .top-nav-logo {
-      font-size: 14px;
-      font-weight: 700;
-      color: #444;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      padding: 20px 18px 20px 0;
-      border-right: 1px solid #1e1e1e;
-      margin-right: 6px;
-      white-space: nowrap;
-    }
     .top-nav-link {
       display: flex;
       align-items: center;
@@ -251,7 +240,6 @@
 <body>
 
 <nav class="top-nav">
-  <div class="top-nav-logo">Carat Calc</div>
   <a href="/" class="top-nav-link">Calculator</a>
   <a href="/packs" class="top-nav-link">Selectors</a>
   <a href="/cards" class="top-nav-link">Card Tracker</a>
@@ -261,6 +249,12 @@
   <a href="/updates" class="top-nav-link">Updates</a>
   <a href="/credits" class="top-nav-link">Credits</a>
   <div style="margin-left:auto;display:flex;align-items:center;gap:10px">
+    <select id="timelineFileSelect" title="Timeline data source"
+      style="background:#111;border:1px solid #2a2a2a;border-radius:4px;color:#888;font-size:12px;font-family:inherit;padding:4px 8px;cursor:pointer;outline:none;">
+      {% for key, label in timeline_file_options.items() %}
+        <option value="{{ key }}" {% if key == active_file_key %}selected{% endif %}>{{ label }}</option>
+      {% endfor %}
+    </select>
     <button id="feedbackBtn" style="font-size:12px;color:#888;background:none;border:1px solid #222;border-radius:4px;padding:4px 10px;cursor:pointer;transition:color 0.1s,border-color 0.1s;" onmouseover="this.style.color='#ccc';this.style.borderColor='#444'" onmouseout="this.style.color='#888';this.style.borderColor='#222'">Report / Suggest</button>
     {% if user %}
       {% if user.avatar %}
@@ -269,7 +263,7 @@
       <span style="font-size:12px;color:#888">{{ user.username }}</span>
       <a href="/logout" style="font-size:12px;color:#555;text-decoration:none;padding:4px 8px;border:1px solid #222;border-radius:4px;">Logout</a>
     {% else %}
-      <a href="/login" style="font-size:12px;color:#7289da;text-decoration:none;padding:4px 10px;border:1px solid #2a2d3a;border-radius:4px;background:#1a1c24;">Login with Discord</a>
+      
     {% endif %}
   </div>
   <div class="nav-settings-wrap" style="margin-left:0">
@@ -420,6 +414,15 @@ document.querySelectorAll(".filter-btn").forEach(btn => {
   const DEBUG_KEY = 'debugMode_v1';
   const isDebug = localStorage.getItem(DEBUG_KEY) === '1';
   if (isDebug) document.body.classList.add('debug-mode');
+  document.getElementById('timelineFileSelect').addEventListener('change', async function() {
+    await fetch('/api/set-timeline', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ file: this.value })
+    });
+    window.location.reload();
+  });
+
   document.addEventListener('DOMContentLoaded', function() {
     const btn = document.getElementById('navSettingsBtn');
     const dd  = document.getElementById('navSettingsDd');
@@ -544,5 +547,6 @@ document.querySelectorAll(".filter-btn").forEach(btn => {
   });
 })();
 </script>
+<div style="text-align:center;padding:24px;font-size:11px;color:#333;">Not affiliated with Cygames.</div>
 </body>
 </html>

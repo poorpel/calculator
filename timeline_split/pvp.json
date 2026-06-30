@@ -1,0 +1,1286 @@
+[
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-0",
+    "banner_name": "Champions Meeting: Taurus Cup",
+    "start_date": "2025-08-17T22:00:00Z",
+    "end_date": "2025-08-24T22:00:00Z",
+    "description": "Tokyo - Turf\n2400m - Medium - Counterclockwise\nFirm - Spring - Sunny",
+    "is_confirmed": true,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2021-05-14T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-1",
+    "banner_name": "Champions Meeting: Gemini Cup",
+    "start_date": "2025-09-07T22:00:00Z",
+    "end_date": "2025-09-14T22:00:00Z",
+    "description": "Kyoto - Turf\n3200m - Long - Clockwise\nFirm - Spring - Sunny",
+    "is_confirmed": true,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2021-06-14T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-2",
+    "banner_name": "Champions Meeting: Cancer Cup",
+    "start_date": "2025-10-07T22:00:00Z",
+    "end_date": "2025-10-14T22:00:00Z",
+    "description": "Tokyo - Turf\n1600m - Mile - Counterclockwise\nGood - Summer - Sunny",
+    "is_confirmed": true,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2021-07-23T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-3",
+    "banner_name": "Champions Meeting: Leo Cup",
+    "start_date": "2025-10-30T22:00:00Z",
+    "end_date": "2025-11-08T22:00:00Z",
+    "description": "Hanshin - Turf\n2200m - Medium - Clockwise\nFirm - Summer - Sunny",
+    "is_confirmed": true,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2021-08-24T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-4",
+    "banner_name": "Champions Meeting: Virgo Cup",
+    "start_date": "2025-11-16T22:00:00Z",
+    "end_date": "2025-11-25T22:00:00Z",
+    "description": "Hanshin - Turf\n1600m - Mile - Clockwise\nFirm - Autumn - Sunny",
+    "is_confirmed": true,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2021-09-21T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-5",
+    "banner_name": "Champions Meeting: Libra Cup",
+    "start_date": "2025-12-08T22:00:00Z",
+    "end_date": "2025-12-17T22:00:00Z",
+    "description": "Kyoto - Turf\n3000m - Long - Clockwise\nFirm - Autumn - Sunny",
+    "is_confirmed": true,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2021-10-22T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-6",
+    "banner_name": "Champions Meeting: Scorpio Cup",
+    "start_date": "2025-12-28T22:00:00Z",
+    "end_date": "2026-01-06T22:00:00Z",
+    "description": "Tokyo - Turf\n2000m - Medium - Counterclockwise\nSoft - Autumn - Rain",
+    "is_confirmed": true,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2021-11-23T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-7",
+    "banner_name": "Champions Meeting: Sagittarius Cup",
+    "start_date": "2026-01-19T22:00:00Z",
+    "end_date": "2026-01-28T22:00:00Z",
+    "description": "Nakayama - Turf\n2500m - Long - Clockwise\nFirm - Winter - Sunny",
+    "is_confirmed": true,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2021-12-21T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-8",
+    "banner_name": "Champions Meeting: Capricorn Cup",
+    "start_date": "2026-02-09T22:00:00Z",
+    "end_date": "2026-02-18T22:00:00Z",
+    "description": "Chukyo - Turf\n1200m - Short - Counterclockwise\nSoft - Winter - Snow",
+    "is_confirmed": true,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2022-01-22T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-9",
+    "banner_name": "Champions Meeting: Aquarius Cup",
+    "start_date": "2026-03-02T22:00:00Z",
+    "end_date": "2026-03-11T22:00:00Z",
+    "description": "Tokyo - Dirt\n1600m - Mile - Counterclockwise\nFirm - Winter - Sunny",
+    "is_confirmed": true,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2022-02-18T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-10",
+    "banner_name": "Champions Meeting: Pisces Cup",
+    "start_date": "2026-03-26T22:00:00Z",
+    "end_date": "2026-04-04T22:00:00Z",
+    "description": "Hanshin - Turf\n3200m - Long - Clockwise\nHeavy - Spring - Rain",
+    "is_confirmed": true,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2022-03-22T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-11",
+    "banner_name": "Champions Meeting: Aries Cup",
+    "start_date": "2026-04-20T22:00:00Z",
+    "end_date": "2026-04-27T22:00:00Z",
+    "description": "Nakayama - Turf\n2000m - Medium - Clockwise\nFirm - Spring - Sunny",
+    "is_confirmed": true,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2022-04-22T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-12",
+    "banner_name": "Champions Meeting: Taurus Cup",
+    "start_date": "2026-05-10T22:00:00Z",
+    "end_date": "2026-05-17T22:00:00Z",
+    "description": "Tokyo - Turf\n2400m - Medium - Counterclockwise\nFirm - Spring - Sunny",
+    "is_confirmed": true,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2022-05-24T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-13",
+    "banner_name": "Champions Meeting: Gemini Cup",
+    "start_date": "2026-05-31T22:00:00Z",
+    "end_date": "2026-06-07T22:00:00Z",
+    "description": "Tokyo - Turf\n1600m - Mile - Counterclockwise\nFirm - Spring - Sunny",
+    "is_confirmed": true,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2022-06-14T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-14",
+    "banner_name": "Champions Meeting: Cancer Cup",
+    "start_date": "2026-06-21T22:00:00Z",
+    "end_date": "2026-06-28T22:00:00Z",
+    "description": "Hanshin - Turf\n2200m - Medium - Clockwise\nGood - Summer - Cloudy",
+    "is_confirmed": true,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2022-07-14T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-15",
+    "banner_name": "Champions Meeting: Leo Cup",
+    "start_date": "2026-07-12T22:00:00Z",
+    "end_date": "2026-07-17T22:00:00Z",
+    "description": "Nakayama - Turf\n1200m - Short - Clockwise\nFirm - Summer - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2022-08-13T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-16",
+    "banner_name": "Champions Meeting: Virgo Cup",
+    "start_date": "2026-08-04T22:00:00Z",
+    "end_date": "2026-08-09T22:00:00Z",
+    "description": "Ooi - Dirt\n2000m - Medium - Clockwise\nGood - Autumn - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2022-09-15T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-17",
+    "banner_name": "Champions Meeting: Libra Cup",
+    "start_date": "2026-08-24T22:00:00Z",
+    "end_date": "2026-08-29T22:00:00Z",
+    "description": "Hanshin - Turf\n1600m - Mile - Clockwise\nFirm - Autumn - Cloudy",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2022-10-14T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-18",
+    "banner_name": "Champions Meeting: Scorpio Cup",
+    "start_date": "2026-09-14T22:00:00Z",
+    "end_date": "2026-09-19T22:00:00Z",
+    "description": "Kyoto - Turf\n2200m - Medium - Clockwise\nFirm - Autumn - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2022-11-13T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-19",
+    "banner_name": "Champions Meeting: Sagittarius Cup",
+    "start_date": "2026-10-07T22:00:00Z",
+    "end_date": "2026-10-12T22:00:00Z",
+    "description": "Nakayama - Turf\n2500m - Long - Clockwise\nGood - Winter - Cloudy",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2022-12-15T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-20",
+    "banner_name": "Champions Meeting: Capricorn Cup",
+    "start_date": "2026-10-28T22:00:00Z",
+    "end_date": "2026-11-02T22:00:00Z",
+    "description": "Chukyo - Turf\n1200m - Short - Counterclockwise\nFirm - Winter - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2023-01-14T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-21",
+    "banner_name": "Champions Meeting: Aquarius Cup",
+    "start_date": "2026-11-21T22:00:00Z",
+    "end_date": "2026-11-26T22:00:00Z",
+    "description": "Tokyo - Dirt\n1600m - Mile - Counterclockwise\nSoft - Winter - Snow",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2023-02-17T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-22",
+    "banner_name": "Champions Meeting: Pisces Cup",
+    "start_date": "2026-12-08T22:00:00Z",
+    "end_date": "2026-12-13T22:00:00Z",
+    "description": "Nakayama - Turf\n2000m - Medium - Clockwise\nFirm - Spring - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2023-03-14T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-23",
+    "banner_name": "Champions Meeting: Aries Cup",
+    "start_date": "2026-12-30T22:00:00Z",
+    "end_date": "2027-01-04T22:00:00Z",
+    "description": "Kyoto - Turf\n3200m - Long - Clockwise\nFirm - Spring - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2023-04-13T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-24",
+    "banner_name": "Champions Meeting: MILE",
+    "start_date": "2027-02-10T22:00:00Z",
+    "end_date": "2027-02-15T22:00:00Z",
+    "description": "Tokyo - Turf\n1600m - Mile - Counterclockwise\nHeavy - Spring - Rain",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2023-06-13T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-25",
+    "banner_name": "Champions Meeting: DIRT",
+    "start_date": "2027-03-29T22:00:00Z",
+    "end_date": "2027-04-03T22:00:00Z",
+    "description": "Funabashi - Dirt\n1600m - Mile - Counterclockwise\nFirm - Summer - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2023-08-18T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-26",
+    "banner_name": "Champions Meeting: CLASSIC",
+    "start_date": "2027-05-07T22:00:00Z",
+    "end_date": "2027-05-12T22:00:00Z",
+    "description": "Longchamp - Turf\n2400m - Medium - Clockwise\nSoft - Autumn - Rain",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2023-10-13T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-27",
+    "banner_name": "Champions Meeting: LONG",
+    "start_date": "2027-06-20T22:00:00Z",
+    "end_date": "2027-06-25T22:00:00Z",
+    "description": "Nakayama - Turf\n2500m - Long - Clockwise\nSoft - Winter - Snow",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2023-12-14T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-28",
+    "banner_name": "Champions Meeting: SPRINT",
+    "start_date": "2027-08-05T22:00:00Z",
+    "end_date": "2027-08-10T22:00:00Z",
+    "description": "Hanshin - Turf\n1400m - Short - Clockwise\nGood - Winter - Cloudy",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2024-02-18T03:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "champions-meeting-29",
+    "banner_name": "Champions Meeting: MILE",
+    "start_date": "2027-09-13T22:00:00Z",
+    "end_date": "2027-09-18T22:00:00Z",
+    "description": "Hanshin - Turf\n1600m - Mile - Clockwise\nFirm - Spring - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "banner_duration_days": 5,
+    "jp_release_date": "2024-04-13T03:00:00Z"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-30",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2023-05-12",
+    "jp_end_date": "2023-05-19",
+    "description": "Tokyo - Turf\n2400m - Medium - Counterclockwise\n— - Spring - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2023-05-12T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2027-01-19T22:00:00Z",
+    "end_date": "2027-01-26T22:00:00Z"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-31",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2023-07-13",
+    "jp_end_date": "2023-07-20",
+    "description": "Nakayama - Turf\n1200m - Sprint - Clockwise\n— - Summer - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2023-07-13T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2027-03-04T22:00:00Z",
+    "end_date": "2027-03-11T22:00:00Z"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-32",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2023-09-13",
+    "jp_end_date": "2023-09-20",
+    "description": "Kyoto - Turf\n3000m - Long - Clockwise\n— - Fall - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2023-09-13T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2027-04-16T22:00:00Z",
+    "end_date": "2027-04-23T22:00:00Z"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-33",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2023-11-12",
+    "jp_end_date": "2023-11-19",
+    "description": "Kyoto - Turf\n1600m - Mile - Clockwise\n— - Fall - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2023-11-12T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2027-05-28T22:00:00Z",
+    "end_date": "2027-06-04T22:00:00Z"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-34",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2024-01-12",
+    "jp_end_date": "2024-01-19",
+    "description": "Kawasaki - Dirt\n2100m - Medium - Counterclockwise\n— - Winter - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2024-01-12T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2027-07-10T22:00:00Z",
+    "end_date": "2027-07-17T22:00:00Z"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-36",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2024-05-24",
+    "jp_end_date": "2024-05-31",
+    "description": "Kyoto - Turf\n3200m - Long - Clockwise\n— - Spring - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2024-05-24T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2027-10-12T22:00:00Z",
+    "end_date": "2027-10-19T22:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-37",
+    "banner_name": "Champions Meeting: CLASSIC",
+    "jp_start_date": "2024-06-20",
+    "jp_end_date": "2024-06-27",
+    "description": "Tokyo - Turf\n2400m - Medium - Counterclockwise\nSoft - Spring - Cloudy",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2024-06-20T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2027-10-31T22:00:00Z",
+    "end_date": "2027-11-07T22:00:00Z"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-38",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2024-07-22",
+    "jp_end_date": "2024-07-29",
+    "description": "Niigata - Turf\n1000m - Sprint - Clockwise\n— - Summer - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2024-07-22T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2027-11-22T22:00:00Z",
+    "end_date": "2027-11-29T22:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-39",
+    "banner_name": "Champions Meeting: DIRT",
+    "jp_start_date": "2024-08-24",
+    "jp_end_date": "2024-08-31",
+    "description": "Chukyo - Dirt\n1800m - Mile - Counterclockwise\nFirm - Summer - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2024-08-24T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2027-12-16T22:00:00Z",
+    "end_date": "2027-12-23T22:00:00Z"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-40",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2024-09-23",
+    "jp_end_date": "2024-09-30",
+    "description": "Kyoto - Turf\n1600m - Mile - Clockwise\n— - Fall - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2024-09-23T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2028-01-06T22:00:00Z",
+    "end_date": "2028-01-13T22:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-41",
+    "banner_name": "Champions Meeting: CLASSIC",
+    "jp_start_date": "2024-10-23",
+    "jp_end_date": "2024-10-30",
+    "description": "Tokyo - Turf\n2000m - Medium - Counterclockwise\nFirm - Fall - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2024-10-23T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2028-01-27T22:00:00Z",
+    "end_date": "2028-02-03T22:00:00Z"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-42",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2024-11-21",
+    "jp_end_date": "2024-11-28",
+    "description": "Kyoto - Turf\n2200m - Medium - Clockwise\n— - Fall - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2024-11-21T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2028-02-16T22:00:00Z",
+    "end_date": "2028-02-23T22:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-43",
+    "banner_name": "Champions Meeting: LONG",
+    "jp_start_date": "2024-12-22",
+    "jp_end_date": "2024-12-29",
+    "description": "Nakayama - Turf\n2500m - Long - Clockwise\nGood - Winter - Cloudy",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2024-12-22T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2028-03-09T22:00:00Z",
+    "end_date": "2028-03-16T22:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-44",
+    "banner_name": "Champions Meeting: CLASSIC",
+    "jp_start_date": "2025-01-24",
+    "jp_end_date": "2025-01-31",
+    "description": "Hanshin - Turf\n2400m - Medium - Counterclockwise\nSoft - Winter - Rainy",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2025-01-24T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2028-04-01T22:00:00Z",
+    "end_date": "2028-04-08T22:00:00Z"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-45",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2025-02-16",
+    "jp_end_date": "2025-02-23",
+    "description": "Nakayama - Turf\n1200m - Sprint - Clockwise\n— - Winter - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2025-02-16T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2028-04-17T22:00:00Z",
+    "end_date": "2028-04-24T22:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-46",
+    "banner_name": "Champions Meeting: MILE",
+    "jp_start_date": "2025-03-25",
+    "jp_end_date": "2025-04-01",
+    "description": "Hanshin - Turf\n1600m - Mile - Clockwise\nFirm - Spring - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2025-03-25T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2028-05-13T22:00:00Z",
+    "end_date": "2028-05-20T22:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-47",
+    "banner_name": "Champions Meeting: LONG",
+    "jp_start_date": "2025-04-23",
+    "jp_end_date": "2025-04-30",
+    "description": "Kyoto - Turf\n3200m - Long - Clockwise\nFirm - Spring - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2025-04-23T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2028-06-03T22:00:00Z",
+    "end_date": "2028-06-10T22:00:00Z"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-48",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2025-05-24",
+    "jp_end_date": "2025-05-31",
+    "description": "Oi - Dirt\n2000m - Medium - Clockwise\n— - Spring - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2025-05-24T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2028-06-25T22:00:00Z",
+    "end_date": "2028-07-02T22:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-49",
+    "banner_name": "Champions Meeting: CLASSIC",
+    "jp_start_date": "2025-06-21",
+    "jp_end_date": "2025-06-28",
+    "description": "Tokyo - Turf\n2400m - Medium - Counterclockwise\nFirm - Spring - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2025-06-21T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2028-07-14T22:00:00Z",
+    "end_date": "2028-07-21T22:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-50",
+    "banner_name": "Champions Meeting: CLASSIC",
+    "jp_start_date": "2025-07-25",
+    "jp_end_date": "2025-08-01",
+    "description": "Hanshin - Turf\n2200m - Medium - Clockwise\nGood - Summer - Cloudy",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2025-07-25T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2028-08-07T22:00:00Z",
+    "end_date": "2028-08-14T22:00:00Z"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-51",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2025-08-15",
+    "jp_end_date": "2025-08-22",
+    "description": "Sapporo - Turf\n2600m - Long - Clockwise\n— - Summer - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2025-08-15T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2028-08-22T22:00:00Z",
+    "end_date": "2028-08-29T22:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-52",
+    "banner_name": "Champions Meeting: CLASSIC",
+    "jp_start_date": "2025-09-22",
+    "jp_end_date": "2025-09-29",
+    "description": "Kyoto - Turf\n2000m - Medium - Clockwise\nFirm - Fall - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2025-09-22T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2028-09-18T22:00:00Z",
+    "end_date": "2028-09-25T22:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-53",
+    "banner_name": "Champions Meeting: SPRINT",
+    "jp_start_date": "2025-10-23",
+    "jp_end_date": "2025-10-30",
+    "description": "Niigata - Turf\n1200m - Sprint - Counterclockwise\nFirm - Fall - Cloudy",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2025-10-23T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2028-10-09T22:00:00Z",
+    "end_date": "2028-10-16T22:00:00Z"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-54",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2025-11-21",
+    "jp_end_date": "2025-11-28",
+    "description": "Morioka - Dirt\n1600m - Mile - Counterclockwise\n— - Fall - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2025-11-21T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2028-10-30T22:00:00Z",
+    "end_date": "2028-11-06T22:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-55",
+    "banner_name": "Champions Meeting: MILE",
+    "jp_start_date": "2025-12-21",
+    "jp_end_date": "2025-12-28",
+    "description": "Hanshin - Turf\n1600m - Mile - Clockwise\nFirm - Winter - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2025-12-21T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2028-11-20T22:00:00Z",
+    "end_date": "2028-11-27T22:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-56",
+    "banner_name": "Champions Meeting: LONG",
+    "jp_start_date": "2026-01-22",
+    "jp_end_date": "2026-01-29",
+    "description": "Nakayama - Turf\n2500m - Long - Clockwise\nFirm - Winter - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2026-01-22T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2028-12-12T22:00:00Z",
+    "end_date": "2028-12-19T22:00:00Z"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-57",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2026-02-15",
+    "jp_end_date": "2026-02-22",
+    "description": "Tokyo - Turf\n1600m - Mile - Counterclockwise\n— - Winter - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2026-02-15T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2028-12-29T22:00:00Z",
+    "end_date": "2029-01-05T22:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-58",
+    "banner_name": "Champions Meeting: CLASSIC",
+    "jp_start_date": "2026-03-22",
+    "jp_end_date": "2026-03-29",
+    "description": "Del Mar - Turf\n2200m - Medium - Counterclockwise\nFirm - Spring - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2026-03-22T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2029-01-23T22:00:00Z",
+    "end_date": "2029-01-30T22:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-59",
+    "banner_name": "Champions Meeting: DIRT",
+    "jp_start_date": "2026-04-23",
+    "jp_end_date": "2026-04-30",
+    "description": "Del Mar - Dirt\n2000m - Medium - Clockwise\nFirm - Spring - Sunny",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2026-04-23T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2029-02-14T22:00:00Z",
+    "end_date": "2029-02-21T22:00:00Z"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-60",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2026-05-26",
+    "jp_end_date": "2026-06-02",
+    "description": "— - —\n— - — - —\n— - Spring - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2026-05-26T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2029-03-10T22:00:00Z",
+    "end_date": "2029-03-17T22:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-61",
+    "banner_name": "Champions Meeting: CLASSIC",
+    "jp_start_date": "2026-06-23",
+    "jp_end_date": "2026-06-30",
+    "description": "Tokyo - Turf\n2400m - Medium - Counterclockwise\nFirm - Spring - Cloudy",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2026-06-23T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2029-03-29T22:00:00Z",
+    "end_date": "2029-04-05T22:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-62",
+    "banner_name": "Champions Meeting: LONG",
+    "jp_start_date": "2026-07-26",
+    "jp_end_date": "2026-08-02",
+    "description": "Nakayama - Turf\n3600m - Long - Counterclockwise\nFirm - Spring - Cloudy",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2026-07-26T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2029-04-22T22:00:00Z",
+    "end_date": "2029-04-29T22:00:00Z"
+  },
+  {
+    "type": "league_of_heroes",
+    "banner_id": "cm-63",
+    "banner_name": "League of Heroes",
+    "jp_start_date": "2026-08-26",
+    "jp_end_date": "2026-09-02",
+    "description": "Nakayama - Turf\n2000m - Medium - Clockwise\n— - Summer - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2026-08-26T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2029-05-13T22:00:00Z",
+    "end_date": "2029-05-20T22:00:00Z"
+  },
+  {
+    "type": "champions_meeting",
+    "banner_id": "cm-64",
+    "banner_name": "Champions Meeting: MILE",
+    "jp_start_date": "2026-09-26",
+    "jp_end_date": "2026-10-03",
+    "description": "— - Turf\n— - Mile - —\n— - — - —",
+    "is_confirmed": false,
+    "cards": [],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2026-09-26T03:00:00Z",
+    "banner_duration_days": 7,
+    "start_date": "2029-06-04T22:00:00Z",
+    "end_date": "2029-06-11T22:00:00Z"
+  }
+]

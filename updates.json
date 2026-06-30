@@ -12,12 +12,11 @@
     }
   },
   {
-    "date": "2026-06-28",
-    "title": "Test",
+    "date": "2026-06-30",
+    "title": "Timeline hopping",
     "notes": [
-      "test",
-      "test",
-      "test"
+      "Switching timelines won't swap all of the banner dates over correctly, I'm working on it.",
+      "It's usually the last banner you click? Then the sorting breaks and you have to go through and find the odd banner out."
     ]
   }
 ]

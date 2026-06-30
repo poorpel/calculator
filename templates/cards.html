@@ -28,11 +28,6 @@
       top: 0;
       z-index: 100;
     }
-    .top-nav-logo {
-      font-size: 14px; font-weight: 700; color: #444; letter-spacing: 0.8px;
-      text-transform: uppercase; padding: 20px 18px 20px 0;
-      border-right: 1px solid #1e1e1e; margin-right: 6px; white-space: nowrap;
-    }
     .top-nav-link {
       display: flex; align-items: center; padding: 20px 14px; color: #555;
       text-decoration: none; font-size: 15px; font-weight: 500; transition: color 0.1s;
@@ -406,7 +401,6 @@
 <body>
 
 <nav class="top-nav">
-  <div class="top-nav-logo">Carat Calc</div>
   <a href="/" class="top-nav-link">Calculator</a>
   <a href="/packs" class="top-nav-link">Selectors</a>
   <a href="/cards" class="top-nav-link active">Card Tracker</a>
@@ -424,7 +418,7 @@
       <span style="font-size:12px;color:#888">{{ user.username }}</span>
       <a href="/logout" style="font-size:12px;color:#555;text-decoration:none;padding:4px 8px;border:1px solid #222;border-radius:4px;">Logout</a>
     {% else %}
-      <a href="/login" style="font-size:12px;color:#7289da;text-decoration:none;padding:4px 10px;border:1px solid #2a2d3a;border-radius:4px;background:#1a1c24;">Login with Discord</a>
+      
     {% endif %}
   </div>
   <div class="nav-settings-wrap" style="margin-left:0">
@@ -1326,5 +1320,6 @@ renderAcquiredUmas();
   });
 })();
 </script>
+<div style="text-align:center;padding:24px;font-size:11px;color:#333;">Not affiliated with Cygames.</div>
 </body>
 </html>

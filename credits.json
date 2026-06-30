@@ -8,9 +8,35 @@
       "discord": "optional_username"
     }
   },
+  { "text": "Just wanted to have a calculator that had more detailed information for personal use, got bored, made it a website" },
+  {
+    "name": "Henry Handsome Derby",
+    "role": "Entire calculator idea was based off from here, the individual event date grouping and rewards were referenced from here, and the selector amounts. I've personally been using this since launch, I just wanted to add some information. You can get the actual calculator from the YouTube link.",
+    "url": "https://www.youtube.com/@HenryHandsomeDerby"
+  },
+  {
+    "name": "uma.moe",
+    "role": "Referenced for one of the timeline's banner and event dates, also used API.",
+    "url": "https://uma.moe/"
+  },
+  {
+    "name": "uma.guide",
+    "role": "Used links and images.",
+    "url": "https://uma.guide/"
+  },
+  {
+    "name": "Gametora",
+    "role": "Used links and images.",
+    "url": "https://gametora.com/umamusume"
+  },
+  {
+    "name": "Soul's Future Releases | Uma Musume",
+    "role": "Referenced for one of the timeline's banner and event dates.",
+    "url": "https://docs.google.com/spreadsheets/d/14-b9KYeXCE-o43LZ_X8-pRqRo_Mnn_9_meAj3Bo6QOo/edit?usp=sharing"
+  },
   {
     "name": "Global Effective Spending in Umamusume",
-    "role": "Step-up banner documentation",
+    "role": "Quoted the step-up banner explanation from here.",
     "url": "https://docs.google.com/document/d/1LRguS1n7Z1qiiJi8Hk2NRGnHGAARmqU_V7VnO76sCoE/edit?usp=sharing"
   }
 ]

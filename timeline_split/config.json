@@ -1,0 +1,13 @@
+{
+  "time_factor": 1.421917808,
+  "banners_anchor": {
+    "jp_date": "2022-07-29",
+    "global_date": "2026-07-02",
+    "note": "Last confirmed banner — update when a later banner is confirmed"
+  },
+  "pvp_anchor": {
+    "jp_date": "2022-07-14",
+    "global_date": "2026-06-21",
+    "note": "Last confirmed PvP event — update when a later CM/LoH is confirmed"
+  }
+}

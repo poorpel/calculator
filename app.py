@@ -228,6 +228,8 @@ def api_feedback():
     data       = request.get_json(silent=True) or {}
     message    = (data.get("message") or "").strip()
     fb_type    = (data.get("type") or "issue").strip()
+    if data.get("website"):
+        return jsonify(ok=False, error="Invalid submission."), 400
     if not message:
         return jsonify(ok=False, error="Message required"), 400
     if len(message) > 2000:
@@ -320,6 +322,48 @@ def _card_local_path(card):
 _UA_GAMETORA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36", "Referer": "https://gametora.com/"}
 _UA_UMA      = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36", "Referer": "https://uma.guide/"}
 
+TIMELINE_FILES = {
+    "output":     ("timeline_banners_output.json",   "Default"),
+    "split":      (None,                             "Split"),
+    "custom":     ("timeline_banners_custom.json",   "Custom"),
+    "experiment": ("timeline_experiment.json",       "Experiment"),
+}
+
+SPLIT_FILES = ["banners.json", "pvp.json", "anniversaries.json"]
+
+def _load_pack_events_path():
+    if _get_timeline_file_key() == "split":
+        return BASE / "timeline_split" / "packs.json"
+    return BASE / "pack_events.json"
+
+def _get_timeline_file_key():
+    key = request.cookies.get("timeline_file", "output")
+    return key if key in TIMELINE_FILES else "output"
+
+def _load_timeline_raw():
+    key = _get_timeline_file_key()
+    if key == "split":
+        combined = []
+        for fname in SPLIT_FILES:
+            path = BASE / "timeline_split" / fname
+            if path.exists():
+                combined.extend(json.loads(path.read_text(encoding="utf-8")))
+        return combined
+    filename, _ = TIMELINE_FILES[key]
+    path = BASE / filename
+    if not path.exists():
+        path = BASE / "timeline_banners_output.json"
+    return json.loads(path.read_text(encoding="utf-8"))
+
+@app.route("/api/set-timeline", methods=["POST"])
+def set_timeline():
+    key = request.json.get("file", "output")
+    if key not in TIMELINE_FILES:
+        return jsonify({"ok": False, "error": "invalid"}), 400
+    resp = jsonify({"ok": True})
+    resp.set_cookie("timeline_file", key, max_age=60*60*24*365, samesite="Lax")
+    return resp
+
 def _load_custom_banners():
     custom_path = BASE / "custom_banners.json"
     if not custom_path.exists():
@@ -401,8 +445,9 @@ def _assign_meeting_numbers(raw):
 
 @app.route("/")
 def index():
-    raw = json.loads((BASE / "timeline_banners_output.json").read_text(encoding="utf-8"))
-    raw = raw + _load_custom_banners()
+    raw = _load_timeline_raw()
+    if _get_timeline_file_key() != "split":
+        raw = raw + _load_custom_banners()
     _assign_meeting_numbers(raw)
     def _banner_name(b):
         if b["type"] == "support" and b.get("cards"):
@@ -428,7 +473,7 @@ def index():
         for b in raw if b.get("banner_name")
     ]
     anniversaries = _get_anniversaries()
-    pack_events_path = BASE / "pack_events.json"
+    pack_events_path = _load_pack_events_path()
     if pack_events_path.exists():
         try:
             today = date.today().isoformat()
@@ -453,14 +498,19 @@ def index():
             print(f"[pack_events] Error loading pack_events.json: {_pe_err}")
     pack_uma     = _enrich_pack(json.loads((BASE / "pack_uma.json").read_text(encoding="utf-8")),     is_char=True)
     pack_support = _enrich_pack(json.loads((BASE / "pack_support.json").read_text(encoding="utf-8")), is_char=False)
+    active_file_key = _get_timeline_file_key()
+    timeline_file_options = {k: v[1] for k, v in TIMELINE_FILES.items()
+                             if v[0] is None or (BASE / v[0]).exists()}
     return render_template("index.html", banners=banners, anniversaries=anniversaries,
                            pack_uma=pack_uma, pack_support=pack_support,
+                           active_file_key=active_file_key,
+                           timeline_file_options=timeline_file_options,
                            user=session.get("user"))
 
 @app.route("/debug-packs")
 def debug_packs():
     try:
-        pack_events_path = BASE / "pack_events.json"
+        pack_events_path = _load_pack_events_path()
         raw = json.loads(pack_events_path.read_text(encoding="utf-8"))
         events = raw.get("events", []) if isinstance(raw, dict) else raw
         today = date.today().isoformat()
@@ -528,11 +578,27 @@ def _enrich_pack(entries, is_char):
     return out
 
 def _get_anniversaries():
-    import re
-    from datetime import datetime
+    from datetime import datetime as dt_
+    if _get_timeline_file_key() == "split":
+        ann_path = BASE / "timeline_split" / "anniversaries.json"
+        raw_ann = json.loads(ann_path.read_text(encoding="utf-8")) if ann_path.exists() else []
+        today = date.today().isoformat()
+        result = []
+        for b in raw_ann:
+            start = (b.get("start_date") or "")[:10]
+            if not start or start < today:
+                continue
+            result.append({
+                "name":         _anniv_display_name(b.get("banner_name", "")),
+                "date":         dt_.fromisoformat(start).strftime("%B %d, %Y").replace(" 0", " "),
+                "id":           f"e{b.get('index', 0)}",
+                "start":        start,
+                "end":          (b.get("end_date") or "")[:10],
+                "is_confirmed": b.get("is_confirmed", False),
+            })
+        return result
     raw = json.loads((BASE / "timeline_banners_output.json").read_text(encoding="utf-8"))
     today = date.today().isoformat()
-
     result = []
     for b in raw:
         if b.get("type") != "anniversary":
@@ -540,7 +606,6 @@ def _get_anniversaries():
         start = (b.get("start_date") or "")[:10]
         if not start or start < today:
             continue
-        from datetime import datetime as dt_
         result.append({
             "name":         _anniv_display_name(b.get("banner_name", "")),
             "date":         dt_.fromisoformat(start).strftime("%B %d, %Y").replace(" 0", " "),
@@ -554,7 +619,7 @@ def _get_anniversaries():
 @app.route("/packs")
 def packs():
     anniversaries = _get_anniversaries()
-    pack_events_path = BASE / "pack_events.json"
+    pack_events_path = _load_pack_events_path()
     if pack_events_path.exists():
         try:
             today = date.today().isoformat()
@@ -587,7 +652,7 @@ def packs():
 def credits_page():
     try:
         raw = json.loads((BASE / "credits.json").read_text(encoding="utf-8"))
-        entries = [e for e in raw if e.get("name") and e.get("role")]
+        entries = [e for e in raw if (e.get("name") and e.get("role")) or e.get("text")]
     except Exception:
         entries = []
     return render_template("credits.html", entries=entries, user=session.get("user"))
@@ -604,8 +669,9 @@ def updates():
 @app.route("/cards")
 def cards():
     # Build card → earliest banner date map from timeline data
-    raw = json.loads((BASE / "timeline_banners_output.json").read_text(encoding="utf-8"))
-    raw = raw + _load_custom_banners()
+    raw = _load_timeline_raw()
+    if _get_timeline_file_key() != "split":
+        raw = raw + _load_custom_banners()
     card_first_date = {}
     banner_cards = {}
     for b in raw:
@@ -676,7 +742,7 @@ def cards():
 
     # Pack events for selector labels: id, name, start, selector_labels
     anniversaries = _get_anniversaries()
-    pack_events_path = BASE / "pack_events.json"
+    pack_events_path = _load_pack_events_path()
     pack_events_simple = []
     if pack_events_path.exists():
         try:
@@ -750,8 +816,12 @@ def data():
 
 @app.route("/timeline")
 def timeline():
-    raw = json.loads((BASE / "timeline_banners_output.json").read_text(encoding="utf-8"))
-    raw = raw + _load_custom_banners()
+    raw = _load_timeline_raw()
+    active_file_key = _get_timeline_file_key()
+    if active_file_key != "split":
+        raw = raw + _load_custom_banners()
+    timeline_file_options = {k: v[1] for k, v in TIMELINE_FILES.items()
+                             if v[0] is None or (BASE / v[0]).exists()}
     today = date.today().isoformat()
     cutoff = (date.today() - timedelta(days=14)).isoformat()
     def _show(b):
@@ -808,7 +878,10 @@ def timeline():
         end_dates = [b.get("end_date", "")[:10] for b in group_banners if b.get("end_date")]
         end_date = max(end_dates) if end_dates else None
         groups.append({"date": date_label, "end_date": end_date, "banners": group_banners, "events": events, "rewards": rewards})
-    return render_template("timeline.html", groups=groups)
+    return render_template("timeline.html", groups=groups,
+                           active_file_key=active_file_key,
+                           timeline_file_options=timeline_file_options,
+                           user=session.get("user"))
 
 if __name__ == "__main__":
     import os
