@@ -551,7 +551,7 @@ function deriveCopyLog(cardId) {
     const copies = Math.floor(pulls / 200);
     if (copies < 1) continue;
     const bannerName = row.banner || '';
-    const banner = BANNERS_SIMPLE.find(b => b.name === bannerName);
+    const banner = BANNERS_SIMPLE.find(b => b.name === bannerName || b.short_name === bannerName);
     if (!banner) continue;
     if (!banner.card_ids.includes(cardId)) continue;
 
