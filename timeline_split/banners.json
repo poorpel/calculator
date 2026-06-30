@@ -8580,7 +8580,8 @@
       {
         "name": "Event Rewards (Story, Bingo, Event Pt)",
         "amount": 2910
-      },{
+      },
+      {
         "name": "New Years Login Bonus",
         "amount": 2700
       },
@@ -9049,7 +9050,9 @@
       "sr": 2
     },
     "jp_release_date": "2026-03-11T03:00:00Z",
-    "start_date": "2029-01-16T22:00:00Z"
+    "banner_duration_days": 8,
+    "start_date": "2029-01-16T22:00:00Z",
+    "end_date": "2029-01-24T22:00:00Z"
   },
   {
     "type": "support",
@@ -9081,7 +9084,9 @@
       "sr": 0
     },
     "jp_release_date": "2026-03-11T03:00:00Z",
-    "start_date": "2029-01-16T22:00:00Z"
+    "banner_duration_days": 8,
+    "start_date": "2029-01-16T22:00:00Z",
+    "end_date": "2029-01-24T22:00:00Z"
   },
   {
     "type": "character",
@@ -9116,7 +9121,9 @@
       "sr": 0
     },
     "jp_release_date": "2026-03-19T03:00:00Z",
-    "start_date": "2029-01-21T22:00:00Z"
+    "banner_duration_days": 11,
+    "start_date": "2029-01-21T22:00:00Z",
+    "end_date": "2029-02-01T22:00:00Z"
   },
   {
     "type": "character",
@@ -9177,7 +9184,9 @@
       "sr": 5
     },
     "jp_release_date": "2026-03-30T03:00:00Z",
-    "start_date": "2029-01-29T22:00:00Z"
+    "banner_duration_days": 11,
+    "start_date": "2029-01-29T22:00:00Z",
+    "end_date": "2029-02-09T22:00:00Z"
   },
   {
     "type": "support",
@@ -9209,7 +9218,9 @@
       "sr": 0
     },
     "jp_release_date": "2026-03-30T03:00:00Z",
-    "start_date": "2029-01-29T22:00:00Z"
+    "banner_duration_days": 11,
+    "start_date": "2029-01-29T22:00:00Z",
+    "end_date": "2029-02-09T22:00:00Z"
   },
   {
     "type": "character",
@@ -9248,7 +9259,9 @@
       "sr": 1
     },
     "jp_release_date": "2026-04-10T03:00:00Z",
-    "start_date": "2029-02-06T22:00:00Z"
+    "banner_duration_days": 10,
+    "start_date": "2029-02-06T22:00:00Z",
+    "end_date": "2029-02-16T22:00:00Z"
   },
   {
     "type": "support",
@@ -9280,7 +9293,9 @@
       "sr": 0
     },
     "jp_release_date": "2026-04-10T03:00:00Z",
-    "start_date": "2029-02-06T22:00:00Z"
+    "banner_duration_days": 10,
+    "start_date": "2029-02-06T22:00:00Z",
+    "end_date": "2029-02-16T22:00:00Z"
   },
   {
     "type": "character",
@@ -9315,7 +9330,9 @@
       "sr": 0
     },
     "jp_release_date": "2026-04-20T03:00:00Z",
-    "start_date": "2029-02-13T22:00:00Z"
+    "banner_duration_days": 10,
+    "start_date": "2029-02-13T22:00:00Z",
+    "end_date": "2029-02-23T22:00:00Z"
   },
   {
     "type": "character",
@@ -9352,7 +9369,9 @@
       "sr": 0
     },
     "jp_release_date": "2026-04-30T03:00:00Z",
-    "start_date": "2029-02-20T22:00:00Z"
+    "banner_duration_days": 11,
+    "start_date": "2029-02-20T22:00:00Z",
+    "end_date": "2029-03-03T22:00:00Z"
   },
   {
     "type": "support",
@@ -9384,7 +9403,9 @@
       "sr": 0
     },
     "jp_release_date": "2026-04-30T03:00:00Z",
-    "start_date": "2029-02-20T22:00:00Z"
+    "banner_duration_days": 11,
+    "start_date": "2029-02-20T22:00:00Z",
+    "end_date": "2029-03-03T22:00:00Z"
   },
   {
     "type": "character",
@@ -9458,7 +9479,30 @@
       "sr": 0
     },
     "jp_release_date": "2026-04-30T03:00:00Z",
-    "start_date": "2029-02-20T22:00:00Z"
+    "banner_duration_days": 11,
+    "start_date": "2029-02-20T22:00:00Z",
+    "end_date": "2029-03-03T22:00:00Z"
+  },
+  {
+    "type": "character",
+    "banner_id": "banner12",
+    "banner_name": "Daring Heart Banner",
+    "jp_start_date": "2026-05-10",
+    "jp_end_date": "2026-05-19",
+    "is_confirmed": false,
+    "free": 0,
+    "cards": [
+      {
+        "name": "Daring Heart",
+        "id": "111201",
+        "url": "https://gametora.com/umamusume/characters/111201",
+        "uma_url": "https://uma.guide/characters/detail?card=111201"
+      }
+    ],
+    "jp_release_date": "2026-05-10T03:00:00Z",
+    "banner_duration_days": 9,
+    "start_date": "2029-02-27T22:00:00Z",
+    "end_date": "2029-03-08T22:00:00Z"
   },
   {
     "type": "step_up",

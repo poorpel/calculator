@@ -641,7 +641,7 @@
           <label class="settings-item" for="togEventTickets">
             <span class="settings-item-label">Event Tickets</span>
             <span class="tog">
-              <input type="checkbox" id="togEventTickets">
+              <input type="checkbox" id="togEventTickets" checked>
               <span class="tog-track"></span>
               <span class="tog-thumb"></span>
             </span>
@@ -649,7 +649,7 @@
           <label class="settings-item" for="togTrainingPassTickets">
             <span class="settings-item-label">Training Pass Tickets</span>
             <span class="tog">
-              <input type="checkbox" id="togTrainingPassTickets">
+              <input type="checkbox" id="togTrainingPassTickets" checked>
               <span class="tog-track"></span>
               <span class="tog-thumb"></span>
             </span>
@@ -2893,8 +2893,8 @@ function loadSettings() {
   document.getElementById("togTickets").checked             = trackTickets;
   document.getElementById("togPvPTickets").checked          = s.trackPvP         !== false;
   document.getElementById("togMonthlyShop").checked         = s.trackMonthlyShop !== false;
-  document.getElementById("togEventTickets").checked        = s.trackEventTickets === true;
-  document.getElementById("togTrainingPassTickets").checked = s.trackTrainingPass === true;
+  document.getElementById("togEventTickets").checked        = s.trackEventTickets !== false;
+  document.getElementById("togTrainingPassTickets").checked = s.trackTrainingPass !== false;
   document.getElementById("togPackPaidCarats").checked      = s.trackPackPaidCarats !== false;
   calcTable.classList.toggle("hide-probs", !showProbs);
   applyTicketSetting(trackTickets);
