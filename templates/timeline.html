@@ -246,7 +246,7 @@
   <div class="top-nav-sep"></div>
   <a href="/timeline" class="top-nav-link active">Timeline</a>
   <a href="/data" class="top-nav-link debug-only">Data</a>
-  <a href="/updates" class="top-nav-link">Updates</a>
+  <a href="/updates" class="top-nav-link" id="updatesNavLink">Updates</a>
   <a href="/credits" class="top-nav-link">Credits</a>
   <div style="margin-left:auto;display:flex;align-items:center;gap:10px">
     <select id="timelineFileSelect" title="Timeline data source"
@@ -280,6 +280,16 @@
       </div>
     </div>
   </div></nav>
+<script>(function(){var L="{{ latest_update_id }}",el=document.getElementById('updatesNavLink');if(!el||!L)return;if(localStorage.getItem('updates_seen_id')!==L){var s=document.createElement('style');s.textContent='@keyframes upd-flash{0%,100%{opacity:1}50%{opacity:.25}}#updatesNavLink.upd-flashing{animation:upd-flash 2.5s ease-in-out infinite;color:#c8a84b!important;}';document.head.appendChild(s);el.classList.add('upd-flashing');el.addEventListener('click',function(){localStorage.setItem('updates_seen_id',L);el.classList.remove('upd-flashing');},{once:true});}})();</script>
+
+{% if timeline_meta %}
+<div style="background:#0a0a0a;border-bottom:1px solid #222;padding:6px 20px;display:flex;align-items:center;gap:20px;font-size:11px;color:#555;flex-wrap:wrap;">
+  <span style="color:#444;font-size:10px;text-transform:uppercase;letter-spacing:.05em;">This timeline's furthest banners</span>
+  {% if timeline_meta.latest_char %}<span style="color:#444">·</span><span style="color:#555">Char: <span style="color:#999">{{ timeline_meta.latest_char.name }}</span> <span style="color:#666">{{ timeline_meta.latest_char.date }}</span></span>{% endif %}
+  {% if timeline_meta.latest_support %}<span style="color:#444">·</span><span style="color:#555">Support: <span style="color:#999">{{ timeline_meta.latest_support.name }}</span> <span style="color:#666">{{ timeline_meta.latest_support.date }}</span></span>{% endif %}
+  {% if timeline_meta.updated %}<span style="margin-left:auto;color:#444">Updated {{ timeline_meta.updated }}</span>{% endif %}
+</div>
+{% endif %}
 
 <div class="main">
   <header>

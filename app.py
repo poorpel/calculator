@@ -7,6 +7,16 @@ from datetime import date, timedelta, datetime, timezone
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY", "dev-secret-change-me")
 
+@app.context_processor
+def _inject_latest_update():
+    try:
+        entries = json.loads((BASE / "updates.json").read_text(encoding="utf-8"))
+        real = [e for e in entries if e.get("date")]
+        latest = real[0]["date"] if real else ""
+    except Exception:
+        latest = ""
+    return {"latest_update_id": latest}
+
 @app.template_filter("fmtdate")
 def _fmtdate(s):
     if not s:
@@ -280,6 +290,46 @@ BASE = Path(__file__).parent
 _JP_SLOPE     = -0.2408 / 86400
 _JP_INTERCEPT = 6059.8
 
+def _timeline_meta(raw):
+    """Return latest confirmed character/support banner names+dates and last-updated timestamp."""
+    import os
+    key = _get_timeline_file_key()
+    if key == "split":
+        mtimes = [
+            os.path.getmtime(BASE / "timeline_split" / f)
+            for f in ["banners.json", "pvp.json", "anniversaries.json"]
+            if (BASE / "timeline_split" / f).exists()
+        ]
+        mtime = max(mtimes) if mtimes else None
+    else:
+        p = BASE / "timeline_banners_output.json"
+        mtime = os.path.getmtime(p) if p.exists() else None
+    updated = datetime.fromtimestamp(mtime).strftime("%b %d, %Y").replace(" 0", " ") if mtime else None
+
+    confirmed = [b for b in raw if b.get("start_date")]
+    confirmed.sort(key=lambda b: b["start_date"])
+
+    def _fmt(b):
+        name = _banner_name_simple(b)
+        date = b["start_date"][:10]
+        y, m, d = date.split("-")
+        from calendar import month_abbr
+        return {"name": name, "date": f"{month_abbr[int(m)]} {int(d)}, {y}"}
+
+    char_banners    = [b for b in confirmed if b.get("type") == "character"]
+    support_banners = [b for b in confirmed if b.get("type") == "support"]
+    latest_char    = _fmt(char_banners[-1])    if char_banners    else None
+    latest_support = _fmt(support_banners[-1]) if support_banners else None
+    return {"latest_char": latest_char, "latest_support": latest_support, "updated": updated}
+
+def _banner_name_simple(b):
+    if b.get("type") == "support" and b.get("cards"):
+        ssrs = [c["name"] for c in _sorted_cards(b) if "SSR" in c.get("name", "")]
+        return ", ".join(ssrs) if ssrs else _sorted_cards(b)[0]["name"]
+    if b.get("type") in ("anniversary", "step_up"):
+        return _anniv_display_name(b.get("banner_name") or "")
+    return _strip_banner(b.get("banner_name") or "")
+
 def _jp_to_global(jp_date_str: str) -> str:
     """Estimate global release date from a JP date string (YYYY-MM-DD)."""
     jp_dt = datetime.fromisoformat(jp_date_str).replace(tzinfo=timezone.utc)
@@ -373,6 +423,8 @@ def _load_custom_banners():
         result = []
         for b in entries:
             if not b.get("banner_name") or b.get("_note") or b.get("_comment") or b.get("_schema"):
+                continue
+            if b.get("type") in ("character", "support"):
                 continue
             if not b.get("start_date"):
                 b["start_date"] = b.get("_estimated_start_date") or (
@@ -468,7 +520,8 @@ def index():
             "card_names": [c["name"] for c in _sorted_cards(b)],
             "events":  [{"name": e["name"], "amount": e["amount"]} for e in (b.get("events") or [])],
             "rewards": b.get("rewards") or {"uma_ticket": 0, "support_ticket": 0, "ssr": 0, "sr": 0},
-        "free":   b.get("free") or 0,
+        "free":         b.get("free") or 0,
+        "is_confirmed": b.get("is_confirmed", False),
         }
         for b in raw if b.get("banner_name")
     ]
@@ -505,6 +558,7 @@ def index():
                            pack_uma=pack_uma, pack_support=pack_support,
                            active_file_key=active_file_key,
                            timeline_file_options=timeline_file_options,
+                           timeline_meta=_timeline_meta(raw),
                            user=session.get("user"))
 
 @app.route("/debug-packs")
@@ -881,6 +935,7 @@ def timeline():
     return render_template("timeline.html", groups=groups,
                            active_file_key=active_file_key,
                            timeline_file_options=timeline_file_options,
+                           timeline_meta=_timeline_meta(raw),
                            user=session.get("user"))
 
 if __name__ == "__main__":

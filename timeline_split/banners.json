@@ -262,7 +262,7 @@
     "banner_id": "30104",
     "banner_name": "Gold Ship (Summer), Mejiro McQueen (Summer) Banner",
     "start_date": "2026-07-02T22:00:00Z",
-    "end_date": "2026-07-13T22:00:00Z",
+    "end_date": "2026-07-14T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -291,7 +291,7 @@
       "sr": 3
     },
     "is_confirmed": true,
-    "banner_duration_days": 11,
+    "banner_duration_days": 12,
     "jp_release_date": "2022-07-29T03:00:00Z"
   },
   {
@@ -299,7 +299,7 @@
     "banner_id": "30105",
     "banner_name": "Nakayama Festa (SSR Wit), Maruzensky (SSR Speed) Support Banner",
     "start_date": "2026-07-02T22:00:00Z",
-    "end_date": "2026-07-12T22:00:00Z",
+    "end_date": "2026-07-14T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -323,15 +323,15 @@
       "sr": 0
     },
     "is_confirmed": true,
-    "banner_duration_days": 11,
+    "banner_duration_days": 12,
     "jp_release_date": "2022-07-29T03:00:00Z"
   },
   {
     "type": "character",
     "banner_id": "30106",
     "banner_name": "Bamboo Memory Banner",
-    "start_date": "2026-07-10T22:00:00Z",
-    "end_date": "2026-07-18T22:00:00Z",
+    "start_date": "2026-07-07T22:00:00Z",
+    "end_date": "2026-07-16T22:00:00Z",
     "free": 4,
     "cards": [
       {
@@ -357,16 +357,16 @@
       "ssr": 0,
       "sr": 0
     },
-    "is_confirmed": false,
-    "banner_duration_days": 8,
+    "is_confirmed": true,
+    "banner_duration_days": 9,
     "jp_release_date": "2022-08-10T03:00:00Z"
   },
   {
     "type": "support",
     "banner_id": "30107",
     "banner_name": "Yukino Bijin (SSR Wit), Ikuno Dictus (SSR Guts) Support Banner",
-    "start_date": "2026-07-10T22:00:00Z",
-    "end_date": "2026-07-18T22:00:00Z",
+    "start_date": "2026-07-07T22:00:00Z",
+    "end_date": "2026-07-16T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -389,8 +389,8 @@
       "ssr": 0,
       "sr": 0
     },
-    "is_confirmed": false,
-    "banner_duration_days": 8,
+    "is_confirmed": true,
+    "banner_duration_days": 9,
     "jp_release_date": "2022-08-10T03:00:00Z"
   },
   {
@@ -398,7 +398,7 @@
     "banner_id": "30108",
     "banner_name": "Copano Rickey Banner",
     "start_date": "2026-07-16T22:00:00Z",
-    "end_date": "2026-07-25T22:00:00Z",
+    "end_date": "2026-07-26T22:00:00Z",
     "free": 5,
     "cards": [
       {
@@ -428,8 +428,8 @@
       "ssr": 0,
       "sr": 0
     },
-    "is_confirmed": false,
-    "banner_duration_days": 9,
+    "is_confirmed": true,
+    "banner_duration_days": 10,
     "jp_release_date": "2022-08-19T03:00:00Z"
   },
   {
@@ -437,7 +437,7 @@
     "banner_id": "30109",
     "banner_name": "Seiun Sky (SR Wit), Manhattan Cafe (SSR Stamina) Support Banner",
     "start_date": "2026-07-16T22:00:00Z",
-    "end_date": "2026-07-25T22:00:00Z",
+    "end_date": "2026-07-26T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -460,16 +460,16 @@
       "ssr": 0,
       "sr": 0
     },
-    "is_confirmed": false,
-    "banner_duration_days": 9,
+    "is_confirmed": true,
+    "banner_duration_days": 10,
     "jp_release_date": "2022-08-19T03:00:00Z"
   },
   {
     "type": "character",
     "banner_id": "30110",
     "banner_name": "Smart Falcon (Grand Live) Banner",
-    "start_date": "2026-07-20T22:00:00Z",
-    "end_date": "2026-08-07T22:00:00Z",
+    "start_date": "2026-07-22T22:00:00Z",
+    "end_date": "2026-08-10T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -507,16 +507,16 @@
       "ssr": 1,
       "sr": 1
     },
-    "is_confirmed": false,
-    "banner_duration_days": 18,
+    "is_confirmed": true,
+    "banner_duration_days": 19,
     "jp_release_date": "2022-08-24T03:00:00Z"
   },
   {
     "type": "support",
     "banner_id": "30111",
     "banner_name": "Light Hello (SSR Pal), Agnes Tachyon (SSR Speed) Support Banner",
-    "start_date": "2026-07-20T22:00:00Z",
-    "end_date": "2026-08-07T22:00:00Z",
+    "start_date": "2026-07-22T22:00:00Z",
+    "end_date": "2026-08-10T22:00:00Z",
     "free": 60,
     "cards": [
       {
@@ -539,16 +539,16 @@
       "ssr": 0,
       "sr": 0
     },
-    "is_confirmed": false,
-    "banner_duration_days": 18,
+    "is_confirmed": true,
+    "banner_duration_days": 19,
     "jp_release_date": "2022-08-24T03:00:00Z"
   },
   {
     "type": "character",
     "banner_id": "30112",
     "banner_name": "Winning Ticket (Steampunk), Narita Taishin (Steampunk) Banner",
-    "start_date": "2026-07-23T22:00:00Z",
-    "end_date": "2026-08-05T22:00:00Z",
+    "start_date": "2026-07-27T22:00:00Z",
+    "end_date": "2026-08-10T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -571,16 +571,16 @@
       "ssr": 3,
       "sr": 4
     },
-    "is_confirmed": false,
-    "banner_duration_days": 13,
+    "is_confirmed": true,
+    "banner_duration_days": 14,
     "jp_release_date": "2022-08-29T03:00:00Z"
   },
   {
     "type": "support",
     "banner_id": "30113",
     "banner_name": "Tokai Teio (SSR Wit), Twin Turbo (SSR Guts) Support Banner",
-    "start_date": "2026-07-23T22:00:00Z",
-    "end_date": "2026-08-05T22:00:00Z",
+    "start_date": "2026-07-27T22:00:00Z",
+    "end_date": "2026-08-10T22:00:00Z",
     "free": 40,
     "cards": [
       {
@@ -603,8 +603,8 @@
       "ssr": 0,
       "sr": 0
     },
-    "is_confirmed": false,
-    "banner_duration_days": 13,
+    "is_confirmed": true,
+    "banner_duration_days": 14,
     "jp_release_date": "2022-08-29T03:00:00Z"
   },
   {

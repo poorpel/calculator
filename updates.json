@@ -12,6 +12,14 @@
     }
   },
   {
+    "date": "2026-07-01",
+    "title": "Training Pass Toggle & Default Timeline",
+    "notes": [
+      "You need to hit sort after you toggle training pass to make the changes show up, don't know why yet.",
+      "The default timeline currently doesn't go past beyong 5th Anniversary, swap to split timeline to plan out further."
+    ]
+  },
+  {
     "date": "2026-06-30",
     "title": "Timeline hopping",
     "notes": [
