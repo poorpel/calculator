@@ -414,18 +414,56 @@ def set_timeline():
     resp.set_cookie("timeline_file", key, max_age=60*60*24*365, samesite="Lax")
     return resp
 
-def _load_custom_banners():
+def _load_custom_banners(raw=None):
     custom_path = BASE / "custom_banners.json"
     if not custom_path.exists():
         return []
     try:
         entries = json.loads(custom_path.read_text(encoding="utf-8"))
+        import re as _re
+        def _anniv_key(name):
+            # Normalize "3rd Anniversary", "3.5th Anniversary", "3 Year Anniversary" → "3", "3.5", "3"
+            m = _re.match(r"^(\d+(?:\.\d+)?)", (name or "").strip())
+            return m.group(1) if m else name
+
+        # Build anniversary key → anniversary start date
+        anniv_start_date = {}
+        for b in entries:
+            if b.get("type") == "anniversary" and b.get("banner_name") and b.get("start_date"):
+                anniv_start_date[_anniv_key(b["banner_name"])] = b["start_date"][:10]
+        if raw:
+            for b in raw:
+                if b.get("type") == "anniversary" and b.get("banner_name") and b.get("start_date"):
+                    anniv_start_date.setdefault(_anniv_key(b["banner_name"]), b["start_date"][:10])
+
+        # Build anniversary start date → (start, end) from the banner starting on that same date
+        # Use the character banner if available, otherwise any banner; take the latest end_date
+        anniv_banner_dates = {}  # anniv_date_str → {"start": ..., "end": ...}
+        if raw:
+            for b in raw:
+                if b.get("type") not in ("character", "support"):
+                    continue
+                bs = (b.get("start_date") or "")[:10]
+                be = (b.get("end_date") or "")[:10]
+                if not bs:
+                    continue
+                if bs not in anniv_banner_dates or be > anniv_banner_dates[bs]["end"]:
+                    anniv_banner_dates[bs] = {"start": b["start_date"], "end": b.get("end_date")}
+
         result = []
         for b in entries:
             if not b.get("banner_name") or b.get("_note") or b.get("_comment") or b.get("_schema"):
                 continue
             if b.get("type") in ("character", "support"):
                 continue
+            if b.get("type") == "step_up" and b.get("anniversary_name"):
+                # Derive start/end from the banner that shares the anniversary's start date
+                adate = anniv_start_date.get(_anniv_key(b["anniversary_name"]))
+                if adate and adate in anniv_banner_dates:
+                    b["start_date"] = anniv_banner_dates[adate]["start"]
+                    b["end_date"]   = anniv_banner_dates[adate]["end"]
+                elif adate:
+                    b["start_date"] = adate
             if not b.get("start_date"):
                 b["start_date"] = b.get("_estimated_start_date") or (
                     _jp_to_global(b["jp_start_date"]) if b.get("jp_start_date") else None)
@@ -440,7 +478,7 @@ def _load_custom_banners():
 
 def _download_all_cards():
     raw = json.loads((BASE / "timeline_banners_output.json").read_text(encoding="utf-8"))
-    raw = raw + _load_custom_banners()
+    raw = raw + _load_custom_banners(raw)
     for b in raw:
         for card in (b.get("cards") or [])[:2]:
             dest = _card_local_path(card)
@@ -499,7 +537,7 @@ def _assign_meeting_numbers(raw):
 def index():
     raw = _load_timeline_raw()
     if _get_timeline_file_key() != "split":
-        raw = raw + _load_custom_banners()
+        raw = raw + _load_custom_banners(raw)
     _assign_meeting_numbers(raw)
     def _banner_name(b):
         if b["type"] == "support" and b.get("cards"):
@@ -725,7 +763,7 @@ def cards():
     # Build card → earliest banner date map from timeline data
     raw = _load_timeline_raw()
     if _get_timeline_file_key() != "split":
-        raw = raw + _load_custom_banners()
+        raw = raw + _load_custom_banners(raw)
     card_first_date = {}
     banner_cards = {}
     for b in raw:
@@ -873,7 +911,7 @@ def timeline():
     raw = _load_timeline_raw()
     active_file_key = _get_timeline_file_key()
     if active_file_key != "split":
-        raw = raw + _load_custom_banners()
+        raw = raw + _load_custom_banners(raw)
     timeline_file_options = {k: v[1] for k, v in TIMELINE_FILES.items()
                              if v[0] is None or (BASE / v[0]).exists()}
     today = date.today().isoformat()

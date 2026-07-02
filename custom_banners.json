@@ -595,8 +595,6 @@
     "banner_id": "custom-step-3",
     "banner_name": "3rd Anniversary Step Up",
     "anniversary_name": "3rd Anniversary",
-    "start_date": "2027-09-13",
-    "end_date": "2027-10-08",
     "is_confirmed": false
   },
   {
@@ -604,8 +602,6 @@
     "banner_id": "custom-step-3.5",
     "banner_name": "3.5th Anniversary Step Up",
     "anniversary_name": "3.5th Anniversary",
-    "start_date": "2028-01-29",
-    "end_date": "2028-02-15",
     "is_confirmed": false
   },
   {
@@ -613,8 +609,6 @@
     "banner_id": "custom-step-4",
     "banner_name": "4th Anniversary Step Up",
     "anniversary_name": "4th Anniversary",
-    "start_date": "2028-06-17",
-    "end_date": "2028-07-11",
     "is_confirmed": false
   },
   {
@@ -622,8 +616,6 @@
     "banner_id": "custom-step-4.5",
     "banner_name": "4.5th Anniversary Step Up",
     "anniversary_name": "4.5th Anniversary",
-    "start_date": "2028-11-02",
-    "end_date": "2028-11-28",
     "is_confirmed": false
   },
   {
@@ -631,8 +623,6 @@
     "banner_id": "custom-step-5",
     "banner_name": "5th Anniversary Step Up",
     "anniversary_name": "5th Anniversary",
-    "start_date": "2029-03-22",
-    "end_date": "2029-04-25",
     "is_confirmed": false
   },
   {
