@@ -1622,7 +1622,8 @@ function getEventDetails(toDate, fromDate, seenSet) {
       for (const ev of (b.events || [])) {
         withinCount[ev.name] = (withinCount[ev.name] || 0) + 1;
         const evKey = b.start + "|" + ev.name + "|" + withinCount[ev.name];
-        if (!seenSet.has(evKey) && !checkedNames.has(ev.name)) {
+        const alreadyCollected = checkedNames.has(ev.name) && b.start <= TODAY;
+        if (!seenSet.has(evKey) && !alreadyCollected) {
           seenSet.add(evKey);
           total += ev.amount;
           items.push({ key: evKey, name: ev.name, amount: ev.amount, start: b.start, sortKey: b.start });
