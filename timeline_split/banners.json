@@ -9360,13 +9360,21 @@
       {
         "name": "Event Rewards (Story, Bingo, Event Pt)",
         "amount": 2910
+      },
+      {
+        "name": "Legend Race (Winning Ticket Steampunk)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Tanino Gimlet)",
+        "amount": 250
       }
     ],
     "rewards": {
       "uma_ticket": 2,
       "support_ticket": 2,
-      "ssr": 0,
-      "sr": 0
+      "ssr": 4,
+      "sr": 5
     },
     "jp_release_date": "2026-04-30T03:00:00Z",
     "banner_duration_days": 11,
