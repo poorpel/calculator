@@ -541,7 +541,9 @@
     },
     "is_confirmed": true,
     "banner_duration_days": 19,
-    "jp_release_date": "2022-08-24T03:00:00Z"
+    "jp_release_date": "2022-08-24T03:00:00Z",
+    "scenario_number": 4,
+    "scenario": "Our Grand Concert"
   },
   {
     "type": "character",
@@ -2009,7 +2011,9 @@
     },
     "is_confirmed": false,
     "banner_duration_days": 23,
-    "jp_release_date": "2023-02-24T03:00:00Z"
+    "jp_release_date": "2023-02-24T03:00:00Z",
+    "scenario_number": 5,
+    "scenario": "Grand Masters"
   },
   {
     "type": "character",
@@ -3302,7 +3306,9 @@
     },
     "is_confirmed": false,
     "banner_duration_days": 17,
-    "jp_release_date": "2023-08-24T03:00:00Z"
+    "jp_release_date": "2023-08-24T03:00:00Z",
+    "scenario_number": 6,
+    "scenario": "Project L'Arc"
   },
   {
     "type": "character",
@@ -4467,7 +4473,9 @@
     },
     "is_confirmed": false,
     "banner_duration_days": 25,
-    "jp_release_date": "2024-02-24T03:00:00Z"
+    "jp_release_date": "2024-02-24T03:00:00Z",
+    "scenario_number": 7,
+    "scenario": "U.A.F. Ready GO!"
   },
   {
     "type": "character",
@@ -5216,7 +5224,9 @@
     },
     "is_confirmed": false,
     "banner_duration_days": 22,
-    "jp_release_date": "2024-06-26T03:00:00Z"
+    "jp_release_date": "2024-06-26T03:00:00Z",
+    "scenario_number": 8,
+    "scenario": "Great Food Festival"
   },
   {
     "type": "character",
@@ -5934,7 +5944,9 @@
     },
     "is_confirmed": false,
     "banner_duration_days": 19,
-    "jp_release_date": "2024-10-29T03:00:00Z"
+    "jp_release_date": "2024-10-29T03:00:00Z",
+    "scenario_number": 9,
+    "scenario": "Run! Mecha Umamusume"
   },
   {
     "type": "character",
@@ -6636,7 +6648,9 @@
     },
     "is_confirmed": false,
     "banner_duration_days": 24,
-    "jp_release_date": "2025-02-24T03:00:00Z"
+    "jp_release_date": "2025-02-24T03:00:00Z",
+    "scenario_number": 10,
+    "scenario": "The Twinkle Legends"
   },
   {
     "type": "character",
@@ -7480,7 +7494,9 @@
     },
     "is_confirmed": false,
     "banner_duration_days": 24,
-    "jp_release_date": "2025-06-27T03:00:00Z"
+    "jp_release_date": "2025-06-27T03:00:00Z",
+    "scenario_number": 11,
+    "scenario": "Design Your Island"
   },
   {
     "type": "character",
@@ -8252,7 +8268,9 @@
     },
     "is_confirmed": false,
     "banner_duration_days": 20,
-    "jp_release_date": "2025-10-29T03:00:00Z"
+    "jp_release_date": "2025-10-29T03:00:00Z",
+    "scenario_number": 12,
+    "scenario": "Yukoma Hot Springs"
   },
   {
     "type": "character",
@@ -9011,7 +9029,9 @@
     },
     "is_confirmed": false,
     "banner_duration_days": 33,
-    "jp_release_date": "2026-02-24T03:00:00Z"
+    "jp_release_date": "2026-02-24T03:00:00Z",
+    "scenario_number": 13,
+    "scenario": "Beyond Dreams"
   },
   {
     "type": "character",
@@ -9495,8 +9515,8 @@
     "type": "character",
     "banner_id": "banner12",
     "banner_name": "Daring Heart Banner",
-    "jp_start_date": "2026-05-10",
-    "jp_end_date": "2026-05-19",
+    "jp_start_date": "2026-05-11",
+    "jp_end_date": "2026-05-20",
     "is_confirmed": false,
     "free": 0,
     "cards": [
@@ -9507,10 +9527,294 @@
         "uma_url": "https://uma.guide/characters/detail?card=111201"
       }
     ],
-    "jp_release_date": "2026-05-10T03:00:00Z",
+    "jp_release_date": "2026-05-11T03:00:00Z",
     "banner_duration_days": 9,
-    "start_date": "2029-03-03T22:00:00Z",
-    "end_date": "2029-03-12T22:00:00Z"
+    "start_date": "2029-03-04T22:00:00Z",
+    "end_date": "2029-03-13T22:00:00Z"
+  },
+  {
+    "type": "support",
+    "banner_id": "banner13",
+    "banner_name": "Sakura Chiyono O (SSR Stamina), Mejiro Ardan (SR Stamina) Support Banner",
+    "jp_start_date": "2026-05-11",
+    "jp_end_date": "2026-05-20",
+    "is_confirmed": false,
+    "free": 0,
+    "cards": [
+      {
+        "name": "Sakura Chiyono O (SSR Stamina)",
+        "id": "30300",
+        "url": "https://gametora.com/umamusume/supports/30300",
+        "uma_url": "https://uma.guide/support-cards/detail?id=30300"
+      },
+      {
+        "name": "Mejiro Ardan (SR Stamina)",
+        "id": "20099",
+        "url": "https://gametora.com/umamusume/supports/20099",
+        "uma_url": "https://uma.guide/support-cards/detail?id=20099"
+      }
+    ],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2026-05-11T03:00:00Z",
+    "banner_duration_days": 9,
+    "start_date": "2029-03-04T22:00:00Z",
+    "end_date": "2029-03-13T22:00:00Z"
+  },
+  {
+    "type": "character",
+    "banner_id": "banner14",
+    "banner_name": "Red Desire Banner",
+    "jp_start_date": "2026-05-20",
+    "jp_end_date": "2026-05-29",
+    "is_confirmed": false,
+    "free": 0,
+    "cards": [
+      {
+        "name": "Red Desire",
+        "id": "113601",
+        "url": "https://gametora.com/umamusume/characters/113601",
+        "uma_url": "https://uma.guide/characters/detail?card=113601"
+      }
+    ],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2026-05-20T03:00:00Z",
+    "banner_duration_days": 9,
+    "start_date": "2029-03-10T22:00:00Z",
+    "end_date": "2029-03-19T22:00:00Z"
+  },
+  {
+    "type": "character",
+    "banner_id": "banner15",
+    "banner_name": "Manhattan Cafe (Wedding), Gentildonna (Wedding) Banner",
+    "jp_start_date": "2026-05-29",
+    "jp_end_date": "2026-06-15",
+    "is_confirmed": false,
+    "free": 0,
+    "cards": [
+      {
+        "name": "Manhattan Cafe (Wedding)",
+        "id": "102503",
+        "url": "https://gametora.com/umamusume/characters/102503",
+        "uma_url": "https://uma.guide/characters/detail?card=102503"
+      },
+      {
+        "name": "Gentildonna (Wedding)",
+        "id": "111602",
+        "url": "https://gametora.com/umamusume/characters/111602",
+        "uma_url": "https://uma.guide/characters/detail?card=111602"
+      }
+    ],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2026-05-29T03:00:00Z",
+    "banner_duration_days": 17,
+    "start_date": "2029-03-16T22:00:00Z",
+    "end_date": "2029-04-02T22:00:00Z"
+  },
+  {
+    "type": "support",
+    "banner_id": "banner16",
+    "banner_name": "Satono Diamond (SSR Speed), Gran Alegria (SSR Power) Support Banner",
+    "jp_start_date": "2026-05-29",
+    "jp_end_date": "2026-06-15",
+    "is_confirmed": false,
+    "free": 0,
+    "cards": [
+      {
+        "name": "Satono Diamond (SSR Speed)",
+        "id": "30302",
+        "url": "https://gametora.com/umamusume/supports/30302",
+        "uma_url": "https://uma.guide/support-cards/detail?id=30302"
+      },
+      {
+        "name": "Gran Alegria (SSR Power)",
+        "id": "30301",
+        "url": "https://gametora.com/umamusume/supports/30301",
+        "uma_url": "https://uma.guide/support-cards/detail?id=30301"
+      }
+    ],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2026-05-29T03:00:00Z",
+    "banner_duration_days": 17,
+    "start_date": "2029-03-16T22:00:00Z",
+    "end_date": "2029-04-02T22:00:00Z"
+  },
+  {
+    "type": "character",
+    "banner_id": "banner17",
+    "banner_name": "Curren Bouquetd'or Banner",
+    "jp_start_date": "2026-06-15",
+    "jp_end_date": "2026-06-29",
+    "is_confirmed": false,
+    "free": 0,
+    "cards": [
+      {
+        "name": "Curren Bouquetd'or",
+        "id": "113401",
+        "url": "https://gametora.com/umamusume/characters/113401",
+        "uma_url": "https://uma.guide/characters/detail?card=113401"
+      }
+    ],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2026-06-15T03:00:00Z",
+    "banner_duration_days": 14,
+    "start_date": "2029-03-28T22:00:00Z",
+    "end_date": "2029-04-11T22:00:00Z"
+  },
+  {
+    "type": "character",
+    "banner_id": "banner18",
+    "banner_name": "Narita Top Road (Tracen-ken) Banner",
+    "jp_start_date": "2026-06-29",
+    "jp_end_date": "2026-07-21",
+    "is_confirmed": false,
+    "free": 0,
+    "cards": [
+      {
+        "name": "Narita Top Road (Tracen-ken)",
+        "id": "107703",
+        "url": "https://gametora.com/umamusume/characters/107703",
+        "uma_url": "https://uma.guide/characters/detail?card=107703"
+      }
+    ],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2026-06-29T03:00:00Z",
+    "banner_duration_days": 22,
+    "start_date": "2029-04-07T22:00:00Z",
+    "end_date": "2029-04-29T22:00:00Z"
+  },
+  {
+    "type": "support",
+    "banner_id": "banner19",
+    "banner_name": "Meisho Doto (SSR Stamina), Tazuna Hayakawa (SSR Pal) Support Banner",
+    "jp_start_date": "2026-06-29",
+    "jp_end_date": "2026-07-21",
+    "is_confirmed": false,
+    "free": 0,
+    "cards": [
+      {
+        "name": "Meisho Doto (SSR Stamina)",
+        "id": "30304",
+        "url": "https://gametora.com/umamusume/supports/30304",
+        "uma_url": "https://uma.guide/support-cards/detail?id=30304"
+      },
+      {
+        "name": "Tazuna Hayakawa (SSR Pal)",
+        "id": "30305",
+        "url": "https://gametora.com/umamusume/supports/30305",
+        "uma_url": "https://uma.guide/support-cards/detail?id=30305"
+      }
+    ],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2026-06-29T03:00:00Z",
+    "banner_duration_days": 22,
+    "start_date": "2029-04-07T22:00:00Z",
+    "end_date": "2029-04-29T22:00:00Z",
+    "scenario_number": 14,
+    "scenario": "Tracen-ken"
+  },
+  {
+    "type": "character",
+    "banner_id": "banner20",
+    "banner_name": "Fine Motion (Tracen-ken) Banner",
+    "jp_start_date": "2026-07-10",
+    "jp_end_date": "2026-07-21",
+    "is_confirmed": false,
+    "free": 0,
+    "cards": [
+      {
+        "name": "Fine Motion (Tracen-ken)",
+        "id": "102203",
+        "url": "https://gametora.com/umamusume/characters/102203",
+        "uma_url": "https://uma.guide/characters/detail?card=102203"
+      }
+    ],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2026-07-10T03:00:00Z",
+    "banner_duration_days": 11,
+    "start_date": "2029-04-15T22:00:00Z",
+    "end_date": "2029-04-26T22:00:00Z"
+  },
+  {
+    "type": "support",
+    "banner_id": "banner21",
+    "banner_name": "Nice Nature (SSR Wit), Calstone Light O (SR Speed) Support Banner",
+    "jp_start_date": "2026-07-10",
+    "jp_end_date": "2026-07-21",
+    "is_confirmed": false,
+    "free": 0,
+    "cards": [
+      {
+        "name": "Nice Nature (SSR Wit)",
+        "id": "30306",
+        "url": "https://gametora.com/umamusume/supports/30306",
+        "uma_url": "https://uma.guide/support-cards/detail?id=30306"
+      },
+      {
+        "name": "Calstone Light O (SR Speed)",
+        "id": "20100",
+        "url": "https://gametora.com/umamusume/supports/20100",
+        "uma_url": "https://uma.guide/support-cards/detail?id=20100"
+      }
+    ],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2026-07-10T03:00:00Z",
+    "banner_duration_days": 11,
+    "start_date": "2029-04-15T22:00:00Z",
+    "end_date": "2029-04-26T22:00:00Z"
   },
   {
     "type": "step_up",

@@ -390,6 +390,25 @@ def _get_timeline_file_key():
     key = request.cookies.get("timeline_file", "output")
     return key if key in TIMELINE_FILES else "output"
 
+def _scenario_entries(banners):
+    """Synthetic timeline entries for scenario releases, derived from scenario-tagged support banners."""
+    out = []
+    for b in banners:
+        if b.get("type") == "support" and b.get("scenario"):
+            out.append({
+                "type":         "scenario",
+                "banner_id":    f"scenario-{b.get('scenario_number')}",
+                "banner_name":  f"Scenario #{b.get('scenario_number')}: {b['scenario']}",
+                "start_date":   b.get("start_date"),
+                "end_date":     b.get("end_date"),
+                "is_confirmed": b.get("is_confirmed", False),
+                "cards":        [],
+                "events":       [],
+                "rewards":      {"uma_ticket": 0, "support_ticket": 0, "ssr": 0, "sr": 0},
+                "free":         0,
+            })
+    return out
+
 def _load_timeline_raw():
     key = _get_timeline_file_key()
     if key == "split":
@@ -398,6 +417,7 @@ def _load_timeline_raw():
             path = BASE / "timeline_split" / fname
             if path.exists():
                 combined.extend(json.loads(path.read_text(encoding="utf-8")))
+        combined.extend(_scenario_entries(combined))
         return combined
     filename, _ = TIMELINE_FILES[key]
     path = BASE / filename
@@ -560,6 +580,8 @@ def index():
             "rewards": b.get("rewards") or {"uma_ticket": 0, "support_ticket": 0, "ssr": 0, "sr": 0},
         "free":         b.get("free") or 0,
         "is_confirmed": b.get("is_confirmed", False),
+        "scenario":        b.get("scenario"),
+        "scenario_number": b.get("scenario_number"),
         }
         for b in raw if b.get("banner_name")
     ]
@@ -922,8 +944,8 @@ def timeline():
         if end:   return end >= today
         if start: return start >= cutoff
         return True
-    UNGROUPED = {"anniversary", "step_up", "champions_meeting", "league_of_heroes"}
-    TYPE_ORDER = {"anniversary": 0, "character": 1, "support": 2, "step_up": 3, "champions_meeting": 4, "league_of_heroes": 5}
+    UNGROUPED = {"anniversary", "scenario", "step_up", "champions_meeting", "league_of_heroes"}
+    TYPE_ORDER = {"anniversary": 0, "scenario": 1, "character": 2, "support": 3, "step_up": 4, "champions_meeting": 5, "league_of_heroes": 6}
     banners = sorted(
         [b for b in raw if _show(b)],
         key=lambda b: (

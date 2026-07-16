@@ -461,6 +461,9 @@
     .anniv-sep-inner { display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;color:#c49030;letter-spacing:0.5px;text-transform:uppercase; }
     .anniv-sep-inner::before,.anniv-sep-inner::after { content:'';flex:1;height:0;border-top:1px solid;border-image:linear-gradient(to right,transparent,#8a6a20) 1; }
     .anniv-sep-inner::after { border-image:linear-gradient(to left,transparent,#8a6a20) 1; }
+    .scen-sep .anniv-sep-inner { color:#4fae62; }
+    .scen-sep .anniv-sep-inner::before { border-image:linear-gradient(to right,transparent,#2e6a3c) 1; }
+    .scen-sep .anniv-sep-inner::after  { border-image:linear-gradient(to left,transparent,#2e6a3c) 1; }
     .dp-total { display:flex;justify-content:space-between;align-items:baseline;font-weight:700;color:#777;border-top:1px solid #1a1a1a;margin-top:5px;padding-top:5px; }
     .dp-total > span:last-child { color:#5ecb7a;font-size:13px; }
     .dp-details { margin-top:3px; }
@@ -973,6 +976,9 @@ for (const b of BANNER_DATA) {
 const ANNIV_DATES = new Map(
   BANNER_DATA.filter(b => b.type === "anniversary" && b.start).map(b => [b.start, b.name])
 );
+const SCEN_DATES = new Map(
+  BANNER_DATA.filter(b => b.type === "scenario" && b.start).map(b => [b.start, b.name])
+);
 // map calculator type → JSON type
 const TYPE_MAP = { 'Uma': 'character', 'Support': 'support' };
 
@@ -1366,7 +1372,7 @@ const TODAY = new Date().toISOString().slice(0, 10);
 function filteredBanners(query) {
   const q = query.trim().toLowerCase();
   return BANNER_DATA.filter(b => {
-    if (b.type === 'anniversary' || b.type === 'champions_meeting' || b.type === 'league_of_heroes') return false;
+    if (b.type === 'anniversary' || b.type === 'scenario' || b.type === 'champions_meeting' || b.type === 'league_of_heroes') return false;
     if (b.end && b.end < TODAY) return false;
     return !q || b.name.toLowerCase().includes(q)
       || (b.card_names || []).some(n => n.toLowerCase().includes(q))
@@ -1392,7 +1398,10 @@ function renderDD(query) {
       : '<span style="font-size:10px;color:#9a6ac8;background:#140d1e;border:1px solid #2a1a3a;border-radius:3px;padding:1px 5px;margin-right:7px;flex-shrink:0;">SUP</span>';
     const ssrParts = b.name.split(', ').filter(p => p.includes('SSR'));
     const displayName = ssrParts.length ? ssrParts.join(', ') : b.name;
-    item.innerHTML = badge + `<span>${displayName}</span>`;
+    const scenarioTag = b.scenario
+      ? `<span style="margin-left:auto;padding-left:16px;font-size:10px;color:#4fae62;white-space:nowrap;flex-shrink:0;">Scenario #${b.scenario_number}: ${b.scenario}</span>`
+      : '';
+    item.innerHTML = badge + `<span>${displayName}</span>` + scenarioTag;
     Object.assign(item.style, {padding:"7px 12px", fontSize:"12px", color:"#bbb", cursor:"pointer", display:"flex", alignItems:"center", lineHeight:"1.4"});
     item.addEventListener("mouseenter", () => item.style.background = "#252525");
     item.addEventListener("mouseleave", () => item.style.background = "");
@@ -1721,13 +1730,22 @@ function updateSortIndicator() {
 function insertAnnivSeparators() {
   document.querySelectorAll("tr.anniv-sep").forEach(el => el.remove());
   const seen = new Set();
+  const seenScen = new Set();
   for (const tr of document.querySelectorAll("#calcBody tr.calc-row")) {
     const startStr = tr.querySelector(".date-start")?.textContent.trim();
-    if (startStr && startStr !== "—" && ANNIV_DATES.has(startStr) && !seen.has(startStr)) {
+    if (!startStr || startStr === "—") continue;
+    if (ANNIV_DATES.has(startStr) && !seen.has(startStr)) {
       seen.add(startStr);
       const sep = document.createElement("tr");
       sep.className = "anniv-sep";
       sep.innerHTML = `<td colspan="100"><div class="anniv-sep-inner">${ANNIV_DATES.get(startStr)}</div></td>`;
+      tr.parentNode.insertBefore(sep, tr);
+    }
+    if (SCEN_DATES.has(startStr) && !seenScen.has(startStr)) {
+      seenScen.add(startStr);
+      const sep = document.createElement("tr");
+      sep.className = "anniv-sep scen-sep";
+      sep.innerHTML = `<td colspan="100"><div class="anniv-sep-inner">${SCEN_DATES.get(startStr)}</div></td>`;
       tr.parentNode.insertBefore(sep, tr);
     }
   }
@@ -2646,7 +2664,7 @@ document.getElementById("evChecklist").addEventListener("click", e => {
 ["teamTrials","clubRank","champMeeting","leagueHeroes","dailyPack","trainingPass","loginDay1"]
   .forEach(id => document.getElementById(id).addEventListener("change", saveAll));
 document.getElementById("packStartDate").addEventListener("change", () => { updateAllCarats(); saveAll(); });
-["loginDay1","dailyPack","teamTrials","clubRank","champMeeting"].forEach(id => {
+["loginDay1","dailyPack","teamTrials","clubRank","champMeeting","leagueHeroes","trainingPass"].forEach(id => {
   document.getElementById(id).addEventListener("change", () => { updateAllCarats(); renderChecklist(); });
 });
 ["resCarat","resPaidCarat","resUmaTicket","resSupportTicket","resSSRCrystal","resSRCrystal","resSSRShard","resSRShard","miscMonthly"]
@@ -2796,6 +2814,18 @@ document.getElementById("calcBody").addEventListener("click", e => {
   if (!btn) return;
   const tr = btn.closest("tr.calc-row");
   if (!tr) return;
+  if (!tr.querySelector(".banner-cell input").value.trim()) {
+    // Row is already empty — remove it entirely (always keep at least one row)
+    const body = document.getElementById("calcBody");
+    if (body.querySelectorAll("tr.calc-row").length > 1) {
+      if (tr._detailRow) tr._detailRow.remove();
+      tr.remove();
+      document.getElementById("numBanners").value = body.querySelectorAll("tr.calc-row").length;
+      updateAllCarats();
+      saveAll();
+    }
+    return;
+  }
   tr.querySelector(".banner-cell input").value = "";
   tr.querySelector(".date-start").textContent = "—";
   tr.querySelector(".date-end").textContent = "—";
