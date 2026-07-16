@@ -472,6 +472,7 @@
       <span class="sort-lbl">Sort:</span>
       <button class="asort-btn active" data-asort="name">Name</button>
       <button class="asort-btn" data-asort="release">Release Date</button>
+      <button class="asort-btn" data-asort="pulldate">Pull Date</button>
     </div>
     <div class="acquired-grid" id="acquiredGrid"></div>
     <div class="acquired-empty" id="acquiredEmpty" style="display:none;">No Umas acquired yet — use a selector or enter 200+ pulls on a character banner.</div>
@@ -1109,6 +1110,11 @@ function deriveAcquiredUmas() {
   const sortedAcquired = Object.values(acquired).sort((a, b) => {
     if (acquiredSortMode === "release") {
       const da = a.card.release_date || "9999", db = b.card.release_date || "9999";
+      return da < db ? -1 : da > db ? 1 : a.card.name.localeCompare(b.card.name);
+    }
+    if (acquiredSortMode === "pulldate") {
+      const earliest = x => x.entries.reduce((m, e) => (e.date && e.date < m ? e.date : m), "9999");
+      const da = earliest(a), db = earliest(b);
       return da < db ? -1 : da > db ? 1 : a.card.name.localeCompare(b.card.name);
     }
     return a.card.name.localeCompare(b.card.name);

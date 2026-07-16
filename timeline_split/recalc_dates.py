@@ -129,6 +129,50 @@ def recalc_packs(time_factor, anchor_jp, anchor_gl):
     print(f"packs.json:         {step_updated} step-ups synced, {jp_updated} jp dates converted")
 
 
+def recalc_pack_release_dates():
+    """Resync pack_uma.json / pack_support.json release_date fields against
+    banners.json's current estimates. Only touches entries whose existing
+    release_date is still in the future (unreleased/estimated) — past dates
+    represent real, already-happened releases and are left untouched, since
+    banners.json only tracks upcoming banners and a card's future rerun
+    banner must never overwrite its true historical debut date."""
+    base = DIR.parent
+    banners = json.loads((DIR / "banners.json").read_text(encoding="utf-8"))
+    today = date.today().isoformat()
+
+    def card_start_map(url_marker):
+        starts = {}
+        for b in sorted(banners, key=lambda x: (x.get("start_date") or "9999")):
+            s = (b.get("start_date") or "")[:10]
+            if not s or s < today:
+                continue
+            for c in (b.get("cards") or []):
+                cid = c.get("id")
+                if cid and url_marker in c.get("url", "") and cid not in starts:
+                    starts[cid] = s
+        return starts
+
+    for fname, marker in (("pack_uma.json", "/characters/"), ("pack_support.json", "/supports/")):
+        path = base / fname
+        if not path.exists():
+            continue
+        starts = card_start_map(marker)
+        entries = json.loads(path.read_text(encoding="utf-8"))
+        updated = 0
+        for e in entries:
+            if "id" not in e:
+                continue
+            rd = e.get("release_date", "")
+            if not rd or rd < today:
+                continue
+            new_date = starts.get(e["id"])
+            if new_date and new_date != rd:
+                e["release_date"] = new_date
+                updated += 1
+        path.write_text(json.dumps(entries, indent=2, ensure_ascii=False), encoding="utf-8")
+        print(f"{fname}: {updated} entries resynced")
+
+
 def recalc_anniversaries():
     banners_path = DIR / "banners.json"
     ann_path = DIR / "anniversaries.json"
@@ -164,3 +208,4 @@ if __name__ == "__main__":
     recalc_packs(time_factor, b_anchor_jp, b_anchor_gl)
     recalc_pvp(time_factor, p_anchor_jp, p_anchor_gl)
     recalc_anniversaries()
+    recalc_pack_release_dates()
