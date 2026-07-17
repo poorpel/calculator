@@ -329,7 +329,7 @@
     .acquired-section { margin-top: 40px; }
     .acquired-header { font-size: 12px; font-weight: 700; color: #555; letter-spacing: 0.5px;
       text-transform: uppercase; margin-bottom: 14px; }
-    .acquired-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .acquired-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
     .acquired-tile {
       background: #0f0f0f; border: 1px solid #1e1e1e; border-radius: 10px;
       overflow: hidden; display: flex; flex-direction: row;
@@ -346,11 +346,19 @@
     .uma-picker-tile {
       background: #0f0f0f; border: 1px solid #2e2a1a; border-radius: 10px;
       padding: 14px 16px; display: flex; flex-direction: column; gap: 10px;
+      align-items: flex-start; justify-content: center;
     }
     .uma-picker-lbl { font-size: 10px; font-weight: 700; color: #6a5a20;
       letter-spacing: 0.5px; text-transform: uppercase; }
     .uma-picker-banner { font-size: 12px; color: #aaa; margin-bottom: 2px; }
-    .uma-picker-options { display: flex; gap: 8px; flex-wrap: wrap; }
+    .uma-picker-choose {
+      background: #1a1708; border: 1px solid #4a3f18; border-radius: 6px;
+      color: #b89b3e; font-size: 12px; font-weight: 600; padding: 6px 14px;
+      cursor: pointer; transition: all 0.1s; font-family: inherit;
+    }
+    .uma-picker-choose:hover { border-color: #6a5a20; background: #241f0c; color: #d4b752; }
+    .uma-picker-options { display: flex; gap: 8px; flex-wrap: wrap;
+      padding: 12px 16px 16px; overflow-y: auto; }
     .uma-picker-opt {
       display: flex; flex-direction: column; align-items: center; gap: 5px;
       cursor: pointer; border-radius: 7px; border: 1px solid #2a2a2a;
@@ -488,6 +496,18 @@
     </div>
     <input class="modal-search" id="modalSearch" type="text" placeholder="Search by name…" autocomplete="off">
     <div class="modal-grid" id="modalGrid"></div>
+  </div>
+</div>
+
+<!-- Uma Picker Modal -->
+<div class="modal-overlay" id="umaPickerOverlay">
+  <div class="modal" style="width: 560px;">
+    <div class="modal-header">
+      <span class="modal-title uma-picker-lbl" style="font-size: 12px;">Who did you spark?</span>
+      <button class="modal-close" id="umaPickerClose">✕</button>
+    </div>
+    <div class="uma-picker-banner" id="umaPickerBanner" style="padding: 12px 16px 0;"></div>
+    <div class="uma-picker-options" id="umaPickerOptions"></div>
   </div>
 </div>
 
@@ -1134,19 +1154,15 @@ function renderAcquiredUmas() {
   }
   empty.style.display = 'none';
 
-  // Picker tiles for multi-Uma banners without a pick
-  for (const { bannerKey, bannerName, bannerDate, pulls, options } of pendingPicks) {
-    const optHTML = options.map(c => `
-      <div class="uma-picker-opt" data-key="${bannerKey}" data-name="${c.name}">
-        <img src="${c.img || ''}" alt="${c.name}" loading="lazy">
-        <div class="uma-picker-opt-name">${c.name}</div>
-      </div>`).join('');
+  // Picker tiles for multi-Uma banners without a pick — compact, opens a popup
+  for (const pick of pendingPicks) {
     const tile = document.createElement('div');
     tile.className = 'uma-picker-tile';
     tile.innerHTML = `
       <div class="uma-picker-lbl">Who did you spark?</div>
-      <div class="uma-picker-banner">${bannerName} &nbsp;·&nbsp; ${pulls} pulls &nbsp;·&nbsp; <span style="color:#555">${formatDate(bannerDate)}</span></div>
-      <div class="uma-picker-options">${optHTML}</div>`;
+      <div class="uma-picker-banner">${pick.bannerName} &nbsp;·&nbsp; ${pick.pulls} pulls &nbsp;·&nbsp; <span style="color:#555">${formatDate(pick.bannerDate)}</span></div>
+      <button class="uma-picker-choose">Choose Uma</button>`;
+    tile.querySelector('.uma-picker-choose').addEventListener('click', () => openUmaPicker(pick));
     grid.appendChild(tile);
   }
 
@@ -1175,16 +1191,6 @@ function renderAcquiredUmas() {
     grid.appendChild(tile);
   }
 
-  // Picker select handler
-  grid.querySelectorAll('.uma-picker-opt').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const picks = loadUmaPicks();
-      picks[btn.dataset.key] = btn.dataset.name;
-      saveUmaPicks(picks);
-      renderAcquiredUmas();
-    });
-  });
-
   // Picker clear handler
   grid.querySelectorAll('.uma-pick-clear').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1195,6 +1201,35 @@ function renderAcquiredUmas() {
     });
   });
 }
+
+// ── Uma picker popup ──
+function openUmaPicker({ bannerKey, bannerName, bannerDate, pulls, options }) {
+  const overlay = document.getElementById('umaPickerOverlay');
+  const banner  = document.getElementById('umaPickerBanner');
+  const optsEl  = document.getElementById('umaPickerOptions');
+  banner.innerHTML = `${bannerName} &nbsp;·&nbsp; ${pulls} pulls &nbsp;·&nbsp; <span style="color:#555">${formatDate(bannerDate)}</span>`;
+  optsEl.innerHTML = options.map(c => `
+    <div class="uma-picker-opt" data-name="${c.name}">
+      <img src="${c.img || ''}" alt="${c.name}" loading="lazy">
+      <div class="uma-picker-opt-name">${c.name}</div>
+    </div>`).join('');
+  optsEl.querySelectorAll('.uma-picker-opt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const picks = loadUmaPicks();
+      picks[bannerKey] = btn.dataset.name;
+      saveUmaPicks(picks);
+      closeUmaPicker();
+      renderAcquiredUmas();
+    });
+  });
+  overlay.classList.add('open');
+}
+function closeUmaPicker() { document.getElementById('umaPickerOverlay').classList.remove('open'); }
+document.getElementById('umaPickerClose').addEventListener('click', closeUmaPicker);
+document.getElementById('umaPickerOverlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('umaPickerOverlay')) closeUmaPicker();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeUmaPicker(); });
 
 renderAcquiredUmas();
 </script>
