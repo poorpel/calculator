@@ -614,7 +614,7 @@
     "banner_id": "30114",
     "banner_name": "Yukino Bijin Banner",
     "start_date": "2026-08-05T22:00:00Z",
-    "end_date": "2026-08-12T22:00:00Z",
+    "end_date": "2026-08-13T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -636,7 +636,7 @@
       "ssr": 0,
       "sr": 0
     },
-    "is_confirmed": false,
+    "is_confirmed": true,
     "banner_duration_days": 7,
     "jp_release_date": "2022-09-12T03:00:00Z"
   },
@@ -645,7 +645,7 @@
     "banner_id": "30115",
     "banner_name": "Smart Falcon (SSR Power), Silence Suzuka (SSR Speed) Support Banner",
     "start_date": "2026-08-05T22:00:00Z",
-    "end_date": "2026-08-12T22:00:00Z",
+    "end_date": "2026-08-13T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -668,7 +668,7 @@
       "ssr": 0,
       "sr": 0
     },
-    "is_confirmed": false,
+    "is_confirmed": true,
     "banner_duration_days": 7,
     "jp_release_date": "2022-09-12T03:00:00Z"
   },
@@ -676,8 +676,8 @@
     "type": "character",
     "banner_id": "30116",
     "banner_name": "Seeking the Pearl Banner",
-    "start_date": "2026-08-11T22:00:00Z",
-    "end_date": "2026-08-19T22:00:00Z",
+    "start_date": "2026-08-12T22:00:00Z",
+    "end_date": "2026-08-21T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -715,7 +715,7 @@
       "ssr": 2,
       "sr": 3
     },
-    "is_confirmed": false,
+    "is_confirmed": true,
     "banner_duration_days": 8,
     "jp_release_date": "2022-09-20T03:00:00Z"
   },
@@ -723,8 +723,8 @@
     "type": "support",
     "banner_id": "30117",
     "banner_name": "K.S.Miracle (SR Guts), Daiichi Ruby (SSR Power) Support Banner",
-    "start_date": "2026-08-11T22:00:00Z",
-    "end_date": "2026-08-19T22:00:00Z",
+    "start_date": "2026-08-12T22:00:00Z",
+    "end_date": "2026-08-21T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -747,7 +747,7 @@
       "ssr": 0,
       "sr": 0
     },
-    "is_confirmed": false,
+    "is_confirmed": true,
     "banner_duration_days": 8,
     "jp_release_date": "2022-09-20T03:00:00Z"
   },
@@ -755,8 +755,8 @@
     "type": "character",
     "banner_id": "30118",
     "banner_name": "Agnes Digital (Halloween), Meisho Doto (Halloween) Banner",
-    "start_date": "2026-08-17T22:00:00Z",
-    "end_date": "2026-08-28T22:00:00Z",
+    "start_date": "2026-08-18T22:00:00Z",
+    "end_date": "2026-08-30T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -788,7 +788,7 @@
       "ssr": 3,
       "sr": 3
     },
-    "is_confirmed": false,
+    "is_confirmed": true,
     "banner_duration_days": 11,
     "jp_release_date": "2022-09-29T03:00:00Z"
   },
@@ -796,8 +796,8 @@
     "type": "support",
     "banner_id": "30119",
     "banner_name": "Mejiro Palmer (SSR Stamina), Daitaku Helios (SSR Speed) Support Banner",
-    "start_date": "2026-08-17T22:00:00Z",
-    "end_date": "2026-08-28T22:00:00Z",
+    "start_date": "2026-08-18T22:00:00Z",
+    "end_date": "2026-08-30T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -820,7 +820,7 @@
       "ssr": 0,
       "sr": 0
     },
-    "is_confirmed": false,
+    "is_confirmed": true,
     "banner_duration_days": 11,
     "jp_release_date": "2022-09-29T03:00:00Z"
   },
@@ -828,7 +828,7 @@
     "type": "character",
     "banner_id": "30120",
     "banner_name": "Aston Machan Banner",
-    "start_date": "2026-08-26T22:00:00Z",
+    "start_date": "2026-08-25T22:00:00Z",
     "end_date": "2026-09-02T22:00:00Z",
     "free": 0,
     "cards": [
@@ -855,7 +855,7 @@
       "ssr": 0,
       "sr": 0
     },
-    "is_confirmed": false,
+    "is_confirmed": true,
     "banner_duration_days": 7,
     "jp_release_date": "2022-10-11T03:00:00Z"
   },
@@ -863,7 +863,7 @@
     "type": "support",
     "banner_id": "30121",
     "banner_name": "Fine Motion (SSR Wit), Maruzensky (SSR Speed) Support Banner",
-    "start_date": "2026-08-26T22:00:00Z",
+    "start_date": "2026-08-25T22:00:00Z",
     "end_date": "2026-09-02T22:00:00Z",
     "free": 0,
     "cards": [
@@ -887,7 +887,7 @@
       "ssr": 0,
       "sr": 0
     },
-    "is_confirmed": false,
+    "is_confirmed": true,
     "banner_duration_days": 7,
     "jp_release_date": "2022-10-11T03:00:00Z"
   },
@@ -895,8 +895,8 @@
     "type": "character",
     "banner_id": "30130",
     "banner_name": "Seeking the Pearl Banner",
-    "start_date": "2026-08-30T22:00:00Z",
-    "end_date": "2026-09-05T22:00:00Z",
+    "start_date": "2026-08-29T22:00:00Z",
+    "end_date": "2026-09-04T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -926,8 +926,8 @@
     "type": "support",
     "banner_id": "30131",
     "banner_name": "K.S.Miracle (SR Guts), Daiichi Ruby (SSR Power) Support Banner",
-    "start_date": "2026-08-30T22:00:00Z",
-    "end_date": "2026-09-05T22:00:00Z",
+    "start_date": "2026-08-29T22:00:00Z",
+    "end_date": "2026-09-04T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -958,8 +958,8 @@
     "type": "character",
     "banner_id": "30122",
     "banner_name": "Yamanin Zephyr Banner",
-    "start_date": "2026-08-31T22:00:00Z",
-    "end_date": "2026-09-08T22:00:00Z",
+    "start_date": "2026-08-30T22:00:00Z",
+    "end_date": "2026-09-07T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -1005,8 +1005,8 @@
     "type": "support",
     "banner_id": "30123",
     "banner_name": "Tsurumaru Tsuyoshi (SR Guts), Symboli Kris S (SSR Stamina) Support Banner",
-    "start_date": "2026-08-31T22:00:00Z",
-    "end_date": "2026-09-08T22:00:00Z",
+    "start_date": "2026-08-30T22:00:00Z",
+    "end_date": "2026-09-07T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -1037,8 +1037,8 @@
     "type": "character",
     "banner_id": "30124",
     "banner_name": "Tamamo Cross (Festival), Inari One (Festival) Banner",
-    "start_date": "2026-09-07T22:00:00Z",
-    "end_date": "2026-09-18T22:00:00Z",
+    "start_date": "2026-09-06T22:00:00Z",
+    "end_date": "2026-09-17T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -1078,8 +1078,8 @@
     "type": "support",
     "banner_id": "30125",
     "banner_name": "Yaeno Muteki (SSR Guts), Oguri Cap (SSR Wit) Support Banner",
-    "start_date": "2026-09-07T22:00:00Z",
-    "end_date": "2026-09-18T22:00:00Z",
+    "start_date": "2026-09-06T22:00:00Z",
+    "end_date": "2026-09-17T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -1110,8 +1110,8 @@
     "type": "character",
     "banner_id": "30126",
     "banner_name": "Nakayama Festa Banner",
-    "start_date": "2026-09-15T22:00:00Z",
-    "end_date": "2026-09-22T22:00:00Z",
+    "start_date": "2026-09-14T22:00:00Z",
+    "end_date": "2026-09-21T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -1149,8 +1149,8 @@
     "type": "support",
     "banner_id": "30127",
     "banner_name": "Super Creek (SSR Stamina), Mr. C.B. (SSR Wit) Support Banner",
-    "start_date": "2026-09-15T22:00:00Z",
-    "end_date": "2026-09-22T22:00:00Z",
+    "start_date": "2026-09-14T22:00:00Z",
+    "end_date": "2026-09-21T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -1181,8 +1181,8 @@
     "type": "character",
     "banner_id": "30128",
     "banner_name": "Wonder Acute Banner",
-    "start_date": "2026-09-21T22:00:00Z",
-    "end_date": "2026-10-01T22:00:00Z",
+    "start_date": "2026-09-20T22:00:00Z",
+    "end_date": "2026-09-30T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -1220,8 +1220,8 @@
     "type": "support",
     "banner_id": "30129",
     "banner_name": "Narita Top Road (SR Power), Eishin Flash (SSR Speed) Support Banner",
-    "start_date": "2026-09-21T22:00:00Z",
-    "end_date": "2026-10-01T22:00:00Z",
+    "start_date": "2026-09-20T22:00:00Z",
+    "end_date": "2026-09-30T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -1252,8 +1252,8 @@
     "type": "character",
     "banner_id": "30132",
     "banner_name": "Vodka (Christmas), Daiwa Scarlet (Christmas) Banner",
-    "start_date": "2026-09-29T22:00:00Z",
-    "end_date": "2026-10-12T22:00:00Z",
+    "start_date": "2026-09-28T22:00:00Z",
+    "end_date": "2026-10-11T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -1305,8 +1305,8 @@
     "type": "support",
     "banner_id": "30133",
     "banner_name": "Narita Brian (SSR Power), Air Groove (SSR Wit) Support Banner",
-    "start_date": "2026-09-29T22:00:00Z",
-    "end_date": "2026-10-12T22:00:00Z",
+    "start_date": "2026-09-28T22:00:00Z",
+    "end_date": "2026-10-11T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -1404,8 +1404,8 @@
     "type": "character",
     "banner_id": "30136",
     "banner_name": "Narita Brian (Blaze) Banner",
-    "start_date": "2026-10-14T22:00:00Z",
-    "end_date": "2026-10-22T22:00:00Z",
+    "start_date": "2026-10-13T22:00:00Z",
+    "end_date": "2026-10-21T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -1451,8 +1451,8 @@
     "type": "support",
     "banner_id": "30137",
     "banner_name": "TM Opera O (SR Stamina), Yamanin Zephyr (SSR Guts) Support Banner",
-    "start_date": "2026-10-14T22:00:00Z",
-    "end_date": "2026-10-22T22:00:00Z",
+    "start_date": "2026-10-13T22:00:00Z",
+    "end_date": "2026-10-21T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -1564,8 +1564,8 @@
     "type": "character",
     "banner_id": "30140",
     "banner_name": "Hokko Tarumae Banner",
-    "start_date": "2026-10-29T22:00:00Z",
-    "end_date": "2026-11-07T22:00:00Z",
+    "start_date": "2026-10-28T22:00:00Z",
+    "end_date": "2026-11-06T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -1595,8 +1595,8 @@
     "type": "support",
     "banner_id": "30141",
     "banner_name": "Agnes Tachyon (SSR Speed), Tokai Teio (SSR Wit) Support Banner",
-    "start_date": "2026-10-29T22:00:00Z",
-    "end_date": "2026-11-07T22:00:00Z",
+    "start_date": "2026-10-28T22:00:00Z",
+    "end_date": "2026-11-06T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -1627,8 +1627,8 @@
     "type": "character",
     "banner_id": "30142",
     "banner_name": "Daitaku Helios Banner",
-    "start_date": "2026-11-05T22:00:00Z",
-    "end_date": "2026-11-14T22:00:00Z",
+    "start_date": "2026-11-04T22:00:00Z",
+    "end_date": "2026-11-13T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -1666,8 +1666,8 @@
     "type": "character",
     "banner_id": "30144",
     "banner_name": "Rice Shower (Halloween), Haru Urara (New Year) Banner",
-    "start_date": "2026-11-05T22:00:00Z",
-    "end_date": "2026-11-14T22:00:00Z",
+    "start_date": "2026-11-04T22:00:00Z",
+    "end_date": "2026-11-13T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -1698,8 +1698,8 @@
     "type": "support",
     "banner_id": "30143",
     "banner_name": "Aston Machan (SR Speed), K.S.Miracle (SSR Guts) Support Banner",
-    "start_date": "2026-11-05T22:00:00Z",
-    "end_date": "2026-11-14T22:00:00Z",
+    "start_date": "2026-11-04T22:00:00Z",
+    "end_date": "2026-11-13T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -1730,8 +1730,8 @@
     "type": "support",
     "banner_id": "30145",
     "banner_name": "Taiki Shuttle (SSR Speed), Matikanefukukitaru (SSR Speed) Support Banner",
-    "start_date": "2026-11-05T22:00:00Z",
-    "end_date": "2026-11-14T22:00:00Z",
+    "start_date": "2026-11-04T22:00:00Z",
+    "end_date": "2026-11-13T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -1762,8 +1762,8 @@
     "type": "character",
     "banner_id": "30146",
     "banner_name": "Mejiro Ryan (Valentine), Ines Fujin (Valentine) Banner",
-    "start_date": "2026-11-12T22:00:00Z",
-    "end_date": "2026-11-25T22:00:00Z",
+    "start_date": "2026-11-11T22:00:00Z",
+    "end_date": "2026-11-24T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -1799,8 +1799,8 @@
     "type": "support",
     "banner_id": "30147",
     "banner_name": "Marvelous Sunday (SSR Speed), Biko Pegasus (SSR Power) Support Banner",
-    "start_date": "2026-11-12T22:00:00Z",
-    "end_date": "2026-11-25T22:00:00Z",
+    "start_date": "2026-11-11T22:00:00Z",
+    "end_date": "2026-11-24T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -1831,8 +1831,8 @@
     "type": "character",
     "banner_id": "30148",
     "banner_name": "Shinko Windy Banner",
-    "start_date": "2026-11-22T22:00:00Z",
-    "end_date": "2026-12-02T22:00:00Z",
+    "start_date": "2026-11-21T22:00:00Z",
+    "end_date": "2026-12-01T22:00:00Z",
     "free": 5,
     "cards": [
       {
@@ -1874,8 +1874,8 @@
     "type": "support",
     "banner_id": "30149",
     "banner_name": "Nishino Flower (SSR Wit), Maruzensky (SSR Speed) Support Banner",
-    "start_date": "2026-11-22T22:00:00Z",
-    "end_date": "2026-12-02T22:00:00Z",
+    "start_date": "2026-11-21T22:00:00Z",
+    "end_date": "2026-12-01T22:00:00Z",
     "free": 6,
     "cards": [
       {
@@ -1906,8 +1906,8 @@
     "type": "character",
     "banner_id": "30150",
     "banner_name": "Mr. C.B., Twin Turbo Banner",
-    "start_date": "2026-11-30T22:00:00Z",
-    "end_date": "2026-12-23T22:00:00Z",
+    "start_date": "2026-11-29T22:00:00Z",
+    "end_date": "2026-12-22T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -1967,8 +1967,8 @@
     "type": "support",
     "banner_id": "30151",
     "banner_name": "Jungle Pocket (SR Speed), Mejiro Dober (SR Guts), Symboli Rudolf (SR Stamina), Agnes Tachyon (SR Power), Mejiro Ramonu (SSR Wit) Support Banner",
-    "start_date": "2026-11-30T22:00:00Z",
-    "end_date": "2026-12-23T22:00:00Z",
+    "start_date": "2026-11-29T22:00:00Z",
+    "end_date": "2026-12-22T22:00:00Z",
     "free": 120,
     "cards": [
       {
@@ -2157,8 +2157,8 @@
     "type": "character",
     "banner_id": "30156",
     "banner_name": "Sakura Chiyono O (Ballroom), Mejiro Ardan (Ballroom) Banner",
-    "start_date": "2026-12-23T22:00:00Z",
-    "end_date": "2027-01-03T22:00:00Z",
+    "start_date": "2026-12-22T22:00:00Z",
+    "end_date": "2027-01-02T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -2202,8 +2202,8 @@
     "type": "support",
     "banner_id": "30157",
     "banner_name": "Nice Nature (SSR Power), Mejiro McQueen (SSR Stamina) Support Banner",
-    "start_date": "2026-12-23T22:00:00Z",
-    "end_date": "2027-01-03T22:00:00Z",
+    "start_date": "2026-12-22T22:00:00Z",
+    "end_date": "2027-01-02T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -2301,8 +2301,8 @@
     "type": "character",
     "banner_id": "30160",
     "banner_name": "Neo Universe Banner",
-    "start_date": "2027-01-07T22:00:00Z",
-    "end_date": "2027-01-15T22:00:00Z",
+    "start_date": "2027-01-06T22:00:00Z",
+    "end_date": "2027-01-14T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -2348,8 +2348,8 @@
     "type": "support",
     "banner_id": "30161",
     "banner_name": "Gold Ship (SR Stamina), Symboli Rudolf (SSR Guts) Support Banner",
-    "start_date": "2027-01-07T22:00:00Z",
-    "end_date": "2027-01-15T22:00:00Z",
+    "start_date": "2027-01-06T22:00:00Z",
+    "end_date": "2027-01-14T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -3506,8 +3506,8 @@
     "type": "character",
     "banner_id": "30194",
     "banner_name": "Air Shakur (Halloween), Symboli Kris S (Halloween) Banner",
-    "start_date": "2027-05-01T22:00:00Z",
-    "end_date": "2027-05-11T22:00:00Z",
+    "start_date": "2027-05-02T22:00:00Z",
+    "end_date": "2027-05-12T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -3559,8 +3559,8 @@
     "type": "support",
     "banner_id": "30195",
     "banner_name": "Tanino Gimlet (SSR Stamina), Tap Dance City (SSR Guts) Support Banner",
-    "start_date": "2027-05-01T22:00:00Z",
-    "end_date": "2027-05-11T22:00:00Z",
+    "start_date": "2027-05-02T22:00:00Z",
+    "end_date": "2027-05-12T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -3591,8 +3591,8 @@
     "type": "character",
     "banner_id": "30198",
     "banner_name": "Mejiro Ramonu Banner",
-    "start_date": "2027-05-15T22:00:00Z",
-    "end_date": "2027-05-25T22:00:00Z",
+    "start_date": "2027-05-16T22:00:00Z",
+    "end_date": "2027-05-26T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -3634,8 +3634,8 @@
     "type": "support",
     "banner_id": "30199",
     "banner_name": "Nice Nature (SR Stamina), Gold Ship (SSR Speed) Support Banner",
-    "start_date": "2027-05-15T22:00:00Z",
-    "end_date": "2027-05-25T22:00:00Z",
+    "start_date": "2027-05-16T22:00:00Z",
+    "end_date": "2027-05-26T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -3666,8 +3666,8 @@
     "type": "character",
     "banner_id": "30200",
     "banner_name": "Tokai Teio (Festival), Kawakami Princess (Festival) Banner",
-    "start_date": "2027-05-23T22:00:00Z",
-    "end_date": "2027-06-01T22:00:00Z",
+    "start_date": "2027-05-24T22:00:00Z",
+    "end_date": "2027-06-02T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -3711,8 +3711,8 @@
     "type": "support",
     "banner_id": "30201",
     "banner_name": "Tsurumaru Tsuyoshi (SSR Power), King Halo (SSR Guts) Support Banner",
-    "start_date": "2027-05-23T22:00:00Z",
-    "end_date": "2027-06-01T22:00:00Z",
+    "start_date": "2027-05-24T22:00:00Z",
+    "end_date": "2027-06-02T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -3743,8 +3743,8 @@
     "type": "support",
     "banner_id": "30203",
     "banner_name": "Matikanetannhauser (SR Speed), Mejiro McQueen (SSR Wit) Support Banner",
-    "start_date": "2027-05-30T22:00:00Z",
-    "end_date": "2027-06-09T22:00:00Z",
+    "start_date": "2027-05-31T22:00:00Z",
+    "end_date": "2027-06-10T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -3784,8 +3784,8 @@
     "type": "character",
     "banner_id": "30204",
     "banner_name": "Tap Dance City Banner",
-    "start_date": "2027-06-07T22:00:00Z",
-    "end_date": "2027-06-16T22:00:00Z",
+    "start_date": "2027-06-08T22:00:00Z",
+    "end_date": "2027-06-17T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -3827,8 +3827,8 @@
     "type": "support",
     "banner_id": "30205",
     "banner_name": "Verxina (SR Guts), Sounds of Earth (SSR Stamina) Support Banner",
-    "start_date": "2027-06-07T22:00:00Z",
-    "end_date": "2027-06-16T22:00:00Z",
+    "start_date": "2027-06-08T22:00:00Z",
+    "end_date": "2027-06-17T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -3859,8 +3859,8 @@
     "type": "character",
     "banner_id": "30206",
     "banner_name": "Mejiro Palmer (Christmas), Mejiro Bright (Christmas) Banner",
-    "start_date": "2027-06-14T22:00:00Z",
-    "end_date": "2027-06-24T22:00:00Z",
+    "start_date": "2027-06-15T22:00:00Z",
+    "end_date": "2027-06-25T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -3916,8 +3916,8 @@
     "type": "support",
     "banner_id": "30207",
     "banner_name": "Mejiro Dober (SSR Speed), Mejiro Ramonu (SSR Power) Support Banner",
-    "start_date": "2027-06-14T22:00:00Z",
-    "end_date": "2027-06-24T22:00:00Z",
+    "start_date": "2027-06-15T22:00:00Z",
+    "end_date": "2027-06-25T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -3948,8 +3948,8 @@
     "type": "character",
     "banner_id": "30208",
     "banner_name": "Satono Crown Banner",
-    "start_date": "2027-06-22T22:00:00Z",
-    "end_date": "2027-06-30T22:00:00Z",
+    "start_date": "2027-06-23T22:00:00Z",
+    "end_date": "2027-07-01T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -3983,8 +3983,8 @@
     "type": "character",
     "banner_id": "30210",
     "banner_name": "Cheval Grand Banner",
-    "start_date": "2027-06-28T22:00:00Z",
-    "end_date": "2027-07-05T22:00:00Z",
+    "start_date": "2027-06-29T22:00:00Z",
+    "end_date": "2027-07-06T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -4030,8 +4030,8 @@
     "type": "support",
     "banner_id": "30211",
     "banner_name": "Royce and Royce (SR Power), Vivlos (SSR Guts) Support Banner",
-    "start_date": "2027-06-28T22:00:00Z",
-    "end_date": "2027-07-05T22:00:00Z",
+    "start_date": "2027-06-29T22:00:00Z",
+    "end_date": "2027-07-06T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -4062,8 +4062,8 @@
     "type": "character",
     "banner_id": "30212",
     "banner_name": "Kitasan Black (Anime Collab) Banner",
-    "start_date": "2027-07-04T22:00:00Z",
-    "end_date": "2027-07-15T22:00:00Z",
+    "start_date": "2027-07-05T22:00:00Z",
+    "end_date": "2027-07-16T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -4117,8 +4117,8 @@
     "type": "support",
     "banner_id": "30213",
     "banner_name": "Duramente (SSR Speed), Satono Diamond (SSR Wit) Support Banner",
-    "start_date": "2027-07-04T22:00:00Z",
-    "end_date": "2027-07-15T22:00:00Z",
+    "start_date": "2027-07-05T22:00:00Z",
+    "end_date": "2027-07-16T22:00:00Z",
     "free": 100,
     "cards": [
       {
@@ -4149,8 +4149,8 @@
     "type": "character",
     "banner_id": "30214",
     "banner_name": "Nice Nature (New Year) Banner",
-    "start_date": "2027-07-12T22:00:00Z",
-    "end_date": "2027-07-21T22:00:00Z",
+    "start_date": "2027-07-13T22:00:00Z",
+    "end_date": "2027-07-22T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -4175,8 +4175,8 @@
     "type": "character",
     "banner_id": "30216",
     "banner_name": "Vivlos Banner",
-    "start_date": "2027-07-19T22:00:00Z",
-    "end_date": "2027-07-30T22:00:00Z",
+    "start_date": "2027-07-20T22:00:00Z",
+    "end_date": "2027-07-31T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -4210,8 +4210,8 @@
     "type": "support",
     "banner_id": "30217",
     "banner_name": "Tanino Gimlet (SR Wit), Hokko Tarumae (SSR Stamina) Support Banner",
-    "start_date": "2027-07-19T22:00:00Z",
-    "end_date": "2027-07-30T22:00:00Z",
+    "start_date": "2027-07-20T22:00:00Z",
+    "end_date": "2027-07-31T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -4242,8 +4242,8 @@
     "type": "character",
     "banner_id": "30218",
     "banner_name": "Manhattan Cafe (Valentine), Yukino Bijin (Valentine) Banner",
-    "start_date": "2027-07-28T22:00:00Z",
-    "end_date": "2027-08-10T22:00:00Z",
+    "start_date": "2027-07-29T22:00:00Z",
+    "end_date": "2027-08-11T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -4287,8 +4287,8 @@
     "type": "support",
     "banner_id": "30219",
     "banner_name": "Winning Ticket (SSR Power), Sakura Bakushin O (SSR Speed) Support Banner",
-    "start_date": "2027-07-28T22:00:00Z",
-    "end_date": "2027-08-10T22:00:00Z",
+    "start_date": "2027-07-29T22:00:00Z",
+    "end_date": "2027-08-11T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -4319,8 +4319,8 @@
     "type": "character",
     "banner_id": "30220",
     "banner_name": "Biko Pegasus Banner",
-    "start_date": "2027-08-06T22:00:00Z",
-    "end_date": "2027-08-15T22:00:00Z",
+    "start_date": "2027-08-08T22:00:00Z",
+    "end_date": "2027-08-17T22:00:00Z",
     "free": 5,
     "cards": [
       {
@@ -4362,8 +4362,8 @@
     "type": "character",
     "banner_id": "30222",
     "banner_name": "Ikuno Dictus, Duramente Banner",
-    "start_date": "2027-08-14T22:00:00Z",
-    "end_date": "2027-09-08T22:00:00Z",
+    "start_date": "2027-08-15T22:00:00Z",
+    "end_date": "2027-09-09T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -4435,8 +4435,8 @@
     "type": "support",
     "banner_id": "30223",
     "banner_name": "Tosen Jordan (SR Speed), Yaeno Muteki (SR Stamina), Orfevre (SSR Guts), Ryoka Tsurugi (SSR Pal) Support Banner",
-    "start_date": "2027-08-14T22:00:00Z",
-    "end_date": "2027-09-08T22:00:00Z",
+    "start_date": "2027-08-15T22:00:00Z",
+    "end_date": "2027-09-09T22:00:00Z",
     "free": 120,
     "cards": [
       {
@@ -4481,8 +4481,8 @@
     "type": "character",
     "banner_id": "30224",
     "banner_name": "Transcend Banner",
-    "start_date": "2027-08-25T22:00:00Z",
-    "end_date": "2027-09-02T22:00:00Z",
+    "start_date": "2027-08-27T22:00:00Z",
+    "end_date": "2027-09-04T22:00:00Z",
     "free": 10,
     "cards": [
       {
@@ -4512,8 +4512,8 @@
     "type": "character",
     "banner_id": "30226",
     "banner_name": "Rhein Kraft Banner",
-    "start_date": "2027-09-01T22:00:00Z",
-    "end_date": "2027-09-08T22:00:00Z",
+    "start_date": "2027-09-02T22:00:00Z",
+    "end_date": "2027-09-09T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -4555,8 +4555,8 @@
     "type": "support",
     "banner_id": "30227",
     "banner_name": "Tap Dance City (SR Guts), Cheval Grand (SSR Stamina) Support Banner",
-    "start_date": "2027-09-01T22:00:00Z",
-    "end_date": "2027-09-08T22:00:00Z",
+    "start_date": "2027-09-02T22:00:00Z",
+    "end_date": "2027-09-09T22:00:00Z",
     "free": 9,
     "cards": [
       {
@@ -4587,8 +4587,8 @@
     "type": "character",
     "banner_id": "30228",
     "banner_name": "Daitaku Helios (Ballroom), Daiichi Ruby (Ballroom) Banner",
-    "start_date": "2027-09-06T22:00:00Z",
-    "end_date": "2027-09-16T22:00:00Z",
+    "start_date": "2027-09-08T22:00:00Z",
+    "end_date": "2027-09-18T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -4648,8 +4648,8 @@
     "type": "support",
     "banner_id": "30229",
     "banner_name": "K.S.Miracle (SSR Power), Yamanin Zephyr (SSR Speed) Support Banner",
-    "start_date": "2027-09-06T22:00:00Z",
-    "end_date": "2027-09-16T22:00:00Z",
+    "start_date": "2027-09-08T22:00:00Z",
+    "end_date": "2027-09-18T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -4680,8 +4680,8 @@
     "type": "character",
     "banner_id": "30232",
     "banner_name": "Winning Ticket (U.A.F.) Banner",
-    "start_date": "2027-09-14T22:00:00Z",
-    "end_date": "2027-09-23T22:00:00Z",
+    "start_date": "2027-09-16T22:00:00Z",
+    "end_date": "2027-09-25T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -4711,8 +4711,8 @@
     "type": "support",
     "banner_id": "30233",
     "banner_name": "Air Shakur (SR Power), Neo Universe (SSR Wit) Support Banner",
-    "start_date": "2027-09-14T22:00:00Z",
-    "end_date": "2027-09-23T22:00:00Z",
+    "start_date": "2027-09-16T22:00:00Z",
+    "end_date": "2027-09-25T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -4743,8 +4743,8 @@
     "type": "character",
     "banner_id": "30234",
     "banner_name": "Sounds of Earth Banner",
-    "start_date": "2027-09-21T22:00:00Z",
-    "end_date": "2027-10-01T22:00:00Z",
+    "start_date": "2027-09-23T22:00:00Z",
+    "end_date": "2027-10-03T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -4786,8 +4786,8 @@
     "type": "character",
     "banner_id": "30236",
     "banner_name": "Super Creek (Warfare), Yaeno Muteki (Warfare) Banner",
-    "start_date": "2027-09-29T22:00:00Z",
-    "end_date": "2027-10-08T22:00:00Z",
+    "start_date": "2027-09-30T22:00:00Z",
+    "end_date": "2027-10-09T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -4839,8 +4839,8 @@
     "type": "character",
     "banner_id": "30238",
     "banner_name": "GOCHI WEEK",
-    "start_date": "2027-09-29T22:00:00Z",
-    "end_date": "2027-10-08T22:00:00Z",
+    "start_date": "2027-09-30T22:00:00Z",
+    "end_date": "2027-10-09T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -4889,8 +4889,8 @@
     "type": "support",
     "banner_id": "30237",
     "banner_name": "Hishi Miracle (SSR Stamina), Narita Taishin (SSR Wit) Support Banner",
-    "start_date": "2027-09-29T22:00:00Z",
-    "end_date": "2027-10-08T22:00:00Z",
+    "start_date": "2027-09-30T22:00:00Z",
+    "end_date": "2027-10-09T22:00:00Z",
     "free": 80,
     "cards": [
       {
@@ -4921,8 +4921,8 @@
     "type": "character",
     "banner_id": "30242",
     "banner_name": "Agnes Tachyon (Alt Version) Banner",
-    "start_date": "2027-10-06T22:00:00Z",
-    "end_date": "2027-10-15T22:00:00Z",
+    "start_date": "2027-10-08T22:00:00Z",
+    "end_date": "2027-10-17T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -4952,8 +4952,8 @@
     "type": "support",
     "banner_id": "30243",
     "banner_name": "Dantsu Flame (SR Wit), Vodka (SSR Guts) Support Banner",
-    "start_date": "2027-10-06T22:00:00Z",
-    "end_date": "2027-10-15T22:00:00Z",
+    "start_date": "2027-10-08T22:00:00Z",
+    "end_date": "2027-10-17T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -4984,8 +4984,8 @@
     "type": "character",
     "banner_id": "30244",
     "banner_name": "North Flight Banner",
-    "start_date": "2027-10-13T22:00:00Z",
-    "end_date": "2027-10-22T22:00:00Z",
+    "start_date": "2027-10-15T22:00:00Z",
+    "end_date": "2027-10-24T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -5027,8 +5027,8 @@
     "type": "character",
     "banner_id": "30246",
     "banner_name": "Sweep Tosho (Wedding), King Halo (Wedding) Banner",
-    "start_date": "2027-10-20T22:00:00Z",
-    "end_date": "2027-11-02T22:00:00Z",
+    "start_date": "2027-10-22T22:00:00Z",
+    "end_date": "2027-11-04T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -5072,8 +5072,8 @@
     "type": "support",
     "banner_id": "30247",
     "banner_name": "Seiun Sky (SSR Power), Vivlos (SSR Speed) Support Banner",
-    "start_date": "2027-10-20T22:00:00Z",
-    "end_date": "2027-11-02T22:00:00Z",
+    "start_date": "2027-10-22T22:00:00Z",
+    "end_date": "2027-11-04T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -5104,8 +5104,8 @@
     "type": "character",
     "banner_id": "30250",
     "banner_name": "Jungle Pocket Banner",
-    "start_date": "2027-10-30T22:00:00Z",
-    "end_date": "2027-11-11T22:00:00Z",
+    "start_date": "2027-11-01T22:00:00Z",
+    "end_date": "2027-11-13T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -5143,8 +5143,8 @@
     "type": "character",
     "banner_id": "30252",
     "banner_name": "Dream Journey Banner",
-    "start_date": "2027-11-08T22:00:00Z",
-    "end_date": "2027-11-30T22:00:00Z",
+    "start_date": "2027-11-10T22:00:00Z",
+    "end_date": "2027-12-02T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -5198,8 +5198,8 @@
     "type": "support",
     "banner_id": "30253",
     "banner_name": "Yayoi Akikawa (SSR Pal), Nishino Flower (SSR Power) Support Banner",
-    "start_date": "2027-11-08T22:00:00Z",
-    "end_date": "2027-11-30T22:00:00Z",
+    "start_date": "2027-11-10T22:00:00Z",
+    "end_date": "2027-12-02T22:00:00Z",
     "free": 80,
     "cards": [
       {
@@ -5232,8 +5232,8 @@
     "type": "character",
     "banner_id": "30256",
     "banner_name": "Rice Shower (Great Food Festival) Banner",
-    "start_date": "2027-11-17T22:00:00Z",
-    "end_date": "2027-11-26T22:00:00Z",
+    "start_date": "2027-11-19T22:00:00Z",
+    "end_date": "2027-11-28T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -5258,8 +5258,8 @@
     "type": "support",
     "banner_id": "30257",
     "banner_name": "Matikanefukukitaru (SR Speed), Dantsu Flame (SSR Stamina) Support Banner",
-    "start_date": "2027-11-17T22:00:00Z",
-    "end_date": "2027-11-26T22:00:00Z",
+    "start_date": "2027-11-19T22:00:00Z",
+    "end_date": "2027-11-28T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -5290,8 +5290,8 @@
     "type": "character",
     "banner_id": "30258",
     "banner_name": "Calstone Light O Banner",
-    "start_date": "2027-11-24T22:00:00Z",
-    "end_date": "2027-12-03T22:00:00Z",
+    "start_date": "2027-11-26T22:00:00Z",
+    "end_date": "2027-12-05T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -5321,8 +5321,8 @@
     "type": "character",
     "banner_id": "30260",
     "banner_name": "Eishin Flash (Summer Trip), Hokko Tarumae (Summer Trip) Banner",
-    "start_date": "2027-12-01T22:00:00Z",
-    "end_date": "2027-12-16T22:00:00Z",
+    "start_date": "2027-12-03T22:00:00Z",
+    "end_date": "2027-12-18T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -5366,8 +5366,8 @@
     "type": "support",
     "banner_id": "30261",
     "banner_name": "Smart Falcon (SSR Speed), Copano Rickey (SSR Wit) Support Banner",
-    "start_date": "2027-12-01T22:00:00Z",
-    "end_date": "2027-12-16T22:00:00Z",
+    "start_date": "2027-12-03T22:00:00Z",
+    "end_date": "2027-12-18T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -5398,8 +5398,8 @@
     "type": "character",
     "banner_id": "30264",
     "banner_name": "All (2) Banner",
-    "start_date": "2027-12-13T22:00:00Z",
-    "end_date": "2027-12-22T22:00:00Z",
+    "start_date": "2027-12-15T22:00:00Z",
+    "end_date": "2027-12-24T22:00:00Z",
     "free": 0,
     "cards": [],
     "events": [
@@ -5430,8 +5430,8 @@
     "type": "support",
     "banner_id": "30265",
     "banner_name": "Mejiro Palmer (SR Stamina), Fine Motion (SSR Guts) Support Banner",
-    "start_date": "2027-12-13T22:00:00Z",
-    "end_date": "2027-12-22T22:00:00Z",
+    "start_date": "2027-12-15T22:00:00Z",
+    "end_date": "2027-12-24T22:00:00Z",
     "free": 11,
     "cards": [
       {
@@ -5462,8 +5462,8 @@
     "type": "character",
     "banner_id": "30268",
     "banner_name": "Gentildonna Banner",
-    "start_date": "2027-12-20T22:00:00Z",
-    "end_date": "2028-01-05T22:00:00Z",
+    "start_date": "2027-12-22T22:00:00Z",
+    "end_date": "2028-01-07T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -5517,8 +5517,8 @@
     "type": "support",
     "banner_id": "30269",
     "banner_name": "Marvelous Sunday (SR Guts), Still in Love (SSR Speed) Support Banner",
-    "start_date": "2027-12-20T22:00:00Z",
-    "end_date": "2028-01-05T22:00:00Z",
+    "start_date": "2027-12-22T22:00:00Z",
+    "end_date": "2028-01-07T22:00:00Z",
     "free": 100,
     "cards": [
       {
@@ -5549,8 +5549,8 @@
     "type": "character",
     "banner_id": "30270",
     "banner_name": "Zenno Rob Roy (Autumn), Neo Universe (Autumn) Banner",
-    "start_date": "2027-12-24T22:00:00Z",
-    "end_date": "2028-01-03T22:00:00Z",
+    "start_date": "2027-12-26T22:00:00Z",
+    "end_date": "2028-01-05T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -5581,8 +5581,8 @@
     "type": "support",
     "banner_id": "30271",
     "banner_name": "Taiki Shuttle (SSR Wit), Fuji Kiseki (SSR Guts) Support Banner",
-    "start_date": "2027-12-24T22:00:00Z",
-    "end_date": "2028-01-03T22:00:00Z",
+    "start_date": "2027-12-26T22:00:00Z",
+    "end_date": "2028-01-05T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -5613,8 +5613,8 @@
     "type": "character",
     "banner_id": "30274",
     "banner_name": "Cesario Banner",
-    "start_date": "2028-01-01T22:00:00Z",
-    "end_date": "2028-01-20T22:00:00Z",
+    "start_date": "2028-01-03T22:00:00Z",
+    "end_date": "2028-01-22T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -5652,8 +5652,8 @@
     "type": "support",
     "banner_id": "30275",
     "banner_name": "Sakura Laurel (SR Wit), Espoir City (SSR Power) Support Banner",
-    "start_date": "2028-01-01T22:00:00Z",
-    "end_date": "2028-01-20T22:00:00Z",
+    "start_date": "2028-01-03T22:00:00Z",
+    "end_date": "2028-01-22T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -5684,8 +5684,8 @@
     "type": "character",
     "banner_id": "30276",
     "banner_name": "Durandal Banner",
-    "start_date": "2028-01-08T22:00:00Z",
-    "end_date": "2028-01-17T22:00:00Z",
+    "start_date": "2028-01-10T22:00:00Z",
+    "end_date": "2028-01-19T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -5727,8 +5727,8 @@
     "type": "character",
     "banner_id": "30278",
     "banner_name": "Mayano Top Gun (Halloween), Seeking the Pearl (Halloween) Banner",
-    "start_date": "2028-01-15T22:00:00Z",
-    "end_date": "2028-01-25T22:00:00Z",
+    "start_date": "2028-01-17T22:00:00Z",
+    "end_date": "2028-01-27T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -5780,8 +5780,8 @@
     "type": "support",
     "banner_id": "30279",
     "banner_name": "Hishi Amazon (SSR Guts), Narita Brian (SSR Speed) Support Banner",
-    "start_date": "2028-01-15T22:00:00Z",
-    "end_date": "2028-01-25T22:00:00Z",
+    "start_date": "2028-01-17T22:00:00Z",
+    "end_date": "2028-01-27T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -5812,8 +5812,8 @@
     "type": "character",
     "banner_id": "30282",
     "banner_name": "Bubble Gum Fellow Banner",
-    "start_date": "2028-01-22T22:00:00Z",
-    "end_date": "2028-02-08T22:00:00Z",
+    "start_date": "2028-01-25T22:00:00Z",
+    "end_date": "2028-02-11T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -5855,8 +5855,8 @@
     "type": "character",
     "banner_id": "30284",
     "banner_name": "Biwa Hayahide (Mecha) Banner",
-    "start_date": "2028-02-04T22:00:00Z",
-    "end_date": "2028-02-23T22:00:00Z",
+    "start_date": "2028-02-06T22:00:00Z",
+    "end_date": "2028-02-25T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -5918,8 +5918,8 @@
     "type": "support",
     "banner_id": "30285",
     "banner_name": "Air Shakur (SSR Stamina), Daiwa Scarlet (SSR Wit) Support Banner",
-    "start_date": "2028-02-04T22:00:00Z",
-    "end_date": "2028-02-23T22:00:00Z",
+    "start_date": "2028-02-06T22:00:00Z",
+    "end_date": "2028-02-25T22:00:00Z",
     "free": 80,
     "cards": [
       {
@@ -5952,8 +5952,8 @@
     "type": "character",
     "banner_id": "30288",
     "banner_name": "Narita Taishin (Mecha) Banner",
-    "start_date": "2028-02-11T22:00:00Z",
-    "end_date": "2028-02-20T22:00:00Z",
+    "start_date": "2028-02-14T22:00:00Z",
+    "end_date": "2028-02-23T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -5978,8 +5978,8 @@
     "type": "support",
     "banner_id": "30289",
     "banner_name": "North Flight (SR Power), Symboli Kris S (SSR Power) Support Banner",
-    "start_date": "2028-02-11T22:00:00Z",
-    "end_date": "2028-02-20T22:00:00Z",
+    "start_date": "2028-02-14T22:00:00Z",
+    "end_date": "2028-02-23T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -6010,8 +6010,8 @@
     "type": "character",
     "banner_id": "30290",
     "banner_name": "Air Messiah Banner",
-    "start_date": "2028-02-18T22:00:00Z",
-    "end_date": "2028-02-27T22:00:00Z",
+    "start_date": "2028-02-21T22:00:00Z",
+    "end_date": "2028-03-01T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -6049,8 +6049,8 @@
     "type": "character",
     "banner_id": "30292",
     "banner_name": "Admire Vega (Christmas), Narita Top Road (Christmas) Banner",
-    "start_date": "2028-02-25T22:00:00Z",
-    "end_date": "2028-03-07T22:00:00Z",
+    "start_date": "2028-02-28T22:00:00Z",
+    "end_date": "2028-03-10T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -6106,8 +6106,8 @@
     "type": "support",
     "banner_id": "30293",
     "banner_name": "Agnes Digital (SSR Wit), Meisho Doto (SSR Speed) Support Banner",
-    "start_date": "2028-02-25T22:00:00Z",
-    "end_date": "2028-03-07T22:00:00Z",
+    "start_date": "2028-02-28T22:00:00Z",
+    "end_date": "2028-03-10T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -6138,8 +6138,8 @@
     "type": "character",
     "banner_id": "30296",
     "banner_name": "Win Variation Banner",
-    "start_date": "2028-03-05T22:00:00Z",
-    "end_date": "2028-03-13T22:00:00Z",
+    "start_date": "2028-03-07T22:00:00Z",
+    "end_date": "2028-03-15T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -6185,8 +6185,8 @@
     "type": "support",
     "banner_id": "30297",
     "banner_name": "Bubble Gum Fellow (SR Speed), Blast Onepiece (SSR Guts) Support Banner",
-    "start_date": "2028-03-05T22:00:00Z",
-    "end_date": "2028-03-13T22:00:00Z",
+    "start_date": "2028-03-07T22:00:00Z",
+    "end_date": "2028-03-15T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -6217,8 +6217,8 @@
     "type": "character",
     "banner_id": "30298",
     "banner_name": "Grass Wonder (New Year) Banner",
-    "start_date": "2028-03-11T22:00:00Z",
-    "end_date": "2028-03-18T22:00:00Z",
+    "start_date": "2028-03-14T22:00:00Z",
+    "end_date": "2028-03-21T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -6252,8 +6252,8 @@
     "type": "character",
     "banner_id": "30300",
     "banner_name": "Mr. C.B. (New Year), Katsuragi Ace (New Year) Banner",
-    "start_date": "2028-03-17T22:00:00Z",
-    "end_date": "2028-03-30T22:00:00Z",
+    "start_date": "2028-03-19T22:00:00Z",
+    "end_date": "2028-04-01T22:00:00Z",
     "free": 5,
     "cards": [
       {
@@ -6309,8 +6309,8 @@
     "type": "support",
     "banner_id": "30301",
     "banner_name": "Symboli Rudolf (SSR Wit), Mejiro Ardan (SSR Power) Support Banner",
-    "start_date": "2028-03-17T22:00:00Z",
-    "end_date": "2028-03-30T22:00:00Z",
+    "start_date": "2028-03-19T22:00:00Z",
+    "end_date": "2028-04-01T22:00:00Z",
     "free": 100,
     "cards": [
       {
@@ -6341,8 +6341,8 @@
     "type": "character",
     "banner_id": "30304",
     "banner_name": "Maruzensky (New Year) Banner",
-    "start_date": "2028-03-26T22:00:00Z",
-    "end_date": "2028-04-04T22:00:00Z",
+    "start_date": "2028-03-29T22:00:00Z",
+    "end_date": "2028-04-07T22:00:00Z",
     "free": 5,
     "cards": [
       {
@@ -6372,8 +6372,8 @@
     "type": "support",
     "banner_id": "30305",
     "banner_name": "Mejiro Ramonu (SR Stamina), Seeking the Pearl (SSR Speed) Support Banner",
-    "start_date": "2028-03-26T22:00:00Z",
-    "end_date": "2028-04-04T22:00:00Z",
+    "start_date": "2028-03-29T22:00:00Z",
+    "end_date": "2028-04-07T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -6404,8 +6404,8 @@
     "type": "character",
     "banner_id": "30306",
     "banner_name": "Furioso Banner",
-    "start_date": "2028-04-03T22:00:00Z",
-    "end_date": "2028-04-13T22:00:00Z",
+    "start_date": "2028-04-05T22:00:00Z",
+    "end_date": "2028-04-15T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -6435,8 +6435,8 @@
     "type": "character",
     "banner_id": "30308",
     "banner_name": "Yamanin Zephyr (Valentine), Aston Machan (Valentine) Banner",
-    "start_date": "2028-04-10T22:00:00Z",
-    "end_date": "2028-04-23T22:00:00Z",
+    "start_date": "2028-04-13T22:00:00Z",
+    "end_date": "2028-04-26T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -6480,8 +6480,8 @@
     "type": "support",
     "banner_id": "30309",
     "banner_name": "Curren Chan (SSR Guts), Ikuno Dictus (SSR Wit) Support Banner",
-    "start_date": "2028-04-10T22:00:00Z",
-    "end_date": "2028-04-23T22:00:00Z",
+    "start_date": "2028-04-13T22:00:00Z",
+    "end_date": "2028-04-26T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -6512,8 +6512,8 @@
     "type": "character",
     "banner_id": "30312",
     "banner_name": "Tsurumaru Tsuyoshi Banner",
-    "start_date": "2028-04-20T22:00:00Z",
-    "end_date": "2028-04-29T22:00:00Z",
+    "start_date": "2028-04-23T22:00:00Z",
+    "end_date": "2028-05-02T22:00:00Z",
     "free": 5,
     "cards": [
       {
@@ -6555,8 +6555,8 @@
     "type": "character",
     "banner_id": "30314",
     "banner_name": "Orfevre Banner",
-    "start_date": "2028-04-27T22:00:00Z",
-    "end_date": "2028-05-21T22:00:00Z",
+    "start_date": "2028-04-30T22:00:00Z",
+    "end_date": "2028-05-24T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -6610,8 +6610,8 @@
     "type": "support",
     "banner_id": "30315",
     "banner_name": "Lucky Lilac (SR Wit), Mejiro McQueen (SR Guts), Embodiment of Legends (SSR Group), Almond Eye (SSR Speed) Support Banner",
-    "start_date": "2028-04-27T22:00:00Z",
-    "end_date": "2028-05-21T22:00:00Z",
+    "start_date": "2028-04-30T22:00:00Z",
+    "end_date": "2028-05-24T22:00:00Z",
     "free": 120,
     "cards": [
       {
@@ -6656,8 +6656,8 @@
     "type": "character",
     "banner_id": "30318",
     "banner_name": "Gran Alegria Banner",
-    "start_date": "2028-05-08T22:00:00Z",
-    "end_date": "2028-05-17T22:00:00Z",
+    "start_date": "2028-05-11T22:00:00Z",
+    "end_date": "2028-05-20T22:00:00Z",
     "free": 11,
     "cards": [
       {
@@ -6699,8 +6699,8 @@
     "type": "support",
     "banner_id": "30319",
     "banner_name": "Rice Shower (SR Speed), Mejiro Bright (SSR Stamina) Support Banner",
-    "start_date": "2028-05-08T22:00:00Z",
-    "end_date": "2028-05-17T22:00:00Z",
+    "start_date": "2028-05-11T22:00:00Z",
+    "end_date": "2028-05-20T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -6731,8 +6731,8 @@
     "type": "character",
     "banner_id": "30320",
     "banner_name": "No Reason Banner",
-    "start_date": "2028-05-15T22:00:00Z",
-    "end_date": "2028-05-24T22:00:00Z",
+    "start_date": "2028-05-18T22:00:00Z",
+    "end_date": "2028-05-27T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -6766,8 +6766,8 @@
     "type": "character",
     "banner_id": "30322",
     "banner_name": "Tanino Gimlet (Ballroom), Tap Dance City (Ballroom) Banner",
-    "start_date": "2028-05-22T22:00:00Z",
-    "end_date": "2028-05-31T22:00:00Z",
+    "start_date": "2028-05-25T22:00:00Z",
+    "end_date": "2028-06-03T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -6831,8 +6831,8 @@
     "type": "support",
     "banner_id": "30323",
     "banner_name": "Vodka (SSR Power), Dream Journey (SSR Speed) Support Banner",
-    "start_date": "2028-05-22T22:00:00Z",
-    "end_date": "2028-05-31T22:00:00Z",
+    "start_date": "2028-05-25T22:00:00Z",
+    "end_date": "2028-06-03T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -6863,8 +6863,8 @@
     "type": "character",
     "banner_id": "30326",
     "banner_name": "Sirius Symboli (The Twinkle Legends) Banner",
-    "start_date": "2028-05-29T22:00:00Z",
-    "end_date": "2028-06-08T22:00:00Z",
+    "start_date": "2028-06-01T22:00:00Z",
+    "end_date": "2028-06-11T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -6894,8 +6894,8 @@
     "type": "character",
     "banner_id": "30338",
     "banner_name": "No Reason Banner",
-    "start_date": "2028-05-29T22:00:00Z",
-    "end_date": "2028-06-04T22:00:00Z",
+    "start_date": "2028-06-01T22:00:00Z",
+    "end_date": "2028-06-07T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -6920,8 +6920,8 @@
     "type": "support",
     "banner_id": "30327",
     "banner_name": "Daring Heart (SR Power), Daring Tact (SSR Wit) Support Banner",
-    "start_date": "2028-05-29T22:00:00Z",
-    "end_date": "2028-06-08T22:00:00Z",
+    "start_date": "2028-06-01T22:00:00Z",
+    "end_date": "2028-06-11T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -6952,8 +6952,8 @@
     "type": "character",
     "banner_id": "30328",
     "banner_name": "Fenomeno Banner",
-    "start_date": "2028-06-06T22:00:00Z",
-    "end_date": "2028-06-14T22:00:00Z",
+    "start_date": "2028-06-09T22:00:00Z",
+    "end_date": "2028-06-17T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -6991,8 +6991,8 @@
     "type": "character",
     "banner_id": "30330",
     "banner_name": "Smart Falcon (Parade), Copano Rickey (Parade) Banner",
-    "start_date": "2028-06-12T22:00:00Z",
-    "end_date": "2028-06-23T22:00:00Z",
+    "start_date": "2028-06-15T22:00:00Z",
+    "end_date": "2028-06-26T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -7040,8 +7040,8 @@
     "type": "character",
     "banner_id": "30332",
     "banner_name": "Gray Week",
-    "start_date": "2028-06-12T22:00:00Z",
-    "end_date": "2028-07-02T22:00:00Z",
+    "start_date": "2028-06-15T22:00:00Z",
+    "end_date": "2028-07-05T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -7171,8 +7171,8 @@
     "type": "support",
     "banner_id": "30331",
     "banner_name": "Transcend (SSR Guts), Buena Vista (SSR Power) Support Banner",
-    "start_date": "2028-06-12T22:00:00Z",
-    "end_date": "2028-06-23T22:00:00Z",
+    "start_date": "2028-06-15T22:00:00Z",
+    "end_date": "2028-06-26T22:00:00Z",
     "free": 80,
     "cards": [
       {
@@ -7203,8 +7203,8 @@
     "type": "character",
     "banner_id": "30336",
     "banner_name": "Verxina Banner",
-    "start_date": "2028-06-20T22:00:00Z",
-    "end_date": "2028-06-28T22:00:00Z",
+    "start_date": "2028-06-24T22:00:00Z",
+    "end_date": "2028-07-02T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -7238,8 +7238,8 @@
     "type": "support",
     "banner_id": "30337",
     "banner_name": "Curren Bouquetd'or (SR Stamina), Silence Suzuka (SSR Guts) Support Banner",
-    "start_date": "2028-06-20T22:00:00Z",
-    "end_date": "2028-06-28T22:00:00Z",
+    "start_date": "2028-06-24T22:00:00Z",
+    "end_date": "2028-07-02T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -7270,8 +7270,8 @@
     "type": "character",
     "banner_id": "30340",
     "banner_name": "Loves Only You Banner",
-    "start_date": "2028-06-27T22:00:00Z",
-    "end_date": "2028-07-05T22:00:00Z",
+    "start_date": "2028-06-30T22:00:00Z",
+    "end_date": "2028-07-08T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -7305,8 +7305,8 @@
     "type": "character",
     "banner_id": "30342",
     "banner_name": "Mejiro Ramonu (Wedding), Cesario (Wedding) Banner",
-    "start_date": "2028-07-03T22:00:00Z",
-    "end_date": "2028-07-16T22:00:00Z",
+    "start_date": "2028-07-06T22:00:00Z",
+    "end_date": "2028-07-19T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -7358,8 +7358,8 @@
     "type": "support",
     "banner_id": "30343",
     "banner_name": "Rhein Kraft (SSR Speed), Daring Heart (SSR Wit) Support Banner",
-    "start_date": "2028-07-03T22:00:00Z",
-    "end_date": "2028-07-16T22:00:00Z",
+    "start_date": "2028-07-06T22:00:00Z",
+    "end_date": "2028-07-19T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -7390,8 +7390,8 @@
     "type": "character",
     "banner_id": "30346",
     "banner_name": "Chrono Genesis Banner",
-    "start_date": "2028-07-13T22:00:00Z",
-    "end_date": "2028-08-09T22:00:00Z",
+    "start_date": "2028-07-16T22:00:00Z",
+    "end_date": "2028-08-12T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -7421,8 +7421,8 @@
     "type": "character",
     "banner_id": "30348",
     "banner_name": "Gold City (Deserted Island) Banner",
-    "start_date": "2028-07-23T22:00:00Z",
-    "end_date": "2028-08-16T22:00:00Z",
+    "start_date": "2028-07-26T22:00:00Z",
+    "end_date": "2028-08-19T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -7468,8 +7468,8 @@
     "type": "support",
     "banner_id": "30349",
     "banner_name": "Tamamo Cross (SSR Power), Tucker Bryne (SSR Pal) Support Banner",
-    "start_date": "2028-07-23T22:00:00Z",
-    "end_date": "2028-08-16T22:00:00Z",
+    "start_date": "2028-07-26T22:00:00Z",
+    "end_date": "2028-08-19T22:00:00Z",
     "free": 80,
     "cards": [
       {
@@ -7502,8 +7502,8 @@
     "type": "character",
     "banner_id": "30352",
     "banner_name": "Ines Fujin (Deserted Island) Banner",
-    "start_date": "2028-08-02T22:00:00Z",
-    "end_date": "2028-08-12T22:00:00Z",
+    "start_date": "2028-08-05T22:00:00Z",
+    "end_date": "2028-08-15T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -7533,8 +7533,8 @@
     "type": "support",
     "banner_id": "30353",
     "banner_name": "Kawakami Princess (SR Guts), Mejiro Ryan (SSR Stamina) Support Banner",
-    "start_date": "2028-08-02T22:00:00Z",
-    "end_date": "2028-08-12T22:00:00Z",
+    "start_date": "2028-08-05T22:00:00Z",
+    "end_date": "2028-08-15T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -7565,8 +7565,8 @@
     "type": "character",
     "banner_id": "30354",
     "banner_name": "Fusaichi Pandora Banner",
-    "start_date": "2028-08-09T22:00:00Z",
-    "end_date": "2028-08-17T22:00:00Z",
+    "start_date": "2028-08-13T22:00:00Z",
+    "end_date": "2028-08-21T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -7596,8 +7596,8 @@
     "type": "character",
     "banner_id": "30356",
     "banner_name": "Satono Crown (Summer), Cheval Grand (Summer) Banner",
-    "start_date": "2028-08-16T22:00:00Z",
-    "end_date": "2028-08-29T22:00:00Z",
+    "start_date": "2028-08-19T22:00:00Z",
+    "end_date": "2028-09-01T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -7645,8 +7645,8 @@
     "type": "support",
     "banner_id": "30357",
     "banner_name": "Win Variation (SSR Wit), Duramente (SSR Stamina) Support Banner",
-    "start_date": "2028-08-16T22:00:00Z",
-    "end_date": "2028-08-29T22:00:00Z",
+    "start_date": "2028-08-19T22:00:00Z",
+    "end_date": "2028-09-01T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -7677,8 +7677,8 @@
     "type": "character",
     "banner_id": "30360",
     "banner_name": "Vivlos (Summer) Banner",
-    "start_date": "2028-08-26T22:00:00Z",
-    "end_date": "2028-09-04T22:00:00Z",
+    "start_date": "2028-08-29T22:00:00Z",
+    "end_date": "2028-09-07T22:00:00Z",
     "free": 11,
     "cards": [
       {
@@ -7712,8 +7712,8 @@
     "type": "character",
     "banner_id": "30362",
     "banner_name": "Still in Love Banner",
-    "start_date": "2028-09-02T22:00:00Z",
-    "end_date": "2028-09-27T22:00:00Z",
+    "start_date": "2028-09-05T22:00:00Z",
+    "end_date": "2028-09-30T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -7751,8 +7751,8 @@
     "type": "support",
     "banner_id": "30363",
     "banner_name": "Stay Gold (SSR Guts), Admire Groove (SSR Speed) Support Banner",
-    "start_date": "2028-09-02T22:00:00Z",
-    "end_date": "2028-09-27T22:00:00Z",
+    "start_date": "2028-09-05T22:00:00Z",
+    "end_date": "2028-09-30T22:00:00Z",
     "free": 100,
     "cards": [
       {
@@ -7783,8 +7783,8 @@
     "type": "character",
     "banner_id": "30364",
     "banner_name": "K.S.Miracle (Alt Version), Hishi Miracle (Alt Version) Banner",
-    "start_date": "2028-09-05T22:00:00Z",
-    "end_date": "2028-09-15T22:00:00Z",
+    "start_date": "2028-09-09T22:00:00Z",
+    "end_date": "2028-09-19T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -7832,8 +7832,8 @@
     "type": "support",
     "banner_id": "30365",
     "banner_name": "Calstone Light O (SSR Speed), Durandal (SSR Wit) Support Banner",
-    "start_date": "2028-09-05T22:00:00Z",
-    "end_date": "2028-09-15T22:00:00Z",
+    "start_date": "2028-09-09T22:00:00Z",
+    "end_date": "2028-09-19T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -7864,8 +7864,8 @@
     "type": "character",
     "banner_id": "30368",
     "banner_name": "Espoir City Banner",
-    "start_date": "2028-09-13T22:00:00Z",
-    "end_date": "2028-09-22T22:00:00Z",
+    "start_date": "2028-09-17T22:00:00Z",
+    "end_date": "2028-09-26T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -7903,8 +7903,8 @@
     "type": "support",
     "banner_id": "30369",
     "banner_name": "Biko Pegasus (SR Wit), Daiichi Ruby (SSR Guts) Support Banner",
-    "start_date": "2028-09-13T22:00:00Z",
-    "end_date": "2028-09-22T22:00:00Z",
+    "start_date": "2028-09-17T22:00:00Z",
+    "end_date": "2028-09-26T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -7935,8 +7935,8 @@
     "type": "character",
     "banner_id": "30370",
     "banner_name": "Believe Banner",
-    "start_date": "2028-09-20T22:00:00Z",
-    "end_date": "2028-09-29T22:00:00Z",
+    "start_date": "2028-09-24T22:00:00Z",
+    "end_date": "2028-10-03T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -7970,8 +7970,8 @@
     "type": "character",
     "banner_id": "30372",
     "banner_name": "Hishi Akebono (Halloween), Marvelous Sunday (Halloween) Banner",
-    "start_date": "2028-09-27T22:00:00Z",
-    "end_date": "2028-10-07T22:00:00Z",
+    "start_date": "2028-10-01T22:00:00Z",
+    "end_date": "2028-10-11T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -8023,8 +8023,8 @@
     "type": "support",
     "banner_id": "30373",
     "banner_name": "Fuji Kiseki (SSR Guts), Eishin Flash (SSR Speed) Support Banner",
-    "start_date": "2028-09-27T22:00:00Z",
-    "end_date": "2028-10-07T22:00:00Z",
+    "start_date": "2028-10-01T22:00:00Z",
+    "end_date": "2028-10-11T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -8055,8 +8055,8 @@
     "type": "character",
     "banner_id": "30380",
     "banner_name": "Tosen Jordan (Halloween) Banner",
-    "start_date": "2028-10-05T22:00:00Z",
-    "end_date": "2028-10-14T22:00:00Z",
+    "start_date": "2028-10-09T22:00:00Z",
+    "end_date": "2028-10-18T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -8090,8 +8090,8 @@
     "type": "support",
     "banner_id": "30381",
     "banner_name": "Sakura Chitose O (SR Speed), Curren Bouquetd'or (SSR Stamina) Support Banner",
-    "start_date": "2028-10-05T22:00:00Z",
-    "end_date": "2028-10-14T22:00:00Z",
+    "start_date": "2028-10-09T22:00:00Z",
+    "end_date": "2028-10-18T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -8122,8 +8122,8 @@
     "type": "character",
     "banner_id": "30376",
     "banner_name": "Dantsu Flame Banner",
-    "start_date": "2028-10-11T22:00:00Z",
-    "end_date": "2028-10-21T22:00:00Z",
+    "start_date": "2028-10-15T22:00:00Z",
+    "end_date": "2028-10-25T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -8165,8 +8165,8 @@
     "type": "character",
     "banner_id": "30378",
     "banner_name": "Jungle Pocket Banner",
-    "start_date": "2028-10-11T22:00:00Z",
-    "end_date": "2028-10-21T22:00:00Z",
+    "start_date": "2028-10-15T22:00:00Z",
+    "end_date": "2028-10-25T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -8191,8 +8191,8 @@
     "type": "character",
     "banner_id": "30382",
     "banner_name": "Transcend (Onsen) Banner",
-    "start_date": "2028-10-18T22:00:00Z",
-    "end_date": "2028-11-07T22:00:00Z",
+    "start_date": "2028-10-22T22:00:00Z",
+    "end_date": "2028-11-11T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -8242,8 +8242,8 @@
     "type": "support",
     "banner_id": "30383",
     "banner_name": "Tokai Teio (SSR Speed), Kiyoko Hoshina (SSR Pal) Support Banner",
-    "start_date": "2028-10-18T22:00:00Z",
-    "end_date": "2028-11-07T22:00:00Z",
+    "start_date": "2028-10-22T22:00:00Z",
+    "end_date": "2028-11-11T22:00:00Z",
     "free": 80,
     "cards": [
       {
@@ -8276,8 +8276,8 @@
     "type": "character",
     "banner_id": "30386",
     "banner_name": "Wonder Acute (Onsen) Banner",
-    "start_date": "2028-10-26T22:00:00Z",
-    "end_date": "2028-11-03T22:00:00Z",
+    "start_date": "2028-10-31T22:00:00Z",
+    "end_date": "2028-11-08T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -8307,8 +8307,8 @@
     "type": "support",
     "banner_id": "30387",
     "banner_name": "Hokko Tarumae (SR Power), Mihono Bourbon (SSR Power) Support Banner",
-    "start_date": "2028-10-26T22:00:00Z",
-    "end_date": "2028-11-03T22:00:00Z",
+    "start_date": "2028-10-31T22:00:00Z",
+    "end_date": "2028-11-08T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -8339,8 +8339,8 @@
     "type": "character",
     "banner_id": "30388",
     "banner_name": "Buena Vista Banner",
-    "start_date": "2028-11-02T22:00:00Z",
-    "end_date": "2028-11-10T22:00:00Z",
+    "start_date": "2028-11-06T22:00:00Z",
+    "end_date": "2028-11-14T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -8374,8 +8374,8 @@
     "type": "character",
     "banner_id": "30390",
     "banner_name": "Nakayama Festa (Christmas), Dream Journey (Christmas) Banner",
-    "start_date": "2028-11-08T22:00:00Z",
-    "end_date": "2028-11-20T22:00:00Z",
+    "start_date": "2028-11-12T22:00:00Z",
+    "end_date": "2028-11-24T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -8431,8 +8431,8 @@
     "type": "support",
     "banner_id": "30391",
     "banner_name": "Gold Ship (SSR Stamina), Fenomeno (SSR Stamina) Support Banner",
-    "start_date": "2028-11-08T22:00:00Z",
-    "end_date": "2028-11-20T22:00:00Z",
+    "start_date": "2028-11-12T22:00:00Z",
+    "end_date": "2028-11-24T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -8463,8 +8463,8 @@
     "type": "character",
     "banner_id": "30394",
     "banner_name": "Oguri Cap (Anime Collab) Banner",
-    "start_date": "2028-11-17T22:00:00Z",
-    "end_date": "2028-12-14T22:00:00Z",
+    "start_date": "2028-11-22T22:00:00Z",
+    "end_date": "2028-12-19T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -8510,8 +8510,8 @@
     "type": "support",
     "banner_id": "30395",
     "banner_name": "Mejiro Dober (SR Speed), Inari One (SSR Stamina) Support Banner",
-    "start_date": "2028-11-17T22:00:00Z",
-    "end_date": "2028-12-14T22:00:00Z",
+    "start_date": "2028-11-22T22:00:00Z",
+    "end_date": "2028-12-19T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -8542,8 +8542,8 @@
     "type": "character",
     "banner_id": "30396",
     "banner_name": "Stay Gold Banner",
-    "start_date": "2028-11-25T22:00:00Z",
-    "end_date": "2028-12-23T22:00:00Z",
+    "start_date": "2028-11-29T22:00:00Z",
+    "end_date": "2028-12-27T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -8573,8 +8573,8 @@
     "type": "character",
     "banner_id": "30398",
     "banner_name": "Ikuno Dictus (New Year), Sakura Laurel (New Year) Banner",
-    "start_date": "2028-11-28T22:00:00Z",
-    "end_date": "2028-12-10T22:00:00Z",
+    "start_date": "2028-12-02T22:00:00Z",
+    "end_date": "2028-12-14T22:00:00Z",
     "free": 4,
     "cards": [
       {
@@ -8638,8 +8638,8 @@
     "type": "support",
     "banner_id": "30399",
     "banner_name": "Air Groove (SSR Speed), Fine Motion (SSR Power) Support Banner",
-    "start_date": "2028-11-28T22:00:00Z",
-    "end_date": "2028-12-10T22:00:00Z",
+    "start_date": "2028-12-02T22:00:00Z",
+    "end_date": "2028-12-14T22:00:00Z",
     "free": 100,
     "cards": [
       {
@@ -8670,8 +8670,8 @@
     "type": "character",
     "banner_id": "30402",
     "banner_name": "Gentildonna Banner",
-    "start_date": "2028-12-02T22:00:00Z",
-    "end_date": "2028-12-19T22:00:00Z",
+    "start_date": "2028-12-07T22:00:00Z",
+    "end_date": "2028-12-24T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -8696,8 +8696,8 @@
     "type": "character",
     "banner_id": "30404",
     "banner_name": "Orfevre Banner",
-    "start_date": "2028-12-02T22:00:00Z",
-    "end_date": "2028-12-19T22:00:00Z",
+    "start_date": "2028-12-07T22:00:00Z",
+    "end_date": "2028-12-24T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -8722,8 +8722,8 @@
     "type": "character",
     "banner_id": "30406",
     "banner_name": "Bubble Gum Fellow (New Year) Banner",
-    "start_date": "2028-12-07T22:00:00Z",
-    "end_date": "2028-12-17T22:00:00Z",
+    "start_date": "2028-12-12T22:00:00Z",
+    "end_date": "2028-12-22T22:00:00Z",
     "free": 6,
     "cards": [
       {
@@ -8753,8 +8753,8 @@
     "type": "support",
     "banner_id": "30407",
     "banner_name": "Satono Diamond (SR Stamina), King Halo (SSR Guts) Support Banner",
-    "start_date": "2028-12-07T22:00:00Z",
-    "end_date": "2028-12-17T22:00:00Z",
+    "start_date": "2028-12-12T22:00:00Z",
+    "end_date": "2028-12-22T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -8785,8 +8785,8 @@
     "type": "character",
     "banner_id": "30408",
     "banner_name": "Kiseki Banner",
-    "start_date": "2028-12-15T22:00:00Z",
-    "end_date": "2028-12-25T22:00:00Z",
+    "start_date": "2028-12-19T22:00:00Z",
+    "end_date": "2028-12-29T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -8816,8 +8816,8 @@
     "type": "character",
     "banner_id": "30410",
     "banner_name": "Taiki Shuttle (Valentine), Sounds of Earth (Valentine) Banner",
-    "start_date": "2028-12-22T22:00:00Z",
-    "end_date": "2029-01-05T22:00:00Z",
+    "start_date": "2028-12-27T22:00:00Z",
+    "end_date": "2029-01-10T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -8861,8 +8861,8 @@
     "type": "support",
     "banner_id": "30411",
     "banner_name": "Matikanefukukitaru (SSR Speed), Neo Universe (SSR Power) Support Banner",
-    "start_date": "2028-12-22T22:00:00Z",
-    "end_date": "2029-01-05T22:00:00Z",
+    "start_date": "2028-12-27T22:00:00Z",
+    "end_date": "2029-01-10T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -8893,8 +8893,8 @@
     "type": "character",
     "banner_id": "30414",
     "banner_name": "Royce and Royce Banner",
-    "start_date": "2029-01-02T22:00:00Z",
-    "end_date": "2029-01-11T22:00:00Z",
+    "start_date": "2029-01-07T22:00:00Z",
+    "end_date": "2029-01-16T22:00:00Z",
     "free": 5,
     "cards": [
       {
@@ -8936,8 +8936,8 @@
     "type": "character",
     "banner_id": "30416",
     "banner_name": "Almond Eye Banner",
-    "start_date": "2029-01-09T22:00:00Z",
-    "end_date": "2029-02-11T22:00:00Z",
+    "start_date": "2029-01-14T22:00:00Z",
+    "end_date": "2029-02-16T22:00:00Z",
     "free": 0,
     "cards": [
       {
@@ -8991,8 +8991,8 @@
     "type": "support",
     "banner_id": "30417",
     "banner_name": "Red Desire (SR Guts), Taiki Shuttle (SR Guts), Forever Young (SSR Wit), Casino Drive (SSR Pal) Support Banner",
-    "start_date": "2029-01-09T22:00:00Z",
-    "end_date": "2029-02-11T22:00:00Z",
+    "start_date": "2029-01-14T22:00:00Z",
+    "end_date": "2029-02-16T22:00:00Z",
     "free": 120,
     "cards": [
       {
@@ -9071,8 +9071,8 @@
     },
     "jp_release_date": "2026-03-11T03:00:00Z",
     "banner_duration_days": 8,
-    "start_date": "2029-01-20T22:00:00Z",
-    "end_date": "2029-01-28T22:00:00Z"
+    "start_date": "2029-01-24T22:00:00Z",
+    "end_date": "2029-02-01T22:00:00Z"
   },
   {
     "type": "support",
@@ -9105,8 +9105,8 @@
     },
     "jp_release_date": "2026-03-11T03:00:00Z",
     "banner_duration_days": 8,
-    "start_date": "2029-01-20T22:00:00Z",
-    "end_date": "2029-01-28T22:00:00Z"
+    "start_date": "2029-01-24T22:00:00Z",
+    "end_date": "2029-02-01T22:00:00Z"
   },
   {
     "type": "character",
@@ -9142,8 +9142,8 @@
     },
     "jp_release_date": "2026-03-19T03:00:00Z",
     "banner_duration_days": 11,
-    "start_date": "2029-01-25T22:00:00Z",
-    "end_date": "2029-02-05T22:00:00Z"
+    "start_date": "2029-01-30T22:00:00Z",
+    "end_date": "2029-02-10T22:00:00Z"
   },
   {
     "type": "character",
@@ -9205,8 +9205,8 @@
     },
     "jp_release_date": "2026-03-30T03:00:00Z",
     "banner_duration_days": 11,
-    "start_date": "2029-02-02T22:00:00Z",
-    "end_date": "2029-02-13T22:00:00Z"
+    "start_date": "2029-02-07T22:00:00Z",
+    "end_date": "2029-02-18T22:00:00Z"
   },
   {
     "type": "support",
@@ -9239,8 +9239,8 @@
     },
     "jp_release_date": "2026-03-30T03:00:00Z",
     "banner_duration_days": 11,
-    "start_date": "2029-02-02T22:00:00Z",
-    "end_date": "2029-02-13T22:00:00Z"
+    "start_date": "2029-02-07T22:00:00Z",
+    "end_date": "2029-02-18T22:00:00Z"
   },
   {
     "type": "character",
@@ -9280,8 +9280,8 @@
     },
     "jp_release_date": "2026-04-10T03:00:00Z",
     "banner_duration_days": 10,
-    "start_date": "2029-02-10T22:00:00Z",
-    "end_date": "2029-02-20T22:00:00Z"
+    "start_date": "2029-02-15T22:00:00Z",
+    "end_date": "2029-02-25T22:00:00Z"
   },
   {
     "type": "support",
@@ -9314,8 +9314,8 @@
     },
     "jp_release_date": "2026-04-10T03:00:00Z",
     "banner_duration_days": 10,
-    "start_date": "2029-02-10T22:00:00Z",
-    "end_date": "2029-02-20T22:00:00Z"
+    "start_date": "2029-02-15T22:00:00Z",
+    "end_date": "2029-02-25T22:00:00Z"
   },
   {
     "type": "character",
@@ -9351,8 +9351,8 @@
     },
     "jp_release_date": "2026-04-20T03:00:00Z",
     "banner_duration_days": 10,
-    "start_date": "2029-02-17T22:00:00Z",
-    "end_date": "2029-02-27T22:00:00Z"
+    "start_date": "2029-02-22T22:00:00Z",
+    "end_date": "2029-03-04T22:00:00Z"
   },
   {
     "type": "character",
@@ -9398,8 +9398,8 @@
     },
     "jp_release_date": "2026-04-30T03:00:00Z",
     "banner_duration_days": 11,
-    "start_date": "2029-02-24T22:00:00Z",
-    "end_date": "2029-03-07T22:00:00Z"
+    "start_date": "2029-03-01T22:00:00Z",
+    "end_date": "2029-03-12T22:00:00Z"
   },
   {
     "type": "support",
@@ -9432,8 +9432,8 @@
     },
     "jp_release_date": "2026-04-30T03:00:00Z",
     "banner_duration_days": 11,
-    "start_date": "2029-02-24T22:00:00Z",
-    "end_date": "2029-03-07T22:00:00Z"
+    "start_date": "2029-03-01T22:00:00Z",
+    "end_date": "2029-03-12T22:00:00Z"
   },
   {
     "type": "character",
@@ -9508,8 +9508,8 @@
     },
     "jp_release_date": "2026-04-30T03:00:00Z",
     "banner_duration_days": 11,
-    "start_date": "2029-02-24T22:00:00Z",
-    "end_date": "2029-03-07T22:00:00Z"
+    "start_date": "2029-03-01T22:00:00Z",
+    "end_date": "2029-03-12T22:00:00Z"
   },
   {
     "type": "character",
@@ -9529,8 +9529,8 @@
     ],
     "jp_release_date": "2026-05-11T03:00:00Z",
     "banner_duration_days": 9,
-    "start_date": "2029-03-04T22:00:00Z",
-    "end_date": "2029-03-13T22:00:00Z"
+    "start_date": "2029-03-09T22:00:00Z",
+    "end_date": "2029-03-18T22:00:00Z"
   },
   {
     "type": "support",
@@ -9563,8 +9563,8 @@
     },
     "jp_release_date": "2026-05-11T03:00:00Z",
     "banner_duration_days": 9,
-    "start_date": "2029-03-04T22:00:00Z",
-    "end_date": "2029-03-13T22:00:00Z"
+    "start_date": "2029-03-09T22:00:00Z",
+    "end_date": "2029-03-18T22:00:00Z"
   },
   {
     "type": "character",
@@ -9591,8 +9591,8 @@
     },
     "jp_release_date": "2026-05-20T03:00:00Z",
     "banner_duration_days": 9,
-    "start_date": "2029-03-10T22:00:00Z",
-    "end_date": "2029-03-19T22:00:00Z"
+    "start_date": "2029-03-15T22:00:00Z",
+    "end_date": "2029-03-24T22:00:00Z"
   },
   {
     "type": "character",
@@ -9625,8 +9625,8 @@
     },
     "jp_release_date": "2026-05-29T03:00:00Z",
     "banner_duration_days": 17,
-    "start_date": "2029-03-16T22:00:00Z",
-    "end_date": "2029-04-02T22:00:00Z"
+    "start_date": "2029-03-21T22:00:00Z",
+    "end_date": "2029-04-07T22:00:00Z"
   },
   {
     "type": "support",
@@ -9659,8 +9659,8 @@
     },
     "jp_release_date": "2026-05-29T03:00:00Z",
     "banner_duration_days": 17,
-    "start_date": "2029-03-16T22:00:00Z",
-    "end_date": "2029-04-02T22:00:00Z"
+    "start_date": "2029-03-21T22:00:00Z",
+    "end_date": "2029-04-07T22:00:00Z"
   },
   {
     "type": "character",
@@ -9687,8 +9687,8 @@
     },
     "jp_release_date": "2026-06-15T03:00:00Z",
     "banner_duration_days": 14,
-    "start_date": "2029-03-28T22:00:00Z",
-    "end_date": "2029-04-11T22:00:00Z"
+    "start_date": "2029-04-03T22:00:00Z",
+    "end_date": "2029-04-17T22:00:00Z"
   },
   {
     "type": "character",
@@ -9715,8 +9715,8 @@
     },
     "jp_release_date": "2026-06-29T03:00:00Z",
     "banner_duration_days": 22,
-    "start_date": "2029-04-07T22:00:00Z",
-    "end_date": "2029-04-29T22:00:00Z"
+    "start_date": "2029-04-12T22:00:00Z",
+    "end_date": "2029-05-04T22:00:00Z"
   },
   {
     "type": "support",
@@ -9749,8 +9749,8 @@
     },
     "jp_release_date": "2026-06-29T03:00:00Z",
     "banner_duration_days": 22,
-    "start_date": "2029-04-07T22:00:00Z",
-    "end_date": "2029-04-29T22:00:00Z",
+    "start_date": "2029-04-12T22:00:00Z",
+    "end_date": "2029-05-04T22:00:00Z",
     "scenario_number": 14,
     "scenario": "Tracen-ken"
   },
@@ -9779,8 +9779,8 @@
     },
     "jp_release_date": "2026-07-10T03:00:00Z",
     "banner_duration_days": 11,
-    "start_date": "2029-04-15T22:00:00Z",
-    "end_date": "2029-04-26T22:00:00Z"
+    "start_date": "2029-04-20T22:00:00Z",
+    "end_date": "2029-05-01T22:00:00Z"
   },
   {
     "type": "support",
@@ -9813,8 +9813,8 @@
     },
     "jp_release_date": "2026-07-10T03:00:00Z",
     "banner_duration_days": 11,
-    "start_date": "2029-04-15T22:00:00Z",
-    "end_date": "2029-04-26T22:00:00Z"
+    "start_date": "2029-04-20T22:00:00Z",
+    "end_date": "2029-05-01T22:00:00Z"
   },
   {
     "type": "step_up",
@@ -9822,8 +9822,8 @@
     "banner_name": "3rd Anniversary Step Up",
     "anniversary_name": "3rd Anniversary",
     "tied_to_banner_id": "30223",
-    "start_date": "2027-08-14T22:00:00Z",
-    "end_date": "2027-09-08T22:00:00Z",
+    "start_date": "2027-08-15T22:00:00Z",
+    "end_date": "2027-09-09T22:00:00Z",
     "is_confirmed": false,
     "cards": [],
     "events": [],
@@ -9841,8 +9841,8 @@
     "banner_name": "3.5th Anniversary Step Up",
     "anniversary_name": "3.5th Anniversary",
     "tied_to_banner_id": "30269",
-    "start_date": "2027-12-20T22:00:00Z",
-    "end_date": "2028-01-05T22:00:00Z",
+    "start_date": "2027-12-22T22:00:00Z",
+    "end_date": "2028-01-07T22:00:00Z",
     "is_confirmed": false,
     "cards": [],
     "events": [],
@@ -9860,8 +9860,8 @@
     "banner_name": "4th Anniversary Step Up",
     "anniversary_name": "4th Anniversary",
     "tied_to_banner_id": "30315",
-    "start_date": "2028-04-27T22:00:00Z",
-    "end_date": "2028-05-21T22:00:00Z",
+    "start_date": "2028-04-30T22:00:00Z",
+    "end_date": "2028-05-24T22:00:00Z",
     "is_confirmed": false,
     "cards": [],
     "events": [],
@@ -9879,8 +9879,8 @@
     "banner_name": "4.5th Anniversary Step Up",
     "anniversary_name": "4.5th Anniversary",
     "tied_to_banner_id": "30362",
-    "start_date": "2028-09-02T22:00:00Z",
-    "end_date": "2028-09-27T22:00:00Z",
+    "start_date": "2028-09-05T22:00:00Z",
+    "end_date": "2028-09-30T22:00:00Z",
     "is_confirmed": false,
     "cards": [],
     "events": [],
@@ -9898,8 +9898,8 @@
     "banner_name": "5th Anniversary Step Up",
     "anniversary_name": "5th Anniversary",
     "tied_to_banner_id": "30417",
-    "start_date": "2029-01-09T22:00:00Z",
-    "end_date": "2029-02-11T22:00:00Z",
+    "start_date": "2029-01-14T22:00:00Z",
+    "end_date": "2029-02-16T22:00:00Z",
     "is_confirmed": false,
     "cards": [],
     "events": [],
