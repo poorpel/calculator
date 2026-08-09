@@ -252,12 +252,6 @@
   <a href="/updates" class="top-nav-link" id="updatesNavLink">Updates</a>
   <a href="/credits" class="top-nav-link">Credits</a>
   <div style="margin-left:auto;display:flex;align-items:center;gap:10px">
-    <select id="timelineFileSelect" title="Timeline data source"
-      style="background:#111;border:1px solid #2a2a2a;border-radius:4px;color:#888;font-size:12px;font-family:inherit;padding:4px 8px;cursor:pointer;outline:none;">
-      {% for key, label in timeline_file_options.items() %}
-        <option value="{{ key }}" {% if key == active_file_key %}selected{% endif %}>{{ label }}</option>
-      {% endfor %}
-    </select>
     <button id="feedbackBtn" style="font-size:12px;color:#888;background:none;border:1px solid #222;border-radius:4px;padding:4px 10px;cursor:pointer;transition:color 0.1s,border-color 0.1s;" onmouseover="this.style.color='#ccc';this.style.borderColor='#444'" onmouseout="this.style.color='#888';this.style.borderColor='#222'">Report / Suggest</button>
     {% if user %}
       {% if user.avatar %}
@@ -428,15 +422,6 @@ document.querySelectorAll(".filter-btn").forEach(btn => {
   const DEBUG_KEY = 'debugMode_v1';
   const isDebug = localStorage.getItem(DEBUG_KEY) === '1';
   if (isDebug) document.body.classList.add('debug-mode');
-  document.getElementById('timelineFileSelect').addEventListener('change', async function() {
-    await fetch('/api/set-timeline', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ file: this.value })
-    });
-    window.location.reload();
-  });
-
   document.addEventListener('DOMContentLoaded', function() {
     const btn = document.getElementById('navSettingsBtn');
     const dd  = document.getElementById('navSettingsDd');

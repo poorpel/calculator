@@ -546,15 +546,6 @@
   <a href="/updates" class="top-nav-link" id="updatesNavLink">Updates</a>
   <a href="/credits" class="top-nav-link">Credits</a>
   <div style="margin-left:auto;display:flex;align-items:center;gap:10px">
-    {% if timeline_file_options %}
-    <span id="timelineInfoTrigger" style="font-size:13px;color:#aaa;white-space:nowrap;cursor:pointer;user-select:none;font-weight:500;" title="What are these?">Switch banner date timeline</span>
-    <select id="timelineFileSelect" title="Timeline data source"
-      style="background:#111;border:1px solid #3a3a3a;border-radius:4px;color:#ccc;font-size:13px;font-family:inherit;padding:5px 10px;cursor:pointer;outline:none;">
-      {% for key, label in timeline_file_options.items() %}
-        <option value="{{ key }}" {% if key == active_file_key %}selected{% endif %}>{{ label }}</option>
-      {% endfor %}
-    </select>
-    {% endif %}
     <button id="feedbackBtn" style="font-size:12px;color:#888;background:none;border:1px solid #222;border-radius:4px;padding:4px 10px;cursor:pointer;transition:color 0.1s,border-color 0.1s;" onmouseover="this.style.color='#ccc';this.style.borderColor='#444'" onmouseout="this.style.color='#888';this.style.borderColor='#222'">Report / Suggest</button>
     <button id="tourBtn" style="font-size:13px;color:#bbb;background:none;border:1px solid #444;border-radius:4px;padding:5px 12px;cursor:pointer;transition:color 0.1s,border-color 0.1s,background 0.1s;" onmouseover="this.style.color='#fff';this.style.borderColor='#777';this.style.background='#1a1a1a'" onmouseout="this.style.color='#bbb';this.style.borderColor='#444';this.style.background='none'">Take a tour</button>
     {% if user %}
@@ -3838,47 +3829,6 @@ updateAllCarats();
 })();
 </script>
 
-<!-- ── Timeline Info Popup ───────────────────────────────────────── -->
-<style>
-  #timelineInfoPopup {
-    display: none; position: fixed; z-index: 8500;
-    background: #111; border: 1px solid #2a2a2a; border-radius: 10px;
-    padding: 14px 18px; max-width: 300px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.8);
-    pointer-events: auto;
-    font-size: 13px; color: #bbb; line-height: 1.6;
-  }
-  #timelineInfoPopup.open { display: block; }
-</style>
-<div id="timelineInfoPopup">
-  <p><strong style="color:#d8d8d8;">Default</strong> is based off of uma.moe's timeline.</p>
-  <p style="margin-top:8px;"><strong style="color:#d8d8d8;">Split</strong> is based off of Soul's Future Releases (and a lot more similar to Henry's).</p>
-  <p style="margin-top:8px;color:#555;">I don't know which one is more accurate, no one truly can, so I've included both.</p>
-</div>
-<script>
-(function() {
-  const popup = document.getElementById('timelineInfoPopup');
-  const sel   = document.getElementById('timelineFileSelect');
-  if (!sel) return;
-
-  function position() {
-    const r  = sel.getBoundingClientRect();
-    const pw = popup.offsetWidth || 300;
-    const ph = popup.offsetHeight || 120;
-    let left = r.left - pw - 10;
-    if (left < 12) left = r.right + 10;
-    let top = r.top + r.height / 2 - ph / 2;
-    top = Math.max(12, Math.min(top, window.innerHeight - ph - 12));
-    popup.style.left = left + 'px';
-    popup.style.top  = top  + 'px';
-  }
-
-  sel.addEventListener('focus', () => { popup.classList.add('open'); position(); });
-  sel.addEventListener('blur',  () => { popup.classList.remove('open'); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') popup.classList.remove('open'); });
-})();
-</script>
-
 <!-- ── Feedback Modal ────────────────────────────────────────────── -->
 <style>
   #feedbackOverlay {
@@ -3985,20 +3935,6 @@ updateAllCarats();
       status.textContent = 'Network error. Please try again.';
       submitBtn.disabled = false;
     }
-  });
-})();
-</script>
-<script>
-(function() {
-  const sel = document.getElementById('timelineFileSelect');
-  if (!sel) return;
-  sel.addEventListener('change', async function() {
-    await fetch('/api/set-timeline', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ file: this.value })
-    });
-    window.location.reload();
   });
 })();
 </script>

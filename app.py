@@ -293,17 +293,12 @@ _JP_INTERCEPT = 6059.8
 def _timeline_meta(raw):
     """Return latest confirmed character/support banner names+dates and last-updated timestamp."""
     import os
-    key = _get_timeline_file_key()
-    if key == "split":
-        mtimes = [
-            os.path.getmtime(BASE / "timeline_split" / f)
-            for f in ["banners.json", "pvp.json", "anniversaries.json"]
-            if (BASE / "timeline_split" / f).exists()
-        ]
-        mtime = max(mtimes) if mtimes else None
-    else:
-        p = BASE / "timeline_banners_output.json"
-        mtime = os.path.getmtime(p) if p.exists() else None
+    mtimes = [
+        os.path.getmtime(BASE / "timeline_split" / f)
+        for f in ["banners.json", "pvp.json", "anniversaries.json"]
+        if (BASE / "timeline_split" / f).exists()
+    ]
+    mtime = max(mtimes) if mtimes else None
     updated = datetime.fromtimestamp(mtime).strftime("%b %d, %Y").replace(" 0", " ") if mtime else None
 
     confirmed = [b for b in raw if b.get("start_date")]
@@ -372,23 +367,13 @@ def _card_local_path(card):
 _UA_GAMETORA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36", "Referer": "https://gametora.com/"}
 _UA_UMA      = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36", "Referer": "https://uma.guide/"}
 
-TIMELINE_FILES = {
-    "output":     ("timeline_banners_output.json",   "Default"),
-    "split":      (None,                             "Split"),
-    "custom":     ("timeline_banners_custom.json",   "Custom"),
-    "experiment": ("timeline_experiment.json",       "Experiment"),
-}
-
 SPLIT_FILES = ["banners.json", "pvp.json", "anniversaries.json"]
 
 def _load_pack_events_path():
-    if _get_timeline_file_key() == "split":
-        return BASE / "timeline_split" / "packs.json"
-    return BASE / "pack_events.json"
+    return BASE / "timeline_split" / "packs.json"
 
 def _get_timeline_file_key():
-    key = request.cookies.get("timeline_file", "output")
-    return key if key in TIMELINE_FILES else "output"
+    return "split"
 
 def _scenario_entries(banners):
     """Synthetic timeline entries for scenario releases, derived from scenario-tagged support banners."""
@@ -410,29 +395,14 @@ def _scenario_entries(banners):
     return out
 
 def _load_timeline_raw():
-    key = _get_timeline_file_key()
-    if key == "split":
-        combined = []
-        for fname in SPLIT_FILES:
-            path = BASE / "timeline_split" / fname
-            if path.exists():
-                combined.extend(json.loads(path.read_text(encoding="utf-8")))
-        combined.extend(_scenario_entries(combined))
-        return combined
-    filename, _ = TIMELINE_FILES[key]
-    path = BASE / filename
-    if not path.exists():
-        path = BASE / "timeline_banners_output.json"
-    return json.loads(path.read_text(encoding="utf-8"))
+    combined = []
+    for fname in SPLIT_FILES:
+        path = BASE / "timeline_split" / fname
+        if path.exists():
+            combined.extend(json.loads(path.read_text(encoding="utf-8")))
+    combined.extend(_scenario_entries(combined))
+    return combined
 
-@app.route("/api/set-timeline", methods=["POST"])
-def set_timeline():
-    key = request.json.get("file", "output")
-    if key not in TIMELINE_FILES:
-        return jsonify({"ok": False, "error": "invalid"}), 400
-    resp = jsonify({"ok": True})
-    resp.set_cookie("timeline_file", key, max_age=60*60*24*365, samesite="Lax")
-    return resp
 
 def _load_custom_banners(raw=None):
     custom_path = BASE / "custom_banners.json"
@@ -497,8 +467,7 @@ def _load_custom_banners(raw=None):
         return []
 
 def _download_all_cards():
-    raw = json.loads((BASE / "timeline_banners_output.json").read_text(encoding="utf-8"))
-    raw = raw + _load_custom_banners(raw)
+    raw = _load_timeline_raw()
     for b in raw:
         for card in (b.get("cards") or [])[:2]:
             dest = _card_local_path(card)
@@ -556,8 +525,6 @@ def _assign_meeting_numbers(raw):
 @app.route("/")
 def index():
     raw = _load_timeline_raw()
-    if _get_timeline_file_key() != "split":
-        raw = raw + _load_custom_banners(raw)
     _assign_meeting_numbers(raw)
     def _banner_name(b):
         if b["type"] == "support" and b.get("cards"):
@@ -611,13 +578,8 @@ def index():
             print(f"[pack_events] Error loading pack_events.json: {_pe_err}")
     pack_uma     = _enrich_pack(json.loads((BASE / "pack_uma.json").read_text(encoding="utf-8")),     is_char=True)
     pack_support = _enrich_pack(json.loads((BASE / "pack_support.json").read_text(encoding="utf-8")), is_char=False)
-    active_file_key = _get_timeline_file_key()
-    timeline_file_options = {k: v[1] for k, v in TIMELINE_FILES.items()
-                             if v[0] is None or (BASE / v[0]).exists()}
     return render_template("index.html", banners=banners, anniversaries=anniversaries,
                            pack_uma=pack_uma, pack_support=pack_support,
-                           active_file_key=active_file_key,
-                           timeline_file_options=timeline_file_options,
                            timeline_meta=_timeline_meta(raw),
                            user=session.get("user"))
 
@@ -693,30 +655,11 @@ def _enrich_pack(entries, is_char):
 
 def _get_anniversaries():
     from datetime import datetime as dt_
-    if _get_timeline_file_key() == "split":
-        ann_path = BASE / "timeline_split" / "anniversaries.json"
-        raw_ann = json.loads(ann_path.read_text(encoding="utf-8")) if ann_path.exists() else []
-        today = date.today().isoformat()
-        result = []
-        for b in raw_ann:
-            start = (b.get("start_date") or "")[:10]
-            if not start or start < today:
-                continue
-            result.append({
-                "name":         _anniv_display_name(b.get("banner_name", "")),
-                "date":         dt_.fromisoformat(start).strftime("%B %d, %Y").replace(" 0", " "),
-                "id":           f"e{b.get('index', 0)}",
-                "start":        start,
-                "end":          (b.get("end_date") or "")[:10],
-                "is_confirmed": b.get("is_confirmed", False),
-            })
-        return result
-    raw = json.loads((BASE / "timeline_banners_output.json").read_text(encoding="utf-8"))
+    ann_path = BASE / "timeline_split" / "anniversaries.json"
+    raw_ann = json.loads(ann_path.read_text(encoding="utf-8")) if ann_path.exists() else []
     today = date.today().isoformat()
     result = []
-    for b in raw:
-        if b.get("type") != "anniversary":
-            continue
+    for b in raw_ann:
         start = (b.get("start_date") or "")[:10]
         if not start or start < today:
             continue
@@ -784,8 +727,6 @@ def updates():
 def cards():
     # Build card → earliest banner date map from timeline data
     raw = _load_timeline_raw()
-    if _get_timeline_file_key() != "split":
-        raw = raw + _load_custom_banners(raw)
     card_first_date = {}
     banner_cards = {}
     for b in raw:
@@ -931,11 +872,6 @@ def data():
 @app.route("/timeline")
 def timeline():
     raw = _load_timeline_raw()
-    active_file_key = _get_timeline_file_key()
-    if active_file_key != "split":
-        raw = raw + _load_custom_banners(raw)
-    timeline_file_options = {k: v[1] for k, v in TIMELINE_FILES.items()
-                             if v[0] is None or (BASE / v[0]).exists()}
     today = date.today().isoformat()
     cutoff = (date.today() - timedelta(days=14)).isoformat()
     def _show(b):
@@ -993,8 +929,6 @@ def timeline():
         end_date = max(end_dates) if end_dates else None
         groups.append({"date": date_label, "end_date": end_date, "banners": group_banners, "events": events, "rewards": rewards})
     return render_template("timeline.html", groups=groups,
-                           active_file_key=active_file_key,
-                           timeline_file_options=timeline_file_options,
                            timeline_meta=_timeline_meta(raw),
                            user=session.get("user"))
 
