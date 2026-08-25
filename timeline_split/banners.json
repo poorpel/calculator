@@ -893,69 +893,6 @@
   },
   {
     "type": "character",
-    "banner_id": "30130",
-    "banner_name": "Seeking the Pearl Banner",
-    "start_date": "2026-08-29T22:00:00Z",
-    "end_date": "2026-09-04T22:00:00Z",
-    "free": 0,
-    "cards": [
-      {
-        "name": "Seeking the Pearl",
-        "id": "104201",
-        "url": "https://gametora.com/umamusume/characters/104201-seeking-the-pearl",
-        "uma_url": "https://uma.guide/characters/detail?card=104201"
-      }
-    ],
-    "events": [
-      {
-        "name": "Autumn G1 Celebration Missions Part 1 (Kikuka Sho)",
-        "amount": 150
-      }
-    ],
-    "rewards": {
-      "uma_ticket": 0,
-      "support_ticket": 0,
-      "ssr": 0,
-      "sr": 0
-    },
-    "is_confirmed": false,
-    "banner_duration_days": 6,
-    "jp_release_date": "2022-10-17T03:00:00Z"
-  },
-  {
-    "type": "support",
-    "banner_id": "30131",
-    "banner_name": "K.S.Miracle (SR Guts), Daiichi Ruby (SSR Power) Support Banner",
-    "start_date": "2026-08-29T22:00:00Z",
-    "end_date": "2026-09-04T22:00:00Z",
-    "free": 0,
-    "cards": [
-      {
-        "name": "K.S.Miracle (SR Guts)",
-        "id": "20051",
-        "url": "https://gametora.com/umamusume/supports/20051-ksmiracle",
-        "uma_url": "https://uma.guide/support-cards/detail?id=20051"
-      },
-      {
-        "name": "Daiichi Ruby (SSR Power)",
-        "id": "30114",
-        "url": "https://gametora.com/umamusume/supports/30114-daiichi-ruby",
-        "uma_url": "https://uma.guide/support-cards/detail?id=30114"
-      }
-    ],
-    "events": [],
-    "rewards": {
-      "uma_ticket": 0,
-      "support_ticket": 0,
-      "ssr": 0,
-      "sr": 0
-    },
-    "is_confirmed": false,
-    "banner_duration_days": 6,
-    "jp_release_date": "2022-10-17T03:00:00Z"
-  },
-  {
-    "type": "character",
     "banner_id": "30122",
     "banner_name": "Yamanin Zephyr Banner",
     "start_date": "2026-08-30T22:00:00Z",
@@ -1204,6 +1141,10 @@
       {
         "name": "Autumn G1 Celebration Missions Part 2 (Japan Cup)",
         "amount": 150
+      },
+      {
+        "name": "2nd Aim for the Strongest Team!",
+        "amount": 1500
       }
     ],
     "rewards": {
