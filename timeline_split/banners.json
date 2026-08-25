@@ -925,10 +925,10 @@
       }
     ],
     "rewards": {
-      "uma_ticket": 2,
-      "support_ticket": 2,
-      "ssr": 3,
-      "sr": 4
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 1,
+      "sr": 2
     },
     "is_confirmed": false,
     "banner_duration_days": 8,
@@ -1069,8 +1069,8 @@
       }
     ],
     "rewards": {
-      "uma_ticket": 2,
-      "support_ticket": 2,
+      "uma_ticket": 0,
+      "support_ticket": 0,
       "ssr": 0,
       "sr": 0
     },
@@ -1144,10 +1144,10 @@
       }
     ],
     "rewards": {
-      "uma_ticket": 0,
-      "support_ticket": 0,
-      "ssr": 0,
-      "sr": 0
+      "uma_ticket": 2,
+      "support_ticket": 2,
+      "ssr": 2,
+      "sr": 2
     },
     "is_confirmed": false,
     "banner_duration_days": 10,
@@ -1377,8 +1377,8 @@
     "rewards": {
       "uma_ticket": 0,
       "support_ticket": 0,
-      "ssr": 2,
-      "sr": 3
+      "ssr": 1,
+      "sr": 2
     },
     "is_confirmed": false,
     "banner_duration_days": 8,
