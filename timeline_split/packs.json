@@ -61,7 +61,7 @@
       ],
       "_estimated_start": "2027-05-28",
       "_estimated_date": "May 28, 2027 (est.)",
-      "start": "2027-05-06"
+      "start": "2027-05-07"
     },
     {
       "name": "New Years 2024",
@@ -97,7 +97,7 @@
       },
       "_estimated_start": "2028-05-03",
       "_estimated_date": "May 3, 2028 (est.)",
-      "start": "2028-03-19"
+      "start": "2028-03-20"
     },
     {
       "name": "New Years 2026",
@@ -116,7 +116,7 @@
       },
       "_estimated_start": "2029-02-03",
       "_estimated_date": "February 3, 2029 (est.)",
-      "start": "2028-12-02"
+      "start": "2028-12-03"
     },
     {
       "name": "3rd Anniversary Step Up",
@@ -149,7 +149,7 @@
         "uma": 2,
         "ssr": 3
       },
-      "start": "2028-04-30"
+      "start": "2028-05-01"
     },
     {
       "name": "4.5th Anniversary Step Up",
@@ -160,7 +160,7 @@
         "uma": 0,
         "ssr": 2
       },
-      "start": "2028-09-05"
+      "start": "2028-09-06"
     },
     {
       "name": "5th Anniversary Step Up",
@@ -171,7 +171,7 @@
         "uma": 2,
         "ssr": 3
       },
-      "start": "2029-01-14"
+      "start": "2029-01-15"
     }
   ]
 }
