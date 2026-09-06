@@ -927,7 +927,6 @@
           <th class="center" style="width:100px;">Total</th>
           <th class="center" style="width:80px;">Free Pulls</th>
           <th class="center" style="width:80px;">Ticket Pulls</th>
-          <th class="center" style="width:80px;">Paid Pulls</th>
           <th class="center" style="width:90px;">Max Pulls</th>
           <th class="center" style="width:80px;">Pulls</th>
           <th class="center prob-th" style="width:48px;">None</th>
@@ -1915,7 +1914,6 @@ function updateAllCarats() {
     const newCMBonusForType = newBonusForType - newShopForType - newLOHBonusForType;
 
     tr.querySelector(".cell-ticket-pulls").textContent = ticketsAvail > 0 ? ticketsAvail.toLocaleString() : "—";
-    tr.querySelector(".cell-paid-pulls").textContent   = "—";
 
     if (!hasDate) {
       tr.querySelector(".cell-carat").textContent      = "—";
@@ -2299,7 +2297,6 @@ function makeRow(data = {}) {
     <td class="center cell-su-combined" colspan="3" style="display:none;">—</td>
     <td class="center cell-auto cell-free-pulls">—</td>
     <td class="center cell-auto cell-ticket-pulls">—</td>
-    <td class="center cell-auto cell-paid-pulls">—</td>
     <td class="center cell-auto cell-max-pulls">—</td>
     <td class="center cell-pulls"><input type="text" inputmode="numeric" placeholder="0"></td>
     <td class="center cell-pct-none">100.0%</td>
@@ -3095,7 +3092,6 @@ function _applyStepUpMode(tr, maxPulls) {
   tr.querySelector('.cell-su-combined').style.display = '';
   tr.querySelector('.cell-free-pulls').style.display  = 'none';
   tr.querySelector('.cell-ticket-pulls').style.display = 'none';
-  tr.querySelector('.cell-paid-pulls').style.display  = 'none';
   _suUpdateCombined(tr);
 }
 function _clearStepUpMode(tr) {
@@ -3104,7 +3100,6 @@ function _clearStepUpMode(tr) {
   tr.querySelector('.cell-su-combined').style.display  = 'none';
   tr.querySelector('.cell-free-pulls').style.display   = '';
   tr.querySelector('.cell-ticket-pulls').style.display = '';
-  tr.querySelector('.cell-paid-pulls').style.display   = '';
 }
 
 function _annivNum(ev) {
@@ -3474,7 +3469,7 @@ updateAllCarats();
     {
       targets: ["#calcTable thead th:nth-child(9)", "#calcTable thead th:nth-child(10)", "#calcTable thead th:nth-child(11)"],
       title: "Pull Breakdown",
-      body: "<strong style='color:#ccc'>Free Pulls</strong> are the bonus free pulls included with the banner.<br><br><strong style='color:#ccc'>Ticket Pulls</strong> are pulls from any Uma or Support tickets you have. Click the Ticket Pulls cell on any row to toggle tickets on or off for that banner.<br><br><strong style='color:#ccc'>Paid Pulls</strong> are pulls from paid carats. Each column updates as you plan pulls on earlier rows.",
+      body: "<strong style='color:#ccc'>Free Pulls</strong> are the bonus free pulls included with the banner.<br><br><strong style='color:#ccc'>Ticket Pulls</strong> are pulls from any Uma or Support tickets you have. Click the Ticket Pulls cell on any row to toggle tickets on or off for that banner. Each column updates as you plan pulls on earlier rows.",
       placement: "bottom",
     },
     {
