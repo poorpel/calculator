@@ -1716,5 +1716,26 @@
     "gametora_url": "https://gametora.com/umamusume/characters/102203-fine-motion",
     "uma_guide_url": "https://uma.guide/characters/detail?card=102203",
     "release_date": "2029-04-12"
+  },
+  {
+    "id": "114501",
+    "name": "Rulership",
+    "release_date": "2029-04-20",
+    "uma_guide_url": "https://uma.guide/characters/detail?card=114501"
+  },
+  {
+    "id": "102003",
+    "name": "Seiun Sky (Summer)",
+    "release_date": "2029-04-26",
+    "uma_guide_url": "https://uma.guide/characters/detail?card=102003"
+  },
+  {
+    "id": "107403",
+    "name": "Mejiro Bright (Summer)",
+    "release_date": "2029-04-26",
+    "uma_guide_url": "https://uma.guide/characters/detail?card=107403"
+  },
+  {
+    "_marker": "5.5 Year Anniversary"
   }
 ]

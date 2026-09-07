@@ -1418,5 +1418,92 @@
     "gametora_url": "https://gametora.com/umamusume/supports/30290-casino-drive",
     "uma_guide_url": "https://uma.guide/support-cards/detail?id=30290",
     "release_date": "2029-01-07"
+  },
+  {
+    "id": "30292",
+    "name": "Marche Lorraine (SSR Speed)",
+    "release_date": "2029-01-17",
+    "uma_guide_url": "https://uma.guide/support-cards/detail?id=30292"
+  },
+  {
+    "id": "30293",
+    "name": "Daring Tact (SSR Guts)",
+    "release_date": "2029-01-31",
+    "uma_guide_url": "https://uma.guide/support-cards/detail?id=30293"
+  },
+  {
+    "id": "30294",
+    "name": "Daring Heart (SSR Guts)",
+    "release_date": "2029-01-31",
+    "uma_guide_url": "https://uma.guide/support-cards/detail?id=30294"
+  },
+  {
+    "id": "30296",
+    "name": "Aston Machan (SSR Guts)",
+    "release_date": "2029-02-07",
+    "uma_guide_url": "https://uma.guide/support-cards/detail?id=30296"
+  },
+  {
+    "id": "30298",
+    "name": "Tap Dance City (SSR Speed)",
+    "release_date": "2029-02-21",
+    "uma_guide_url": "https://uma.guide/support-cards/detail?id=30298"
+  },
+  {
+    "id": "30297",
+    "name": "Agnes Digital (SSR Power)",
+    "release_date": "2029-02-21",
+    "uma_guide_url": "https://uma.guide/support-cards/detail?id=30297"
+  },
+  {
+    "id": "30300",
+    "name": "Sakura Chiyono O (SSR Stamina)",
+    "release_date": "2029-03-01",
+    "uma_guide_url": "https://uma.guide/support-cards/detail?id=30300"
+  },
+  {
+    "id": "30302",
+    "name": "Satono Diamond (SSR Speed)",
+    "release_date": "2029-03-14",
+    "uma_guide_url": "https://uma.guide/support-cards/detail?id=30302"
+  },
+  {
+    "id": "30301",
+    "name": "Gran Alegria (SSR Power)",
+    "release_date": "2029-03-14",
+    "uma_guide_url": "https://uma.guide/support-cards/detail?id=30301"
+  },
+  {
+    "id": "30304",
+    "name": "Meisho Doto (SSR Stamina)",
+    "release_date": "2029-04-05",
+    "uma_guide_url": "https://uma.guide/support-cards/detail?id=30304"
+  },
+  {
+    "id": "30305",
+    "name": "Tazuna Hayakawa (SSR Pal)",
+    "release_date": "2029-04-05",
+    "uma_guide_url": "https://uma.guide/support-cards/detail?id=30305"
+  },
+  {
+    "id": "30306",
+    "name": "Nice Nature (SSR Wit)",
+    "release_date": "2029-04-12",
+    "uma_guide_url": "https://uma.guide/support-cards/detail?id=30306"
+  },
+  {
+    "id": "30307",
+    "name": "Kiseki (SSR Stamina)",
+    "release_date": "2029-04-26",
+    "uma_guide_url": "https://uma.guide/support-cards/detail?id=30307"
+  },
+  {
+    "id": "30308",
+    "name": "Almond Eye (SSR Guts)",
+    "release_date": "2029-04-26",
+    "uma_guide_url": "https://uma.guide/support-cards/detail?id=30308"
+  },
+  {
+    "_marker": "5.5 Year Anniversary"
   }
 ]

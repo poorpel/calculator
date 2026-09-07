@@ -9464,6 +9464,26 @@
         "uma_url": "https://uma.guide/characters/detail?card=111201"
       }
     ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 1200
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 2 (Oaks)",
+        "amount": 150
+      }
+    ],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 1,
+      "sr": 1
+    },
     "jp_release_date": "2026-05-11T03:00:00Z",
     "banner_duration_days": 9,
     "start_date": "2029-03-01T22:00:00Z",
@@ -9519,13 +9539,16 @@
         "uma_url": "https://uma.guide/characters/detail?card=113601"
       }
     ],
-    "events": [],
-    "rewards": {
-      "uma_ticket": 0,
-      "support_ticket": 0,
-      "ssr": 0,
-      "sr": 0
-    },
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 3 (Japan Derby)",
+        "amount": 150
+      }
+    ],
     "jp_release_date": "2026-05-20T03:00:00Z",
     "banner_duration_days": 9,
     "start_date": "2029-03-07T22:00:00Z",
@@ -9553,12 +9576,33 @@
         "uma_url": "https://uma.guide/characters/detail?card=111602"
       }
     ],
-    "events": [],
+    "events": [
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2910
+      },
+      {
+        "name": "Legend Race (Mejiro Ryan Steampunk)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Satono Crown)",
+        "amount": 250
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 3 (Yasuda Kinen))",
+        "amount": 150
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 3 (Takarazuka Kinen)",
+        "amount": 150
+      }
+    ],
     "rewards": {
-      "uma_ticket": 0,
-      "support_ticket": 0,
-      "ssr": 0,
-      "sr": 0
+      "uma_ticket": 2,
+      "support_ticket": 2,
+      "ssr": 4,
+      "sr": 5
     },
     "jp_release_date": "2026-05-29T03:00:00Z",
     "banner_duration_days": 17,
@@ -9615,12 +9659,25 @@
         "uma_url": "https://uma.guide/characters/detail?card=113401"
       }
     ],
-    "events": [],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 1200
+      },
+      {
+        "name": "Spring G1 Celebration Missions Part 3 (Teio Sho)",
+        "amount": 150
+      }
+    ],
     "rewards": {
       "uma_ticket": 0,
       "support_ticket": 0,
-      "ssr": 0,
-      "sr": 0
+      "ssr": 1,
+      "sr": 1
     },
     "jp_release_date": "2026-06-15T03:00:00Z",
     "banner_duration_days": 14,
@@ -9643,12 +9700,37 @@
         "uma_url": "https://uma.guide/characters/detail?card=107703"
       }
     ],
-    "events": [],
+    "events": [
+      {
+        "name": "New Scenario Login Gift",
+        "amount": 1500
+      },
+      {
+        "name": "New Scenario Mission",
+        "amount": 500
+      },
+      {
+        "name": "Legend Race (Hokko Tarumae)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Copano Rickey Parade)",
+        "amount": 250
+      },
+      {
+        "name": "Trainer Skill Test",
+        "amount": 1500
+      },
+      {
+        "name": "New Scenario Score Rewards",
+        "amount": 300
+      }
+    ],
     "rewards": {
-      "uma_ticket": 0,
-      "support_ticket": 0,
-      "ssr": 0,
-      "sr": 0
+      "uma_ticket": 5,
+      "support_ticket": 5,
+      "ssr": 5,
+      "sr": 6
     },
     "jp_release_date": "2026-06-29T03:00:00Z",
     "banner_duration_days": 22,
@@ -9662,7 +9744,7 @@
     "jp_start_date": "2026-06-29",
     "jp_end_date": "2026-07-21",
     "is_confirmed": false,
-    "free": 0,
+    "free": 80,
     "cards": [
       {
         "name": "Meisho Doto (SSR Stamina)",
@@ -9707,12 +9789,17 @@
         "uma_url": "https://uma.guide/characters/detail?card=102203"
       }
     ],
-    "events": [],
+    "events": [
+      {
+        "name": "Agnes Tachyon Factor Study",
+        "amount": 1200
+      }
+    ],
     "rewards": {
       "uma_ticket": 0,
       "support_ticket": 0,
-      "ssr": 0,
-      "sr": 0
+      "ssr": 1,
+      "sr": 1
     },
     "jp_release_date": "2026-07-10T03:00:00Z",
     "banner_duration_days": 11,
@@ -9752,6 +9839,238 @@
     "banner_duration_days": 11,
     "start_date": "2029-04-12T22:00:00Z",
     "end_date": "2029-04-23T22:00:00Z"
+  },
+  {
+    "type": "character",
+    "banner_id": "banner22",
+    "banner_name": "Rulership Banner",
+    "jp_start_date": "2026-07-21",
+    "jp_end_date": "2026-07-30",
+    "is_confirmed": false,
+    "free": 0,
+    "cards": [
+      {
+        "name": "Rulership",
+        "id": "114501",
+        "url": "https://gametora.com/umamusume/characters/114501-rulership",
+        "uma_url": "https://uma.guide/characters/detail?card=114501"
+      }
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      }
+    ],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "jp_release_date": "2026-07-21T03:00:00Z",
+    "banner_duration_days": 11,
+    "start_date": "2029-04-20T22:00:00Z",
+    "end_date": "2029-05-01T22:00:00Z"
+  },
+  {
+    "type": "character",
+    "banner_id": "banner23",
+    "banner_name": "Seiun Sky (Summer), Mejiro Bright (Summer) Banner",
+    "jp_release_date": "2026-07-30T03:00:00Z",
+    "banner_duration_days": 15,
+    "is_confirmed": false,
+    "free": 0,
+    "cards": [
+      {
+        "name": "Seiun Sky (Summer)",
+        "id": "102003",
+        "url": "https://gametora.com/umamusume/characters/102003",
+        "uma_url": "https://uma.guide/characters/detail?card=102003"
+      },
+      {
+        "name": "Mejiro Bright (Summer)",
+        "id": "107403",
+        "url": "https://gametora.com/umamusume/characters/107403",
+        "uma_url": "https://uma.guide/characters/detail?card=107403"
+      }
+    ],
+    "events": [
+      {
+        "name": "Masters Challenge",
+        "amount": 4500
+      },
+      {
+        "name": "Event Rewards (Story, Bingo, Event Pt)",
+        "amount": 2910
+      },
+      {
+        "name": "Legend Race (Durandal)",
+        "amount": 250
+      },
+      {
+        "name": "Legend Race (Calstone Light O)",
+        "amount": 250
+      }
+    ],
+    "rewards": {
+      "uma_ticket": 2,
+      "support_ticket": 2,
+      "ssr": 9,
+      "sr": 10
+    },
+    "start_date": "2029-04-26T22:00:00Z",
+    "end_date": "2029-05-11T22:00:00Z"
+  },
+  {
+    "type": "support",
+    "banner_id": "30419",
+    "banner_name": "Kiseki (SSR Stamina), Almond Eye (SSR Guts) Support Banner",
+    "jp_release_date": "2026-07-30T03:00:00Z",
+    "banner_duration_days": 15,
+    "is_confirmed": false,
+    "free": 0,
+    "cards": [
+      {
+        "name": "Kiseki (SSR Stamina)",
+        "id": "30307",
+        "url": "https://gametora.com/umamusume/support-cards/30307",
+        "uma_url": "https://uma.guide/support-cards/detail?id=30307"
+      },
+      {
+        "name": "Almond Eye (SSR Guts)",
+        "id": "30308",
+        "url": "https://gametora.com/umamusume/support-cards/30308",
+        "uma_url": "https://uma.guide/support-cards/detail?id=30308"
+      }
+    ],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "start_date": "2029-04-26T22:00:00Z",
+    "end_date": "2029-05-11T22:00:00Z"
+  },
+  {
+    "type": "character",
+    "banner_id": "30420",
+    "banner_name": "Fusaichi Pandora (Summer) Banner",
+    "jp_release_date": "2026-08-14T03:00:00Z",
+    "banner_duration_days": 10,
+    "is_confirmed": false,
+    "free": 11,
+    "cards": [
+      {
+        "name": "Fusaichi Pandora (Summer)",
+        "id": "111302",
+        "url": "https://gametora.com/umamusume/characters/111302",
+        "uma_url": "https://uma.guide/characters/detail?card=111302"
+      }
+    ],
+    "events": [
+      {
+        "name": "KFC?",
+        "amount": 500
+      },
+      {
+        "name": "5.5th Anniversary Countdown",
+        "amount": 1500
+      },
+      {
+        "name": "5.5th Anniversary Celebration Missions Part 1",
+        "amount": 500
+      }
+    ],
+    "rewards": {
+      "uma_ticket": 1,
+      "support_ticket": 1,
+      "ssr": 0,
+      "sr": 0
+    },
+    "start_date": "2029-05-07T22:00:00Z",
+    "end_date": "2029-05-17T22:00:00Z"
+  },
+  {
+    "type": "character",
+    "banner_id": "30421",
+    "banner_name": "Epiphanneia Banner",
+    "jp_release_date": "2026-08-24T03:00:00Z",
+    "banner_duration_days": 33,
+    "is_confirmed": false,
+    "free": 0,
+    "cards": [
+      {
+        "name": "Epiphanneia",
+        "id": "114101",
+        "url": "https://gametora.com/umamusume/characters/114101",
+        "uma_url": "https://uma.guide/characters/detail?card=114101"
+      }
+    ],
+    "events": [
+      {
+        "name": "Uma Story Ch 1-4",
+        "amount": 80
+      },
+      {
+        "name": "5.5th Anniversary Login Gift",
+        "amount": 3000
+      },
+      {
+        "name": "5.5th Anniversary Login Bonus",
+        "amount": 3000
+      },
+      {
+        "name": "5.5th Anniversary Celebration Missions Part 2",
+        "amount": 500
+      },
+      {
+        "name": "Beyond Memories",
+        "amount": 300
+      }
+    ],
+    "rewards": {
+      "uma_ticket": 1,
+      "support_ticket": 1,
+      "ssr": 2,
+      "sr": 2
+    },
+    "start_date": "2029-05-14T22:00:00Z",
+    "end_date": "2029-06-16T22:00:00Z"
+  },
+  {
+    "type": "support",
+    "banner_id": "30422",
+    "banner_name": "Mr. C.B. (SSR Speed), Efforia (SSR Speed) Support Banner",
+    "jp_release_date": "2026-08-24T03:00:00Z",
+    "banner_duration_days": 33,
+    "is_confirmed": false,
+    "free": 100,
+    "cards": [
+      {
+        "name": "Mr. C.B. (SSR Speed)",
+        "id": "30312",
+        "url": "https://gametora.com/umamusume/support-cards/30312",
+        "uma_url": "https://uma.guide/support-cards/detail?id=30312"
+      },
+      {
+        "name": "Efforia (SSR Speed)",
+        "id": "30311",
+        "url": "https://gametora.com/umamusume/support-cards/30311",
+        "uma_url": "https://uma.guide/support-cards/detail?id=30311"
+      }
+    ],
+    "events": [],
+    "rewards": {
+      "uma_ticket": 0,
+      "support_ticket": 0,
+      "ssr": 0,
+      "sr": 0
+    },
+    "start_date": "2029-05-14T22:00:00Z",
+    "end_date": "2029-06-16T22:00:00Z"
   },
   {
     "type": "step_up",
